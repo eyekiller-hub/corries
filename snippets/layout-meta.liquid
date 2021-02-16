@@ -1,0 +1,20 @@
+{% assign amp_enable = settings.amp_enable | default: false %}
+
+<meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="{{ page_description | escape }}" />
+
+{% unless request_amp %}
+  {% if shop.domain == shop.permanent_domain %}
+    <meta name="robots" content="noindex, nofollow" />
+  {% endif %}
+{% endunless %}
+
+<link rel="canonical" href="{{ canonical_url }}" />
+
+{% unless request_amp %}
+  {% if request_amp_url %}
+    <link rel="amphtml" href="{{ request_amp_url }}">
+  {% endif %}
+{% endunless %}

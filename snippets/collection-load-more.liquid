@@ -1,0 +1,13 @@
+<div data-module-collection-load-more--{{ filters_logic }}>
+  <div style="{% if paginate.pages <= 1 %}display: none;{% endif %}">
+    <div style="{% if paginate.current_page == paginate.pages %}display: none;{% endif %}">
+      <div class="padding-top--up-2 large--padding-top--up-4">
+        <div class="text-center">
+          <a class="button-secondary" href="{{ paginate.next.url }}" data-ref-load-more-button {% if filters_logic == 'and' %}data-module-collection-link='{ "products_append": true }'{% endif %}>
+            {{ 'collection.load_more.call_to_action' | t }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+{% capture pagination_template %}
+  {% include 'pagination-template' %}
+{% endcapture %}
+
+{% capture pagination_part_template %}
+  {% include 'pagination-part-template' %}
+{% endcapture %}
+
+{% capture pagination_part_active_class_name_template %}
+  {% include 'pagination-part-active-class-name-template' %}
+{% endcapture %}
+
+{% capture pagination_part_inactive_class_name_template %}
+  {% include 'pagination-part-inactive-class-name-template' %}
+{% endcapture %}
+
+<div data-module-collection-pagination--{{ filters_logic }}='{
+  "template": {{ pagination_template | json | escape }},
+  "part_template": {{ pagination_part_template | json | escape }},
+  "part_active_class_name_template": {{ pagination_part_active_class_name_template | json | escape }},
+  "part_inactive_class_name_template": {{ pagination_part_inactive_class_name_template | json | escape }}
+}'>
+  <div style="{% if paginate.pages <= 1 %}display: none;{% endif %}">
+    {% include 'pagination' %}
+  </div>
+</div>

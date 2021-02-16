@@ -1,0 +1,31 @@
+{% assign amp = _amp %}
+{% assign image_lazy = _image_lazy %}
+
+{% assign url = product.url | within: collection %}
+
+{% assign image = product.images[0] %}
+{% assign image_url = image | img_url: '500x500', crop: 'center' %}
+
+{% assign image_alt = image.alt | escape %}
+
+{% assign image_attributes = ' ' %}
+
+{% assign title = product.title %}
+
+{% assign price = product.price | money %}
+
+{% if image_lazy %}
+  {% assign image_attributes = 'data-lazy' %}
+{% endif %}
+
+{%
+  include 'product-card-template',
+  _amp: amp,
+  _url: url,
+  _image: image,
+  _image_url: image_url,
+  _image_alt: image_alt,
+  _image_attributes: image_attributes,
+  _title: title,
+  _price: price
+%}

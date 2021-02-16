@@ -1,0 +1,13 @@
+{% assign parts = _parts %}
+
+{% assign parts = parts | default: '{{ parts }}' %}
+
+<div class="padding-top--up-2 large--padding-top--up-4">
+  <div class="text-center">
+    <div class="overflow-hidden">
+      <ul class="grid-bar--down-2 margin-bottom-negative--down-2 font-size--none margin-bottom--none">
+        {{ parts }}
+      </ul>
+    </div>
+  </div>
+</div>

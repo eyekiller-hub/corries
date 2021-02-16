@@ -1,0 +1,89 @@
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Columns"
+      },
+      {
+        "type": "paragraph",
+        "content": "Use the below Content -> Add content to manage columns."
+      },
+      {
+        "type": "header",
+        "content": "Small copy"
+      },
+      {
+        "type": "checkbox",
+        "id": "small_copy_enable",
+        "label": "Enable?"
+      },
+      {
+        "type": "richtext",
+        "id": "small_copy_body",
+        "label": "Body",
+        "info": "Use the placeholder \"{{ year }}\" and it'll be replaced with the current year."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "menu",
+        "name": "Menu",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "link_list",
+            "id": "menu",
+            "label": "Menu"
+          }
+        ]
+      },
+      {
+        "type": "social_links",
+        "name": "Social links",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "info": "Content is managed via Theme settings -> Social."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% assign logo_image = section.settings.logo_image | default: false %}
+{% assign logo_image_url = logo_image | img_url: '500x' %}
+
+{% assign small_copy_enable = section.settings.small_copy_enable | default: false %}
+
+{% assign small_copy_body = section.settings.small_copy_body | default: false %}
+
+{% assign blocks = section.blocks | default: false %}
+
+<footer role="contentinfo">
+  <div class="box-color-footer-background child-a-text-color-footer-links child-a-hover-text-color-footer-links-hover">
+    <div class="padding-top-bottom--up-2 large--padding-top-bottom--up-4">
+      <div class="container-default">
+        <div class="text-center large--text-left">
+          {% if blocks %}
+            <div class="overflow-hidden">
+              {% include 'footer-columns' %}
+            </div>
+          {% endif %}
+
+          {% if small_copy_enable %}
+            {% include 'footer-small-copy' %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

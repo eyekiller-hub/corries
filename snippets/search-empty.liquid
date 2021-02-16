@@ -1,0 +1,9 @@
+<h1 class="font-size--h4 line-height--h4 text-transform--h4 letter-spacing--h4 margin-bottom--0">
+  {{ 'search.empty.title' | t }}
+</h1>
+
+{% if empty_body %}
+  <div class="rte">
+    {{ empty_body }}
+  </div>
+{% endif %}

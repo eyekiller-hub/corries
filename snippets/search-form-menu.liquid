@@ -1,0 +1,29 @@
+<div class="search-form-element" data-module-search-form-menu='{ "search_form_input_id": {{ id | json }} }'>
+  <div class="position-absolute position-left position-top--full">
+    <div class="search-form-element-width">
+      <div class="box-color-header-background box-shadow">
+        <div class="padding--0">
+          {% if search_form_menu_title %}
+            <div class="font-weight-700 margin-bottom--0">
+              {{ search_form_menu_title }}
+            </div>
+          {% endif %}
+
+          {% if search_form_menu %}
+            <ul class="margin--none last-child-margin--none">
+              {% for link in search_form_menu.links %}
+                <li class="margin-bottom--0">
+                  <a href="{{ link.url }}">
+                    <span class="font-size--down-2 line-height--up-4">
+                      {{ link.title }}
+                    </span>
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

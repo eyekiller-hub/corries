@@ -1,0 +1,13 @@
+<div class="margin-bottom--up-1">
+  <h1 class="text-center margin--none">
+    {{ collection.title }}
+  </h1>
+
+  {% if collection.description != blank %}
+    <div class="padding-top--up-1">
+      <div class="rte font-size--down-2 line-height--up-4">
+        {{ collection.description }}
+      </div>
+    </div>
+  {% endif %}
+</div>

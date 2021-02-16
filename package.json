@@ -1,0 +1,42 @@
+{
+  "name": "corries",
+  "scripts": {
+    "start": "concurrently 'npm run js:watch' 'npm run sass:watch' 'npm run theme:watch' 'npm run server:watch'",
+    "build": "npm run js:build && npm run sass:build",
+    "js:build": "webpack --mode production",
+    "js:watch": "webpack --watch --mode development",
+    "sass:build": "gulp sass:build",
+    "presass:watch": "npm run sass:build",
+    "sass:watch": "gulp sass:watch",
+    "theme:watch": "theme watch --notify theme.update",
+    "server:watch": "node server",
+    "purgecss": "purgecss --config purgecss.config.js --output ./assets"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.24.4",
+    "concurrently": "^4.0.1",
+    "gulp": "^4.0.2",
+    "gulp-purgecss": "^2.1.2",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "js-yaml": "^3.10.0",
+    "my-local-ip": "^1.0.0",
+    "node-sass": "^4.11.0",
+    "opn": "^5.4.0",
+    "purgecss": "^2.1.0",
+    "shopify-api-node": "^2.15.0",
+    "webpack": "^4.28.2",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "@shopify/theme-images": "^4.0.0",
+    "js-cookie": "^2.2.1",
+    "swiper": "^4.4.2",
+    "wolfy87-eventemitter": "^5.2.5"
+  }
+}

@@ -1,0 +1,12 @@
+<div style="display: none;">
+  <select name="id" data-ref-id>
+    {% for variant in product.variants %}
+      <option
+        {% if variant == current_variant %}selected{% endif %}
+        {% unless variant.available %}disabled{% endunless %}
+        value="{{ variant.id }}">
+        {{ variant.title }}
+      </option>
+    {% endfor %}
+  </select>
+</div>

@@ -1,0 +1,24 @@
+<div class="flex-bar height-full">
+  <div class="flex-item-shrink">
+    <div class="padding-top-bottom--up-1">
+      <div class="inline-block align-top">
+        <button
+          class="input-reset block"
+          type="button"
+          {% if request_amp %}
+            on="tap:mobile-menu.toggle"
+          {% endif %}
+          {% unless request_amp %}
+          data-module-offcanvas-trigger='{
+            "id": "header-mobile-menu",
+            "scroll_to": 0
+          }'
+          {% endunless %}>
+          <div class="font-size--up-6 {% unless request_amp %}text-color-header-links hover-text-color-header-links-hover medium-down--text-color-header-mobile-links medium-down--hover-text-color-header-mobile-links-hover{% endunless %} {% if request_amp %}text-color-header-mobile-links hover-text-color-header-mobile-links-hover{% endif %}">
+            {% include 'svg-menu' %}
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

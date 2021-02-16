@@ -1,0 +1,38 @@
+<div class="overflow-hidden">
+  <div class="large--flex--up-1 margin-bottom-negative--up-1">
+    {% for block in blocks %}
+      {% assign block_title = block.settings.title | default: false %}
+
+      {% assign block_menu = block.settings.menu %}
+      {% assign block_menu = menus[block_menu] | default: false %}
+
+      <div class="large--flex-item padding-bottom--up-1">
+        {% if block_title %}
+          <h3 class="font-size--h6 line-height--h6 text-transform--h6 letter-spacing--h6 margin-bottom--0">
+            {{ block_title }}
+          </h3>
+        {% endif %}
+
+        {% if block.type == 'menu' %}
+          {% if block_menu %}
+            <ul class="margin--none last-child-margin--none">
+              {% for link in block_menu.links %}
+                <li class="margin-bottom--down-2">
+                  <a href="{{ link.url }}">
+                    <div class="font-size--footer line-height--footer text-transform--footer letter-spacing--footer">
+                      {{ link.title }}
+                    </div>
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endif %}
+
+        {% if block.type == 'social_links' %}
+          {% include 'social-links' %}
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>

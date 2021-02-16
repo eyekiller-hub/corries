@@ -1,0 +1,52 @@
+{% schema %}
+  {
+    "name": "Product upsells",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Products are recommended based on an algorithm that predicts the most relevant products based on the product a customer is interacting with. You can manually associate upsells to products by adding tags to the product in the format of 'upsell: product-handle', e.g. 'upsell: red-shirt'."
+      },
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enable?",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "limit",
+        "label": "Limit",
+        "default": 4
+      }
+    ]
+  }
+{% endschema %}
+
+{% assign enable = section.settings.enable %}
+
+{% assign limit = section.settings.limit | default: 4 %}
+
+{% include 'attribute-product-upsells' %}
+{% include 'attribute-request-amp' %}
+
+{% if enable %}
+  {% capture product_card_grid_item_class_name_template %}
+    {% include 'product-card-grid-item-class-name-template' %}
+  {% endcapture %}
+
+  {% if product_upsells %}
+    {% include 'product-upsells-body' %}
+  {% else %}
+    {% if template.name == 'product' %}
+      <div data-module-product-upsells='{
+        "product_id": {{ product.id | json | escape }},
+        "product_title": {{ product.title | json | escape }},
+        "limit": {{ limit | json | escape }}
+      }'></div>
+    {% else %}
+      {% if recommendations.products != empty %}
+        {% include 'product-upsells-body' %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+{% endif %}

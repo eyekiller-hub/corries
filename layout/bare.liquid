@@ -1,0 +1,24 @@
+{% include 'attribute-request-amp' %}
+
+<!DOCTYPE html>
+<html class="template-{{ template | handle }}" lang="{{ shop.locale }}">
+  <head>
+    {% include 'layout-meta' %}
+    {% include 'layout-social-meta' %}
+    {% include 'layout-title' %}
+    {% include 'layout-favicon' %}
+    {% include 'layout-schema' %}
+    {% include 'layout-styles' %}
+    {% include 'layout-scripts-head' %}
+
+    {{ content_for_header }}
+  </head>
+
+  <body>
+    <main role="main">
+      {{ content_for_layout }}
+    </main>
+
+    {% include 'layout-scripts' %}
+  </body>
+</html>

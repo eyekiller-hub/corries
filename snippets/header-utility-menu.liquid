@@ -1,0 +1,57 @@
+<ul class="grid-bar--up-1 margin-bottom--none height-full">
+  {% if search_enable %}
+    <li class="grid-item height-full">
+      <div class="flex-bar height-full">
+        <div class="flex-item-shrink">
+          <div class="padding-top-bottom--up-1">
+            <a href="{{ routes.search_url }}">
+              <div class="font-size--up-6">
+                {% include 'svg-search' %}
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </li>
+  {% endif %}
+
+  {% if shop.customer_accounts_enabled %}
+    <li class="grid-item height-full">
+      <div class="flex-bar height-full">
+        <div class="flex-item-shrink">
+          <div class="padding-top-bottom--up-1">
+            <a href="{{ routes.account_url }}">
+              <div class="font-size--up-6">
+                {% include 'svg-user' %}
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </li>
+  {% endif %}
+
+  <li class="grid-item height-full">
+    <div class="flex-bar height-full mini-cart-hover-trigger">
+      <div class="flex-item-shrink">
+        <div class="padding-top-bottom--up-1">
+          {% include 'header-cart-link' %}
+        </div>
+      </div>
+
+      {% unless request_amp %}
+        {% include 'mini-cart' %}
+      {% endunless %}
+    </div>
+  </li>
+
+  <li class="grid-item height-full {% unless display_simple %}large--hide!{% endunless %}">
+    <div class="flex-bar height-full">
+      <div class="flex-item-shrink">
+        <div class="padding-top-bottom--up-1">
+          {% include 'header-mobile-menu-toggle' %}
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

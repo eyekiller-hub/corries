@@ -1,0 +1,11 @@
+<label class="font-size--down-2 line-height--up-4 margin-bottom--down-2" for="quantity-{{ product.id }}">
+  {{ 'products.product.quantity' | t }}
+</label>
+
+<input
+  class="input"
+  type="number"
+  name="quantity"
+  id="quantity-{{ product.id }}"
+  value="1"
+  data-module-product-quantity='{ "product_id": {{ product.id | json | escape }} }' />

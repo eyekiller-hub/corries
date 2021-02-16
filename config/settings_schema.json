@@ -1,0 +1,1919 @@
+[
+  {
+    "name": "AMP",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "We strongly recommended to leave this setting enabled. Amp pages perform significantly better in search results on mobile leading to higher traffic and conversions."
+      },
+      {
+        "type": "paragraph",
+        "content": "What is AMP?  AMP stands for Accelerated Mobile Pages. We have implemented AMP on the product and collection pages of this theme to help your content rank higher in Google mobile searches. If activated, the user will see a reduced, faster version of these pages before proceeding to the full mobile version of the site."
+      },
+      {
+        "type": "checkbox",
+        "id": "amp_enable",
+        "label": "Enable?",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Google",
+    "settings": [
+      {
+        "type": "text",
+        "id": "google_analytics_id",
+        "label": "Analytics ID",
+        "info": "Needs to match the ID under [Online Store -> Preferences -> Google Analytics](\/admin\/online_store\/preferences)."
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "Suggested size: 100x100px."
+      }
+    ]
+  },
+  {
+    "name": "Container",
+    "settings": [
+     {
+        "type": "header",
+        "content": "Default"
+      },
+      {
+        "type": "range",
+        "id": "container_default_width",
+        "min": 900,
+        "max": 2000,
+        "step": 50,
+        "unit": "px",
+        "label": "Width",
+        "default": 1300
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Base"
+      },
+      {
+        "type": "font_picker",
+        "label": "Font",
+        "id": "typography_base_font",
+        "default": "open_sans_n4"
+      },
+      {
+        "type": "range",
+        "id": "typography_base_font_size",
+        "min": 10,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "label": "Font size",
+        "default": 16
+      },
+      {
+        "type": "range",
+        "id": "typography_base_line_height",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Line height",
+        "default": 6,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "select",
+        "id": "typography_base_text_transform",
+        "label": "Text transform",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "capitalize", "label": "Capitalize" },
+          { "value": "uppercase", "label": "Uppercase" },
+          { "value": "lowercase", "label": "Lowercase" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "typography_base_letter_spacing",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "unit": "px",
+        "label": "Letter spacing",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "H1-H6"
+      },
+      {
+        "type": "font_picker",
+        "label": "Font",
+        "id": "typography_h_font",
+        "default": "raleway_n8"
+      },
+      {
+        "type": "header",
+        "content": "H1"
+      },
+      {
+        "type": "range",
+        "id": "typography_h1_font_size",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Font size",
+        "default": 12,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "range",
+        "id": "typography_h1_line_height",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Line height",
+        "default": 15,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "select",
+        "id": "typography_h1_text_transform",
+        "label": "Text transform",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "capitalize", "label": "Capitalize" },
+          { "value": "uppercase", "label": "Uppercase" },
+          { "value": "lowercase", "label": "Lowercase" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "typography_h1_letter_spacing",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "unit": "px",
+        "label": "Letter spacing",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "H2"
+      },
+      {
+        "type": "range",
+        "id": "typography_h2_font_size",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Font size",
+        "default": 10,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "range",
+        "id": "typography_h2_line_height",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Line height",
+        "default": 13,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "select",
+        "id": "typography_h2_text_transform",
+        "label": "Text transform",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "capitalize", "label": "Capitalize" },
+          { "value": "uppercase", "label": "Uppercase" },
+          { "value": "lowercase", "label": "Lowercase" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "typography_h2_letter_spacing",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "unit": "px",
+        "label": "Letter spacing",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "H3"
+      },
+      {
+        "type": "range",
+        "id": "typography_h3_font_size",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Font size",
+        "default": 8,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "range",
+        "id": "typography_h3_line_height",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Line height",
+        "default": 11,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "select",
+        "id": "typography_h3_text_transform",
+        "label": "Text transform",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "capitalize", "label": "Capitalize" },
+          { "value": "uppercase", "label": "Uppercase" },
+          { "value": "lowercase", "label": "Lowercase" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "typography_h3_letter_spacing",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "unit": "px",
+        "label": "Letter spacing",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "H4"
+      },
+      {
+        "type": "range",
+        "id": "typography_h4_font_size",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Font size",
+        "default": 6,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "range",
+        "id": "typography_h4_line_height",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Line height",
+        "default": 9,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "select",
+        "id": "typography_h4_text_transform",
+        "label": "Text transform",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "capitalize", "label": "Capitalize" },
+          { "value": "uppercase", "label": "Uppercase" },
+          { "value": "lowercase", "label": "Lowercase" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "typography_h4_letter_spacing",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "unit": "px",
+        "label": "Letter spacing",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "H5"
+      },
+      {
+        "type": "range",
+        "id": "typography_h5_font_size",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Font size",
+        "default": 4,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "range",
+        "id": "typography_h5_line_height",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Line height",
+        "default": 8,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "select",
+        "id": "typography_h5_text_transform",
+        "label": "Text transform",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "capitalize", "label": "Capitalize" },
+          { "value": "uppercase", "label": "Uppercase" },
+          { "value": "lowercase", "label": "Lowercase" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "typography_h5_letter_spacing",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "unit": "px",
+        "label": "Letter spacing",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "H6"
+      },
+      {
+        "type": "range",
+        "id": "typography_h6_font_size",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Font size",
+        "default": 2,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "range",
+        "id": "typography_h6_line_height",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Line height",
+        "default": 8,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "select",
+        "id": "typography_h6_text_transform",
+        "label": "Text transform",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "capitalize", "label": "Capitalize" },
+          { "value": "uppercase", "label": "Uppercase" },
+          { "value": "lowercase", "label": "Lowercase" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "typography_h6_letter_spacing",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "unit": "px",
+        "label": "Letter spacing",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Buttons"
+      },
+      {
+        "type": "range",
+        "id": "typography_buttons_font_size",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Font size",
+        "default": 0,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "range",
+        "id": "typography_buttons_line_height",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Line height",
+        "default": 6,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "select",
+        "id": "typography_buttons_text_transform",
+        "label": "Text transform",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "capitalize", "label": "Capitalize" },
+          { "value": "uppercase", "label": "Uppercase" },
+          { "value": "lowercase", "label": "Lowercase" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "typography_buttons_letter_spacing",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "unit": "px",
+        "label": "Letter spacing",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Utility bar"
+      },
+      {
+        "type": "range",
+        "id": "typography_utility_bar_font_size",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Font size",
+        "default": -2,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "range",
+        "id": "typography_utility_bar_line_height",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Line height",
+        "default": 4,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "header",
+        "content": "Utility bar (mobile)"
+      },
+      {
+        "type": "range",
+        "id": "typography_utility_bar_mobile_font_size",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Font size",
+        "default": -2,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "range",
+        "id": "typography_utility_bar_mobile_line_height",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Line height",
+        "default": 4,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "header",
+        "content": "Navigation"
+      },
+      {
+        "type": "range",
+        "id": "typography_navigation_font_size",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Font size",
+        "default": 0,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "range",
+        "id": "typography_navigation_line_height",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Line height",
+        "default": 6,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "select",
+        "id": "typography_navigation_text_transform",
+        "label": "Text transform",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "capitalize", "label": "Capitalize" },
+          { "value": "uppercase", "label": "Uppercase" },
+          { "value": "lowercase", "label": "Lowercase" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "typography_navigation_letter_spacing",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "unit": "px",
+        "label": "Letter spacing",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Filters"
+      },
+      {
+        "type": "range",
+        "id": "typography_filters_font_size",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Font size",
+        "default": 2,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "range",
+        "id": "typography_filters_line_height",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Line height",
+        "default": 8,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "select",
+        "id": "typography_filters_text_transform",
+        "label": "Text transform",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "capitalize", "label": "Capitalize" },
+          { "value": "uppercase", "label": "Uppercase" },
+          { "value": "lowercase", "label": "Lowercase" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "typography_filters_letter_spacing",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "unit": "px",
+        "label": "Letter spacing",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Product cards"
+      },
+      {
+        "type": "range",
+        "id": "typography_product_cards_font_size",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Font size",
+        "default": -2,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "range",
+        "id": "typography_product_cards_line_height",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Line height",
+        "default": 4,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "select",
+        "id": "typography_product_cards_text_transform",
+        "label": "Text transform",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "capitalize", "label": "Capitalize" },
+          { "value": "uppercase", "label": "Uppercase" },
+          { "value": "lowercase", "label": "Lowercase" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "typography_product_cards_letter_spacing",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "unit": "px",
+        "label": "Letter spacing",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Product price"
+      },
+      {
+        "type": "range",
+        "id": "typography_product_price_font_size",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Font size",
+        "default": 10,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "range",
+        "id": "typography_product_price_line_height",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Line height",
+        "default": 13,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "select",
+        "id": "typography_product_price_text_transform",
+        "label": "Text transform",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "capitalize", "label": "Capitalize" },
+          { "value": "uppercase", "label": "Uppercase" },
+          { "value": "lowercase", "label": "Lowercase" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "typography_product_price_letter_spacing",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "unit": "px",
+        "label": "Letter spacing",
+        "default": 0
+      },
+      {
+        "type": "header",
+        "content": "Footer"
+      },
+      {
+        "type": "range",
+        "id": "typography_footer_font_size",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Font size",
+        "default": 0,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "range",
+        "id": "typography_footer_line_height",
+        "min": -25,
+        "max": 25,
+        "step": 1,
+        "label": "Line height",
+        "default": 6,
+        "info": "Uses a [modular scale](https://modularscale.com) - 0 = \"Base\" font size. 25 = largest font size. -25 = smallest font size."
+      },
+      {
+        "type": "select",
+        "id": "typography_footer_text_transform",
+        "label": "Text transform",
+        "options": [
+          { "value": "none", "label": "None" },
+          { "value": "capitalize", "label": "Capitalize" },
+          { "value": "uppercase", "label": "Uppercase" },
+          { "value": "lowercase", "label": "Lowercase" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "typography_footer_letter_spacing",
+        "min": 0,
+        "max": 10,
+        "step": 0.5,
+        "unit": "px",
+        "label": "Letter spacing",
+        "default": 0
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Definitions"
+      },
+      {
+        "type": "color",
+        "id": "colors_definitions_1",
+        "label": "#1",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "colors_definitions_2",
+        "label": "#2",
+        "default": "#F7F7F7"
+      },
+      {
+        "type": "color",
+        "id": "colors_definitions_3",
+        "label": "#3",
+        "default": "#EAEAEA"
+      },
+      {
+        "type": "color",
+        "id": "colors_definitions_4",
+        "label": "#4",
+        "default": "#959595"
+      },
+      {
+        "type": "color",
+        "id": "colors_definitions_5",
+        "label": "#5",
+        "default": "#757575"
+      },
+      {
+        "type": "color",
+        "id": "colors_definitions_6",
+        "label": "#6",
+        "default": "#464545"
+      },
+      {
+        "type": "color",
+        "id": "colors_definitions_7",
+        "label": "#7",
+        "default": "#444444"
+      },
+      {
+        "type": "color",
+        "id": "colors_definitions_8",
+        "label": "#8",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "colors_definitions_9",
+        "label": "#9",
+        "default": "#A14FFF"
+      },
+      {
+        "type": "color",
+        "id": "colors_definitions_10",
+        "label": "#10",
+        "default": "#78589D"
+      },
+      {
+        "type": "color",
+        "id": "colors_definitions_11",
+        "label": "#11",
+        "default": "#EB3A60"
+      },
+      {
+        "type": "header",
+        "content": "Base"
+      },
+      {
+        "type": "range",
+        "id": "colors_base_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_base_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_base_headings",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Headings",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_base_links",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Links",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_base_links_hover",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Links (hover)",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "header",
+        "content": "Container"
+      },
+      {
+        "type": "range",
+        "id": "colors_container_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "header",
+        "content": "Button (primary)"
+      },
+      {
+        "type": "range",
+        "id": "colors_button_primary_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_primary_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 10,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_primary_border",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Border",
+        "default": 10,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_primary_text_hover",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text (hover)",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_primary_background_hover",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background (hover)",
+        "default": 9,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_primary_border_hover",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Border (hover)",
+        "default": 9,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_primary_text_disabled",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text (disabled)",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_primary_background_disabled",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background (disabled)",
+        "default": 10,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_primary_background_disabled_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "Background opacity (disabled)",
+        "default": 40
+      },
+      {
+        "type": "range",
+        "id": "colors_button_primary_border_disabled",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Border (disabled)",
+        "default": 10,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_primary_border_disabled_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "Border opacity (disabled)",
+        "default": 40
+      },
+      {
+        "type": "header",
+        "content": "Button (secondary)"
+      },
+      {
+        "type": "range",
+        "id": "colors_button_secondary_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_secondary_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 5,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_secondary_border",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Border",
+        "default": 5,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_secondary_text_hover",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text (hover)",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_secondary_background_hover",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background (hover)",
+        "default": 6,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_secondary_border_hover",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Border (hover)",
+        "default": 6,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_secondary_text_disabled",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text (disabled)",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_secondary_background_disabled",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background (disabled)",
+        "default": 5,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_secondary_background_disabled_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "Background opacity (disabled)",
+        "default": 40
+      },
+      {
+        "type": "range",
+        "id": "colors_button_secondary_border_disabled",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Border (disabled)",
+        "default": 5,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_button_secondary_border_disabled_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "Border opacity (disabled)",
+        "default": 40
+      },
+      {
+        "type": "header",
+        "content": "Text input"
+      },
+      {
+        "type": "range",
+        "id": "colors_text_input_placeholder",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Placeholder",
+        "default": 4,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_text_input_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_text_input_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_text_input_border",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Border",
+        "default": 3,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "header",
+        "content": "Checkbox input"
+      },
+      {
+        "type": "range",
+        "id": "colors_checkbox_input_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text",
+        "default": 8,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_checkbox_input_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 3,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_checkbox_input_border",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Border",
+        "default": 3,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_checkbox_input_text_active",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text (active)",
+        "default": 8,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_checkbox_input_background_active",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background (active)",
+        "default": 3,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_checkbox_input_border_active",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Border (active)",
+        "default": 3,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "header",
+        "content": "Placeholder"
+      },
+      {
+        "type": "range",
+        "id": "colors_placeholder_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 3,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "header",
+        "content": "Overlay"
+      },
+      {
+        "type": "range",
+        "id": "colors_overlay_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 8,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_overlay_background_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "Background opacity",
+        "default": 75
+      },
+      {
+        "type": "header",
+        "content": "Utility bar"
+      },
+      {
+        "type": "range",
+        "id": "colors_utility_bar_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_utility_bar_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 3,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type": "range",
+        "id": "colors_header_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_background_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "Background opacity",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "colors_header_links",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Links",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_links_hover",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Links (hover)",
+        "default": 10,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_cart_icon",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Cart icon",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_cart_icon_hover",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Cart icon (hover)",
+        "default": 10,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_cart_icon_count_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Cart icon count text",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_cart_icon_count_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Cart icon count background",
+        "default": 10,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_search_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Search background",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_search_border",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Search border",
+        "default": 3,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_search_placeholder",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Search placeholder",
+        "default": 4,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_search_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Search text",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_search_button_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Search button text",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_search_button_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Search button background",
+        "default": 10,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "header",
+        "content": "Header (mobile)"
+      },
+      {
+        "type": "range",
+        "id": "colors_header_mobile_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_mobile_background_opacity",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "label": "Background opacity",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "colors_header_mobile_links",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Links",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_mobile_links_hover",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Links (hover)",
+        "default": 10,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_mobile_cart_icon",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Cart icon",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_mobile_cart_icon_hover",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Cart icon (hover)",
+        "default": 10,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_mobile_cart_icon_count_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Cart icon count text",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_mobile_cart_icon_count_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Cart icon count background",
+        "default": 10,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_mobile_search_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Search background",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_mobile_search_border",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Search border",
+        "default": 3,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_mobile_search_placeholder",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Search placeholder",
+        "default": 4,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_mobile_search_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Search text",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_mobile_search_button_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Search button text",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_header_mobile_search_button_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Search button background",
+        "default": 10,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "header",
+        "content": "Mini cart"
+      },
+      {
+        "type": "range",
+        "id": "colors_mini_cart_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_mini_cart_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 2,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "header",
+        "content": "Mobile navigation"
+      },
+      {
+        "type": "range",
+        "id": "colors_mobile_navigation_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_mobile_navigation_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 2,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "header",
+        "content": "Hero"
+      },
+      {
+        "type": "range",
+        "id": "colors_hero_text_light",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text (light)",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_hero_text_dark",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text (dark)",
+        "default": 8,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "header",
+        "content": "Filters"
+      },
+      {
+        "type": "range",
+        "id": "colors_filters_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_filters_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 1,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_filters_checkbox_input_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Checkbox input text",
+        "default": 8,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_filters_checkbox_input_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Checkbox input background",
+        "default": 3,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_filters_checkbox_input_border",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Checkbox input border",
+        "default": 3,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_filters_checkbox_input_text_active",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Checkbox input text (active)",
+        "default": 8,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_filters_checkbox_input_background_active",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Checkbox input background (active)",
+        "default": 3,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_filters_checkbox_input_border_active",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Checkbox input border (active)",
+        "default": 3,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "header",
+        "content": "Product"
+      },
+      {
+        "type": "range",
+        "id": "colors_product_price",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Price",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_product_price_sale",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Price (sale)",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_product_compare_at_price",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Compare at price",
+        "default": 11,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_product_vendor",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Vendor",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_product_image_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Image background",
+        "default": 2,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "header",
+        "content": "Footer"
+      },
+      {
+        "type": "range",
+        "id": "colors_footer_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 2,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_footer_links",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Links",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_footer_links_hover",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Links (hover)",
+        "default": 10,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "header",
+        "content": "Cookies modal"
+      },
+      {
+        "type": "range",
+        "id": "colors_cookies_modal_text",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Text",
+        "default": 7,
+        "info": "Choose a color number defined under \"Definitions\"."
+      },
+      {
+        "type": "range",
+        "id": "colors_cookies_modal_background",
+        "min": 1,
+        "max": 11,
+        "step": 1,
+        "label": "Background",
+        "default": 2,
+        "info": "Choose a color number defined under \"Definitions\"."
+      }
+    ]
+  },
+  {
+    "name": "Miscellaneous",
+    "settings": [
+     {
+        "type": "header",
+        "content": "Transitions"
+      },
+      {
+        "type": "range",
+        "id": "misc_transitions_easing",
+        "min": 0.0,
+        "max": 1,
+        "step": 0.1,
+        "unit": "s",
+        "label": "Easing",
+        "default": 0.2
+      },
+      {
+        "type": "header",
+        "content": "Border radius"
+      },
+      {
+        "type": "range",
+        "id": "misc_border_radius",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "unit": "px",
+        "label": "Border radius",
+        "default": 4
+      },
+      {
+        "type": "header",
+        "content": "Images"
+      },
+      {
+        "type": "image_picker",
+        "id": "misc_images_fallback_image",
+        "label": "Fallback image"
+      }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Share image"
+      },
+      {
+        "type": "image_picker",
+        "id": "social_share_image",
+        "label": "Image",
+        "info": "Shown when sharing a link on social media. [Learn more](https://help.shopify.com/manual/using-themes/troubleshooting/showing-social-media-thumbnail-images/) about image thumbnails."
+      },
+      {
+        "type": "header",
+        "content": "Links"
+      },
+      {
+        "type": "text",
+        "id": "social_links_facebook",
+        "label": "Facebook"
+      },
+      {
+        "type": "text",
+        "id": "social_links_twitter",
+        "label": "Twitter"
+      },
+      {
+        "type": "text",
+        "id": "social_links_pinterest",
+        "label": "Pinterest"
+      },
+      {
+        "type": "text",
+        "id": "social_links_instagram",
+        "label": "Instagram"
+      },
+      {
+        "type": "text",
+        "id": "social_links_tumblr",
+        "label": "Tumblr"
+      },
+      {
+        "type": "text",
+        "id": "social_links_vimeo",
+        "label": "Vimeo"
+      },
+      {
+        "type": "text",
+        "id": "social_links_youtube",
+        "label": "Youtube"
+      },
+      {
+        "type": "text",
+        "id": "social_links_linkedin",
+        "label": "LinkedIn"
+      },
+      {
+        "type": "text",
+        "id": "social_links_email",
+        "label": "Email"
+      }
+    ]
+  }
+]

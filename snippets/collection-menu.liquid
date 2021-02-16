@@ -1,0 +1,11 @@
+<div class="select-wrap">
+  <select class="select" data-module-input-change-link>
+    <option disabled selected></option>
+
+    {% for link in menu.links %}
+      <option value="{{ link.url }}" {% if link.active %}selected{% endif %}>
+        {{ link.title }}
+      </option>
+    {% endfor %}
+  </select>
+</div>

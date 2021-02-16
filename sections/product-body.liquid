@@ -1,0 +1,48 @@
+{% schema %}
+  {
+    "name": "Product body",
+    "settings": []
+  }
+{% endschema %}
+
+{% include 'attribute-request-amp' %}
+
+{% assign current_collection = collection %}
+{% assign current_product = product %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<div class="padding-top-bottom--up-2 large--padding-top-bottom--up-4">
+  <div class="container-default">
+    <div class="overflow-hidden">
+      <div class="grid--up-1 margin-bottom-negative--up-1">
+        <div class="grid-item float-right one large--one-two padding-bottom--up-1">
+          {% include 'product-info' %}
+        </div>
+
+        <div class="grid-item float-left one large--one-two padding-bottom--up-1">
+          {% unless request_amp %}
+            {% include 'product-gallery' %}
+          {% endunless %}
+
+          {% if request_amp %}
+            {% include 'product-gallery-amp' %}
+          {% endif %}
+        </div>
+
+        <div class="grid-item float-right one large--one-two padding-bottom--up-1">
+          {% if product.description != blank %}
+            {% include 'product-description' %}
+          {% endif %}
+
+          {% unless request_amp %}
+            {% include 'product-form' %}
+          {% endunless %}
+
+          {% if request_amp %}
+            {% include 'product-form-amp' %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

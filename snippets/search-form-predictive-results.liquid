@@ -1,0 +1,89 @@
+{% capture empty_template %}
+  <div>
+    <div class="margin-bottom--0">
+      <div class="font-size--down-2 line-height--up-4 font-weight-700">
+        No products for “{% raw %}{{ query }}{% endraw %}”.
+      </div>
+    </div>
+
+    <div class="font-size--down-2 line-height--up-4">
+      Sorry, we couldn’t find any matches.
+    </div>
+
+    <div class="padding-top--0">
+      <div class="font-size--down-2 line-height--up-4">
+        <a href="{{ routes.all_products_collection_url }}">
+          View all products
+        </a>
+      </div>
+    </div>
+  </div>
+{% endcapture %}
+
+{% capture results_template %}
+  <ul class="margin--none last-child-margin--none">
+    {% raw %}{{ results }}{% endraw %}
+  </ul>
+
+  <div class="padding-top--0">
+    <div class="font-size--down-2 line-height--up-4 text-center">
+      <a href="{{ routes.search_url }}?q={% raw %}{{ query }}{% endraw %}&type=product">
+        View all results
+      </a>
+    </div>
+  </div>
+{% endcapture %}
+
+{% capture result_template %}
+  <li class="margin-bottom--0">
+    <a href="{% raw %}{{ url }}{% endraw %}">
+      <div class="flex-bar--up-1">
+        <div class="flex-item-shrink">
+          <div style="width: 48px;">
+            <div class="image-container box-ratio--1-1 position-relative">
+              <img class="position-absolute position-top position-left one height-full object-full" data-src="{% raw %}{{ image_url }}{% endraw %}" alt="{% raw %}{{ image_alt }}{% endraw %}" />
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-item">
+          <div class="font-size--down-2 line-height--up-4">
+            {% raw %}{{ title }}{% endraw %}
+          </div>
+
+          <div class="font-size--down-2 line-height--up-4">
+            {% raw %}{{ price }}{% endraw %}
+          </div>
+
+          {% raw %}{{ compare_at_price }}{% endraw %}
+        </div>
+      </div>
+    </a>
+  </li>
+{% endcapture %}
+
+{% capture result_compare_at_price_template %}
+  <div class="font-size--down-2 line-height--up-4">
+    <s>
+      {% raw %}{{ compare_at_price }}{% endraw %}
+    </s>
+  </div>
+{% endcapture %}
+
+<div class="search-form-element" data-module-search-form-predictive-results='{
+  "search_form_input_id": {{ id | json }},
+  "empty_template": {{ empty_template | json | escape }},
+  "results_template": {{ results_template | json | escape }},
+  "result_template": {{ result_template | json | escape }},
+  "result_compare_at_price_template": {{ result_compare_at_price_template | json | escape }}
+}'>
+  <div class="position-absolute position-left position-top--full">
+    <div class="search-form-element-width">
+      <div class="box-color-header-background box-shadow">
+        <div class="padding--0">
+          <div data-ref-body></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

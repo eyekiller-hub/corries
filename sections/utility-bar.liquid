@@ -1,0 +1,161 @@
+{% schema %}
+  {
+    "name": "Utility bar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enable?"
+      },
+      {
+        "type": "text",
+        "id": "height",
+        "label": "Height",
+        "info": "Leave blank to allow content to dictate height. Use a length with the \"px\" unit. ('500px'.)."
+      },
+      {
+        "type": "text",
+        "id": "height_mobile",
+        "label": "Height (mobile)",
+        "info": "Leave blank to allow content to dictate height. Use a length with the \"px\" unit. ('500px'.)."
+      },
+      {
+        "type": "text",
+        "id": "padding",
+        "label": "Padding",
+        "info": "Leave blank to use default padding. Use a length with the \"px\" unit. ('500px'.)."
+      },
+      {
+        "type": "text",
+        "id": "padding_mobile",
+        "label": "Padding (mobile)",
+        "info": "Leave blank to use default padding. Use a length with the \"px\" unit. ('500px'.)."
+      },
+      {
+        "type": "textarea",
+        "id": "copy",
+        "label": "Copy"
+      },
+      {
+        "type": "textarea",
+        "id": "copy_mobile",
+        "label": "Copy (mobile)"
+      },
+      {
+        "type": "url",
+        "id": "url",
+        "label": "URL"
+      }
+    ]
+  }
+{% endschema %}
+
+{% include 'object-breakpoints' %}
+
+{% include 'attribute-request-amp' %}
+
+{% assign enable = section.settings.enable | default: false %}
+
+{% assign height = section.settings.height | default: false %}
+
+{% assign height_mobile = section.settings.height_mobile | default: false %}
+
+{% assign padding = section.settings.padding | default: false %}
+
+{% assign padding_mobile = section.settings.padding_mobile | default: false %}
+
+{% assign copy = section.settings.copy | default: false %}
+
+{% assign copy_mobile = section.settings.copy_mobile | default: false %}
+
+{% assign url = section.settings.url | default: false %}
+
+{% if enable %}
+  {% capture body %}
+    {% unless request_amp %}
+      {% if height or height_mobile %}
+        <style>
+          {% if height %}
+            @media (min-width: {{ breakpoints_large }}px){
+              .utility-bar-height {
+                height: {{ height }};
+              }
+            }
+          {% endif %}
+
+          {% if height_mobile %}
+            @media (max-width: {{ breakpoints_medium_down }}px){
+              .utility-bar-height {
+                height: {{ height_mobile }};
+              }
+            }
+          {% endif %}
+        </style>
+      {% endif %}
+      {% if padding or padding_mobile %}
+        <style>
+          {% if padding %}
+            @media (min-width: {{ breakpoints_large }}px){
+              .utility-bar-padding {
+                padding-top: {{ padding }};
+                padding-bottom: {{ padding }};
+              }
+            }
+          {% endif %}
+
+          {% if padding_mobile %}
+            @media (max-width: {{ breakpoints_medium_down }}px){
+              .utility-bar-padding {
+                padding-top: {{ padding_mobile }};
+                padding-bottom: {{ padding_mobile }};
+              }
+            }
+          {% endif %}
+        </style>
+      {% endif %}
+    {% endunless %}
+
+    <div class="box-color-utility-bar-background">
+      <div class="utility-bar-height flex-bar flex-center" style="
+        {% if request_amp %}
+          {% if height_mobile %}
+            height: {{ height_mobile }};
+          {% endif %}
+        {% endif %}
+      ">
+        <div class="flex-item">
+          <div class="container-padding" style="
+            {% if request_amp %}
+              {% if padding_mobile %}
+                padding-top: {{ padding_mobile }};
+                padding-bottom: {{ padding_mobile }};
+              {% endif %}
+            {% endif %}
+          ">
+            <div class="utility-bar-padding padding-top-bottom--down-2">
+              <div class="font-size--utility-bar-mobile line-height--utility-bar-mobile large--font-size--utility-bar large--line-height--utility-bar text-center text-color-utility-bar-text">
+                <div class="{% if copy_mobile %}hide large--show{% endif %}">
+                  {{ copy }}
+                </div>
+
+                {% if copy_mobile %}
+                  <div class="large--hide">
+                    {{ copy_mobile }}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endcapture %}
+
+  {% if url %}
+    <a href="{{ url }}">
+      {{ body }}
+    </a>
+  {% else %}
+    {{ body }}
+  {% endif %}
+{% endif %}

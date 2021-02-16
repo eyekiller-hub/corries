@@ -1,0 +1,19 @@
+<button
+  class="button-primary one large--auto"
+  type="submit"
+  {% unless current_variant.available %}disabled{% endunless %}
+  data-module-product-submit='{
+    "product_id": {{ product.id | json | escape }},
+    "available": {{ "products.product.add_to_cart" | t | json | escape }},
+    "sold_out": {{ "products.product.sold_out" | t | json | escape }},
+    "unavailable": {{ "products.product.unavailable" | t | json | escape }},
+    "added": {{ "products.product.added" | t | json | escape }}
+  }'
+  [text]="product.variants[product.current_variant].available ? '{{ 'products.product.add_to_cart' | t }}' : '{{ 'products.product.sold_out' | t }}'"
+  [disabled]="!product.variants[product.current_variant].available">
+  {% if current_variant.available %}
+    {{ 'products.product.add_to_cart' | t }}
+  {% else %}
+    {{ 'products.product.sold_out' | t }}
+  {% endif %}
+</button>

@@ -1,0 +1,5 @@
+{% assign part_active = false %}
+
+{% if part.title == paginate.current_page %}
+  {% assign part_active = true %}
+{% endif %}

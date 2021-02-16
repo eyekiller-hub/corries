@@ -1,0 +1,5 @@
+<div class="last-child-margin--none">
+  {% for line_item in cart.items %}
+    {% include 'cart-item' _line: forloop.index %}
+  {% endfor %}
+</div>

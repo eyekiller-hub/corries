@@ -1,0 +1,30 @@
+{% assign collection_sort_by = collection.sort_by | default: collection.default_sort_by %}
+
+{% assign collection_sort_values = 'manual, best-selling, title-ascending, title-descending, price-ascending, price-descending, created-descending, created-ascending' | split: ', ' %}
+
+{% assign collection_sort_titles = '' %}
+
+{% for i in (1..8) %}
+  {% assign title = 'sort_title_' | append: i %}
+  {% assign title = section.settings[title] %}
+  {% assign collection_sort_titles = collection_sort_titles | append: '  ' | append: title %}
+{% endfor %}
+
+{% assign collection_sort_titles = collection_sort_titles | strip | split: '  ' %}
+
+<div class="select-wrap">
+  <select class="select" data-module-input-change-link>
+    {% for title in collection_sort_titles %}
+      {% assign show_option = 'sort_enabled_' | append: forloop.index %}
+      {% assign show_option = section.settings[show_option] %}
+
+      {% assign value = collection_sort_values[forloop.index0] %}
+
+      {% if show_option %}
+        <option value="{{ collection.url }}?sort_by={{ value }}" {% if value == collection_sort_by %}selected{% endif %}>
+          {{ title }}
+        </option>
+      {% endif %}
+    {% endfor %}
+  </select>
+</div>

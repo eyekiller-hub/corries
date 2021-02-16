@@ -1,0 +1,22 @@
+<div data-module-product-form='{
+  "product": {{ product | json | escape }},
+  "variant_id": {{ current_variant.id | json | escape }},
+  "quantity": 1,
+  "history_state": true
+}'>
+  {% form 'product', product %}
+    {% include 'product-form-id' %}
+
+    {% unless product.has_only_default_variant %}
+      <div class="margin-bottom--0">
+        {% include 'product-form-options' %}
+      </div>
+    {% endunless %}
+
+    <div class="margin-bottom--0">
+      {% include 'product-form-quantity' %}
+    </div>
+
+    {% include 'product-form-submit' %}
+  {% endform %}
+</div>

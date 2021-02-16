@@ -1,0 +1,17 @@
+{% for option_name in line_item.product.options %}
+  {% assign option_value = line_item.variant.options[forloop.index0] %}
+
+  <div class="grid--down-3">
+    <div class="grid-item">
+      <div class="font-size--down-4 line-height--up-2">
+        {{ option_name }}:
+      </div>
+    </div>
+
+    <div class="grid-item">
+      <div class="font-size--down-4 line-height--up-2 font-weight-300">
+        {{ option_value }}
+      </div>
+    </div>
+  </div>
+{% endfor %}

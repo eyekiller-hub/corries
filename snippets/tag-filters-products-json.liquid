@@ -1,0 +1,16 @@
+{% capture json %}
+  {
+    {%- for link in linklists['tag-filters-products'].links -%}
+      {{ link.title | json }}: [
+        {%- for link in link.links -%}
+          {{ link.title | json }},
+        {%- endfor -%}
+      ],
+    {%- endfor -%}
+  }
+{% endcapture %}
+
+{% assign json = json | replace: '",]', '"]' %}
+{% assign json = json | replace: "],}", "]}" %}
+
+{{ json }}

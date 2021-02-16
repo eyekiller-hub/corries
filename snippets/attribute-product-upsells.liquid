@@ -1,0 +1,15 @@
+{% assign product_upsells = false %}
+
+{% assign product_upsells_handles = '' | split: '' %}
+
+{% for tag in product.tags %}
+  {% unless tag contains 'upsell:' %}
+    {% continue %}
+  {% endunless %}
+
+  {% assign product_upsells = true %}
+
+  {% assign tag_array = tag | remove_first: 'upsell:' | strip | split: '-<-@' %}
+
+  {% assign product_upsells_handles = product_upsells_handles | concat: tag_array %}
+{% endfor %}

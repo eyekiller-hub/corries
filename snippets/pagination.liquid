@@ -1,0 +1,37 @@
+{% capture part_inactive_class_name_template %}
+  {% include 'pagination-part-inactive-class-name-template' %}
+{% endcapture %}
+
+{% capture part_active_class_name_template %}
+  {% include 'pagination-part-active-class-name-template' %}
+{% endcapture %}
+
+{% capture parts %}
+  {% for part in paginate.parts %}
+    {% include 'attribute-part-active' %}
+
+    {% assign part_url = part.url | default: request.path %}
+
+    {% assign part_title = part.title %}
+
+    {% assign part_class_name = part_inactive_class_name_template %}
+
+    {% if part_active %}
+      {% assign part_class_name = part_active_class_name_template %}
+    {% endif %}
+
+    {% capture part_attributes %}
+      data-module-collection-link='{ "scroll_to_top": true }'
+    {% endcapture %}
+
+    {%
+      include 'pagination-part-template',
+      _part_url: part_url,
+      _part_title: part_title,
+      _part_class_name: part_class_name
+      _part_attributes: part_attributes
+    %}
+  {% endfor %}
+{% endcapture %}
+
+{% include 'pagination-template', _parts: parts %}

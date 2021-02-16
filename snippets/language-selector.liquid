@@ -1,0 +1,15 @@
+<div class="select-wrap">
+  <select class="select" data-module-input-change-link>
+    {% for locale in shop.published_locales %}
+      {% assign locale_active = false %}
+
+      {% if locale.iso_code == request.locale.iso_code %}
+        {% assign locale_active = true %}
+      {% endif %}
+
+      <option value="{{ locale.root_url }}" {% if locale_active %}selected{% endif %}>
+        {{ locale.name | capitalize }}
+      </option>
+    {% endfor %}
+  </select>
+</div>

@@ -1,0 +1,62 @@
+{% schema %}
+  {
+    "name": "Cookies modal",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enable?"
+      },
+      {
+        "type": "richtext",
+        "id": "body",
+        "label": "Body",
+        "default": "<p>We use cookies to give the best experience on our site. By continuing to use our site you agree to us using cookies in accordance with our <a href='/pages/privacy-policy'><strong>Cookie Policy.</strong></a></p>"
+      },
+      {
+        "type": "text",
+        "id": "cta",
+        "label": "CTA",
+        "default": "Accept & Close"
+      }
+    ]
+  }
+{% endschema %}
+
+{% assign enable = section.settings.enable | default: false %}
+
+{% assign body = section.settings.body | default: false %}
+
+{% assign cta = section.settings.cta | default: false %}
+
+{% if enable %}
+  <div class="cookies-modal" data-module-cookies-modal>
+    <div class="one position-fixed position-6 position-left position-right position-bottom large--position-left--0 large--position-bottom--0" style=" --large--max-width: 235px;">
+      <div class="box-color-cookies-modal-background text-color-cookies-modal-text">
+        <div class="padding--0 padding-right--up-3">
+          <div class="font-size--down-5 line-height--up-3">
+            {% if body %}
+              <div class="rte">
+                {{ body }}
+              </div>
+            {% endif %}
+
+            {% if cta %}
+              <button class="input-reset block" type="button" data-ref-cta>
+                <span class="text-underline font-weight-700">
+                  {{ cta }}
+                </span>
+              </button>
+            {% endif %}
+
+            <button class="input-reset block position-absolute position-top position-right padding--0" type="button" data-ref-close>
+              <span class="font-size--0">
+                {% include 'svg-close' %}
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

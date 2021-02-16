@@ -1,0 +1,46 @@
+<div class="last-child-margin--none">
+  {% for option in product.options_with_values %}
+    <div class="margin-bottom--0">
+      <h4 class="font-size--down-2 line-height--up-4 margin-bottom--down-2">
+        {{ option.name }}
+      </h4>
+
+      <div class="overflow-hidden">
+        <div class="grid-bar--0 margin-bottom-negative--down-2">
+          {% for value in option.values %}
+            <div class="grid-item padding-bottom--down-2">
+              <label class="checkbox-wrap" for="{{ product.id | append: option.position | append: forloop.index0 }}">
+                <div class="grid-bar--down-2">
+                  <div class="grid-item">
+                    <input
+                      class="checkbox"
+                      type="radio"
+                      name="{{ product.id | append: option.position }}"
+                      id="{{ product.id | append: option.position | append: forloop.index0 }}"
+                      value="{{ value | escape }}"
+                      {% if option.selected_value == value %}checked{% endif %}
+                      data-ref-input='{
+                        "id": {{ product.id | append: option.position | append: forloop.index0 | json | escape }},
+                        "position": {{ option.position | json | escape }},
+                        "value": {{ value | json | escape }}
+                      }' />
+
+                    <div class="checkbox-icon font-size--down-2 line-height--up-4">
+                      {% include 'svg-tick' %}
+                    </div>
+                  </div>
+
+                  <div class="grid-item">
+                    <div class="font-size--down-2 line-height--up-4">
+                      {{ value }}
+                    </div>
+                  </div>
+                </div>
+              </label>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

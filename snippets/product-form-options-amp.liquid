@@ -1,0 +1,15 @@
+<div class="select-wrap">
+  <select class="select" name="id" on="change:AMP.setState({
+    product: {
+      current_variant: event.value
+    }
+  })">
+    {% for variant in product.variants %}
+      <option
+        value="{{ variant.id }}"
+        {% if variant.id == current_variant.id %}selected{% endif %}>
+        {{ variant.title }}
+      </option>
+    {% endfor %}
+  </select>
+</div>

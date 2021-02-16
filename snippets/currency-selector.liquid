@@ -1,0 +1,17 @@
+<div class="select-wrap">
+  {% form 'currency' %}
+    <select class="select" name="currency" data-module-input-change-form-submit>
+      {% for currency in shop.enabled_currencies %}
+        {% if currency == cart.currency %}
+          <option selected>
+            {{ currency.iso_code }} {{ currency.symbol }}
+          </option>
+        {% else %}
+          <option>
+            {{ currency.iso_code }}
+          </option>
+        {% endif %}
+      {% endfor %}
+    </select>
+  {% endform %}
+</div>

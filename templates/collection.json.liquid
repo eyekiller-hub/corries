@@ -1,0 +1,27 @@
+{%- layout none -%}
+
+{%- paginate collection.products by 100 -%}
+  {%- capture json -%}
+    {
+      "products": [
+        {%- for product in collection.products -%}
+          {
+            "featured_image": {
+              "src": {{ product.featured_image | img_url: '500x500', crop: 'center' | json }},
+              "alt": {{ product.featured_image.alt | json }}
+            },
+            "handle": {{ product.handle | json }},
+            "price": {{ product.price | json }},
+            "tags": {{ product.tags | json }},
+            "title": {{ product.title | json }},
+            "url": {{ product.url | json }}
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    }
+  {%- endcapture -%}
+
+  {%- assign json = json | strip_newlines -%}
+
+  {{ json }}
+{%- endpaginate -%}

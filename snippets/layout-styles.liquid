@@ -1,0 +1,18 @@
+{% if template.suffix == 'amp' %}
+  {% capture theme_amp_min_css %}
+    {% include 'theme.amp.min.css' %}
+  {% endcapture %}
+
+  {% assign theme_amp_min_css = theme_amp_min_css | remove: '!important' %}
+
+  <style amp-custom>
+    {% include 'css-variables' %}
+    {{ theme_amp_min_css }}
+  </style>
+{% else %}
+  <style>
+    {% include 'css-variables' %}
+  </style>
+
+  <link href="{{ 'theme.default.min.css' | asset_url }}" rel="stylesheet" />
+{% endif %}

@@ -1,0 +1,26 @@
+{% assign line_item_properties = false %}
+{% assign line_item_properties_names = '' | split: '' %}
+{% assign line_item_properties_values = '' | split: '' %}
+
+{% for property in line_item.properties %}
+  {% assign name = property[0] %}
+  {% assign value = property[1] %}
+
+  {% assign name_first_character = name | truncate: 1, '' %}
+
+  {% if name_first_character == '_' %}
+    {% continue %}
+  {% endif %}
+
+  {% if name == blank or value == blank %}
+    {% continue %}
+  {% endif %}
+
+  {% assign line_item_properties = true %}
+
+  {% assign name = name | split: '-<-@' %}
+  {% assign value = value | split: '-<-@' %}
+
+  {% assign line_item_properties_names = line_item_properties_names | concat: name %}
+  {% assign line_item_properties_values = line_item_properties_values | concat: value %}
+{% endfor %}

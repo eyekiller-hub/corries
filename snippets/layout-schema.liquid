@@ -1,0 +1,10 @@
+{% include 'layout-schema-organization' %}
+{% include 'layout-schema-website' %}
+{% include 'layout-schema-breadcrumb' %}
+
+{% case template.name %}
+  {% when 'product' %}
+    {% include 'layout-schema-product' %}
+  {% when 'article' %}
+    {% include 'layout-schema-article' %}
+{% endcase %}

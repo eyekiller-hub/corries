@@ -1,0 +1,11 @@
+{% assign misc_images_fallback_image = settings.misc_images_fallback_image | default: false %}
+{% assign misc_images_fallback_image_url = misc_images_fallback_image | img_url: 'master' %}
+
+<script>
+  window.theme_settings = {
+    {% if misc_images_fallback_image %}
+      misc_images_fallback_image_url: {{ misc_images_fallback_image_url | json }},
+      misc_images_fallback_image_alt: {{ misc_images_fallback_image.alt | json }}
+    {% endif %}
+  };
+</script>

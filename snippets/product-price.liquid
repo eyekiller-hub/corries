@@ -1,0 +1,14 @@
+<div data-module-product-price='{
+  "money_format": {{ shop.money_format | json | escape }},
+  "product_id": {{ product.id | json | escape }}
+}'>
+  <div class="font-size--product-price line-height--product-price text-transform--product-price letter-spacing--product-price text-color-product-price {% if current_variant.compare_at_price > current_variant.price %}text-color-product-price-sale{% endif %}" data-ref-retail>
+    {{ current_variant.price | money }}
+  </div>
+
+  <s class="font-size--product-price line-height--product-price text-transform--product-price letter-spacing--product-price text-color-product-compare-at-price" style="{% unless current_variant.compare_at_price > current_variant.price %}display: none;{% endunless %}" data-ref-compare>
+    {% if current_variant.compare_at_price > current_variant.price %}
+      {{ current_variant.compare_at_price | money }}
+    {% endif %}
+  </s>
+</div>

@@ -1,0 +1,22 @@
+<div class="last-child-margin--none">
+  {% for option in product.options_with_values %}
+    <div class="margin-bottom--0">
+      <label class="font-size--down-2 line-height--up-4 margin-bottom--down-2" for="{{ product.id | append: option.position }}">
+        {{ option.name }}
+      </label>
+
+      <div class="select-wrap">
+        <select class="select" id="{{ product.id | append: option.position }}" data-ref-input='{
+          "id": {{ product.id | append: option.position | json | escape }},
+          "position": {{ option.position | json | escape }}
+        }'>
+          {% for value in option.values %}
+            <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>
+              {{ value }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+  {% endfor %}
+</div>

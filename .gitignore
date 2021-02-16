@@ -1,0 +1,9 @@
+node_modules
+.sass-cache
+package-lock.json
+theme.lock
+.DS_Store
+config.yml
+theme.update
+theme.min.css
+theme.min.js

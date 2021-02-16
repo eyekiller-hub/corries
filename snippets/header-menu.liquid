@@ -1,0 +1,91 @@
+{% assign is_mobile = _is_mobile %}
+
+{% if is_mobile %}
+  {% assign menu = menu_mobile %}
+{% endif %}
+
+<div class="height-full" {% if is_mobile %}data-module-slide-panels{% endif %}>
+  <div class="height-full {% if is_mobile %}swiper-container swiper-no-swiping{% endif %}" {% if is_mobile %}data-ref-container{% endif %}>
+    <div class="height-full {% if is_mobile %}swiper-wrapper{% endif %}">
+      <div class="height-full {% if is_mobile %}swiper-slide{% endif %}">
+        <ul class="margin-bottom--none {% if is_mobile %}last-child-margin--none{% endif %} {% unless is_mobile %}grid--up-1 height-full{% endunless %}">
+          {% for link in menu.links %}
+            {% capture link_links %}
+              <ul class="margin-bottom--none last-child-margin--none">
+                {% for link_link in link.links %}
+                  {% capture link_link_links %}
+                    <ul class="margin-bottom--none last-child-margin--none">
+                      {% for link_link_link in link_link.links %}
+                        <li class="margin-bottom--up-3">
+                          <a href="{{ link_link_link.url }}">
+                            <div class="font-size--up-6 line-height--up-10 font-weight-700 text-caps">
+                              {{ link_link_link.title }}
+                            </div>
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  {% endcapture %}
+
+                  <li class="margin-bottom--up-3" {% if is_mobile %}{% if link_link.links != empty %}data-module-slide-panels-link='{ "html": {{ link_link_links | json | escape }} }'{% endif %}{% endif %}>
+                    <a href="{{ link_link.url }}">
+                      <div class="position-relative">
+                        <div class="{% if is_mobile %}padding-left-right--up-2{% endif %}">
+                          <div class="font-size--up-6 line-height--up-10 font-weight-700 text-caps">
+                            {{ link_link.title }}
+                          </div>
+
+                          {% if is_mobile %}
+                            {% unless request_amp %}
+                              {% if link_link.links != empty %}
+                                <div class="position-absolute position-center-vertical position-right">
+                                  <div class="font-size--up-6">
+                                    {% include 'svg-arrow-right' %}
+                                  </div>
+                                </div>
+                              {% endif %}
+                            {% endunless %}
+                          {% endif %}
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endcapture %}
+
+            <li class="{% if is_mobile %}margin-bottom--up-3{% endif %} {% unless is_mobile %}grid-item height-full{% endunless %}" {% if is_mobile %}{% if link.links != empty %}data-module-slide-panels-link='{ "html": {{ link_links | json | escape }} }'{% endif %}{% endif %}>
+              <div class="{% unless is_mobile %}flex-bar height-full{% endunless %}">
+                <div class="{% unless is_mobile %}flex-item-shrink{% endunless %}">
+                  <div class="{% unless is_mobile %}padding-top-bottom--up-1{% endunless %}">
+                    <a href="{{ link.url }}">
+                      <div class="position-relative">
+                        <div class="{% if is_mobile %}padding-left-right--up-2{% endif %}">
+                          <div class="{% if is_mobile %}font-size--up-6 line-height--up-10 font-weight-700 text-caps{% endif %} {% unless is_mobile %}font-size--navigation line-height--navigation text-transform--navigation letter-spacing--navigation{% endunless %}">
+                            {{ link.title }}
+                          </div>
+
+                          {% if is_mobile %}
+                            {% unless request_amp %}
+                              {% if link.links != empty %}
+                                <div class="position-absolute position-center-vertical position-right">
+                                  <div class="font-size--up-6">
+                                    {% include 'svg-arrow-right' %}
+                                  </div>
+                                </div>
+                              {% endif %}
+                            {% endunless %}
+                          {% endif %}
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+{% assign image_url_box_ratio = false %}
+
+{% if image_url %}
+  {% assign image_url_width = image_url | split: "?" | last | split: "x" | first | times: 1 %}
+
+  {% assign image_url_height = image_url | split: "?" | last | split: "x" | last | times: 1 %}
+
+  {% assign image_url_box_ratio = image_url_height | append: ".0" | times: 1 | divided_by: image_url_width | times: 100 | append: "%" %}
+{% endif %}

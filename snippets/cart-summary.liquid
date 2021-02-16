@@ -1,0 +1,27 @@
+<div class="margin-bottom--up-2">
+  <div class="font-size--up-2 line-height--up-8 font-weight-600">
+    <div class="flex--up-1">
+      <div class="flex-item">
+        <h2 class="margin--none">
+          {{ 'cart.total' | t }}
+        </h2>
+      </div>
+
+      <div class="flex-item-shrink">
+        {{ cart.total_price | money }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="button-primary block one" type="submit" name="checkout">
+  {{ 'cart.checkout' | t }}
+</button>
+
+<div class="margin-top--up-2">
+  <div class="text-center">
+    <a href="{{ routes.root_url }}">
+      {{ 'cart.continue' | t }}
+    </a>
+  </div>
+</div>

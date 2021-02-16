@@ -1,0 +1,21 @@
+{% capture body %}
+  {% form 'product', product %}
+    {% include 'product-form-amp-state' %}
+
+    <div style="{% if product.has_only_default_variant %}display: none;{% endif %}">
+      <div class="margin-bottom--0">
+        {% include 'product-form-options-amp' %}
+      </div>
+    </div>
+
+    <div class="margin-bottom--0">
+      {% include 'product-form-quantity' %}
+    </div>
+
+    {% include 'product-form-submit' %}
+  {% endform %}
+{% endcapture %}
+
+{% assign body = body | replace: 'method="post"', 'method="get" target="_top"' %}
+
+{{ body }}

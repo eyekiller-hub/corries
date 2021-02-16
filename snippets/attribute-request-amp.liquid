@@ -1,0 +1,39 @@
+{% assign amp_enable = settings.amp_enable | default: false %}
+
+{% assign request_amp = false %}
+
+{% assign request_amp_url = false %}
+
+{% assign request_amp_template_suffix = false %}
+
+{% assign request_amp_redirect = false %}
+
+{% assign template_suffix = collection.template_suffix | default: product.template_suffix %}
+
+{% if amp_enable %}
+  {% if template.name == 'index' or template.name == 'collection' or template.name == 'product' %}
+    {% if template contains '.amp' %}
+      {% assign request_amp = true %}
+    {% endif %}
+
+    {% assign request_amp_url = '' %}
+
+    {% if template_suffix %}
+      {% assign request_amp_url = template_suffix | append: '.' %}
+    {% endif %}
+
+    {% assign request_amp_url = canonical_url | append: '?view=' | append: request_amp_url | append: 'amp' %}
+
+    {% assign request_amp_url = request_amp_url | replace: '?view=.', '?view=' %}
+
+    {% assign request_amp_template_suffix = request_amp_url | split: '?view=' | last %}
+
+    {% if request_amp_url contains '?page=' %}
+      {% assign request_amp_url = request_amp_url | replace: '?view=', '&view=' %}
+    {% endif %}
+
+    {% if template.suffix != request_amp_template_suffix %}
+      {% assign request_amp_redirect = true %}
+    {% endif %}
+  {% endif %}
+{% endif %}

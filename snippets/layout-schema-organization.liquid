@@ -1,0 +1,12 @@
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "@id": {{ shop.secure_url | append: "#organization" | json }},
+  "name": {{ shop.name | json }},
+  "url": {{ shop.secure_url | json }},
+  "logo": {
+    "@type": "ImageObject",
+    "url": {{ "logo.png" | asset_url | json }}
+  }
+</script>

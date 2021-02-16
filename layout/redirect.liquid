@@ -1,0 +1,19 @@
+{% include 'attribute-request-amp' %}
+
+<!DOCTYPE html>
+<html class="template-{{ template | handle }}" lang="{{ shop.locale }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="refresh" content="0; url=/" />
+
+    {{ content_for_header }}
+  </head>
+
+  <body>
+    <div style="display: none;">
+      {{ content_for_layout }}
+    </div>
+  </body>
+</html>
