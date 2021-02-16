@@ -1,4 +1,3 @@
-{% assign amp = _amp %}
 {% assign url = _url %}
 {% assign image = _image %}
 {% assign image_url = _image_url %}
@@ -22,30 +21,21 @@
 <article class="product-thumbnail">
   <div class="margin-bottom--down-2">
     <a href="{{ url }}">
-      {% unless amp %}
-        <div class="image-container box-ratio--1-1">
-          <img data-src="{{ image_url }}" alt="{{ image_alt }}" {{ image_attributes }} />
-        </div>
-      {% else %}
-        <amp-img
-          src="{{ image_url }}"
-          alt="{{ shop.name | escape }}"
-          width="500"
-          height="500"
-          layout="intrinsic"></amp-img>
-      {% endunless %}
+      <div class="image-container box-ratio--1-1">
+        <img data-src="{{ image_url }}" alt="{{ image_alt }}" {{ image_attributes }} />
+      </div>
     </a>
   </div>
 
   <div class="margin-bottom--down-4">
-    <h2 class="font-size--product-cards line-height--product-cards text-transform--product-cards letter-spacing--product-cards margin--none">
+    <h2 class="margin--none">
       <a href="{{ url }}">
         {{ title }}
       </a>
     </h2>
   </div>
 
-  <div class="font-size--product-cards line-height--product-cards text-transform--product-cards letter-spacing--product-cards">
+  <div>
     <a href="{{ url }}">
       {{ price }}
     </a>

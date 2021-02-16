@@ -1,4 +1,4 @@
-<div class="{% unless request_amp %}child-a-text-color-header-cart-icon child-a-hover-text-color-header-cart-icon-hover medium-down--child-a-text-color-header-mobile-cart-icon medium-down--child-a-hover-text-color-header-mobile-cart-icon-hover{% endunless %} {% if request_amp %}child-a-text-color-header-mobile-cart-icon child-a-hover-text-color-header-mobile-cart-icon-hover{% endif %}">
+<div>
   <a href="{{ routes.cart_url }}">
     <div class="position-relative">
       <div class="font-size--up-6">
@@ -6,7 +6,7 @@
       </div>
 
       <div class="position-absolute position-top-negative--down-4 position-right-negative--down-4">
-        <div class="{% unless request_amp %}box-color-header-cart-icon-count-background text-color-header-cart-icon-count-text medium-down--box-color-header-mobile-cart-icon-count-background medium-down--text-color-header-mobile-cart-icon-count-text{% endunless %} {% if request_amp %}box-color-header-mobile-cart-icon-count-background text-color-header-mobile-cart-icon-count-text{% endif %} flex-bar flex-center" style="min-width: .85em; height: .85em; border-radius: 100%;">
+        <div class="flex-bar flex-center" style="min-width: .85em; height: .85em; border-radius: 100%;">
           <div class="flex-item-shrink">
             <div class="font-size--down-4 line-height--none" data-module-cart-count>
               {{ cart.item_count }}

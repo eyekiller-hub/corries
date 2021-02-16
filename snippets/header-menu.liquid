@@ -36,15 +36,13 @@
                           </div>
 
                           {% if is_mobile %}
-                            {% unless request_amp %}
-                              {% if link_link.links != empty %}
-                                <div class="position-absolute position-center-vertical position-right">
-                                  <div class="font-size--up-6">
-                                    {% include 'svg-arrow-right' %}
-                                  </div>
+                            {% if link_link.links != empty %}
+                              <div class="position-absolute position-center-vertical position-right">
+                                <div class="font-size--up-6">
+                                  {% include 'svg-arrow-right' %}
                                 </div>
-                              {% endif %}
-                            {% endunless %}
+                              </div>
+                            {% endif %}
                           {% endif %}
                         </div>
                       </div>
@@ -61,20 +59,18 @@
                     <a href="{{ link.url }}">
                       <div class="position-relative">
                         <div class="{% if is_mobile %}padding-left-right--up-2{% endif %}">
-                          <div class="{% if is_mobile %}font-size--up-6 line-height--up-10 font-weight-700 text-caps{% endif %} {% unless is_mobile %}font-size--navigation line-height--navigation text-transform--navigation letter-spacing--navigation{% endunless %}">
+                          <div>
                             {{ link.title }}
                           </div>
 
                           {% if is_mobile %}
-                            {% unless request_amp %}
-                              {% if link.links != empty %}
-                                <div class="position-absolute position-center-vertical position-right">
-                                  <div class="font-size--up-6">
-                                    {% include 'svg-arrow-right' %}
-                                  </div>
+                            {% if link.links != empty %}
+                              <div class="position-absolute position-center-vertical position-right">
+                                <div class="font-size--up-6">
+                                  {% include 'svg-arrow-right' %}
                                 </div>
-                              {% endif %}
-                            {% endunless %}
+                              </div>
+                            {% endif %}
                           {% endif %}
                         </div>
                       </div>

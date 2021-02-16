@@ -1,3 +1,125 @@
+{% include 'object-breakpoints' %}
+
+{% assign display_type = section.settings.display_type | default: false %}
+
+{% assign logo_image = section.settings.logo_image | default: false %}
+{% assign logo_image_url = logo_image | img_url: '500x' %}
+
+{% assign menu = section.settings.menu %}
+{% assign menu = menus[menu] | default: false %}
+
+{% assign menu_mobile = section.settings.menu_mobile %}
+{% assign menu_mobile = menus[menu_mobile] | default: menu %}
+
+{% assign menu_secondary_mobile = section.settings.menu_secondary_mobile %}
+{% assign menu_secondary_mobile = menus[menu_secondary_mobile] | default: false %}
+
+{% assign search_enable = section.settings.search_enable | default: false %}
+
+{% assign mini_cart_enable = section.settings.mini_cart_enable | default: false %}
+
+{% assign mini_cart_empty_body = section.settings.mini_cart_empty_body | default: false %}
+
+{% assign social_links_enable = section.settings.social_links_enable | default: false %}
+
+{% assign social_links_mobile_enable = section.settings.social_links_mobile_enable | default: false %}
+
+{% assign display_default = false %}
+
+{% assign display_maxi = false %}
+
+{% assign display_simple = false %}
+
+{% if display_type == 'default' %}
+  {% assign display_default = true %}
+{% endif %}
+
+{% if display_type == 'maxi' %}
+  {% assign display_maxi = true %}
+{% endif %}
+
+{% if display_type == 'simple' %}
+  {% assign display_simple = true %}
+{% endif %}
+
+<header class="header" role="banner">
+  <div class="position-relative position-6">
+    <div>
+      <div class="container-default">
+        <div class="flex--up-1">
+          <div class="flex-item-shrink text-center large--text-left">
+            {% if display_default or display_simple %}
+              {% include 'header-logo' %}
+            {% endif %}
+
+            {% if display_maxi %}
+              {% if social_links_enable %}
+                <div class="height-full hide large--show">
+                  <div class="height-full flex-bar">
+                    {% include 'social-links', _is_header: true %}
+                  </div>
+                </div>
+              {% endif %}
+
+              <div class="height-full large--hide">
+                {% include 'header-logo' %}
+              </div>
+            {% endif %}
+          </div>
+
+          {% if display_default or display_maxi %}
+            <div class="flex-item text-center hide large--show">
+              {% if display_default %}
+                {% include 'header-menu' %}
+              {% endif %}
+
+              {% if display_maxi %}
+                {% include 'header-logo' %}
+              {% endif %}
+            </div>
+          {% endif %}
+
+          <div class="flex-item-shrink margin-left--auto">
+            <div class="position-relative height-full">
+              {% if display_default or display_simple %}
+                <div class="text-hidden height-full hide large--show">
+                  {% include 'header-logo' %}
+                </div>
+              {% endif %}
+
+              {% if display_maxi %}
+                {% if social_links_enable %}
+                  <div class="text-hidden height-full hide large--show">
+                    <div class="height-full hide large--show">
+                      <div class="height-full flex-bar">
+                        {% include 'social-links', _is_header: true %}
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endif %}
+
+              <div class="height-full large--position-absolute large--position-top large--position-bottom large--position-right large--nowrap">
+                {% include 'header-utility-menu' %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% if display_maxi %}
+          <div class="height-full hide large--show">
+            <div class="text-center">
+              {% include 'header-menu' %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</header>
+
+{% include 'mobile-menu' %}
+
 {% schema %}
   {
     "name": "Header",
@@ -98,127 +220,3 @@
     ]
   }
 {% endschema %}
-
-{% include 'object-breakpoints' %}
-
-{% include 'attribute-request-amp' %}
-
-{% assign display_type = section.settings.display_type | default: false %}
-
-{% assign logo_image = section.settings.logo_image | default: false %}
-{% assign logo_image_url = logo_image | img_url: '500x' %}
-
-{% assign menu = section.settings.menu %}
-{% assign menu = menus[menu] | default: false %}
-
-{% assign menu_mobile = section.settings.menu_mobile %}
-{% assign menu_mobile = menus[menu_mobile] | default: menu %}
-
-{% assign menu_secondary_mobile = section.settings.menu_secondary_mobile %}
-{% assign menu_secondary_mobile = menus[menu_secondary_mobile] | default: false %}
-
-{% assign search_enable = section.settings.search_enable | default: false %}
-
-{% assign mini_cart_enable = section.settings.mini_cart_enable | default: false %}
-
-{% assign mini_cart_empty_body = section.settings.mini_cart_empty_body | default: false %}
-
-{% assign social_links_enable = section.settings.social_links_enable | default: false %}
-
-{% assign social_links_mobile_enable = section.settings.social_links_mobile_enable | default: false %}
-
-{% assign display_default = false %}
-
-{% assign display_maxi = false %}
-
-{% assign display_simple = false %}
-
-{% if display_type == 'default' %}
-  {% assign display_default = true %}
-{% endif %}
-
-{% if display_type == 'maxi' %}
-  {% assign display_maxi = true %}
-{% endif %}
-
-{% if display_type == 'simple' %}
-  {% assign display_simple = true %}
-{% endif %}
-
-<header class="header" role="banner">
-  <div class="position-relative position-6">
-    <div class="{% unless request_amp %}box-color-header-background child-a-text-color-header-links child-a-hover-text-color-header-links-hover medium-down--box-color-header-mobile-background medium-down--child-a-text-color-header-mobile-links medium-down--child-a-hover-text-color-header-mobile-links-hover{% endunless %} {% if request_amp %}box-color-header-mobile-background child-a-text-color-header-mobile-links child-a-hover-text-color-header-mobile-links-hover{% endif %}">
-      <div class="container-padding">
-        <div class="flex--up-1">
-          <div class="flex-item-shrink text-center large--text-left">
-            {% if display_default or display_simple %}
-              {% include 'header-logo' %}
-            {% endif %}
-
-            {% if display_maxi %}
-              {% if social_links_enable %}
-                <div class="height-full hide large--show">
-                  <div class="height-full flex-bar">
-                    {% include 'social-links', _is_header: true %}
-                  </div>
-                </div>
-              {% endif %}
-
-              <div class="height-full large--hide">
-                {% include 'header-logo' %}
-              </div>
-            {% endif %}
-          </div>
-
-          {% if display_default or display_maxi %}
-            <div class="flex-item text-center hide large--show">
-              {% if display_default %}
-                {% include 'header-menu' %}
-              {% endif %}
-
-              {% if display_maxi %}
-                {% include 'header-logo' %}
-              {% endif %}
-            </div>
-          {% endif %}
-
-          <div class="flex-item-shrink margin-left--auto">
-            <div class="position-relative height-full">
-              {% if display_default or display_simple %}
-                <div class="text-hidden height-full hide large--show">
-                  {% include 'header-logo' %}
-                </div>
-              {% endif %}
-
-              {% if display_maxi %}
-                {% if social_links_enable %}
-                  <div class="text-hidden height-full hide large--show">
-                    <div class="height-full hide large--show">
-                      <div class="height-full flex-bar">
-                        {% include 'social-links', _is_header: true %}
-                      </div>
-                    </div>
-                  </div>
-                {% endif %}
-              {% endif %}
-
-              <div class="height-full large--position-absolute large--position-top large--position-bottom large--position-right large--nowrap">
-                {% include 'header-utility-menu' %}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {% if display_maxi %}
-          <div class="height-full hide large--show">
-            <div class="text-center">
-              {% include 'header-menu' %}
-            </div>
-          </div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</header>
-
-{% include 'mobile-menu' %}

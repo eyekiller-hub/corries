@@ -1,3 +1,37 @@
+@import '../node_modules/swiper/dist/css/swiper';
+
+/*============================================================================
+  #Functions
+==============================================================================*/
+
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+    str-replace(str-slice($string, $index +
+    str-length($search)), $search, $replace);
+  }
+  @return $string;
+}
+
+@function svg-url($svg){
+  $encoded:'';
+  $slice: 2000;
+  $index: 0;
+  $loops: ceil(str-length($svg)/$slice);
+  @for $i from 1 through $loops {
+    $chunk: str-slice($svg, $index, $index + $slice - 1);
+    $chunk: str-replace($chunk,'"','\'');
+    $chunk: str-replace($chunk,'<','%3C');
+    $chunk: str-replace($chunk,'>','%3E');
+    $chunk: str-replace($chunk,'&','%26');
+    $chunk: str-replace($chunk,'#','%23');
+    $encoded: #{$encoded}#{$chunk};
+    $index: $index + $slice;
+  }
+  @return url("data:image/svg+xml;charset=utf8,#{$encoded}");
+}
+
 /*============================================================================
   #Variables
 ==============================================================================*/
@@ -5,18 +39,212 @@
 $typography-ratio: 1.067; // Minor second
 $spacing-ratio: 1.333; // Perfect fourth
 
+:root {
+  // Typography
+
+  --typography-base-font-family: 'DIN 2014', sans-serif;
+  --typography-base-font-size: 16px;
+  --typography-base-line-height: var(--font-size--up-6);
+  --typography-base-text-transform: none;
+  --typography-base-letter-spacing: normal;
+
+  --typography-h-font-family: 'Hoefler Text', serif;
+
+  --typography-h1-font-size: var(--font-size--up-12);
+  --typography-h1-line-height: var(--font-size--up-15);
+  --typography-h1-text-transform: var(--typography-base-text-transform);
+  --typography-h1-letter-spacing: var(--typography-base-letter-spacing);
+
+  --typography-h2-font-size: var(--font-size--up-10);
+  --typography-h2-line-height: var(--font-size--up-13);
+  --typography-h2-text-transform: var(--typography-base-text-transform);
+  --typography-h2-letter-spacing: var(--typography-base-letter-spacing);
+
+  --typography-h3-font-size: var(--font-size--up-8);
+  --typography-h3-line-height: var(--font-size--up-11);
+  --typography-h3-text-transform: var(--typography-base-text-transform);
+  --typography-h3-letter-spacing: var(--typography-base-letter-spacing);
+
+  --typography-h4-font-size: var(--font-size--up-6);
+  --typography-h4-line-height: var(--font-size--up-9);
+  --typography-h4-text-transform: var(--typography-base-text-transform);
+  --typography-h4-letter-spacing: var(--typography-base-letter-spacing);
+
+  --typography-h5-font-size: var(--font-size--up-4);
+  --typography-h5-line-height: var(--font-size--up-8);
+  --typography-h5-text-transform: var(--typography-base-text-transform);
+  --typography-h5-letter-spacing: var(--typography-base-letter-spacing);
+
+  --typography-h6-font-size: var(--font-size--up-2);
+  --typography-h6-line-height: var(--font-size--up-8);
+  --typography-h6-text-transform: var(--typography-base-text-transform);
+  --typography-h6-letter-spacing: var(--typography-base-letter-spacing);
+
+  --typography-input-font-size: var(--font-size--0);
+  --typography-input-line-height: var(--font-size--up-7);
+  --typography-input-text-transform: var(--typography-base-text-transform);
+  --typography-input-letter-spacing: var(--typography-base-letter-spacing);
+
+  --typography-buttons-font-size: var(--font-size--down-2);
+  --typography-buttons-line-height: var(--font-size--up-7);
+  --typography-buttons-text-transform: uppercase;
+  --typography-buttons-letter-spacing: 1px;
+
+  // Color
+
+  --colors-dark: #000000;
+  --colors-light: #FFFFFF;
+  --colors-green: #7C8D75;
+  --colors-green-active: #63745D;
+  --colors-navy: #21343B;
+  --colors-beige: #ECE7E4;
+  --colors-red: #C60012;
+  --colors-grey-lightest: #E5E5E5;
+  --colors-grey-lighter: #D6D6D6;
+  --colors-grey-light: #999999;
+  --colors-grey: #666666;
+  --colors-grey-dark: #333333;
+
+  --colors-base-text: var(--colors-grey);
+  --colors-base-background: var(--colors-light);
+  --colors-base-headings: var(--colors-base-text);
+  --colors-base-links: var(--colors-base-text);
+  --colors-base-links-hover: var(--colors-base-text);
+
+  --colors-placeholder: var(--colors-grey-lightest);
+
+  --colors-button-primary-text: var(--colors-light);
+  --colors-button-primary-background: var(--colors-green);
+  --colors-button-primary-border: var(--colors-green);
+  --colors-button-primary-text-hover: var(--colors-button-primary-text);
+  --colors-button-primary-background-hover: var(--colors-green-active);
+  --colors-button-primary-border-hover: var(--colors-green-active);
+  --colors-button-primary-text-disabled: var(--colors-button-primary-text);
+  --colors-button-primary-background-disabled: var(--colors-grey-light);
+  --colors-button-primary-border-disabled: var(--colors-grey-light);
+
+  --colors-button-secondary-text: var(--colors-light);
+  --colors-button-secondary-background: var(--colors-navy);
+  --colors-button-secondary-border: var(--colors-navy);
+  --colors-button-secondary-text-hover: var(--colors-button-primary-text);
+  --colors-button-secondary-background-hover: var(--colors-dark);
+  --colors-button-secondary-border-hover: var(--colors-dark);
+  --colors-button-secondary-text-disabled: var(--colors-button-primary-text);
+  --colors-button-secondary-background-disabled: var(--colors-grey-light);
+  --colors-button-secondary-border-disabled: var(--colors-grey-light);
+
+  --colors-text-input-text: var(--colors-base-text);
+  --colors-text-input-background: var(--colors-base-background);
+  --colors-text-input-border: var(--colors-grey-lighter);
+  --colors-text-input-placeholder: var(--colors-text-input-text);
+
+  --colors-checkbox-input-text: var(--colors-dark);
+  --colors-checkbox-input-background: var(--colors-grey-lighter);
+  --colors-checkbox-input-border: var(--colors-grey-lighter);
+  --colors-checkbox-input-text-active: var(--colors-dark);
+  --colors-checkbox-input-background-active: var(--colors-dark);
+  --colors-checkbox-input-border-active: var(--colors-dark);
+
+  // Container
+
+  --container-padding-x: var(--spacing--up-1);
+  --container-default-width: 1410px;
+  --container-narrow-width: 1000px;
+
+  // Input
+
+  --input-padding-y: var(--spacing--down-2);
+  --input-padding-x: var(--spacing--0);
+  --input-border: 1px solid;
+  --input-border-radius: var(--border-radius-default);
+
+  // Checkbox
+
+  --checkbox-border: 1px solid;
+  --checkbox-border-radius: var(--border-radius-default);
+
+  // Button
+
+  --button-padding-x: var(--spacing--up-2);
+  --button-font-weight: 700;
+  --button-border: 1px solid;
+  --button-border-radius: var(--border-radius-default);
+
+  // Select
+
+  --select-border-radius: var(--border-radius-default);
+  --select-background-image: #{svg-url('<svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1395 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z"/></svg>')};
+  --select-background-size: var(--font-size--up-5);
+  --select-background-position: center right var(--input-padding-x);
+  --select-padding-right: calc(calc(var(--input-padding-y) * 2) + 40px);
+
+  // Transition
+
+  --transition-easing: .2s;
+
+  // Border radius
+
+  --border-radius-default: 4px;
+  --border-radius-full: 9999px;
+
+  // Modular scale
+
+  --font-size--0: var(--typography-base-font-size);
+  --font-size--up-1: calc(var(--font-size--0) * #{$typography-ratio});
+  --font-size--down-1: calc(var(--font-size--0) / #{$typography-ratio});
+
+  --spacing--0: var(--typography-base-font-size);
+  --spacing--up-1: calc(var(--spacing--0) * #{$spacing-ratio});
+  --spacing--down-1: calc(var(--spacing--0) / #{$spacing-ratio});
+
+  --spacing-negative--0: calc(-1 * var(--typography-base-font-size));
+  --spacing-negative--up-1: calc(var(--spacing-negative--0) * #{$spacing-ratio});
+  --spacing-negative--down-1: calc(var(--spacing-negative--0) / #{$spacing-ratio});
+
+  @for $num from 2 through 25 {
+    --font-size--up-#{$num}: calc(var(--font-size--up-#{$num - 1}) * #{$typography-ratio});
+    --font-size--down-#{$num}: calc(var(--font-size--down-#{$num - 1}) / #{$typography-ratio});
+
+    --spacing--up-#{$num}: calc(var(--spacing--up-#{$num - 1}) * #{$spacing-ratio});
+    --spacing--down-#{$num}: calc(var(--spacing--down-#{$num - 1}) / #{$spacing-ratio});
+
+    --spacing-negative--up-#{$num}: calc(var(--spacing-negative--up-#{$num - 1}) * #{$spacing-ratio});
+    --spacing-negative--down-#{$num}: calc(var(--spacing-negative--down-#{$num - 1}) / #{$spacing-ratio});
+  }
+}
+
+// Breakpoint (for loops)
+
+$xsmall: 320px;
+$small: 480px;
+$medium: 767px;
+$large: 1024px;
+
+$breakpoints: (
+  'xsmall' '(max-width: #{$xsmall})',
+  'small' '(max-width: #{$small})',
+  'medium' '(min-width: #{$small + 1px})',
+  'medium-down' '(max-width: #{$medium})',
+  'large' '(min-width: #{$medium + 1px})',
+  'large-down' '(max-width: #{$large})',
+  'xlarge' '(min-width: #{$large + 1px})'
+);
+
+// Color (for loops)
+
 $colors: (
-  definitions-1,
-  definitions-2,
-  definitions-3,
-  definitions-4,
-  definitions-5,
-  definitions-6,
-  definitions-7,
-  definitions-8,
-  definitions-9,
-  definitions-10,
-  definitions-11,
+  dark,
+  light,
+  green,
+  green-active,
+  navy,
+  beige,
+  red,
+  grey-lightest,
+  grey-lighter,
+  grey-light,
+  grey,
+  grey-dark,
 
   base-text,
   base-background,
@@ -24,7 +252,7 @@ $colors: (
   base-links,
   base-links-hover,
 
-  container-background,
+  placeholder,
 
   button-primary-text,
   button-primary-background,
@@ -56,115 +284,24 @@ $colors: (
   checkbox-input-border,
   checkbox-input-text-active,
   checkbox-input-background-active,
-  checkbox-input-border-active,
-
-  placeholder-background,
-
-  overlay-background,
-
-  utility-bar-text,
-  utility-bar-background,
-
-  header-background,
-  header-links,
-  header-links-hover,
-  header-cart-icon,
-  header-cart-icon-hover,
-  header-cart-icon-count-text,
-  header-cart-icon-count-background,
-  header-search-background,
-  header-search-border,
-  header-search-placeholder,
-  header-search-text,
-  header-search-button-text,
-  header-search-button-background,
-
-  header-mobile-background,
-  header-mobile-links,
-  header-mobile-links-hover,
-  header-mobile-cart-icon,
-  header-mobile-cart-icon-hover,
-  header-mobile-cart-icon-count-text,
-  header-mobile-cart-icon-count-background,
-  header-mobile-search-background,
-  header-mobile-search-border,
-  header-mobile-search-placeholder,
-  header-mobile-search-text,
-  header-mobile-search-button-text,
-  header-mobile-search-button-background,
-
-  mini-cart-text,
-  mini-cart-background,
-
-  mobile-navigation-text,
-  mobile-navigation-background,
-
-  hero-text-light,
-  hero-text-dark,
-
-  filters-text,
-  filters-background,
-  filters-checkbox-input-text,
-  filters-checkbox-input-background,
-  filters-checkbox-input-border,
-  filters-checkbox-input-text-active,
-  filters-checkbox-input-background-active,
-  filters-checkbox-input-border-active,
-
-  product-price,
-  product-price-sale,
-  product-compare-at-price,
-  product-vendor,
-  product-image-background,
-
-  footer-background,
-  footer-links,
-  footer-links-hover,
-
-  cookies-modal-text,
-  cookies-modal-background
+  checkbox-input-border-active
 );
 
-$xsmall: 320px;
-$small: 480px;
-$medium: 768px;
-$large: 1024px;
+// Font stack (for loops)
 
-$breakpoints: (
-  'xsmall' '(max-width: #{$xsmall})',
-  'small' '(max-width: #{$small})',
-  'medium' '(min-width: #{$small + 1px})',
-  'medium-down' '(max-width: #{$medium})',
-  'large' '(min-width: #{$medium + 1px})',
-  'large-down' '(max-width: #{$large})',
-  'xlarge' '(min-width: #{$large + 1px})'
-);
+$font-stacks: (base, h);
 
-$font-stacks: (base, heading);
+// Container (for loops)
 
-$containers: (default);
+$containers: (default, narrow);
 
-$container-padding-x: var(--spacing--0);
+// Border radius (for loops)
 
-$border-radius-default: var(--misc-border-radius);
-$border-radius-full: 9999px;
+$border-radiuses: (default, full);
 
-$border-radiuses: (default, $border-radius-default)
-                  (full, $border-radius-full);
-
-$input-padding-y: var(--spacing--down-1);
-$input-padding-x: var(--spacing--0);
-$input-border: 1px solid;
-$input-border-radius: $border-radius-default;
-
-$checkbox-border: 1px solid;
-$checkbox-border-radius: $border-radius-default;
+// Button (for loops)
 
 $buttons: (primary, secondary);
-$button-padding-x: var(--spacing--up-2);
-$button-font-weight: 700;
-$button-border: 1px solid;
-$button-border-radius: $border-radius-default;
 
 /*============================================================================
   #Mixins
@@ -188,34 +325,6 @@ $button-border-radius: $border-radius-default;
   &:-moz-placeholder           {@content}
   &::-moz-placeholder          {@content}
   &:-ms-input-placeholder      {@content}
-}
-
-@function str-replace($string, $search, $replace: '') {
-  $index: str-index($string, $search);
-  @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace +
-    str-replace(str-slice($string, $index +
-    str-length($search)), $search, $replace);
-  }
-  @return $string;
-}
-
-@function svg-url($svg){
-  $encoded:'';
-  $slice: 2000;
-  $index: 0;
-  $loops: ceil(str-length($svg)/$slice);
-  @for $i from 1 through $loops {
-    $chunk: str-slice($svg, $index, $index + $slice - 1);
-    $chunk: str-replace($chunk,'"','\'');
-    $chunk: str-replace($chunk,'<','%3C');
-    $chunk: str-replace($chunk,'>','%3E');
-    $chunk: str-replace($chunk,'&','%26');
-    $chunk: str-replace($chunk,'#','%23');
-    $encoded: #{$encoded}#{$chunk};
-    $index: $index + $slice;
-  }
-  @return url("data:image/svg+xml;charset=utf8,#{$encoded}");
 }
 
 @mixin clearfix() {
@@ -271,12 +380,16 @@ $button-border-radius: $border-radius-default;
   @include input-reset;
   display: inline-block;
   vertical-align: middle;
-  padding: $input-padding-y $input-padding-x;
-  border: $input-border;
-  border-radius: $input-border-radius;
+  padding: var(--input-padding-y) var(--input-padding-x);
+  border: var(--input-border);
+  border-radius: var(--input-border-radius);
   color: var(--colors-text-input-text);
   background-color: var(--colors-text-input-background);
   border-color: var(--colors-text-input-border);
+  font-size: var(--font-size--0);
+  line-height: var(--font-size--up-7);
+  text-transform: var(--typography-base-text-transform);
+  letter-spacing: var(--typography-base-letter-spacing);
 
   @include placeholder {
     color: var(--colors-text-input-placeholder);
@@ -284,16 +397,8 @@ $button-border-radius: $border-radius-default;
 }
 
 @mixin input-border() {
-  border: $input-border;
+  border: var(--input-border);
   border-color: var(--colors-text-input-border);
-}
-
-@mixin button-reset() {
-  @include input-reset();
-
-  &:before {
-    display: none;
-  }
 }
 
 /*============================================================================
@@ -438,31 +543,6 @@ $button-border-radius: $border-radius-default;
 ==============================================================================*/
 
 @mixin base() {
-  :root {
-    --font-size--0: var(--typography-base-font-size);
-    --font-size--up-1: calc(var(--font-size--0) * #{$typography-ratio});
-    --font-size--down-1: calc(var(--font-size--0) / #{$typography-ratio});
-
-    --spacing--0: var(--typography-base-font-size);
-    --spacing--up-1: calc(var(--spacing--0) * #{$spacing-ratio});
-    --spacing--down-1: calc(var(--spacing--0) / #{$spacing-ratio});
-
-    --spacing-negative--0: calc(-1 * var(--typography-base-font-size));
-    --spacing-negative--up-1: calc(var(--spacing-negative--0) * #{$spacing-ratio});
-    --spacing-negative--down-1: calc(var(--spacing-negative--0) / #{$spacing-ratio});
-
-    @for $num from 2 through 25 {
-      --font-size--up-#{$num}: calc(var(--font-size--up-#{$num - 1}) * #{$typography-ratio});
-      --font-size--down-#{$num}: calc(var(--font-size--down-#{$num - 1}) / #{$typography-ratio});
-
-      --spacing--up-#{$num}: calc(var(--spacing--up-#{$num - 1}) * #{$spacing-ratio});
-      --spacing--down-#{$num}: calc(var(--spacing--down-#{$num - 1}) / #{$spacing-ratio});
-
-      --spacing-negative--up-#{$num}: calc(var(--spacing-negative--up-#{$num - 1}) * #{$spacing-ratio});
-      --spacing-negative--down-#{$num}: calc(var(--spacing-negative--down-#{$num - 1}) / #{$spacing-ratio});
-    }
-  }
-
   html, body {
     background-color: var(--colors-base-background);
   }
@@ -501,13 +581,13 @@ $button-border-radius: $border-radius-default;
   }
 
   .fade-in {
-    animation: fade-in var(--misc-transitions-easing) both;
+    animation: fade-in var(--transition-easing) both;
   }
   .fade-out {
-    animation: fade-in var(--misc-transitions-easing) both;
+    animation: fade-in var(--transition-easing) both;
   }
   .fade-in-on-active {
-    transition: opacity var(--misc-transitions-easing);
+    transition: opacity var(--transition-easing);
     opacity: 0;
     pointer-events: none;
 
@@ -714,28 +794,6 @@ $button-border-radius: $border-radius-default;
     white-space: nowrap;
   }
 
-  @keyframes shake {
-    from,
-    to {
-      transform: translate3d(0, 0, 0);
-    }
-
-    10%,
-    30%,
-    50%,
-    70%,
-    90% {
-      transform: translate3d(-10px, 0, 0);
-    }
-
-    20%,
-    40%,
-    60%,
-    80% {
-      transform: translate3d(10px, 0, 0);
-    }
-  }
-
   .box-shadow {
     box-shadow: 0 3px 7px rgba(127, 127, 127, 0.25);
   }
@@ -819,7 +877,7 @@ $button-border-radius: $border-radius-default;
   }
 
   a {
-    transition: var(--misc-transitions-easing);
+    transition: var(--transition-easing);
     color: var(--colors-base-links);
 
     &:hover {
@@ -889,7 +947,7 @@ $button-border-radius: $border-radius-default;
 
   .select-wrap {
     position: relative;
-    border-radius: $border-radius-default;
+    border-radius: var(--select-border-radius);
     overflow: hidden;
 
     &:after {
@@ -900,17 +958,17 @@ $button-border-radius: $border-radius-default;
       right: 0;
       bottom: 0;
       left: 0;
-      background-image: svg-url('<svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1395 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z"/></svg>');
+      background-image: var(--select-background-image);
       background-repeat: no-repeat;
-      background-size: var(--font-size--up-5);
-      background-position: center right $input-padding-x;
+      background-size: var(--select-background-size);
+      background-position: var(--select-background-position);
       pointer-events: none;
     }
   }
 
   .select {
     @include input;
-    padding-right: calc(calc(#{$input-padding-y} * 2) + 40px);
+    padding-right: var(--select-padding-right);
   }
 
   .checkbox-wrap {
@@ -934,34 +992,22 @@ $button-border-radius: $border-radius-default;
   }
 
   .checkbox-icon {
+    pointer-events: none;
     display: block;
     width: 1em;
     height: 1em;
     position: relative;
     color: var(--colors-checkbox-input-text);
     background-color: var(--colors-checkbox-input-background);
-    border: $checkbox-border;
+    border: var(--checkbox-border);
     border-color: var(--colors-checkbox-input-border);
-    border-radius: $checkbox-border-radius;
+    border-radius: var(--checkbox-border-radius);
 
     .checkbox:checked + &,
     .checkbox.is-checked + & {
       color: var(--colors-checkbox-input-text-active);
       background-color: var(--colors-checkbox-input-background-active);
       border-color: var(--colors-checkbox-input-border-active);
-    }
-
-    .checkbox-wrap--filters & {
-      color: var(--colors-filters-checkbox-input-text);
-      background-color: var(--colors-filters-checkbox-input-background);
-      border-color: var(--colors-filters-checkbox-input-border);
-    }
-
-    .checkbox-wrap--filters .checkbox:checked + &,
-    .checkbox-wrap--filters .checkbox.is-checked + & {
-      color: var(--colors-filters-checkbox-input-text-active);
-      background-color: var(--colors-filters-checkbox-input-background-active);
-      border-color: var(--colors-filters-checkbox-input-border-active);
     }
 
     > * {
@@ -985,12 +1031,13 @@ $button-border-radius: $border-radius-default;
   @each $button in $buttons {
     .button-#{$button} {
       @include input;
-      padding-left: $button-padding-x;
-      padding-right: $button-padding-x;
-      font-weight: $button-font-weight;
+      transition: var(--transition-easing);
+      padding-left: var(--button-padding-x);
+      padding-right: var(--button-padding-x);
+      font-weight: var(--button-font-weight);
       text-align: center;
-      border-radius: $button-border-radius;
-      border: $button-border;
+      border-radius: var(--button-border-radius);
+      border: var(--button-border);
       color: var(--colors-button-#{$button}-text);
       background-color: var(--colors-button-#{$button}-background);
       border-color: var(--colors-button-#{$button}-border);
@@ -998,6 +1045,7 @@ $button-border-radius: $border-radius-default;
       line-height: var(--typography-buttons-line-height);
       text-transform: var(--typography-buttons-text-transform);
       letter-spacing: var(--typography-buttons-letter-spacing);
+      border-radius: 0;
 
       &:hover {
         color: var(--colors-button-#{$button}-text-hover);
@@ -1314,14 +1362,12 @@ $button-border-radius: $border-radius-default;
 
 @include display-helpers();
 
-@if not $is-amp {
-  @each $breakpoint in $breakpoints {
-    $keyword: nth($breakpoint, 1);
-    $media-query: nth($breakpoint, 2);
+@each $breakpoint in $breakpoints {
+  $keyword: nth($breakpoint, 1);
+  $media-query: nth($breakpoint, 2);
 
-    @media only screen and #{$media-query} {
-      @include display-helpers("#{$keyword}--");
-    }
+  @media only screen and #{$media-query} {
+    @include display-helpers("#{$keyword}--");
   }
 }
 
@@ -1638,16 +1684,14 @@ $button-border-radius: $border-radius-default;
 ==============================================================================*/
 
 @mixin containers($breakpoint: "") {
-  $padding: $container-padding-x;
-
   .#{$breakpoint}container-padding {
-    padding-left: $padding;
-    padding-right: $padding;
+    padding-left: var(--container-padding-x);
+    padding-right: var(--container-padding-x);
   }
 
   .#{$breakpoint}container-margin-negative-x {
-    margin-left: -($padding);
-    margin-right: -($padding);
+    margin-left: calc(-1 * var(--container-padding-x));
+    margin-right: calc(-1 * var(--container-padding-x));
   }
 
   @each $container in $containers {
@@ -1655,8 +1699,8 @@ $button-border-radius: $border-radius-default;
       max-width: var(--container-#{$container}-width);
       margin-right: auto;
       margin-left: auto;
-      padding-right: $padding;
-      padding-left: $padding;
+      padding-right: var(--container-padding-x);
+      padding-left: var(--container-padding-x);
       box-sizing: content-box;
     }
 
@@ -1696,14 +1740,12 @@ $button-border-radius: $border-radius-default;
 
 @include font-weights();
 
-@if not $is-amp {
-  @each $breakpoint in $breakpoints {
-    $keyword: nth($breakpoint, 1);
-    $media-query: nth($breakpoint, 2);
+@each $breakpoint in $breakpoints {
+  $keyword: nth($breakpoint, 1);
+  $media-query: nth($breakpoint, 2);
 
-    @media only screen and #{$media-query} {
-      @include font-weights("#{$keyword}--");
-    }
+  @media only screen and #{$media-query} {
+    @include font-weights("#{$keyword}--");
   }
 }
 
@@ -1713,14 +1755,11 @@ $button-border-radius: $border-radius-default;
 
 @mixin border-radiuses($breakpoint: "") {
   @each $border-radius in $border-radiuses {
-    $key: nth($border-radius, 1);
-    $value: nth($border-radius, 2);
-
-    .#{$breakpoint}border-radius-#{$key} {
-      border-radius: #{$value};
+    .#{$breakpoint}border-radius-#{$border-radius} {
+      border-radius: var(--border-radius-#{$border-radius});
     }
-    .#{$breakpoint}border-radius-#{$key}\! {
-      border-radius: #{$value} !important;
+    .#{$breakpoint}border-radius-#{$border-radius}\! {
+      border-radius: var(--border-radius-#{$border-radius}) !important;
     }
   }
 
@@ -1730,86 +1769,33 @@ $button-border-radius: $border-radius-default;
   .#{$breakpoint}border-radius--none\! {
     border-radius: 0 !important;
   }
-
-  @each $v in top, bottom {
-    @each $h in left, right {
-      .#{$breakpoint}border-radius-#{$v}-#{$h}--none {
-        border-#{$v}-#{$h}-radius: 0;
-      }
-      .#{$breakpoint}border-radius-#{$v}-#{$h}--none\! {
-        border-#{$v}-#{$h}-radius: 0 !important;
-      }
-    }
-  }
 }
 
 @include border-radiuses();
 
-@mixin text-transforms($breakpoint: "") {
-  .#{$breakpoint}text-transform--buttons {
-    text-transform: var(--typography-buttons-text-transform);
-  }
-  .#{$breakpoint}text-transform--navigation {
-    text-transform: var(--typography-navigation-text-transform);
-  }
-  .#{$breakpoint}text-transform--filters {
-    text-transform: var(--typography-filters-text-transform);
-  }
-  .#{$breakpoint}text-transform--product-cards {
-    text-transform: var(--typography-product-cards-text-transform);
-  }
-  .#{$breakpoint}text-transform--product-price {
-    text-transform: var(--typography-product-price-text-transform);
-  }
-  .#{$breakpoint}text-transform--footer {
-    text-transform: var(--typography-footer-text-transform);
-  }
-}
+@mixin text-transforms($breakpoint: "") {}
 
 @include text-transforms();
 
-@if not $is-amp {
-  @each $breakpoint in $breakpoints {
-    $keyword: nth($breakpoint, 1);
-    $media-query: nth($breakpoint, 2);
+@each $breakpoint in $breakpoints {
+  $keyword: nth($breakpoint, 1);
+  $media-query: nth($breakpoint, 2);
 
-    @media only screen and #{$media-query} {
-      @include text-transforms("#{$keyword}--");
-    }
+  @media only screen and #{$media-query} {
+    @include text-transforms("#{$keyword}--");
   }
 }
 
-@mixin letter-spacings($breakpoint: "") {
-  .#{$breakpoint}letter-spacing--buttons {
-    letter-spacing: var(--typography-buttons-letter-spacing);
-  }
-  .#{$breakpoint}letter-spacing--navigation {
-    letter-spacing: var(--typography-navigation-letter-spacing);
-  }
-  .#{$breakpoint}letter-spacing--filters {
-    letter-spacing: var(--typography-filters-letter-spacing);
-  }
-  .#{$breakpoint}letter-spacing--product-cards {
-    letter-spacing: var(--typography-product-cards-letter-spacing);
-  }
-  .#{$breakpoint}letter-spacing--product-price {
-    letter-spacing: var(--typography-product-price-letter-spacing);
-  }
-  .#{$breakpoint}letter-spacing--footer {
-    letter-spacing: var(--typography-footer-letter-spacing);
-  }
-}
+@mixin letter-spacings($breakpoint: "") {}
 
 @include letter-spacings();
 
-@if not $is-amp {
-  @each $breakpoint in $breakpoints {
-    $keyword: nth($breakpoint, 1);
-    $media-query: nth($breakpoint, 2);
+@each $breakpoint in $breakpoints {
+  $keyword: nth($breakpoint, 1);
+  $media-query: nth($breakpoint, 2);
 
-    @media only screen and #{$media-query} {
-      @include letter-spacings("#{$keyword}--");
-    }
+  @media only screen and #{$media-query} {
+    @include letter-spacings("#{$keyword}--");
   }
 }
 
@@ -1819,15 +1805,7 @@ $button-border-radius: $border-radius-default;
 
 @mixin breakpoint-inline-styles($breakpoint: "") {
   $properties: (
-    max-width,
-    max-height,
-    padding-bottom,
-    padding-left,
-    width,
-    height,
-    margin-bottom,
-    margin-left,
-    color
+    max-width
   );
 
   @each $property in $properties {
@@ -1839,62 +1817,18 @@ $button-border-radius: $border-radius-default;
 
 @include breakpoint-inline-styles();
 
-@if not $is-amp {
-  @each $breakpoint in $breakpoints {
-    $keyword: nth($breakpoint, 1);
-    $media-query: nth($breakpoint, 2);
+@each $breakpoint in $breakpoints {
+  $keyword: nth($breakpoint, 1);
+  $media-query: nth($breakpoint, 2);
 
-    @media only screen and #{$media-query} {
-      @include breakpoint-inline-styles("#{$keyword}--");
-    }
+  @media only screen and #{$media-query} {
+    @include breakpoint-inline-styles("#{$keyword}--");
   }
 }
 
 /*============================================================================
   #Modular scale helpers
 ==============================================================================*/
-
-@mixin list-inline($num: false) {
-  $list-gutter: 0;
-
-  @if $num {
-    $list-gutter: var(--spacing--0);
-
-    @if $num > 0 {
-      $list-gutter: var(--spacing--up-#{$num});
-    }
-
-    @if $num < 0 {
-      $list-gutter: var(--spacing--down#{$num});
-    }
-  }
-
-  margin-bottom: 0;
-
-  > li {
-    display: inline-block;
-    vertical-align: middle;
-  }
-  > li:not(:first-child) {
-    margin-left: $list-gutter;
-  }
-}
-@mixin list-inline-helpers($breakpoint: "") {
-  .#{$breakpoint}list-inline {
-    @include list-inline();
-  }
-  .#{$breakpoint}list-inline--0 {
-    @include list-inline(0);
-  }
-  @for $num from 1 through 7 {
-    .#{$breakpoint}list-inline--up-#{$num} {
-      @include list-inline($num);
-    }
-    .#{$breakpoint}list-inline--down-#{$num} {
-      @include list-inline(-$num);
-    }
-  }
-}
 
 @mixin position-helpers($breakpoint: "") {
   .#{$breakpoint}position-absolute {
@@ -2100,30 +2034,6 @@ $button-border-radius: $border-radius-default;
       font-size: var(--typography-h#{$num}-font-size);
     }
   }
-  .#{$breakpoint}font-size--buttons {
-    font-size: var(--typography-buttons-font-size);
-  }
-  .#{$breakpoint}font-size--utility-bar {
-    font-size: var(--typography-utility-bar-font-size);
-  }
-  .#{$breakpoint}font-size--utility-bar-mobile {
-    font-size: var(--typography-utility-bar-mobile-font-size);
-  }
-  .#{$breakpoint}font-size--navigation {
-    font-size: var(--typography-navigation-font-size);
-  }
-  .#{$breakpoint}font-size--filters {
-    font-size: var(--typography-filters-font-size);
-  }
-  .#{$breakpoint}font-size--product-cards {
-    font-size: var(--typography-product-cards-font-size);
-  }
-  .#{$breakpoint}font-size--product-price {
-    font-size: var(--typography-product-price-font-size);
-  }
-  .#{$breakpoint}font-size--footer {
-    font-size: var(--typography-footer-font-size);
-  }
   @for $num from 1 through 25 {
     .#{$breakpoint}font-size--up-#{$num} {
       font-size: var(--font-size--up-#{$num});
@@ -2143,35 +2053,6 @@ $button-border-radius: $border-radius-default;
   }
   .#{$breakpoint}line-height--inherit {
     line-height: inherit;
-  }
-  @for $num from 1 through 6 {
-    .#{$breakpoint}line-height--h#{$num} {
-      line-height: var(--typography-h#{$num}-line-height);
-    }
-  }
-  .#{$breakpoint}line-height--buttons {
-    line-height: var(--typography-buttons-line-height);
-  }
-  .#{$breakpoint}line-height--utility-bar {
-    line-height: var(--typography-utility-bar-line-height);
-  }
-  .#{$breakpoint}line-height--utility-bar-mobile {
-    line-height: var(--typography-utility-bar-mobile-line-height);
-  }
-  .#{$breakpoint}line-height--navigation {
-    line-height: var(--typography-navigation-line-height);
-  }
-  .#{$breakpoint}line-height--filters {
-    line-height: var(--typography-filters-line-height);
-  }
-  .#{$breakpoint}line-height--product-cards {
-    line-height: var(--typography-product-cards-line-height);
-  }
-  .#{$breakpoint}line-height--product-price {
-    line-height: var(--typography-product-price-line-height);
-  }
-  .#{$breakpoint}line-height--footer {
-    line-height: var(--typography-footer-line-height);
   }
   @for $num from 1 through 30 {
     .#{$breakpoint}line-height--up-#{$num} {
@@ -2332,7 +2213,6 @@ $button-border-radius: $border-radius-default;
   }
 }
 
-@include list-inline-helpers();
 @include position-helpers();
 @include padding-helpers();
 @include margin-helpers();
@@ -2345,87 +2225,77 @@ $button-border-radius: $border-radius-default;
 @include float-helpers();
 @include border-helpers();
 
-@if not $is-amp {
-  @each $breakpoint in $breakpoints {
-    $keyword: nth($breakpoint, 1);
-    $media-query: nth($breakpoint, 2);
+@each $breakpoint in $breakpoints {
+  $keyword: nth($breakpoint, 1);
+  $media-query: nth($breakpoint, 2);
 
-    @media only screen and #{$media-query} {
-      @include grid-helpers("#{$keyword}--");
-      @include grid-column-helpers("#{$keyword}--");
-      @include flexbox-helpers("#{$keyword}--");
-      @include position-helpers("#{$keyword}--");
-      @include padding-helpers("#{$keyword}--");
-      @include margin-helpers("#{$keyword}--");
-      @include font-size-helpers("#{$keyword}--");
-      @include line-height-helpers("#{$keyword}--");
-      @include box-ratio-helpers("#{$keyword}--");
-      @include color-helpers("#{$keyword}--");
-      @include visibility-helpers("#{$keyword}--");
-      @include text-align-helpers("#{$keyword}--");
-      @include float-helpers("#{$keyword}--");
-      @include border-helpers("#{$keyword}--");
-    }
+  @media only screen and #{$media-query} {
+    @include grid-helpers("#{$keyword}--");
+    @include grid-column-helpers("#{$keyword}--");
+    @include flexbox-helpers("#{$keyword}--");
+    @include position-helpers("#{$keyword}--");
+    @include padding-helpers("#{$keyword}--");
+    @include margin-helpers("#{$keyword}--");
+    @include font-size-helpers("#{$keyword}--");
+    @include line-height-helpers("#{$keyword}--");
+    @include box-ratio-helpers("#{$keyword}--");
+    @include color-helpers("#{$keyword}--");
+    @include visibility-helpers("#{$keyword}--");
+    @include text-align-helpers("#{$keyword}--");
+    @include float-helpers("#{$keyword}--");
+    @include border-helpers("#{$keyword}--");
   }
 }
 
 @mixin responsive-images() {
-  @if not $is-amp {
-    $animation: fade-in var(--misc-transitions-easing) both;
+  $animation: fade-in var(--transition-easing) both;
 
-    [data-src]:not(iframe) {
-      opacity: 0;
+  [data-src]:not(iframe) {
+    opacity: 0;
 
-      &.is-loaded {
-        animation: $animation;
-      }
+    &.is-loaded {
+      animation: $animation;
     }
+  }
 
-    img:not([src]) {
-      height: 1px;
-      width: 1px;
-      opacity: 0;
-    }
+  img:not([src]) {
+    height: 1px;
+    width: 1px;
+    opacity: 0;
   }
 }
 
 @mixin shopify-challenge-page() {
-  @if not $is-amp {
-    .shopify-challenge__container {
-      padding: var(--spacing--up-4) var(--spacing--up-1);
-    }
-    .shopify-challenge__button {
-      @include input;
-      padding-left: $button-padding-x;
-      padding-right: $button-padding-x;
-      font-weight: $button-font-weight;
-      text-align: center;
-      // background-color: $color-green;
-      // color: $color-light;
-      border-radius: $button-border-radius;
-      width: auto;
-    }
+  .shopify-challenge__container {
+    padding: var(--spacing--up-4) var(--spacing--up-1);
+  }
+  .shopify-challenge__button {
+    @include input;
+    padding-left: var(--button-padding-x);
+    padding-right: var(--button-padding-x);
+    font-weight: var(--button-font-weight);
+    text-align: center;
+    border-radius: var(--button-border-radius);
+    width: auto;
   }
 }
 
 @mixin template-password() {
-  @if not $is-amp {
-    .template-password,
-    .template-page-password {
-      &,
-      body,
-      main,
-      main > * {
-        @include media-query(large) {
-          height: 100%;
-        }
+  .template-password,
+  .template-page-password {
+    &,
+    body,
+    main,
+    main > * {
+      @include media-query(large) {
+        height: 100%;
       }
     }
+  }
 
-    .password-angle {
-      @include media-query(large) {
-        clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
-      }
+  .password-angle {
+    @include media-query(large) {
+      clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
     }
   }
 }
@@ -2445,40 +2315,38 @@ $button-border-radius: $border-radius-default;
 }
 
 @mixin header-offcanvas-mobile-menu() {
-  @if not $is-amp {
-    html.is-active-offcanvas-header-mobile-menu {
-      &,
-      body {
-        overflow: hidden;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-      }
+  html.is-active-offcanvas-header-mobile-menu {
+    &,
+    body {
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
     }
+  }
 
-    .header-off-canvas-mobile-menu {
-      transform: translateX(-100%);
-      transition: var(--misc-transitions-easing);
-      opacity: 0;
-      pointer-events: none;
+  .header-off-canvas-mobile-menu {
+    transform: translateX(-100%);
+    transition: var(--transition-easing);
+    opacity: 0;
+    pointer-events: none;
 
-      html.is-active-offcanvas-header-mobile-menu & {
-        transform: none;
-        opacity: 1;
-        pointer-events: auto;
-      }
+    html.is-active-offcanvas-header-mobile-menu & {
+      transform: none;
+      opacity: 1;
+      pointer-events: auto;
     }
+  }
 
-    .header-off-canvas-mobile-menu-backdrop {
-      transition: opacity var(--misc-transitions-easing);
-      opacity: 0;
-      pointer-events: none;
+  .header-off-canvas-mobile-menu-backdrop {
+    transition: opacity var(--transition-easing);
+    opacity: 0;
+    pointer-events: none;
 
-      html.is-active-offcanvas-header-mobile-menu & {
-        opacity: .5;
-        pointer-events: auto;
-      }
+    html.is-active-offcanvas-header-mobile-menu & {
+      opacity: .5;
+      pointer-events: auto;
     }
   }
 }
@@ -2495,35 +2363,31 @@ $button-border-radius: $border-radius-default;
 }
 
 @mixin slider-button() {
-  @if not $is-amp {
-    .slider-button {
-      transition: opacity var(--misc-transitions-easing);
-      pointer-events: auto;
+  .slider-button {
+    transition: opacity var(--transition-easing);
+    pointer-events: auto;
 
-      &.is-disabled {
-        opacity: 0;
-        pointer-events: none;
-      }
+    &.is-disabled {
+      opacity: 0;
+      pointer-events: none;
     }
   }
 }
 
 @mixin mini-cart() {
-  @if not $is-amp {
-    .mini-cart {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      width: 365px;
-      transition: opacity var(--misc-transitions-easing);
-      opacity: 0;
-      pointer-events: none;
+  .mini-cart {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 365px;
+    transition: opacity var(--transition-easing);
+    opacity: 0;
+    pointer-events: none;
 
-      .mini-cart-hover-trigger:hover &,
-      html.is-active-mini-cart & {
-        opacity: 1;
-        pointer-events: auto;
-      }
+    .mini-cart-hover-trigger:hover &,
+    html.is-active-mini-cart & {
+      opacity: 1;
+      pointer-events: auto;
     }
   }
 }
@@ -2543,21 +2407,19 @@ $button-border-radius: $border-radius-default;
 }
 
 @mixin cookies-modal() {
-  @if not $is-amp {
-    .cookies-modal {
-      display: none;
-    }
+  .cookies-modal {
+    display: none;
+  }
 
-    html.is-active-cookies-modal .cookies-modal {
-      display: block;
-    }
+  html.is-active-cookies-modal .cookies-modal {
+    display: block;
+  }
 
-    html.is-active-cookies-modal #preview-bar-iframe,
-    html.is-active-cookies-modal .pushowl-widget-node,
-    html.is-active-cookies-modal #smile-ui-container,
-    html.is-active-cookies-modal #admin-bar-iframe {
-      display: none;
-    }
+  html.is-active-cookies-modal #preview-bar-iframe,
+  html.is-active-cookies-modal .pushowl-widget-node,
+  html.is-active-cookies-modal #smile-ui-container,
+  html.is-active-cookies-modal #admin-bar-iframe {
+    display: none;
   }
 }
 

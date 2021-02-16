@@ -5,8 +5,6 @@
   }
 {% endschema %}
 
-{% include 'attribute-request-amp' %}
-
 {% assign current_collection = collection %}
 {% assign current_product = product %}
 {% assign current_variant = product.selected_or_first_available_variant %}
@@ -20,13 +18,7 @@
         </div>
 
         <div class="grid-item float-left one large--one-two padding-bottom--up-1">
-          {% unless request_amp %}
-            {% include 'product-gallery' %}
-          {% endunless %}
-
-          {% if request_amp %}
-            {% include 'product-gallery-amp' %}
-          {% endif %}
+          {% include 'product-gallery' %}
         </div>
 
         <div class="grid-item float-right one large--one-two padding-bottom--up-1">
@@ -34,13 +26,7 @@
             {% include 'product-description' %}
           {% endif %}
 
-          {% unless request_amp %}
-            {% include 'product-form' %}
-          {% endunless %}
-
-          {% if request_amp %}
-            {% include 'product-form-amp' %}
-          {% endif %}
+          {% include 'product-form' %}
         </div>
       </div>
     </div>

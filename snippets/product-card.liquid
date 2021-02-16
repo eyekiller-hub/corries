@@ -1,4 +1,3 @@
-{% assign amp = _amp %}
 {% assign image_lazy = _image_lazy %}
 
 {% assign url = product.url | within: collection %}
@@ -20,7 +19,6 @@
 
 {%
   include 'product-card-template',
-  _amp: amp,
   _url: url,
   _image: image,
   _image_url: image_url,

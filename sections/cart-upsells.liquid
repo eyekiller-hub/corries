@@ -30,8 +30,6 @@
 
 {% assign limit = section.settings.limit | default: 4 %}
 
-{% include 'attribute-request-amp' %}
-
 {% if enable %}
   {% capture product_card_grid_item_class_name_template %}
     {% include 'product-card-grid-item-class-name-template' %}
@@ -39,7 +37,7 @@
 
   <div class="padding-bottom--up-2 large--padding-bottom--up-4">
     <div class="container-default">
-      <h2 class="font-size--h5 line-height--h5 text-transform--h5 letter-spacing--h5 text-center margin-bottom--0">
+      <h2 class="text-center margin-bottom--0">
         {{ 'cart.upsells_title' | t }}
       </h2>
 
@@ -47,7 +45,7 @@
         <div class="grid--up-1 margin-bottom-negative--up-1">
           {% for product in collection.products limit: limit %}
             <div class="{{ product_card_grid_item_class_name_template }}">
-              {% include 'product-card' _amp: request_amp %}
+              {% include 'product-card' %}
             </div>
           {% endfor %}
         </div>

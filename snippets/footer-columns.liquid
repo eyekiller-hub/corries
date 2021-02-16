@@ -8,7 +8,7 @@
 
       <div class="large--flex-item padding-bottom--up-1">
         {% if block_title %}
-          <h3 class="font-size--h6 line-height--h6 text-transform--h6 letter-spacing--h6 margin-bottom--0">
+          <h3 class="margin-bottom--0">
             {{ block_title }}
           </h3>
         {% endif %}
@@ -19,7 +19,7 @@
               {% for link in block_menu.links %}
                 <li class="margin-bottom--down-2">
                   <a href="{{ link.url }}">
-                    <div class="font-size--footer line-height--footer text-transform--footer letter-spacing--footer">
+                    <div>
                       {{ link.title }}
                     </div>
                   </a>

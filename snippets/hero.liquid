@@ -87,61 +87,38 @@
 
 {% assign title = title | replace: '{{ page_title }}', page_title %}
 
-{% unless request_amp %}
-  <style>
-    @media (min-width: {{ breakpoints_large }}px){
-      .hero-{{ id }} .hero-height {
-        {% if height %}
-          {% if height_box_ratio %}
-            padding-bottom: {{ height_box_ratio }};
-          {% else %}
-            height: {{ height }};
-          {% endif %}
+<style>
+  @media (min-width: {{ breakpoints_large }}px){
+    .hero-{{ id }} .hero-height {
+      {% if height %}
+        {% if height_box_ratio %}
+          padding-bottom: {{ height_box_ratio }};
+        {% else %}
+          height: {{ height }};
         {% endif %}
-      }
+      {% endif %}
     }
+  }
 
-    @media (max-width: {{ breakpoints_medium_down }}px){
-      .hero-{{ id }} .hero-height {
-        {% if height_mobile %}
-          {% if height_mobile_box_ratio %}
-            padding-bottom: {{ height_mobile_box_ratio }};
-          {% else %}
-            height: {{ height_mobile }};
-          {% endif %}
+  @media (max-width: {{ breakpoints_medium_down }}px){
+    .hero-{{ id }} .hero-height {
+      {% if height_mobile %}
+        {% if height_mobile_box_ratio %}
+          padding-bottom: {{ height_mobile_box_ratio }};
+        {% else %}
+          height: {{ height_mobile }};
         {% endif %}
-      }
+      {% endif %}
     }
-  </style>
-{% endunless %}
+  }
+</style>
 
 <div class="hero-{{ id }}">
   <div class="position-relative">
-    <div class="hero-height box-color-placeholder-background position-relative {% if height_box_ratio %}large--box-ratio-inline!{% endif %} {% if  height_mobile_box_ratio %}medium-down--box-ratio-inline!{% endif %} {% if height_full %}large--height-full-vh!{% endif %} {% if height_mobile_full %}medium-down--height-full-vh!{% endif %}" style="
-      {% if request_amp %}
-        {% if height_mobile %}
-          {% if height_mobile_box_ratio %}
-            padding-bottom: {{ height_mobile_box_ratio }};
-          {% else %}
-            height: {{ height_mobile }};
-          {% endif %}
-        {% endif %}
-      {% endif %}
-    ">
+    <div class="hero-height position-relative {% if height_box_ratio %}large--box-ratio-inline!{% endif %} {% if  height_mobile_box_ratio %}medium-down--box-ratio-inline!{% endif %} {% if height_full %}large--height-full-vh!{% endif %} {% if height_mobile_full %}medium-down--height-full-vh!{% endif %}">
       {% if image %}
         <div class="position-absolute position-full object-full">
-          {% unless request_amp %}
-            <div class="position-absolute position-full background-full" data-src="{{ image_mobile_url }}" data-src-large="{{ image_url }}" {% if image_lazy %}data-lazy{% endif %}></div>
-          {% endunless %}
-
-          {% if request_amp %}
-            <amp-img
-              src="{{ image_mobile_url }}"
-              alt=""
-              width="0"
-              height="0"
-              layout="fill"></amp-img>
-          {% endif %}
+          <div class="position-absolute position-full background-full" data-src="{{ image_mobile_url }}" data-src-large="{{ image_url }}" {% if image_lazy %}data-lazy{% endif %}></div>
 
           {% if image_overlay %}
             <div class="position-absolute position-full" style="background: #000; opacity: {{ image_overlay }};"></div>
@@ -156,11 +133,11 @@
           <div class="grid text-center large--text-{{ alignment }}">
             <div class="grid-item" style="max-width: 500px;">
               <div class="text-center">
-                <div class="{% if text_color == 'dark' %}text-color-hero-text-dark{% else %}text-color-hero-text-light{% endif %}">
+                <div>
                   <div class="last-child-margin--none">
                     {% if title %}
                       <div class="margin-bottom--up-1 large--margin-bottom--up-3">
-                        <h2 class="font-size--h6 line-height--h6 text-transform--h6 letter-spacing--h6 large--font-size--h2 large--line-height--h2 large--text-transform--h2 large--letter-spacing--h2 text-color-inherit margin-bottom--none">
+                        <h2 class="text-color-inherit margin-bottom--none">
                           {{ title }}
                         </h2>
                       </div>

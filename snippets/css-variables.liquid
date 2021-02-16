@@ -1,424 +1,74 @@
-{%- assign container_default_width = settings.container_default_width | default: false -%}
+<style>
+  @font-face {
+    font-family: 'DIN 2014';
+    src: url('{{ 'font-din-2014-regular.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'font-din-2014-regular.woff' | asset_url }}') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'DIN 2014';
+    src: url('{{ 'font-din-2014-regular-italic.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'font-din-2014-regular-italic.woff' | asset_url }}') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'DIN 2014';
+    src: url('{{ 'font-din-2014-demi-bold.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'font-din-2014-demi-bold.woff' | asset_url }}') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'DIN 2014';
+    src: url('{{ 'font-din-2014-demi-bold-italic.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'font-din-2014-demi-bold-italic.woff' | asset_url }}') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'DIN 2014';
+    src: url('{{ 'font-din-2014-bold.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'font-din-2014-bold.woff' | asset_url }}') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'DIN 2014';
+    src: url('{{ 'font-din-2014-bold-italic.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'font-din-2014-bold-italic.woff' | asset_url }}') format('woff');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Hoefler Text';
+    src: url('{{ 'font-hoefler-text-regular.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'font-hoefler-text-regular.woff' | asset_url }}') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Hoefler Text';
+    src: url('{{ 'font-hoefler-text-bold.woff2' | asset_url }}') format('woff2'),
+         url('{{ 'font-hoefler-text-bold.woff' | asset_url }}') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+</style>
 
-{%- assign typography_base_font = settings.typography_base_font | default: false -%}
-
-{%- assign typography_base_font_size = settings.typography_base_font_size | default: false -%}
-
-{%- assign typography_base_line_height = settings.typography_base_line_height | default: false -%}
-
-{%- assign typography_base_text_transform = settings.typography_base_text_transform | default: false -%}
-
-{%- assign typography_base_letter_spacing = settings.typography_base_letter_spacing | default: false -%}
-
-{%- assign typography_h_font = settings.typography_h_font | default: false -%}
-
-{%- assign typography_buttons_font_size = settings.typography_buttons_font_size | default: false -%}
-
-{%- assign typography_buttons_line_height = settings.typography_buttons_line_height | default: false -%}
-
-{%- assign typography_buttons_text_transform = settings.typography_buttons_text_transform | default: false -%}
-
-{%- assign typography_buttons_letter_spacing = settings.typography_buttons_letter_spacing | default: false -%}
-
-{%- assign typography_utility_bar_font_size = settings.typography_utility_bar_font_size | default: false -%}
-
-{%- assign typography_utility_bar_line_height = settings.typography_utility_bar_line_height | default: false -%}
-
-{%- assign typography_utility_bar_mobile_font_size = settings.typography_utility_bar_mobile_font_size | default: false -%}
-
-{%- assign typography_utility_bar_mobile_line_height = settings.typography_utility_bar_mobile_line_height | default: false -%}
-
-{%- assign typography_navigation_font_size = settings.typography_navigation_font_size | default: false -%}
-
-{%- assign typography_navigation_line_height = settings.typography_navigation_line_height | default: false -%}
-
-{%- assign typography_navigation_text_transform = settings.typography_navigation_text_transform | default: false -%}
-
-{%- assign typography_navigation_letter_spacing = settings.typography_navigation_letter_spacing | default: false -%}
-
-{%- assign typography_filters_font_size = settings.typography_filters_font_size | default: false -%}
-
-{%- assign typography_filters_line_height = settings.typography_filters_line_height | default: false -%}
-
-{%- assign typography_filters_text_transform = settings.typography_filters_text_transform | default: false -%}
-
-{%- assign typography_filters_letter_spacing = settings.typography_filters_letter_spacing | default: false -%}
-
-{%- assign typography_product_cards_font_size = settings.typography_product_cards_font_size | default: false -%}
-
-{%- assign typography_product_cards_line_height = settings.typography_product_cards_line_height | default: false -%}
-
-{%- assign typography_product_cards_text_transform = settings.typography_product_cards_text_transform | default: false -%}
-
-{%- assign typography_product_cards_letter_spacing = settings.typography_product_cards_letter_spacing | default: false -%}
-
-{%- assign typography_product_price_font_size = settings.typography_product_price_font_size | default: false -%}
-
-{%- assign typography_product_price_line_height = settings.typography_product_price_line_height | default: false -%}
-
-{%- assign typography_product_price_text_transform = settings.typography_product_price_text_transform | default: false -%}
-
-{%- assign typography_product_price_letter_spacing = settings.typography_product_price_letter_spacing | default: false -%}
-
-{%- assign typography_footer_font_size = settings.typography_footer_font_size | default: false -%}
-
-{%- assign typography_footer_line_height = settings.typography_footer_line_height | default: false -%}
-
-{%- assign typography_footer_text_transform = settings.typography_footer_text_transform | default: false -%}
-
-{%- assign typography_footer_letter_spacing = settings.typography_footer_letter_spacing | default: false -%}
-
-{%- assign colors_settings_ids = 'colors_base_text, colors_base_background, colors_container_background, colors_base_headings, colors_base_links, colors_base_links_hover, colors_placeholder_background, colors_overlay_background, colors_button_primary_text, colors_button_primary_background, colors_button_primary_border, colors_button_primary_text_hover, colors_button_primary_background_hover, colors_button_primary_border_hover, colors_button_primary_text_disabled, colors_button_primary_background_disabled, colors_button_primary_border_disabled, colors_button_secondary_text, colors_button_secondary_background, colors_button_secondary_border, colors_button_secondary_text_hover, colors_button_secondary_background_hover, colors_button_secondary_border_hover, colors_button_secondary_text_disabled, colors_button_secondary_background_disabled, colors_button_secondary_border_disabled, colors_text_input_placeholder, colors_text_input_text, colors_text_input_background, colors_text_input_border, colors_checkbox_input_text, colors_checkbox_input_background, colors_checkbox_input_border, colors_checkbox_input_text_active, colors_checkbox_input_background_active, colors_checkbox_input_border_active, colors_utility_bar_text, colors_utility_bar_background, colors_header_background, colors_header_links, colors_header_links_hover, colors_header_cart_icon, colors_header_cart_icon_hover, colors_header_cart_icon_count_text, colors_header_cart_icon_count_background, colors_header_search_background, colors_header_search_border, colors_header_search_placeholder, colors_header_search_text, colors_header_search_button_text, colors_header_search_button_background, colors_header_mobile_background, colors_header_mobile_links, colors_header_mobile_links_hover, colors_header_mobile_cart_icon, colors_header_mobile_cart_icon_hover, colors_header_mobile_cart_icon_count_text, colors_header_mobile_cart_icon_count_background, colors_header_mobile_search_background, colors_header_mobile_search_border, colors_header_mobile_search_placeholder, colors_header_mobile_search_text, colors_header_mobile_search_button_text, colors_header_mobile_search_button_background, colors_mini_cart_text, colors_mini_cart_background, colors_mobile_navigation_text, colors_mobile_navigation_background, colors_hero_text_light, colors_hero_text_dark, colors_filters_text, colors_filters_background, colors_filters_checkbox_input_text, colors_filters_checkbox_input_background, colors_filters_checkbox_input_border, colors_filters_checkbox_input_text_active, colors_filters_checkbox_input_background_active, colors_filters_checkbox_input_border_active, colors_product_price, colors_product_price_sale, colors_product_compare_at_price, colors_product_vendor, colors_product_image_background, colors_footer_background, colors_footer_links, colors_footer_links_hover, colors_cookies_modal_text, colors_cookies_modal_background' | split: ', ' -%}
-
-{% assign misc_transitions_easing = settings.misc_transitions_easing | default: false %}
-
-{% assign misc_border_radius = settings.misc_border_radius | default: false %}
-
-{%- if typography_base_font -%}
-  {%- assign typography_base_font_bold = typography_base_font | font_modify: 'weight', 'bolder' -%}
-
-  {%- assign typography_base_font_italic = typography_base_font | font_modify: 'style', 'italic' -%}
-
-  {%- assign typography_base_font_bold_italic = typography_base_font_bold | font_modify: 'style', 'italic' -%}
-
-  {{- typography_base_font | font_face -}}
-
-  {{- typography_base_font_bold | font_face -}}
-
-  {{- typography_base_font_italic | font_face -}}
-
-  {{- typography_base_font_bold_italic | font_face -}}
-{%- endif -%}
-
-{%- if typography_h_font -%}
-  {{- typography_h_font | font_face -}}
-{%- endif -%}
-
-:root {
-  {%- if container_default_width -%}
-    --container-default-width: {{- container_default_width -}}px;
-  {%- endif -%}
-
-  {%- if typography_base_font -%}
-    --typography-base-font-family: {{- typography_base_font.family -}}, {{- typography_base_font.fallback_families -}};
-  {%- endif -%}
-
-  {%- if typography_base_font_size and typography_base_line_height -%}
-    {%- assign line_height_suffix = typography_base_line_height -%}
-
-    {%- if typography_base_line_height > 0 -%}
-      {%- assign line_height_suffix = 'up-' | append: line_height_suffix -%}
-    {%- elsif typography_base_line_height < 0 -%}
-      {%- assign line_height_suffix = 'down' | append: line_height_suffix -%}
-    {%- endif -%}
-
-    --typography-base-font-size: {{- typography_base_font_size -}}px;
-    --typography-base-line-height: var(--font-size--{{- line_height_suffix -}});
-  {%- endif -%}
-
-  {%- if typography_base_text_transform -%}
-    --typography-base-text-transform: {{- typography_base_text_transform -}};
-  {%- endif -%}
-
-  {%- if typography_base_letter_spacing -%}
-    --typography-base-letter-spacing: {{- typography_base_letter_spacing -}}px;
-  {%- endif -%}
-
-  {%- if typography_h_font -%}
-    --typography-h-font-family: {{- typography_h_font.family -}}, {{- typography_h_font.fallback_families -}};
-  {%- endif -%}
-
-  {%- for i in (1..6) -%}
-    {%- assign typography_h_font_size = 'typography_h' | append: i | append: '_font_size' -%}
-    {%- assign typography_h_font_size = settings[typography_h_font_size] | default: false -%}
-
-    {%- assign typography_h_line_height = 'typography_h' | append: i | append: '_line_height' -%}
-    {%- assign typography_h_line_height = settings[typography_h_line_height] | default: false -%}
-
-    {%- assign typography_h_text_transform = 'typography_h' | append: i | append: '_text_transform' -%}
-    {%- assign typography_h_text_transform = settings[typography_h_text_transform] | default: false -%}
-
-    {%- assign typography_h_letter_spacing = 'typography_h' | append: i | append: '_letter_spacing' -%}
-    {%- assign typography_h_letter_spacing = settings[typography_h_letter_spacing] | default: false -%}
-
-    {%- if typography_h_font_size and typography_h_line_height -%}
-      {%- assign font_size_suffix = typography_h_font_size -%}
-
-      {%- assign line_height_suffix = typography_h_line_height -%}
-
-      {%- if typography_h_font_size > 0 -%}
-        {%- assign font_size_suffix = 'up-' | append: font_size_suffix -%}
-      {%- elsif typography_h_font_size < 0 -%}
-        {%- assign font_size_suffix = 'down' | append: font_size_suffix -%}
-      {%- endif -%}
-
-      {%- if typography_h_line_height > 0 -%}
-        {%- assign line_height_suffix = 'up-' | append: line_height_suffix -%}
-      {%- elsif typography_h_line_height < 0 -%}
-        {%- assign line_height_suffix = 'down' | append: line_height_suffix -%}
-      {%- endif -%}
-
-      --typography-h{{- i -}}-font-size: var(--font-size--{{- font_size_suffix -}});
-      --typography-h{{- i -}}-line-height: var(--font-size--{{- line_height_suffix -}});
-    {%- endif -%}
-
-    {%- if typography_h_text_transform -%}
-      --typography-h{{- i -}}-text-transform: {{- typography_h_text_transform -}};
-    {%- endif -%}
-
-    {%- if typography_h_letter_spacing -%}
-      --typography-h{{- i -}}-letter-spacing: {{- typography_h_letter_spacing -}}px;
-    {%- endif -%}
-  {%- endfor -%}
-
-  {%- if typography_buttons_font_size and typography_buttons_line_height -%}
-    {%- assign font_size_suffix = typography_buttons_font_size -%}
-
-    {%- assign line_height_suffix = typography_buttons_line_height -%}
-
-      {%- if typography_buttons_font_size > 0 -%}
-        {%- assign font_size_suffix = 'up-' | append: font_size_suffix -%}
-      {%- elsif typography_buttons_font_size < 0 -%}
-        {%- assign font_size_suffix = 'down' | append: font_size_suffix -%}
-      {%- endif -%}
-
-    {%- if typography_buttons_line_height > 0 -%}
-      {%- assign line_height_suffix = 'up-' | append: line_height_suffix -%}
-    {%- elsif typography_buttons_line_height < 0 -%}
-      {%- assign line_height_suffix = 'down' | append: line_height_suffix -%}
-    {%- endif -%}
-
-    --typography-buttons-font-size: var(--font-size--{{- font_size_suffix -}});
-    --typography-buttons-line-height: var(--font-size--{{- line_height_suffix -}});
-  {%- endif -%}
-
-  {%- if typography_buttons_text_transform -%}
-    --typography-buttons-text-transform: {{- typography_buttons_text_transform -}};
-  {%- endif -%}
-
-  {%- if typography_buttons_letter_spacing -%}
-    --typography-buttons-letter-spacing: {{- typography_buttons_letter_spacing -}}px;
-  {%- endif -%}
-
-  {%- if typography_utility_bar_font_size and typography_utility_bar_line_height -%}
-    {%- assign font_size_suffix = typography_utility_bar_font_size -%}
-
-    {%- assign line_height_suffix = typography_utility_bar_line_height -%}
-
-      {%- if typography_utility_bar_font_size > 0 -%}
-        {%- assign font_size_suffix = 'up-' | append: font_size_suffix -%}
-      {%- elsif typography_utility_bar_font_size < 0 -%}
-        {%- assign font_size_suffix = 'down' | append: font_size_suffix -%}
-      {%- endif -%}
-
-    {%- if typography_utility_bar_line_height > 0 -%}
-      {%- assign line_height_suffix = 'up-' | append: line_height_suffix -%}
-    {%- elsif typography_utility_bar_line_height < 0 -%}
-      {%- assign line_height_suffix = 'down' | append: line_height_suffix -%}
-    {%- endif -%}
-
-    --typography-utility-bar-font-size: var(--font-size--{{- font_size_suffix -}});
-    --typography-utility-bar-line-height: var(--font-size--{{- line_height_suffix -}});
-  {%- endif -%}
-
-  {%- if typography_utility_bar_mobile_font_size and typography_utility_bar_mobile_line_height -%}
-    {%- assign font_size_suffix = typography_utility_bar_mobile_font_size -%}
-
-    {%- assign line_height_suffix = typography_utility_bar_mobile_line_height -%}
-
-      {%- if typography_utility_bar_mobile_font_size > 0 -%}
-        {%- assign font_size_suffix = 'up-' | append: font_size_suffix -%}
-      {%- elsif typography_utility_bar_mobile_font_size < 0 -%}
-        {%- assign font_size_suffix = 'down' | append: font_size_suffix -%}
-      {%- endif -%}
-
-    {%- if typography_utility_bar_mobile_line_height > 0 -%}
-      {%- assign line_height_suffix = 'up-' | append: line_height_suffix -%}
-    {%- elsif typography_utility_bar_mobile_line_height < 0 -%}
-      {%- assign line_height_suffix = 'down' | append: line_height_suffix -%}
-    {%- endif -%}
-
-    --typography-utility-bar-mobile-font-size: var(--font-size--{{- font_size_suffix -}});
-    --typography-utility-bar-mobile-line-height: var(--font-size--{{- line_height_suffix -}});
-  {%- endif -%}
-
-  {%- if typography_navigation_font_size and typography_navigation_line_height -%}
-    {%- assign font_size_suffix = typography_navigation_font_size -%}
-
-    {%- assign line_height_suffix = typography_navigation_line_height -%}
-
-      {%- if typography_navigation_font_size > 0 -%}
-        {%- assign font_size_suffix = 'up-' | append: font_size_suffix -%}
-      {%- elsif typography_navigation_font_size < 0 -%}
-        {%- assign font_size_suffix = 'down' | append: font_size_suffix -%}
-      {%- endif -%}
-
-    {%- if typography_navigation_line_height > 0 -%}
-      {%- assign line_height_suffix = 'up-' | append: line_height_suffix -%}
-    {%- elsif typography_navigation_line_height < 0 -%}
-      {%- assign line_height_suffix = 'down' | append: line_height_suffix -%}
-    {%- endif -%}
-
-    --typography-navigation-font-size: var(--font-size--{{- font_size_suffix -}});
-    --typography-navigation-line-height: var(--font-size--{{- line_height_suffix -}});
-  {%- endif -%}
-
-  {%- if typography_navigation_text_transform -%}
-    --typography-navigation-text-transform: {{- typography_navigation_text_transform -}};
-  {%- endif -%}
-
-  {%- if typography_navigation_letter_spacing -%}
-    --typography-navigation-letter-spacing: {{- typography_navigation_letter_spacing -}}px;
-  {%- endif -%}
-
-  {%- if typography_filters_font_size and typography_filters_line_height -%}
-    {%- assign font_size_suffix = typography_filters_font_size -%}
-
-    {%- assign line_height_suffix = typography_filters_line_height -%}
-
-      {%- if typography_filters_font_size > 0 -%}
-        {%- assign font_size_suffix = 'up-' | append: font_size_suffix -%}
-      {%- elsif typography_filters_font_size < 0 -%}
-        {%- assign font_size_suffix = 'down' | append: font_size_suffix -%}
-      {%- endif -%}
-
-    {%- if typography_filters_line_height > 0 -%}
-      {%- assign line_height_suffix = 'up-' | append: line_height_suffix -%}
-    {%- elsif typography_filters_line_height < 0 -%}
-      {%- assign line_height_suffix = 'down' | append: line_height_suffix -%}
-    {%- endif -%}
-
-    --typography-filters-font-size: var(--font-size--{{- font_size_suffix -}});
-    --typography-filters-line-height: var(--font-size--{{- line_height_suffix -}});
-  {%- endif -%}
-
-  {%- if typography_filters_text_transform -%}
-    --typography-filters-text-transform: {{- typography_filters_text_transform -}};
-  {%- endif -%}
-
-  {%- if typography_filters_letter_spacing -%}
-    --typography-filters-letter-spacing: {{- typography_filters_letter_spacing -}}px;
-  {%- endif -%}
-
-  {%- if typography_product_cards_font_size and typography_product_cards_line_height -%}
-    {%- assign font_size_suffix = typography_product_cards_font_size -%}
-
-    {%- assign line_height_suffix = typography_product_cards_line_height -%}
-
-      {%- if typography_product_cards_font_size > 0 -%}
-        {%- assign font_size_suffix = 'up-' | append: font_size_suffix -%}
-      {%- elsif typography_product_cards_font_size < 0 -%}
-        {%- assign font_size_suffix = 'down' | append: font_size_suffix -%}
-      {%- endif -%}
-
-    {%- if typography_product_cards_line_height > 0 -%}
-      {%- assign line_height_suffix = 'up-' | append: line_height_suffix -%}
-    {%- elsif typography_product_cards_line_height < 0 -%}
-      {%- assign line_height_suffix = 'down' | append: line_height_suffix -%}
-    {%- endif -%}
-
-    --typography-product-cards-font-size: var(--font-size--{{- font_size_suffix -}});
-    --typography-product-cards-line-height: var(--font-size--{{- line_height_suffix -}});
-  {%- endif -%}
-
-  {%- if typography_product_cards_text_transform -%}
-    --typography-product-cards-text-transform: {{- typography_product_cards_text_transform -}};
-  {%- endif -%}
-
-  {%- if typography_product_cards_letter_spacing -%}
-    --typography-product-cards-letter-spacing: {{- typography_product_cards_letter_spacing -}}px;
-  {%- endif -%}
-
-  {%- if typography_product_price_font_size and typography_product_price_line_height -%}
-    {%- assign font_size_suffix = typography_product_price_font_size -%}
-
-    {%- assign line_height_suffix = typography_product_price_line_height -%}
-
-      {%- if typography_product_price_font_size > 0 -%}
-        {%- assign font_size_suffix = 'up-' | append: font_size_suffix -%}
-      {%- elsif typography_product_price_font_size < 0 -%}
-        {%- assign font_size_suffix = 'down' | append: font_size_suffix -%}
-      {%- endif -%}
-
-    {%- if typography_product_price_line_height > 0 -%}
-      {%- assign line_height_suffix = 'up-' | append: line_height_suffix -%}
-    {%- elsif typography_product_price_line_height < 0 -%}
-      {%- assign line_height_suffix = 'down' | append: line_height_suffix -%}
-    {%- endif -%}
-
-    --typography-product-price-font-size: var(--font-size--{{- font_size_suffix -}});
-    --typography-product-price-line-height: var(--font-size--{{- line_height_suffix -}});
-  {%- endif -%}
-
-  {%- if typography_product_price_text_transform -%}
-    --typography-product-price-text-transform: {{- typography_product_price_text_transform -}};
-  {%- endif -%}
-
-  {%- if typography_product_price_letter_spacing -%}
-    --typography-product-price-letter-spacing: {{- typography_product_price_letter_spacing -}}px;
-  {%- endif -%}
-
-  {%- if typography_footer_font_size and typography_footer_line_height -%}
-    {%- assign font_size_suffix = typography_footer_font_size -%}
-
-    {%- assign line_height_suffix = typography_footer_line_height -%}
-
-      {%- if typography_footer_font_size > 0 -%}
-        {%- assign font_size_suffix = 'up-' | append: font_size_suffix -%}
-      {%- elsif typography_footer_font_size < 0 -%}
-        {%- assign font_size_suffix = 'down' | append: font_size_suffix -%}
-      {%- endif -%}
-
-    {%- if typography_footer_line_height > 0 -%}
-      {%- assign line_height_suffix = 'up-' | append: line_height_suffix -%}
-    {%- elsif typography_footer_line_height < 0 -%}
-      {%- assign line_height_suffix = 'down' | append: line_height_suffix -%}
-    {%- endif -%}
-
-    --typography-footer-font-size: var(--font-size--{{- font_size_suffix -}});
-    --typography-footer-line-height: var(--font-size--{{- line_height_suffix -}});
-  {%- endif -%}
-
-  {%- if typography_footer_text_transform -%}
-    --typography-footer-text-transform: {{- typography_footer_text_transform -}};
-  {%- endif -%}
-
-  {%- if typography_footer_letter_spacing -%}
-    --typography-footer-letter-spacing: {{- typography_footer_letter_spacing -}}px;
-  {%- endif -%}
-
-  {%- for i in (1..11) -%}
-    {%- assign colors_definitions_i = 'colors_definitions_' | append: i -%}
-    {%- assign colors_definitions_i = settings[colors_definitions_i] | default: false -%}
-
-    {%- if colors_definitions_i -%}
-      --colors-definitions-{{- i -}}: {{- colors_definitions_i -}};
-    {%- endif -%}
-  {%- endfor -%}
-
-  {%- for colors_settings_id in colors_settings_ids -%}
-    {%- assign color = settings[colors_settings_id] | default: false -%}
-
-    {%- assign color_opacity = colors_settings_id | append: '_opacity' -%}
-    {%- assign color_opacity = settings[color_opacity] | default: '100' | append: '.0' | divided_by: 100 -%}
-
-    {%- assign color_definition = 'colors_definitions_' | append: color -%}
-    {%- assign color_definition = settings[color_definition] | default: false -%}
-
-    {%- assign colors_settings_id_handle = colors_settings_id | replace: '_', '-' -%}
-
-    {%- assign color_modified = color_definition | color_modify: 'alpha', color_opacity -%}
-
-    {%- if color -%}
-      --{{- colors_settings_id_handle -}}: {{- color_modified -}};
-    {%- endif -%}
-  {%- endfor -%}
-
-  {%- if misc_transitions_easing -%}
-    --misc-transitions-easing: {{- misc_transitions_easing -}}s;
-  {%- endif -%}
-
-  {%- if misc_border_radius -%}
-    --misc-border-radius: {{- misc_border_radius -}}px;
-  {%- endif -%}
-}

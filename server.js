@@ -8,11 +8,9 @@ var opn = require("opn");
 var config = yaml.load(fs.readFileSync("./config.yml"));
 var port = 3000;
 
-opn(`https://${config.development.store}/admin`);
-
 bs.init({
   port: port,
-  proxy: `https://${config.development.store}?key=${config.development.preview_key}&preview_theme_id=${config.development.theme_id}`,
+  proxy: `https://${config.development.store}?preview_theme_id=${config.development.theme_id}&${config.development.url_params}`,
   https: {
     key: `${os.homedir()}/.localhost_ssl/server.key`,
     cert: `${os.homedir()}/.localhost_ssl/server.crt`
@@ -33,11 +31,15 @@ bs.init({
       replace: '"/assets/$1',
     },
     {
-      match: new RegExp('".*assets/(theme.default.min.css)"?', "g"),
+      match: new RegExp('".*assets/(theme.min.css)"?', "g"),
       replace: '"/assets/$1',
     },
     {
       match: "previewBarInjector.init();",
+      replace: ""
+    },
+    {
+      match: "adminBarInjector.init();",
       replace: ""
     },
     {
@@ -54,7 +56,7 @@ bs.init({
 
 fs.writeFileSync("theme.update", "");
 
-bs.watch("assets/{theme.default.min.css,theme.min.js}", (event, file) => {
+bs.watch("assets/{theme.min.css,theme.min.js}", (event, file) => {
   bs.reload(file);
 });
 

@@ -1,40 +1,29 @@
-var path = require("path");
+var path = require('path');
 
 module.exports = {
-  entry: [
-    "./assets/theme.js"
-  ],
-  output: {
-    path: path.resolve(__dirname, "assets"),
-    publicPath: "/assets/",
-    filename: "theme.min.js"
-  },
+  target: ['web', 'es5'],
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: [
-              [
-                "env",
-                {
-                  "targets": {
-                    "chrome": "49",
-                    "ie": "10",
-                    "safari": "9"
-                  }
-                }
-              ]
-            ],
-            plugins: [
-              ["transform-react-jsx", { "pragma": "h" }],
-              ["transform-class-properties", { "loose": true }]
-            ]
+            presets: ['@babel/preset-env']
           }
         }
       }
     ]
+  },
+  entry: {
+    theme: './assets/theme.js'
+  },
+  output: {
+    filename: '[name].min.js',
+    path: path.resolve(__dirname, 'assets')
+  },
+  externals: {
+    jquery: 'jQuery'
   }
 };

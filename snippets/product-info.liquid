@@ -1,15 +1,9 @@
 <div class="margin-bottom--0">
   <div class="text-center large--text-left">
-    <h1 class="font-size--h4 line-height--h4 text-transform--h4 letter-spacing--h4 margin-bottom--0">
+    <h1 class="margin-bottom--0">
       {{ product.title }}
     </h1>
 
-    {% unless request_amp %}
-      {% include 'product-price' %}
-    {% endunless %}
-
-    {% if request_amp %}
-      {% include 'product-price-amp' %}
-    {% endif %}
+    {% include 'product-price' %}
   </div>
 </div>

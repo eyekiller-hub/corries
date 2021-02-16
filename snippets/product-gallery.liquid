@@ -3,7 +3,7 @@
     <div class="swiper-container" data-ref-slider>
       <div class="swiper-wrapper">
         {% for image in product.images %}
-          {% include "attribute-image-box-ratio" %}
+          {% include 'attribute-image-box-ratio' %}
 
           {% assign image_url = image | img_url: '2000x' %}
           {% assign image_url_thumbnail = image | img_url: '1000x' %}
@@ -21,7 +21,7 @@
             "variant_ids": {{ image_variant_ids | json | escape }}
           }'>
             <a href="{{ image_url }}" title="{{ image.alt | escape }}">
-              <div class="image-container box-color-product-image-background box-ratio-inline" style="padding-bottom: {{ image_box_ratio }};">
+              <div class="image-container box-ratio-inline" style="padding-bottom: {{ image_box_ratio }};">
                 <img data-src="{{ image_url_thumbnail }}" alt="{{ image.alt | escape }}" {{ image_lazy_attr }} />
               </div>
             </a>
@@ -33,7 +33,7 @@
     <div class="position-absolute position-center-vertical position-left position-1">
       <button class="slider-button input-reset block" type="button" data-ref-previous>
         <div class="font-size--up-16">
-          {% include "svg-arrow-left" %}
+          {% include 'svg-arrow-left' %}
         </div>
       </button>
     </div>
@@ -41,7 +41,7 @@
     <div class="position-absolute position-center-vertical position-right position-1">
       <button class="slider-button input-reset block" type="button" data-ref-next>
         <div class="font-size--up-16">
-          {% include "svg-arrow-right" %}
+          {% include 'svg-arrow-right' %}
         </div>
       </button>
     </div>

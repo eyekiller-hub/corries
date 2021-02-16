@@ -1,13 +1,13 @@
 var min_breakpoints = {
   'medium': 481,
-  'large': 769,
+  'large': 768,
   'xlarge': 1025
 };
 
 var max_breakpoints = {
   'xsmall': 320,
   'small': 480,
-  'medium-down': 768,
+  'medium-down': 767,
   'large-down': 1024
 };
 

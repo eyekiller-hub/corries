@@ -1,0 +1,290 @@
+{% assign newline = '
+' %}
+
+{% capture colors %}
+  dark
+  light
+  green
+  green-active
+  navy
+  beige
+  red
+  grey-lightest
+  grey-lighter
+  grey-light
+  grey
+  grey-dark
+{% endcapture %}
+
+{% capture icon_snippets %}
+  svg-arrow-bottom
+  svg-arrow-left
+  svg-arrow-right
+  svg-arrow-top
+  svg-cart
+  svg-close
+  svg-delivery
+  svg-menu
+  svg-search
+  svg-social-email
+  svg-social-facebook
+  svg-social-instagram
+  svg-social-linkedin
+  svg-social-pinterest
+  svg-social-tumblr
+  svg-social-twitter
+  svg-social-vimeo
+  svg-social-youtube
+  svg-tick
+  svg-user
+{% endcapture %}
+
+{% assign colors = colors | split: newline %}
+
+{% assign icon_snippets = icon_snippets | split: newline %}
+
+<div class="padding-top-bottom--up-4">
+  <div class="container-default">
+    <div class="last-child-margin--none">
+      <h1>
+        Typography
+      </h1>
+
+      <h1>
+        Heading 1
+      </h1>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+
+      <p>
+        <a href="/">
+          This is a link!
+        </a>
+      </p>
+
+      <h2>
+        Heading 2
+      </h2>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+
+      <h3>
+        Heading 3
+      </h3>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+
+      <h4>
+        Heading 4
+      </h4>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+
+      <h5>
+        Heading 5
+      </h5>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+
+      <h6>
+        Heading 6
+      </h6>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+
+      <h1>
+        Color
+      </h1>
+
+      <div class="margin-bottom--0">
+        <div class="overflow-hidden">
+          <div class="grid--up-1 margin-bottom-negative--up-1">
+            {% for color_ in colors %}
+              {% assign color = color_ %}
+
+              {% assign color = color | strip | default: false %}
+
+              {% unless color %}
+                {% continue %}
+              {% endunless %}
+
+              <div class="grid-item padding-bottom--up-1">
+                <div
+                  class="box-color-{{ color }}"
+                  style="height: 100px; width: 100px;"></div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <h1>
+        Button
+      </h1>
+
+      <div class="margin-bottom--0">
+        <div class="overflow-hidden">
+          <div class="grid--up-1 margin-bottom-negative--up-1">
+            <div class="grid-item padding-bottom--up-1">
+              <button class="button-primary" type="button">
+                Primary
+              </button>
+            </div>
+
+            <div class="grid-item padding-bottom--up-1">
+              <button class="button-primary" type="button" disabled>
+                Primary (disabled)
+              </button>
+            </div>
+
+            <div class="grid-item padding-bottom--up-1">
+              <button class="button-secondary" type="button">
+                Secondary
+              </button>
+            </div>
+
+            <div class="grid-item padding-bottom--up-1">
+              <button class="button-secondary" type="button" disabled>
+                Secondary (disabled)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h1>
+        Text input
+      </h1>
+
+      <div class="margin-bottom--0">
+        <input class="input input-border" type="text" placeholder="This is a text input!" />
+      </div>
+
+      <h1>
+        Checkbox
+      </h1>
+
+      <div class="margin-bottom--0">
+        <div class="checkbox-wrap">
+          <div class="grid-bar--down-1">
+            <div class="grid-item">
+              <input class="checkbox" type="checkbox" />
+              <div class="checkbox-icon"></div>
+            </div>
+
+            <div class="grid-item">
+              This is a checkbox!
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h1>
+        Radio
+      </h1>
+
+      <div class="margin-bottom--0">
+        <div class="overflow-hidden">
+          <div class="grid--up-1 margin-bottom-negative--up-1">
+            <div class="grid-item padding-bottom--up-1">
+              <div class="checkbox-wrap">
+                <div class="grid-bar--down-1">
+                  <div class="grid-item">
+                    <input class="checkbox" type="radio" name="radio" />
+                    <div class="checkbox-icon"></div>
+                  </div>
+
+                  <div class="grid-item">
+                    This is a radio!
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-item padding-bottom--up-1">
+              <div class="checkbox-wrap">
+                <div class="grid-bar--down-1">
+                  <div class="grid-item">
+                    <input class="checkbox" type="radio" name="radio" />
+                    <div class="checkbox-icon"></div>
+                  </div>
+
+                  <div class="grid-item">
+                    This is a radio!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h1>
+        Select
+      </h1>
+
+      <div class="margin-bottom--0">
+        <div class="select-wrap">
+          <select class="select">
+            <option>
+              This is a select!
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <h1>
+        Image
+      </h1>
+
+      <div class="margin-bottom--0">
+        <div class="grid text-center">
+          <div class="grid-item one-two">
+            <div class="image-container box-ratio-inline" style="padding-bottom: 56.25%;">
+              <img data-src="https://picsum.photos/1600/900" alt="This is an image!" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h1>
+        Icon
+      </h1>
+
+      <div class="margin-bottom--0">
+        <div class="overflow-hidden">
+          <div class="grid--up-1 margin-bottom-negative--up-1">
+            {% for icon_snippet_ in icon_snippets %}
+              {% assign icon_snippet = icon_snippet_ %}
+
+              {% assign icon_snippet = icon_snippet | strip | default: false %}
+
+              {% unless icon_snippet %}
+                {% continue %}
+              {% endunless %}
+
+              <div class="grid-item padding-bottom--up-1">
+                <div class="font-size--up-6">
+                  {% assign snippet = icon_snippet %}
+                  {% include snippet %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

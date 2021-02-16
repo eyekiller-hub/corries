@@ -23,19 +23,17 @@
     <div class="position-absolute position-top position-bottom position-right">
       <button class="input-reset height-full padding-left-right--down-3 {{ submit_class }}" type="submit">
         <span class="font-size--up-2 large--font-size--up-6">
-          {% include "svg-search" %}
+          {% include 'svg-search' %}
         </span>
       </button>
     </div>
 
-    {% unless request_amp %}
-      {% if search_form_menu_enable %}
-        {% include 'search-form-menu' %}
-      {% endif %}
+    {% if search_form_menu_enable %}
+      {% include 'search-form-menu' %}
+    {% endif %}
 
-      {% if search_form_predictive_results_enable %}
-        {% include 'search-form-predictive-results' %}
-      {% endif %}
-    {% endunless %}
+    {% if search_form_predictive_results_enable %}
+      {% include 'search-form-predictive-results' %}
+    {% endif %}
   </div>
 </form>

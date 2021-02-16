@@ -1,7 +1,7 @@
-<div class="box-color-filters-background text-color-filters-text" data-module-collection-filters--{{ filters_logic }}>
+<div data-module-collection-filters--{{ filters_logic }}>
   <div style="display: none;" data-ref-active-filters>
     <div class="margin-bottom--up-1">
-      <h2 class="font-size--h6 line-height--h6 text-transform--h6 letter-spacing--h6 font-weight-700 margin-bottom--up-1">
+      <h2 class="font-weight-700 margin-bottom--up-1">
         {{ 'collection.filters.active_filters_title' | t }}
       </h2>
 
@@ -30,7 +30,7 @@
                       </span>
 
                       <span class="flex-item">
-                        <span class="font-size--filters line-height--filters text-transform--filters letter-spacing--filters">
+                        <span>
                           {{ link.title }}
                         </span>
                       </span>
@@ -48,7 +48,7 @@
   <div class="last-child-margin--none">
     {% for link in linklists['tag-filters-products'].links %}
       <div class="margin-bottom--up-1">
-        <h2 class="font-size--h6 line-height--h6 text-transform--h6 letter-spacing--h6 font-weight-700 margin-bottom--up-1">
+        <h2 class="font-weight-700 margin-bottom--up-1">
           {{ link.title }}
         </h2>
 
@@ -61,7 +61,7 @@
               <label class="block cursor-pointer">
                 <span class="flex-bar--up-1">
                   <span class="flex-item-shrink">
-                    <span class="checkbox-wrap checkbox-wrap--filters font-size--up-10">
+                    <span class="checkbox-wrap font-size--up-10">
                       <input class="checkbox" type="checkbox" data-ref-input='{ "filter_id": {{ link.handle | json | escape }} }' />
                       <span class="checkbox-icon">
                         {% include 'svg-tick' %}
@@ -70,7 +70,7 @@
                   </span>
 
                   <span class="flex-item-shrink">
-                    <span class="font-size--filters line-height--filters text-transform--filters letter-spacing--filters">
+                    <span>
                       {{ link.title }}
 
                       <span data-ref-products-count='{
