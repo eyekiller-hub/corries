@@ -5,11 +5,12 @@
     "build": "npm run js:build && npm run sass:build",
     "js:build": "webpack --mode production",
     "js:watch": "webpack --watch --mode development",
-    "sass:build": "gulp sass:build",
+    "sass:build": "gulp sass:build && npm run purgecss",
     "presass:watch": "npm run sass:build",
     "sass:watch": "gulp sass:watch",
     "theme:watch": "theme watch --allow-live --notify theme.update",
-    "server:watch": "node server"
+    "server:watch": "node server",
+    "purgecss": "purgecss --config purgecss.config.js --output ./assets"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

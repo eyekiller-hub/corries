@@ -1,71 +1,11 @@
-{% capture body %}
-  <div class="height-full container-padding padding-top--up-1">
-    <div class="height-full flex-vertical">
-      <div class="flex-item">
-        <div class="margin-bottom--down-2">
-          <div class="flex--up-1">
-            <div class="flex-item">
-              <button class="fade-in-on-active input-reset block" type="button" data-module-slide-panels-back>
-                <div class="font-size--up-6">
-                  {% include 'svg-arrow-left' %}
-                </div>
-              </button>
-            </div>
-
-            <div class="flex-item-shrink">
-              <button
-                class="input-reset block"
-                type="button"
-                data-module-offcanvas-trigger='{
-                  "id": "header-mobile-menu",
-                  "scroll_to": 0
-                }'>
-                <div class="font-size--up-6">
-                  {% include 'svg-close' %}
-                </div>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-center">
-          <div class="margin-bottom--up-3">
-            {% include 'header-logo', _is_mobile: true %}
-          </div>
-
-          {% include 'header-menu', _is_mobile: true %}
-        </div>
-      </div>
-
-      <div class="flex-item-shrink">
-        <div class="padding-top--up-3 padding-bottom--up-1">
-          <div class="text-center">
-            {% if social_links_mobile_enable %}
-              {% include 'mobile-menu-social-links' %}
-            {% endif %}
-
-            {% if menu_secondary_mobile %}
-              {% include 'header-menu-secondary' %}
-            {% endif %}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-{% endcapture %}
-
-<div class="{% unless display_simple %}large--hide{% endunless %}">
+<div class="medium--hide">
   <div
-    class="header-off-canvas-mobile-menu-backdrop position-fixed position-top position-full position-6"
-    style="background: #000;"
-    data-module-offcanvas-trigger='{
-      "id": "header-mobile-menu",
-      "scroll_to": 0
-    }'></div>
-
-  <div class="header-off-canvas-mobile-menu position-fixed position-top position-right position-bottom position-left position-6" style="width: 350px;">
-    <div class="height-full">
-      {{ body }}
+    class="header-off-canvas-mobile-menu position-fixed position-top position-right position-bottom position-left position-6"
+    style="top: calc(var(--utility-bar-height) + var(--header-height));">
+    <div class="height-full box-color-placeholder">
+      <div class="height-full container-padding padding-top--up-1">
+        ...
+      </div>
     </div>
   </div>
 </div>

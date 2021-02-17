@@ -1,13 +1,11 @@
-<div class="padding-top--up-3">
-  <ul class="margin-bottom--none last-child-margin--none">
-    {% for link in menu_secondary_mobile.links %}
-      <li class="margin-bottom--down-3">
-        <a href="{{ link.url }}">
-          <div class="font-size--down-2 line-height--up-4">
-            {{ link.title }}
-          </div>
+<nav>
+  <ul class="grid--0 xlarge--grid--up-4 margin-bottom--none">
+    {% for link in menu_secondary.links %}
+      <li class="grid-item">
+        <a class="font-size--down-4 line-height--0 xlarge--font-size--down-2 xlarge--line-height--up-4 text-caps-letter-spacing text-color-grey-dark" href="{{ link.url }}">
+          {{ link.title }}
         </a>
       </li>
     {% endfor %}
   </ul>
-</div>
+</nav>

@@ -1,0 +1,27 @@
+<div class="position-absolute position-center-vertical position-right">
+  <div class="grid-bar--up-2">
+    <div class="grid-item hide! medium--show-inline-block!">
+      <div style=" --medium--width: 170px; --xlarge--width: 280px;">
+        {% include 'search-form', _id: 'header-search-form' %}
+      </div>
+    </div>
+
+    {% if shop.customer_accounts_enabled %}
+      <div class="grid-item">
+        <a href="{{ routes.account_url }}">
+          <div class="font-size--up-6">
+            {% include 'svg-user' %}
+          </div>
+        </a>
+      </div>
+    {% endif %}
+
+    <div class="grid-item">
+      <a href="{{ routes.cart_url }}">
+        <div class="font-size--up-6">
+          {% include 'svg-cart' %}
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

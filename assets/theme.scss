@@ -1,4 +1,6 @@
+/*! purgecss start ignore */
 @import '../node_modules/swiper/dist/css/swiper';
+/*! purgecss end ignore */
 
 /*============================================================================
   #Functions
@@ -48,6 +50,8 @@ $spacing-ratio: 1.333; // Perfect fourth
   --typography-base-text-transform: none;
   --typography-base-letter-spacing: normal;
 
+  --typography-uppercase-letter-spacing: 1px;
+
   --typography-h-font-family: 'Hoefler Text', serif;
 
   --typography-h1-font-size: var(--font-size--up-12);
@@ -88,7 +92,7 @@ $spacing-ratio: 1.333; // Perfect fourth
   --typography-buttons-font-size: var(--font-size--down-2);
   --typography-buttons-line-height: var(--font-size--up-7);
   --typography-buttons-text-transform: uppercase;
-  --typography-buttons-letter-spacing: 1px;
+  --typography-buttons-letter-spacing: var(--typography-uppercase-letter-spacing);
 
   // Color
 
@@ -168,7 +172,7 @@ $spacing-ratio: 1.333; // Perfect fourth
   --button-padding-x: var(--spacing--up-2);
   --button-font-weight: 700;
   --button-border: 1px solid;
-  --button-border-radius: var(--border-radius-default);
+  --button-border-radius: 0;
 
   // Select
 
@@ -186,6 +190,14 @@ $spacing-ratio: 1.333; // Perfect fourth
 
   --border-radius-default: 4px;
   --border-radius-full: 9999px;
+
+  // Utility bar
+
+  --utility-bar-height: 36.5px;
+
+  // Header
+
+  --header-height: 75px;
 
   // Modular scale
 
@@ -215,10 +227,10 @@ $spacing-ratio: 1.333; // Perfect fourth
 
 // Breakpoint (for loops)
 
-$xsmall: 320px;
-$small: 480px;
-$medium: 767px;
-$large: 1024px;
+$xsmall: 480px;
+$small: 767px;
+$medium: 768px;
+$large: 1160px;
 
 $breakpoints: (
   'xsmall' '(max-width: #{$xsmall})',
@@ -406,6 +418,7 @@ $buttons: (primary, secondary);
 ==============================================================================*/
 
 @mixin reset() {
+  /*! purgecss start ignore */
   //
   // Layout
   //
@@ -534,6 +547,7 @@ $buttons: (primary, secondary);
   input[type="image"] {
     border: none;
   }
+  /*! purgecss end ignore */
 }
 
 @include reset();
@@ -543,6 +557,7 @@ $buttons: (primary, secondary);
 ==============================================================================*/
 
 @mixin base() {
+  /*! purgecss start ignore */
   html, body {
     background-color: var(--colors-base-background);
   }
@@ -553,6 +568,7 @@ $buttons: (primary, secondary);
     height: 1em;
     fill: currentColor;
   }
+  /*! purgecss end ignore */
 }
 
 @include base();
@@ -562,6 +578,7 @@ $buttons: (primary, secondary);
 ==============================================================================*/
 
 @mixin animation() {
+  /*! purgecss start ignore */
   @keyframes fade-in {
     0% {
       opacity: 0;
@@ -596,6 +613,7 @@ $buttons: (primary, secondary);
       pointer-events: auto;
     }
   }
+  /*! purgecss end ignore */
 }
 
 @include animation();
@@ -806,6 +824,7 @@ $buttons: (primary, secondary);
 ==============================================================================*/
 
 @mixin typography() {
+  /*! purgecss start ignore */
   html {
     font-size: var(--typography-base-font-size);
     line-height: var(--typography-base-line-height);
@@ -909,6 +928,10 @@ $buttons: (primary, secondary);
   .text-caps {
     text-transform: uppercase;
   }
+  .text-caps-letter-spacing {
+    text-transform: uppercase;
+    letter-spacing: var(--typography-uppercase-letter-spacing);
+  }
   .text-regular-case {
     text-transform: none;
   }
@@ -923,6 +946,7 @@ $buttons: (primary, secondary);
   .font-italic {
     font-style: italic;
   }
+  /*! purgecss end ignore */
 }
 
 @include typography();
@@ -1045,7 +1069,6 @@ $buttons: (primary, secondary);
       line-height: var(--typography-buttons-line-height);
       text-transform: var(--typography-buttons-text-transform);
       letter-spacing: var(--typography-buttons-letter-spacing);
-      border-radius: 0;
 
       &:hover {
         color: var(--colors-button-#{$button}-text-hover);
@@ -1070,6 +1093,7 @@ $buttons: (primary, secondary);
 ==============================================================================*/
 
 @mixin rte() {
+  /*! purgecss start ignore */
   .rte {
     p:empty,
     ul:empty,
@@ -1145,6 +1169,7 @@ $buttons: (primary, secondary);
       list-style-position: inside;
     }
   }
+  /*! purgecss end ignore */
 }
 
 @include rte();
@@ -1803,8 +1828,10 @@ $buttons: (primary, secondary);
   #Breakpoint inline styles
 ==============================================================================*/
 
+/*! purgecss start ignore */
 @mixin breakpoint-inline-styles($breakpoint: "") {
   $properties: (
+    width,
     max-width
   );
 
@@ -1825,6 +1852,7 @@ $buttons: (primary, secondary);
     @include breakpoint-inline-styles("#{$keyword}--");
   }
 }
+/*! purgecss end ignore */
 
 /*============================================================================
   #Modular scale helpers
@@ -2126,7 +2154,7 @@ $buttons: (primary, secondary);
   .#{$breakpoint}show {
     display: block;
   }
-  .#{$breakpoint}show-inline {
+  .#{$breakpoint}show-inline-block {
     display: inline-block;
   }
   .#{$breakpoint}hide {
@@ -2135,7 +2163,7 @@ $buttons: (primary, secondary);
   .#{$breakpoint}show\! {
     display: block !important;
   }
-  .#{$breakpoint}show-inline\! {
+  .#{$breakpoint}show-inline-block\! {
     display: inline-block !important;
   }
   .#{$breakpoint}hide\! {
@@ -2248,6 +2276,7 @@ $buttons: (primary, secondary);
 }
 
 @mixin responsive-images() {
+  /*! purgecss start ignore */
   $animation: fade-in var(--transition-easing) both;
 
   [data-src]:not(iframe) {
@@ -2263,9 +2292,11 @@ $buttons: (primary, secondary);
     width: 1px;
     opacity: 0;
   }
+  /*! purgecss end ignore */
 }
 
 @mixin shopify-challenge-page() {
+  /*! purgecss start ignore */
   .shopify-challenge__container {
     padding: var(--spacing--up-4) var(--spacing--up-1);
   }
@@ -2278,9 +2309,11 @@ $buttons: (primary, secondary);
     border-radius: var(--button-border-radius);
     width: auto;
   }
+  /*! purgecss end ignore */
 }
 
 @mixin template-password() {
+  /*! purgecss start ignore */
   .template-password,
   .template-page-password {
     &,
@@ -2298,11 +2331,12 @@ $buttons: (primary, secondary);
       clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
     }
   }
+  /*! purgecss end ignore */
 }
 
 @mixin header-logo() {
   .header-logo {
-    max-width: 75px;
+    max-width: 125px;
     margin-left: auto;
     margin-right: auto;
     line-height: 1;
@@ -2311,10 +2345,19 @@ $buttons: (primary, secondary);
       display: block;
       width: 100%;
     }
+
+    @include media-query(medium) {
+      max-width: 145px;
+    }
+
+    @include media-query(large) {
+      max-width: 165px;
+    }
   }
 }
 
 @mixin header-offcanvas-mobile-menu() {
+  /*! purgecss start ignore */
   html.is-active-offcanvas-header-mobile-menu {
     &,
     body {
@@ -2338,17 +2381,7 @@ $buttons: (primary, secondary);
       pointer-events: auto;
     }
   }
-
-  .header-off-canvas-mobile-menu-backdrop {
-    transition: opacity var(--transition-easing);
-    opacity: 0;
-    pointer-events: none;
-
-    html.is-active-offcanvas-header-mobile-menu & {
-      opacity: .5;
-      pointer-events: auto;
-    }
-  }
+  /*! purgecss end ignore */
 }
 
 @mixin footer-logo() {

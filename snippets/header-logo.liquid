@@ -1,27 +1,7 @@
-{% assign is_mobile = _is_mobile %}
-
-{% assign image_url = logo_image_url %}
-
-{% assign image_width = logo_image.width %}
-
-{% assign image_height = logo_image.height %}
-
-{% unless logo_image %}
-  {% assign image_url = 'logo.png' | asset_url %}
-
-  {% assign image_width = 200 %}
-
-  {% assign image_height = 200 %}
-{% endunless %}
-
-<div class="{% unless is_mobile %}flex-bar flex-center height-full{% endunless %}">
-  <div class="{% unless is_mobile %}flex-item{% endunless %}">
-    <div class="{% unless is_mobile %}padding-top-bottom--up-1{% endunless %}">
-      <div class="header-logo">
-        <a href="{{ routes.root_url }}">
-          <img src="{{ image_url }}" alt="{{ shop.name | escape }}" />
-        </a>
-      </div>
+<div class="header-logo">
+  <a href="{{ routes.root_url }}">
+    <div class="box-ratio-inline" style="padding-bottom: {{ logo_image_box_ratio }};">
+      <img src="{{ logo_image_url }}" alt="{{ shop.name | escape }}" />
     </div>
-  </div>
+  </a>
 </div>

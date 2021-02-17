@@ -1,0 +1,33 @@
+<div class="position-absolute position-center-vertical position-left">
+  <div class="hide medium--show">
+    {% if menu_secondary %}
+      {% include 'header-menu-secondary' %}
+    {% endif %}
+  </div>
+
+  <div class="medium--hide">
+    <div class="grid-bar--up-2">
+      <div class="grid-item">
+        <button
+          class="input-reset block"
+          type="button"
+          data-module-offcanvas-trigger='{
+            "id": "header-mobile-menu",
+            "scroll_to": 0
+          }'>
+          <div class="font-size--up-3">
+            {% include 'svg-menu' %}
+          </div>
+        </button>
+      </div>
+
+      <div class="grid-item">
+        <a href="{{ routes.search_url }}">
+          <div class="font-size--up-3">
+            {% include 'svg-search' %}
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
