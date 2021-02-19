@@ -1,0 +1,14 @@
+{% assign object = _object %}
+{% assign size = _size %}
+
+{% include 'attribute-image-box-ratio', image: object %}
+
+{% assign image_url = object | img_url: size %}
+
+{% assign image_alt = object.alt | escape %}
+
+<div>
+  <div class="image-container box-ratio-inline" style="padding-bottom: {{ image_box_ratio }};">
+    <img src="{{ image_url }}" alt="{{ image_alt }}" />
+  </div>
+</div>

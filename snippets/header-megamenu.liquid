@@ -1,0 +1,129 @@
+{% assign block_megamenu = false %}
+
+{% for block in blocks_megamenu %}
+  {% assign block_title = block.settings.title | default: false %}
+
+  {% assign block_handle = block_title | handle %}
+
+  {% if block_handle == link.handle %}
+    {% assign block_megamenu = block %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% assign block_megamenu_links_columns = block_megamenu.settings.links_columns | times: 1 | default: false %}
+
+<div class="position-absolute position-top--full position-left position-right" style="margin-top: -1px;">
+  <div class="container-default">
+    <div class="box-color-beige">
+      <div class="padding-top-bottom--up-4 padding-left-right--up-5">
+        <div class="text-left">
+          <div class="flex--up-3">
+            <div class="flex-item">
+              <div class="position-relative">
+                <ul
+                  class="margin-bottom--none last-child-margin--none"
+                  style="
+                    {% if block_megamenu_links_columns and block_megamenu_links_columns > 1 %}
+                      column-count: {{ block_megamenu_links_columns }};
+                      column-gap: var(--spacing--up-5);
+                    {% endif %}
+                  ">
+                  {% for link_link in link.links %}
+                    <li class="inline-block align-top one margin-bottom--up-2">
+                      <a
+                        class="
+                          font-size--down-1 line-height--up-5
+                          font-weight-500
+                          text-caps-letter-spacing
+                          text-color-grey-dark
+                        "
+                        href="{{ link_link.url }}">
+                        {{ link_link.title }}
+                      </a>
+
+                      {% if link_link.links != empty %}
+                        <ul class="margin-top--down-1 margin-bottom--none last-child-margin--none">
+                          {% for link_link_link in link_link.links %}
+                            <li class="margin-bottom--down-3">
+                              <a class="font-size--down-1 line-height--up-5" href="{{ link_link_link.url }}">
+                                {{ link_link_link.title }}
+                              </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+
+                {% if block_megamenu_links_columns and block_megamenu_links_columns > 1 %}
+                  <div
+                    class="
+                      border-left-beige-active
+                      position-absolute position-top position-bottom position-center-horizontal
+                    "></div>
+                {% endif %}
+              </div>
+            </div>
+
+            {% if block_megamenu %}
+              <div class="flex-item-auto margin-left--up-3 border-left-beige-active">
+                <div class="flex--up-5 height-full">
+                  {% for i in (1..3) %}
+                    {% assign block_megamenu_enable = 'enable_' | append: i %}
+                    {% assign block_megamenu_enable = block_megamenu.settings[block_megamenu_enable] | default: false %}
+
+                    {% assign block_megamenu_image = 'image_' | append: i %}
+                    {% assign block_megamenu_image = block_megamenu.settings[block_megamenu_image] | default: false %}
+
+                    {% assign block_megamenu_title = 'title_' | append: i %}
+                    {% assign block_megamenu_title = block_megamenu.settings[block_megamenu_title] | default: false %}
+
+                    {% assign block_megamenu_title = 'title_' | append: i %}
+                    {% assign block_megamenu_title = block_megamenu.settings[block_megamenu_title] | default: false %}
+
+                    {% assign block_megamenu_copy = 'copy_' | append: i %}
+                    {% assign block_megamenu_copy = block_megamenu.settings[block_megamenu_copy] | default: false %}
+
+                    {% assign block_megamenu_url = 'url_' | append: i %}
+                    {% assign block_megamenu_url = block_megamenu.settings[block_megamenu_url] | default: false %}
+
+                    {% assign block_megamenu_call_to_action = 'call_to_action_' | append: i %}
+                    {% assign block_megamenu_call_to_action = block_megamenu.settings[block_megamenu_call_to_action] | default: false %}
+
+                    {% unless block_megamenu_enable %}
+                      {% continue %}
+                    {% endunless %}
+
+                    <div class="flex-item-auto">
+                      <div class="position-relative height-full" style="max-width: 265px;">
+                        {% if block_megamenu_image %}
+                          <div>
+                            {% include 'image', _object: block_megamenu_image, _size: '600x' %}
+                          </div>
+                        {% endif %}
+
+                        {% unless forloop.last %}
+                          <div
+                            class="
+                              position-absolute
+                              position-top
+                              position-bottom
+                              position-left--full
+                              border-left-beige-active
+                            "
+                            style="margin-left: calc(var(--spacing--up-5) / 2);"></div>
+                        {% endunless %}
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

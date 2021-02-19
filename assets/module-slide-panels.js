@@ -20,6 +20,10 @@ function Container(element, events, options, module) {
     Events.trigger('slide-panels:change:active');
   });
 
+  Events.on('accordion:button:click', () => {
+    swiper.updateAutoHeight();
+  });
+
   Events.on('slide-panels-link:click', (html) => {
     var slide_html = `<div class="swiper-slide">${html}</div>`;
 

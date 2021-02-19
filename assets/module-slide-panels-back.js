@@ -42,10 +42,16 @@ function SlidePanelsBack(element, options) {
   });
 };
 
-var elements = document.querySelectorAll('[data-module-slide-panels-back]');
+init();
 
-elements.forEach((element) => {
-  var options = get_element_options(element, 'data-module-slide-panels-back');
+Events.on('slide-panels:change:active', init);
 
-  SlidePanelsBack(element, options);
-});
+function init() {
+  var elements = document.querySelectorAll('[data-module-slide-panels-back]');
+
+  elements.forEach((element) => {
+    var options = get_element_options(element, 'data-module-slide-panels-back');
+
+    SlidePanelsBack(element, options);
+  });
+};

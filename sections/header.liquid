@@ -4,12 +4,19 @@
 {% assign menu_secondary = section.settings.menu_secondary %}
 {% assign menu_secondary = menus[menu_secondary] | default: false %}
 
+{% assign menu_tertiary = section.settings.menu_tertiary %}
+{% assign menu_tertiary = menus[menu_tertiary] | default: false %}
+
 {% assign logo_image = section.settings.logo_image | default: false %}
 {% assign logo_image_url = logo_image | img_url: '600x' %}
 
 {% include 'attribute-image-box-ratio', image: logo_image %}
 
 {% assign logo_image_box_ratio = image_box_ratio %}
+
+{% assign blocks = section.blocks | default: false %}
+
+{% assign blocks_megamenu = blocks | where: 'type', 'megamenu' | default: false %}
 
 <header class="header" role="banner">
   <div class="container-default">
@@ -59,6 +66,143 @@
         "type": "link_list",
         "id": "menu_secondary",
         "label": "Menu"
+      },
+      {
+        "type": "header",
+        "content": "Menu (tertiary)"
+      },
+      {
+        "type": "link_list",
+        "id": "menu_tertiary",
+        "label": "Menu (tertiary)"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "megamenu",
+        "name": "Megamenu",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "info": "Set this value is the name of a menu link and this megamenu will be applied to it."
+          },
+          {
+            "type": "select",
+            "id": "links_columns",
+            "label": "Links columns",
+            "options": [
+              { "value": "1" },
+              { "value": "2" }
+            ]
+          },
+          {
+            "type": "header",
+            "content": "Item #1"
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_1",
+            "label": "Enable?"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_1",
+            "label": "Image",
+            "info": "Suggested size: 1000x680px."
+          },
+          {
+            "type": "text",
+            "id": "title_1",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "copy_1",
+            "label": "Copy"
+          },
+          {
+            "type": "url",
+            "id": "url_1",
+            "label": "URL"
+          },
+          {
+            "type": "text",
+            "id": "call_to_action_1",
+            "label": "Call to action"
+          },
+          {
+            "type": "header",
+            "content": "Item #2"
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_2",
+            "label": "Enable?"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_2",
+            "label": "Image",
+            "info": "Suggested size: 1000x680px."
+          },
+          {
+            "type": "text",
+            "id": "title_2",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "copy_2",
+            "label": "Copy"
+          },
+          {
+            "type": "url",
+            "id": "url_2",
+            "label": "URL"
+          },
+          {
+            "type": "text",
+            "id": "call_to_action_2",
+            "label": "Call to action"
+          },
+          {
+            "type": "header",
+            "content": "Item #3"
+          },
+          {
+            "type": "checkbox",
+            "id": "enable_3",
+            "label": "Enable?"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_3",
+            "label": "Image",
+            "info": "Suggested size: 1000x680px."
+          },
+          {
+            "type": "text",
+            "id": "title_3",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "copy_3",
+            "label": "Copy"
+          },
+          {
+            "type": "url",
+            "id": "url_3",
+            "label": "URL"
+          },
+          {
+            "type": "text",
+            "id": "call_to_action_3",
+            "label": "Call to action"
+          }
+        ]
       }
     ]
   }

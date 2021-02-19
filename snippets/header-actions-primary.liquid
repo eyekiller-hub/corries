@@ -15,8 +15,16 @@
             "id": "header-mobile-menu",
             "scroll_to": 0
           }'>
-          <div class="font-size--up-3">
-            {% include 'svg-menu' %}
+          <div data-ref-icon='{ "type": "show" }'>
+            <div class="font-size--up-3">
+              {% include 'svg-menu' %}
+            </div>
+          </div>
+
+          <div style="display: none;" data-ref-icon='{ "type": "hide" }'>
+            <div class="font-size--down-1">
+              {% include 'svg-close' %}
+            </div>
           </div>
         </button>
       </div>

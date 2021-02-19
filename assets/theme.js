@@ -1,3 +1,4 @@
+import './module-accordion';
 import './module-breakpoint';
 import './module-cart-count';
 import './module-cart-change';

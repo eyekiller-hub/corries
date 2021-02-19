@@ -1,15 +1,41 @@
 <nav class="hide medium--show">
-  <div class="border-top-bottom-grey-lightest">
-    <div style="margin-top: -1px; margin-bottom: -1px;">
-      <ul class="grid text-center margin-bottom--none">
-        {% for link in menu.links %}
-          <li class="grid-item">
-            <a class="block font-size--down-5 line-height--up-5 xlarge--font-size--down-1 xlarge--line-height--up-8 font-weight-500 text-caps-letter-spacing text-color-grey-dark hover-box-color-green hover-text-color-light padding-top-bottom--down-1 padding-left-right--down-1 xlarge--padding-top-bottom--down-1 xlarge--padding-left-right--up-2" href="{{ link.url }}">
-              {{ link.title }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
+  <div class="position-relative">
+    <div class="border-top-bottom-grey-lightest">
+      <div style="margin-top: -1px; margin-bottom: -1px;">
+        <ul class="grid text-center margin-bottom--none">
+          {% for link in menu.links %}
+            <li class="grid-item">
+              <a
+                class="
+                  block
+                  font-size--down-5 line-height--up-5
+                  xlarge--font-size--down-1 xlarge--line-height--up-8
+                  font-weight-500
+                  text-caps-letter-spacing
+                  text-color-grey-dark
+                  {% if link.links != empty %}
+                    hover-box-color-beige
+                    hover-text-color-dark
+                  {% else %}
+                    hover-box-color-green
+                    hover-text-color-light
+                  {% endif %}
+                  padding-top-bottom--down-1 padding-left-right--down-1
+                  xlarge--padding-top-bottom--down-1 xlarge--padding-left-right--up-2
+                "
+                href="{{ link.url }}">
+                {{ link.title }}
+              </a>
+
+              {% if forloop.index == 2 %}
+                {% if link.links != empty %}
+                  {% include 'header-megamenu' %}
+                {% endif %}
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
   </div>
 </nav>

@@ -102,6 +102,8 @@ $spacing-ratio: 1.333; // Perfect fourth
   --colors-green-active: #63745D;
   --colors-navy: #21343B;
   --colors-beige: #ECE7E4;
+  --colors-beige-active: #D8D1CC;
+  --colors-slate: #758080;
   --colors-red: #C60012;
   --colors-grey-lightest: #E5E5E5;
   --colors-grey-lighter: #D6D6D6;
@@ -112,8 +114,8 @@ $spacing-ratio: 1.333; // Perfect fourth
   --colors-base-text: var(--colors-grey);
   --colors-base-background: var(--colors-light);
   --colors-base-headings: var(--colors-base-text);
-  --colors-base-links: var(--colors-base-text);
-  --colors-base-links-hover: var(--colors-base-text);
+  --colors-base-links: inherit;
+  --colors-base-links-hover: inherit;
 
   --colors-placeholder: var(--colors-grey-lightest);
 
@@ -251,6 +253,8 @@ $colors: (
   green-active,
   navy,
   beige,
+  beige-active,
+  slate,
   red,
   grey-lightest,
   grey-lighter,
@@ -2312,28 +2316,6 @@ $buttons: (primary, secondary);
   /*! purgecss end ignore */
 }
 
-@mixin template-password() {
-  /*! purgecss start ignore */
-  .template-password,
-  .template-page-password {
-    &,
-    body,
-    main,
-    main > * {
-      @include media-query(large) {
-        height: 100%;
-      }
-    }
-  }
-
-  .password-angle {
-    @include media-query(large) {
-      clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
-    }
-  }
-  /*! purgecss end ignore */
-}
-
 @mixin header-logo() {
   .header-logo {
     max-width: 125px;
@@ -2374,6 +2356,7 @@ $buttons: (primary, secondary);
     transition: var(--transition-easing);
     opacity: 0;
     pointer-events: none;
+    top: calc(var(--utility-bar-height) + var(--header-height));
 
     html.is-active-offcanvas-header-mobile-menu & {
       transform: none;
@@ -2458,7 +2441,6 @@ $buttons: (primary, secondary);
 
 @include responsive-images();
 @include shopify-challenge-page();
-@include template-password();
 @include header-logo();
 @include header-offcanvas-mobile-menu();
 @include footer-logo();
