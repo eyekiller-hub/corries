@@ -1,17 +1,52 @@
 {% assign empty_body = mini_cart_empty_body %}
 
-<div class="mini-cart" data-module-mini-cart='{ "reveal_timeout": 5000 }'>
-  <div>
-    <div class="padding--down-1">
-      <h1 class="text-center margin-bottom--0">
-        {{ 'cart.title' | t }}
-      </h1>
+<button
+  class="input-reset block one header-off-canvas-mini-cart-overlay position-fixed position-full position-6 box-color-dark"
+  type="button"
+  data-module-offcanvas-trigger='{
+    "id": "header-mini-cart"
+  }'></button>
 
-      {% if cart.items != empty %}
-        {% include 'cart-form', _mini_cart: true %}
-      {% else %}
-        {% include 'cart-empty' %}
-      {% endif %}
+<div class="header-off-canvas-mini-cart position-fixed position-right position-bottom position-6 one" style=" --medium--max-width: 420px;">
+  <div class="height-full box-color-light scroll-vertical">
+    <div class="height-full flex-vertical">
+      <div class="flex-item-auto">
+        <div class="padding-top--up-2 container-padding medium--padding-left-right--up-2">
+          <div class="border-bottom-grey-lightest">
+            <div class="padding-bottom--0">
+              <div class="flex-bar--up-1">
+                <div class="flex-item">
+                  <h1 class="font-size--up-6 line-height--up-12 font-weight-700 text-caps text-caps-letter-spacing text-color-grey-dark margin-bottom--none">
+                    {{ 'cart.title' | t }}
+                  </h1>
+                </div>
+
+                <div class="flex-item-auto">
+                  <button
+                    class="input-reset block text-color-slate"
+                    type="button"
+                    data-module-offcanvas-trigger='{
+                      "id": "header-mini-cart",
+                      "active_event": "productform:success"
+                    }'>
+                    <div class="font-size--down-1">
+                      {% include 'svg-close' %}
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-item" data-module-mini-cart>
+        {% if cart.items != empty %}
+          {% include 'cart-form', _mini_cart: true %}
+        {% else %}
+          {% include 'cart-empty' %}
+        {% endif %}
+      </div>
     </div>
   </div>
 </div>

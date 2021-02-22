@@ -1,10 +1,22 @@
-<nav class="hide medium--show">
+<nav class="header-menu hide medium--show">
   <div class="position-relative">
     <div class="border-top-bottom-grey-lightest">
       <div style="margin-top: -1px; margin-bottom: -1px;">
         <ul class="grid text-center margin-bottom--none">
           {% for link in menu.links %}
-            <li class="grid-item">
+            <li
+              class="
+                grid-item
+                header-menu__item
+                transition
+                {% if link.links != empty %}
+                  hover-box-color-beige
+                  hover-text-color-dark
+                {% else %}
+                  hover-box-color-green
+                  hover-text-color-light
+                {% endif %}
+              ">
               <a
                 class="
                   block
@@ -13,13 +25,6 @@
                   font-weight-500
                   text-caps-letter-spacing
                   text-color-grey-dark
-                  {% if link.links != empty %}
-                    hover-box-color-beige
-                    hover-text-color-dark
-                  {% else %}
-                    hover-box-color-green
-                    hover-text-color-light
-                  {% endif %}
                   padding-top-bottom--down-1 padding-left-right--down-1
                   xlarge--padding-top-bottom--down-1 xlarge--padding-left-right--up-2
                 "
@@ -27,10 +32,8 @@
                 {{ link.title }}
               </a>
 
-              {% if forloop.index == 2 %}
-                {% if link.links != empty %}
-                  {% include 'header-megamenu' %}
-                {% endif %}
+              {% if link.links != empty %}
+                {% include 'header-megamenu' %}
               {% endif %}
             </li>
           {% endfor %}

@@ -2,7 +2,7 @@ function money(cents, format) {
   if (typeof cents == 'string') cents = cents.replace('.','');
   var value = '';
   var patt = /\{\{\s*(\w+)\s*\}\}/;
-  var formatString = (format || '${{amount}}');
+  var formatString = (format || '£{{amount}}');
 
   function addCommas(moneyString) {
     return moneyString.replace(/(\d+)(\d{3}[\.,]?)/,'$1,$2');

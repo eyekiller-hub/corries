@@ -17,6 +17,10 @@ function Self(element, events, options, module) {
     events.trigger(event_key, [options.id]);
   });
 
+  if (options.active_event) {
+    Events.on(options.active_event, () => events.trigger('self:active'));
+  }
+
   Events.on('offcanvastrigger:active', () => events.trigger('self:inactive'));
 
   events

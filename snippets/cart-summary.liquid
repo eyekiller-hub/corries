@@ -1,27 +1,25 @@
-<div class="margin-bottom--up-2">
-  <div class="font-size--up-2 line-height--up-8 font-weight-600">
-    <div class="flex--up-1">
-      <div class="flex-item">
-        <h2 class="margin--none">
-          {{ 'cart.total' | t }}
-        </h2>
+<div class="{% if mini_cart %}margin-top--auto{% endif %}">
+  <div class="{% if mini_cart %}box-color-beige{% endif %}">
+    <div class="padding-top-bottom--up-2 container-padding medium--padding-left-right--up-2">
+      <div class="margin-bottom--up-1">
+        <div class="flex-bar--up-1">
+          <div class="flex-item">
+            <h2 class="font-size--up-2 line-height--up-8 font-stack-inherit margin--none margin--none">
+              {{ 'cart.total' | t }}
+            </h2>
+          </div>
+
+          <div class="flex-item-shrink">
+            <div class="font-size--up-4 line-height--up-10 font-weight-500 text-color-grey-dark">
+              {{ cart.total_price | money }}
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="flex-item-shrink">
-        {{ cart.total_price | money }}
-      </div>
+      <button class="button-primary block one" type="submit" name="checkout">
+        {{ 'cart.checkout' | t }}
+      </button>
     </div>
-  </div>
-</div>
-
-<button class="button-primary block one" type="submit" name="checkout">
-  {{ 'cart.checkout' | t }}
-</button>
-
-<div class="margin-top--up-2">
-  <div class="text-center">
-    <a href="{{ routes.root_url }}">
-      {{ 'cart.continue' | t }}
-    </a>
   </div>
 </div>

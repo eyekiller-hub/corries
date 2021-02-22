@@ -1,5 +1,5 @@
 <a href="{{ routes.cart_change_url }}?line={{ line }}&amp;quantity=0" {% if mini_cart %}data-module-cart-change='{ "key": {{ line_item.key | json }}, "quantity": 0 }'{% endif %}>
-  <div class="font-size--up-2">
-    {% include 'svg-close' %}
+  <div class="font-size--up-5 text-color-grey-light">
+    {% include 'svg-bin' %}
   </div>
 </a>

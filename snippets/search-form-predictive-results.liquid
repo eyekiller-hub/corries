@@ -1,61 +1,69 @@
 {% capture empty_template %}
-  <div>
-    <div class="margin-bottom--0">
-      <div class="font-size--down-2 line-height--up-4 font-weight-700">
-        No products for “{% raw %}{{ query }}{% endraw %}”.
-      </div>
-    </div>
+  <div class="border-bottom-grey-lighter">
+    <div class="padding-top-bottom--0 large--padding--0">
+      <h3 class="font-size--down-2 line-height--up-4 font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark margin-bottom--none">
+        No products found for “{% raw %}{{ query }}{% endraw %}”.
+      </h3>
 
-    <div class="font-size--down-2 line-height--up-4">
-      Sorry, we couldn’t find any matches.
-    </div>
-
-    <div class="padding-top--0">
       <div class="font-size--down-2 line-height--up-4">
-        <a href="{{ routes.all_products_collection_url }}">
-          View all products
-        </a>
+        Sorry, we couldn’t find any matches.
       </div>
     </div>
+  </div>
+
+  <div class="padding-top-bottom--0 large--padding--0">
+    <a class="button-primary one" href="{{ routes.all_products_collection_url }}">
+      View all products
+    </a>
   </div>
 {% endcapture %}
 
 {% capture results_template %}
   <ul class="margin--none last-child-margin--none">
     {% raw %}{{ results }}{% endraw %}
+    {% raw %}{{ results }}{% endraw %}
+    {% raw %}{{ results }}{% endraw %}
   </ul>
 
-  <div class="padding-top--0">
-    <div class="font-size--down-2 line-height--up-4 text-center">
-      <a href="{{ routes.search_url }}?q={% raw %}{{ query }}{% endraw %}&type=product">
-        View all results
-      </a>
-    </div>
+  <div class="padding-top-bottom--0 large--padding--0">
+    <a
+      class="button-primary one"
+      href="{{ routes.search_url }}?q={% raw %}{{ query }}{% endraw %}&type=product">
+      View all {% raw %}{{ result_count }}{% endraw %} results
+    </a>
   </div>
 {% endcapture %}
 
 {% capture result_template %}
-  <li class="margin-bottom--0">
+  <li>
     <a href="{% raw %}{{ url }}{% endraw %}">
-      <div class="flex-bar--up-1">
-        <div class="flex-item-shrink">
-          <div style="width: 48px;">
-            <div class="image-container box-ratio--1-1 position-relative">
-              <img class="position-absolute position-top position-left one height-full object-full" data-src="{% raw %}{{ image_url }}{% endraw %}" alt="{% raw %}{{ image_alt }}{% endraw %}" />
+      <div class="border-bottom-grey-lighter">
+        <div class="padding-top-bottom--0 large--padding--0">
+          <div class="flex-bar--0">
+            <div class="flex-item-shrink">
+              <div style="width: 55px;">
+                <div class="image-container box-ratio--1-1 position-relative">
+                  <img
+                    class="position-absolute position-top position-left one height-full object-full"
+                    data-src="{% raw %}{{ image_url }}{% endraw %}"
+                    alt="{% raw %}{{ image_alt }}{% endraw %}" />
+                </div>
+              </div>
+            </div>
+
+            <div class="flex-item">
+              <h3 class="font-size--down-2 line-height--up-4 font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark margin-bottom--none">
+                {% raw %}{{ title }}{% endraw %}
+              </h3>
+
+              <span class="font-size--down-2 line-height--up-4 text-color-red">
+                {% raw %}{{ from }}{% endraw %}
+                {% raw %}{{ price }}{% endraw %}
+              </span>
+
+              {% raw %}{{ compare_at_price }}{% endraw %}
             </div>
           </div>
-        </div>
-
-        <div class="flex-item">
-          <div class="font-size--down-2 line-height--up-4">
-            {% raw %}{{ title }}{% endraw %}
-          </div>
-
-          <div class="font-size--down-2 line-height--up-4">
-            {% raw %}{{ price }}{% endraw %}
-          </div>
-
-          {% raw %}{{ compare_at_price }}{% endraw %}
         </div>
       </div>
     </a>
@@ -63,11 +71,11 @@
 {% endcapture %}
 
 {% capture result_compare_at_price_template %}
-  <div class="font-size--down-2 line-height--up-4">
+  <span class="font-size--down-2 line-height--up-4 text-color-grey-light">
     <s>
       {% raw %}{{ compare_at_price }}{% endraw %}
     </s>
-  </div>
+  </span>
 {% endcapture %}
 
 <div class="search-form-element" data-module-search-form-predictive-results='{
@@ -77,11 +85,14 @@
   "result_template": {{ result_template | json | escape }},
   "result_compare_at_price_template": {{ result_compare_at_price_template | json | escape }}
 }'>
-  <div class="position-absolute position-left position-top--full">
+  <div
+    class="large--position-absolute large--position-left large--position-top--full large--position-1 large--margin-top-negative--down-3"">
     <div class="search-form-element-width">
-      <div class="box-shadow">
-        <div class="padding--0">
-          <div data-ref-body></div>
+      <div class="large--box-color-light large--border-grey-lighter large--border-radius-default">
+        <div class="large--padding-top--down-3">
+          <div>
+            <div data-ref-body></div>
+          </div>
         </div>
       </div>
     </div>

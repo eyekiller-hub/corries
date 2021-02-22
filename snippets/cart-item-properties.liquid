@@ -1,22 +1,24 @@
 {% for property_name in line_item_properties_names %}
   {% assign property_value = line_item_properties_values[forloop.index0] %}
 
-  <div class="grid--down-3">
-    <div class="grid-item">
-      <div class="font-size--down-4 line-height--up-2">
-        {{ property_name }}:
+  <div class="font-size--none">
+    <div class="grid--down-3">
+      <div class="grid-item">
+        <div class="font-size--down-2 line-height--up-4">
+          {{ property_name }}:
+        </div>
       </div>
-    </div>
 
-    <div class="grid-item">
-      <div class="font-size--down-6 line-height--0{% else %}font-size--down-4 line-height--up-2 font-weight-300">
-        {% if property_value contains '/uploads/' %}
-          <a href="{{ property_value }}">
-            {{ property_value | split: '/' | last }}
-          </a>
-        {% else %}
-          {{ property_value }}
-        {% endif %}
+      <div class="grid-item">
+        <div class="font-size--down-2 line-height--up-4">
+          {% if property_value contains '/uploads/' %}
+            <a href="{{ property_value }}">
+              {{ property_value | split: '/' | last }}
+            </a>
+          {% else %}
+            {{ property_value }}
+          {% endif %}
+        </div>
       </div>
     </div>
   </div>

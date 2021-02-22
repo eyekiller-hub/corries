@@ -5,12 +5,13 @@
   "products": {
     "product": {
       "quantity": "Quantity",
-      "add_to_cart": "ADD TO CART",
-      "sold_out": "SOLD OUT",
-      "unavailable": "UNAVAILABLE",
-      "added": "ADDED!",
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "added": "Added!",
       "upsells_title": "Products related to: {{ product_title }}",
-      "recently_viewed_products_title": "Recently viewed products"
+      "recently_viewed_products_title": "Recently viewed products",
+      "from": "From"
     }
   },
   "collection": {
@@ -25,11 +26,11 @@
     }
   },
   "cart": {
-    "title": "Cart",
-    "total": "Total",
-    "checkout": "CHECKOUT",
-    "continue": "Continue shopping",
-    "upsells_title": "You may also like"
+    "title": "Shopping cart",
+    "total": "Subtotal",
+    "checkout": "Review & checkout",
+    "upsells_title": "You may also like",
+    "empty": "Your shopping cart is currently empty."
   },
   "search": {
     "title": "Search",
@@ -44,6 +45,6 @@
     }
   },
   "social": {
-    "title": "FOLLOW US"
+    "title": "Follow us"
   }
 }

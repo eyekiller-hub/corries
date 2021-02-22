@@ -142,6 +142,7 @@ $spacing-ratio: 1.333; // Perfect fourth
   --colors-text-input-text: var(--colors-base-text);
   --colors-text-input-background: var(--colors-base-background);
   --colors-text-input-border: var(--colors-grey-lighter);
+  --colors-text-input-border-active: var(--colors-green);
   --colors-text-input-placeholder: var(--colors-text-input-text);
 
   --colors-checkbox-input-text: var(--colors-dark);
@@ -407,6 +408,10 @@ $buttons: (primary, secondary);
   text-transform: var(--typography-base-text-transform);
   letter-spacing: var(--typography-base-letter-spacing);
 
+  &:focus {
+    border-color: var(--colors-text-input-border-active);
+  }
+
   @include placeholder {
     color: var(--colors-text-input-placeholder);
   }
@@ -415,6 +420,10 @@ $buttons: (primary, secondary);
 @mixin input-border() {
   border: var(--input-border);
   border-color: var(--colors-text-input-border);
+
+  &:focus {
+    border-color: var(--colors-text-input-border-active);
+  }
 }
 
 /*============================================================================
@@ -617,6 +626,10 @@ $buttons: (primary, secondary);
       pointer-events: auto;
     }
   }
+
+  .transition {
+    transition: var(--transition-easing);
+  }
   /*! purgecss end ignore */
 }
 
@@ -814,10 +827,6 @@ $buttons: (primary, secondary);
     position: absolute;
     width: 1px;
     white-space: nowrap;
-  }
-
-  .box-shadow {
-    box-shadow: 0 3px 7px rgba(127, 127, 127, 0.25);
   }
 }
 
@@ -1746,6 +1755,10 @@ $buttons: (primary, secondary);
 ==============================================================================*/
 
 @mixin font-stacks($breakpoint: "") {
+    .#{$breakpoint}font-stack-inherit {
+      font-family: inherit;
+    }
+
   @each $font-stack in $font-stacks {
     .#{$breakpoint}font-stack-#{$font-stack} {
       font-family: var(--typography-#{$font-stack}-font-family);
@@ -2058,6 +2071,9 @@ $buttons: (primary, secondary);
     font-size: 0;
     line-height: 1;
   }
+  .#{$breakpoint}font-size--inherit {
+    font-size: inherit;
+  }
   .#{$breakpoint}font-size--0 {
     font-size: var(--font-size--0);
   }
@@ -2280,7 +2296,6 @@ $buttons: (primary, secondary);
 }
 
 @mixin responsive-images() {
-  /*! purgecss start ignore */
   $animation: fade-in var(--transition-easing) both;
 
   [data-src]:not(iframe) {
@@ -2296,11 +2311,9 @@ $buttons: (primary, secondary);
     width: 1px;
     opacity: 0;
   }
-  /*! purgecss end ignore */
 }
 
 @mixin shopify-challenge-page() {
-  /*! purgecss start ignore */
   .shopify-challenge__container {
     padding: var(--spacing--up-4) var(--spacing--up-1);
   }
@@ -2313,7 +2326,6 @@ $buttons: (primary, secondary);
     border-radius: var(--button-border-radius);
     width: auto;
   }
-  /*! purgecss end ignore */
 }
 
 @mixin header-logo() {
@@ -2338,8 +2350,22 @@ $buttons: (primary, secondary);
   }
 }
 
+@mixin header-menu() {
+  .header-menu {}
+
+  .header-menu__item {}
+
+  .header-menu__megamenu {
+    transition: opacity var(--transition-easing);
+
+    .header-menu__item:not(:hover) & {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}
+
 @mixin header-offcanvas-mobile-menu() {
-  /*! purgecss start ignore */
   html.is-active-offcanvas-header-mobile-menu {
     &,
     body {
@@ -2364,7 +2390,33 @@ $buttons: (primary, secondary);
       pointer-events: auto;
     }
   }
-  /*! purgecss end ignore */
+}
+
+@mixin header-offcanvas-mobile-search() {
+  html.is-active-offcanvas-header-mobile-search {
+    &,
+    body {
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  .header-off-canvas-mobile-search {
+    transform: translateX(-100%);
+    transition: var(--transition-easing);
+    opacity: 0;
+    pointer-events: none;
+    top: calc(var(--utility-bar-height) + var(--header-height));
+
+    html.is-active-offcanvas-header-mobile-search & {
+      transform: none;
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
 }
 
 @mixin footer-logo() {
@@ -2391,18 +2443,39 @@ $buttons: (primary, secondary);
 }
 
 @mixin mini-cart() {
-  .mini-cart {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 365px;
-    transition: opacity var(--transition-easing);
+  html.is-active-offcanvas-header-mini-cart {
+    &,
+    body {
+      overflow: hidden;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  .header-off-canvas-mini-cart {
+    transform: translateX(100%);
+    transition: var(--transition-easing);
     opacity: 0;
     pointer-events: none;
+    top: 0;
+    bottom: 0;
 
-    .mini-cart-hover-trigger:hover &,
-    html.is-active-mini-cart & {
+    html.is-active-offcanvas-header-mini-cart & {
+      transform: none;
       opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  .header-off-canvas-mini-cart-overlay {
+    opacity: 0;
+    pointer-events: none;
+    cursor: default;
+
+    html.is-active-offcanvas-header-mini-cart & {
+      opacity: .25;
       pointer-events: auto;
     }
   }
@@ -2418,33 +2491,25 @@ $buttons: (primary, secondary);
   }
 
   .search-form-element-width {
-    width: 550px;
+    @include media-query(medium) {
+      width: 170px;
+    }
+
+    @include media-query(xlarge) {
+      width: 280px;
+    }
   }
 }
 
-@mixin cookies-modal() {
-  .cookies-modal {
-    display: none;
-  }
-
-  html.is-active-cookies-modal .cookies-modal {
-    display: block;
-  }
-
-  html.is-active-cookies-modal #preview-bar-iframe,
-  html.is-active-cookies-modal .pushowl-widget-node,
-  html.is-active-cookies-modal #smile-ui-container,
-  html.is-active-cookies-modal #admin-bar-iframe {
-    display: none;
-  }
-}
-
+/*! purgecss start ignore */
 @include responsive-images();
 @include shopify-challenge-page();
 @include header-logo();
+@include header-menu();
 @include header-offcanvas-mobile-menu();
+@include header-offcanvas-mobile-search();
 @include footer-logo();
 @include slider-button();
 @include mini-cart();
 @include search-form-element();
-@include cookies-modal();
+/*! purgecss end ignore */

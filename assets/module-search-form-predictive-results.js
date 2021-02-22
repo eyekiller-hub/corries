@@ -74,7 +74,7 @@ function Self(element, events, options, module) {
   };
 
   function get_results(query) {
-    var url = `/search/suggest.json?q=${query}&resources[type]=product`;
+    var url = `/search/suggest.json?q=${query}&resources[type]=product&limit=4`;
 
     return fetch(url, {
       credentials: 'same-origin',
@@ -112,6 +112,12 @@ function Body(element, events, options, module) {
 
         var image_alt = product.featured_image.alt || window.theme_settings.misc_images_fallback_image_alt;
 
+        var from = '';
+
+        if (+(product.price_max) != +(product.price_min)) {
+          from = window.theme_locales.products.product.from;
+        }
+
         if (+(product.compare_at_price_min)) {
           compare_at_price_html = transform_liquid_attributes(module.options.result_compare_at_price_template, {
             compare_at_price: money(product.compare_at_price_min)
@@ -121,6 +127,7 @@ function Body(element, events, options, module) {
         return transform_liquid_attributes(module.options.result_template, {
           url: product.url,
           title: product.title,
+          from: from,
           price: money(product.price_min),
           compare_at_price: compare_at_price_html,
           image_url: Images.getSizedImageUrl(image_url, '100x'),
@@ -131,7 +138,8 @@ function Body(element, events, options, module) {
 
     var html = transform_liquid_attributes(module.options.results_template, {
       query: query,
-      results: results_html
+      results: results_html,
+      result_count: results.products.length
     });
 
     element.innerHTML = html;

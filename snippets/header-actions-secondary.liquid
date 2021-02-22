@@ -1,7 +1,7 @@
 <div class="position-absolute position-center-vertical position-right">
   <div class="grid-bar--up-2">
     <div class="grid-item hide! medium--show-inline-block!">
-      <div style=" --medium--width: 170px; --xlarge--width: 280px;">
+      <div class="search-form-element-width">
         {% include 'search-form', _id: 'header-search-form' %}
       </div>
     </div>
@@ -17,7 +17,13 @@
     {% endif %}
 
     <div class="grid-item">
-      <a href="{{ routes.cart_url }}">
+      <a
+        class="block"
+        href="{{ routes.cart_url }}"
+        data-module-offcanvas-trigger='{
+          "id": "header-mini-cart",
+          "scroll_to": 0
+        }'>
         <div class="font-size--up-6">
           {% include 'svg-cart' %}
         </div>

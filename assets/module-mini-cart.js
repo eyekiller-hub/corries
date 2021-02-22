@@ -4,13 +4,11 @@ import Events from './object-events';
 import ResponsiveImages from './object-responsive-images';
 
 function Self(element, events, options, module) {
-  bind_hover_events();
-
   Events
     .on('cartchange:click', set_loading)
     .on('cartchange:success', render)
     .on('productform:success', (cart) => {
-      render(cart, { reveal: true });
+      render(cart);
     });
 
   function render(cart, render_options = {}) {
@@ -30,39 +28,12 @@ function Self(element, events, options, module) {
 
         unset_loading();
 
-        bind_hover_events();
-
         Events.trigger('minicart:self:rendersuccess');
-
-        if (render_options.reveal) {
-          reveal();
-        }
       })
       .catch((err) => {
         console.log({err});
         unset_loading();
       });
-  };
-
-  function bind_hover_events() {
-    element.addEventListener('mouseover', show);
-    element.addEventListener('mouseout', hide);
-  };
-
-  function show() {
-    document.documentElement.classList.add('is-active-mini-cart');
-  };
-
-  function hide() {
-    document.documentElement.classList.remove('is-active-mini-cart');
-  };
-
-  function reveal() {
-    show();
-
-    setTimeout(() => {
-      hide();
-    }, options.reveal_timeout);
   };
 
   function set_loading() {

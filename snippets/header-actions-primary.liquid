@@ -30,9 +30,23 @@
       </div>
 
       <div class="grid-item">
-        <a href="{{ routes.search_url }}">
-          <div class="font-size--up-3">
-            {% include 'svg-search' %}
+        <a
+          class="block"
+          href="{{ routes.search_url }}"
+          data-module-offcanvas-trigger='{
+            "id": "header-mobile-search",
+            "scroll_to": 0
+          }'>
+          <div data-ref-icon='{ "type": "show" }'>
+            <div class="font-size--up-3">
+              {% include 'svg-search' %}
+            </div>
+          </div>
+
+          <div style="display: none;" data-ref-icon='{ "type": "hide" }'>
+            <div class="font-size--down-1">
+              {% include 'svg-close' %}
+            </div>
           </div>
         </a>
       </div>

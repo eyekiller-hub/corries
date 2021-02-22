@@ -5,42 +5,44 @@
 {% assign image_url = line_item.image | img_url: '300x300', crop: 'center' %}
 {% assign image_alt = image.alt | escape %}
 
-<article class="margin-bottom--up-2 large--margin-bottom--up-4">
-  <div class="position-relative">
-    <div class="grid--up-1">
-      <div class="grid-item one-three large--two-ten">
-        {% include 'cart-item-image' %}
-      </div>
-
-      <div class="grid-item two-three large--eight-ten">
-        <div class="large--padding-right--up-6">
-          <div class="last-child-margin--none">
-            {% include 'cart-item-title' %}
-
-            {% unless line_item.product.has_only_default_variant %}
-              <div class="margin-bottom--down-1">
-                {% include 'cart-item-options' %}
-              </div>
-            {% endunless %}
-
-            {% if line_item_properties %}
-              <div class="margin-bottom--down-1">
-                {% include 'cart-item-properties' %}
-              </div>
-            {% endif %}
-
-            <div class="margin-bottom--down-1">
-              {% include 'cart-item-price' %}
-            </div>
-
-            <div class="margin-bottom--down-1">
-              {% include 'cart-item-quantity' %}
-            </div>
-          </div>
+<article class="border-bottom-grey-lightest">
+  <div class="padding-top-bottom--up-1">
+    <div class="position-relative">
+      <div class="grid--up-1">
+        <div class="grid-item one-three large--five-sixteen">
+          {% include 'cart-item-image' %}
         </div>
 
-        <div class="position-absolute position-right medium-down--position-bottom large--position-top">
-          {% include 'cart-item-remove' %}
+        <div class="grid-item two-three large--eleven-sixteen">
+          <div class="large--padding-right--up-6">
+            <div class="last-child-margin--none">
+              {% include 'cart-item-title' %}
+
+              {% unless line_item.product.has_only_default_variant %}
+                <div class="margin-bottom--down-1">
+                  {% include 'cart-item-options' %}
+                </div>
+              {% endunless %}
+
+              {% if line_item_properties %}
+                <div class="margin-bottom--down-1">
+                  {% include 'cart-item-properties' %}
+                </div>
+              {% endif %}
+
+              <div class="margin-bottom--down-1">
+                {% include 'cart-item-quantity' %}
+              </div>
+
+              <div class="margin-bottom--down-1">
+                {% include 'cart-item-price' %}
+              </div>
+            </div>
+          </div>
+
+          <div class="position-absolute position-right medium-down--position-bottom large--position-top">
+            {% include 'cart-item-remove' %}
+          </div>
         </div>
       </div>
     </div>

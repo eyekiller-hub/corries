@@ -13,16 +13,16 @@
 
 {% assign block_megamenu_links_columns = block_megamenu.settings.links_columns | times: 1 | default: false %}
 
-<div class="position-absolute position-top--full position-left position-right" style="margin-top: -1px;">
+<div class="header-menu__megamenu position-absolute position-top--full position-left position-right" style="margin-top: -1px;">
   <div class="container-default">
     <div class="box-color-beige">
       <div class="padding-top-bottom--up-4 padding-left-right--up-5">
-        <div class="text-left">
+        <div class="text-left text-color-base-text">
           <div class="flex--up-3">
             <div class="flex-item">
               <div class="position-relative">
                 <ul
-                  class="margin-bottom--none last-child-margin--none"
+                  class="margin-bottom--none"
                   style="
                     {% if block_megamenu_links_columns and block_megamenu_links_columns > 1 %}
                       column-count: {{ block_megamenu_links_columns }};
@@ -30,23 +30,16 @@
                     {% endif %}
                   ">
                   {% for link_link in link.links %}
-                    <li class="inline-block align-top one margin-bottom--up-2">
-                      <a
-                        class="
-                          font-size--down-1 line-height--up-5
-                          font-weight-500
-                          text-caps-letter-spacing
-                          text-color-grey-dark
-                        "
-                        href="{{ link_link.url }}">
+                    <li class="inline-block align-top one margin-bottom--down-1">
+                      <a class="font-weight-500 text-caps-letter-spacing text-color-grey-dark" href="{{ link_link.url }}">
                         {{ link_link.title }}
                       </a>
 
                       {% if link_link.links != empty %}
-                        <ul class="margin-top--down-1 margin-bottom--none last-child-margin--none">
+                        <ul class="padding-top-bottom--down-1 margin-bottom--none">
                           {% for link_link_link in link_link.links %}
                             <li class="margin-bottom--down-3">
-                              <a class="font-size--down-1 line-height--up-5" href="{{ link_link_link.url }}">
+                              <a href="{{ link_link_link.url }}">
                                 {{ link_link_link.title }}
                               </a>
                             </li>
@@ -99,9 +92,29 @@
                     <div class="flex-item-auto">
                       <div class="position-relative height-full" style="max-width: 265px;">
                         {% if block_megamenu_image %}
-                          <div>
+                          <div class="margin-bottom--0">
                             {% include 'image', _object: block_megamenu_image, _size: '600x' %}
                           </div>
+                        {% endif %}
+
+                        {% if block_megamenu_title %}
+                          <h3 class="font-size--inherit line-height--inherit font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark margin-bottom--down-1">
+                            {{ block_megamenu_title }}
+                          </h3>
+                        {% endif %}
+
+                        {% if block_megamenu_copy %}
+                          <div class="margin-bottom--down-1">
+                            <div class="rte">
+                              {{ block_megamenu_copy }}
+                            </div>
+                          </div>
+                        {% endif %}
+
+                        {% if block_megamenu_url and block_megamenu_call_to_action %}
+                          <a class="font-weight-500 text-caps-letter-spacing text-color-green hover-text-color-green-active text-underline" href="{{ block_megamenu_url }}">
+                            {{ block_megamenu_call_to_action }}
+                          </a>
                         {% endif %}
 
                         {% unless forloop.last %}

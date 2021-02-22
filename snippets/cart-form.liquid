@@ -1,15 +1,6 @@
 {% assign mini_cart = _mini_cart %}
 
-<form action="/cart" method="post">
-  <div class="overflow-hidden">
-    <div class="grid--up-1 margin-bottom-negative--up-1">
-      <div class="grid-item one {% unless mini_cart %}large--five-seven{% endunless %} padding-bottom--up-1">
-        {% include 'cart-items' %}
-      </div>
-
-      <div class="grid-item one {% unless mini_cart %}large--two-seven{% endunless %} padding-bottom--up-1">
-        {% include 'cart-summary' %}
-      </div>
-    </div>
-  </div>
+<form class="{% if mini_cart %}height-full flex-vertical{% endif %}" action="/cart" method="post">
+  {% include 'cart-items' %}
+  {% include 'cart-summary' %}
 </form>
