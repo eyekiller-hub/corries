@@ -1,16 +1,123 @@
+{% assign image = section.settings.image | default: false %}
+
+{% assign image_tablet = section.settings.image_tablet | default: image %}
+
+{% assign image_mobile = section.settings.image_mobile | default: image_tablet %}
+
+{% assign image_overlay = section.settings.image_overlay | divided_by: 100.0 | default: false %}
+
+{% assign text_color = section.settings.text_color | default: false %}
+
+{% assign title = section.settings.title | newline_to_br | default: false %}
+
+{% assign url_1 = section.settings.url_1 | default: false %}
+
+{% assign call_to_action_1 = section.settings.call_to_action_1 | default: false %}
+
+{% assign url_2 = section.settings.url_2 | default: false %}
+
+{% assign call_to_action_2 = section.settings.call_to_action_2 | default: false %}
+
+<section class="position-relative">
+  {%
+    include 'image',
+    _object: image_mobile,
+    _size: '1000x',
+    _object_medium: image_tablet,
+    _size_medium: '1000x',
+    _object_large: image,
+    _size_large: '2000x'
+  %}
+
+  {% if image_overlay %}
+    <div
+      class="position-absolute position-full"
+      style="background: #000; opacity: {{ image_overlay }};"></div>
+  {% endif %}
+
+  {% if title %}
+    <div class="position-absolute position-center one">
+      <div class="text-color-light text-center">
+        <h2
+          class="
+            font-size--up-13 line-height--up-13
+            medium--font-size--up-16 medium--line-height--up-16
+            large--font-size--up-23 large--line-height--up-22
+            font-weight-700 text-color-inherit
+            margin--none
+          ">
+          {{ title }}
+        </h2>
+
+        {% if url_1 or call_to_action_1 or url_2 or call_to_action_2 %}
+          <div class="margin-top--up-2">
+            <div class="grid--down-1">
+              {% if url_1 and call_to_action_1 %}
+                <div class="grid-item">
+                  <a
+                    class="
+                      button-primary box-color-inherit border-current-color-double
+                      padding-left-right--0 medium--padding-left-right--up-2
+                      medium--padding-top-bottom--down-1
+                      line-height--up-8
+                      medium--font-size--inherit medium--line-height--up-8
+                    "
+                    href="{{ url_1 }}">
+                    {{ call_to_action_1 }}
+                  </a>
+                </div>
+              {% endif %}
+
+              {% if url_2 and call_to_action_2 %}
+                <div class="grid-item">
+                  <a
+                    class="
+                      button-primary box-color-inherit border-current-color-double
+                      padding-left-right--0 medium--padding-left-right--up-2
+                      medium--padding-top-bottom--down-1
+                      line-height--up-8
+                      medium--font-size--inherit medium--line-height--up-8
+                    "
+                    href="{{ url_2 }}">
+                    {{ call_to_action_2 }}
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endif %}
+</section>
+
 {% schema %}
   {
     "name": "Hero",
+    "presets": [
+      {
+        "category": "Homepage",
+        "name": "Hero"
+      }
+    ],
     "settings": [
       {
         "type": "image_picker",
         "id": "image",
-        "label": "Image"
+        "label": "Image",
+        "info": "Suggested size: 2000x920px."
+      },
+      {
+        "type": "image_picker",
+        "id": "image_tablet",
+        "label": "Image (tablet)",
+        "info": "Suggested size: 1000x460px."
       },
       {
         "type": "image_picker",
         "id": "image_mobile",
-        "label": "Image (mobile)"
+        "label": "Image (mobile)",
+        "info": "Suggested size: 1000x950px."
       },
       {
         "type": "range",
@@ -32,90 +139,30 @@
         ]
       },
       {
-        "type": "text",
-        "id": "height",
-        "label": "Height",
-        "info": "Leave blank to use aspect ratio of the image uploaded. Use a length of any valid unit ('500px', '15%' etc.). Use 'full' to fit the browser viewport height."
-      },
-      {
-        "type": "text",
-        "id": "height_mobile",
-        "label": "Height (mobile)",
-        "info": "Leave blank to use aspect ratio of the image uploaded. Use a length of any valid unit ('500px', '15%' etc.). Use 'full' to fit the browser viewport height."
-      },
-      {
-        "type": "select",
-        "id": "alignment",
-        "label": "Alignment",
-        "options": [
-          { "label": "Left", "value": "left" },
-          { "label": "Center", "value": "center" },
-          { "label": "Right", "value": "right" }
-        ]
-      },
-      {
-        "type": "text",
+        "type": "textarea",
         "id": "title",
-        "label": "Title",
-        "info": "Use the placeholder \"{{ page_title }}\" and it'll be replaced with the current page title."
-      },
-      {
-        "type": "richtext",
-        "id": "body",
-        "label": "Body"
+        "label": "Title"
       },
       {
         "type": "url",
-        "id": "url",
-        "label": "URL"
+        "id": "url_1",
+        "label": "URL #1"
       },
       {
         "type": "text",
-        "id": "call_to_action",
-        "label": "Call to action"
+        "id": "call_to_action_1",
+        "label": "Call to action #1"
+      },
+      {
+        "type": "url",
+        "id": "url_2",
+        "label": "URL #2"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action_2",
+        "label": "Call to action #2"
       }
     ]
   }
 {% endschema %}
-
-{% assign image = section.settings.image | default: false %}
-{% assign image_url = image | img_url: "2000x" %}
-
-{% assign image_mobile = section.settings.image_mobile | default: image %}
-{% assign image_mobile_url = image_mobile | img_url: "1000x" %}
-
-{% assign image_overlay = section.settings.image_overlay | divided_by: 100.0 | default: false %}
-
-{% assign text_color = section.settings.text_color | default: false %}
-
-{% assign height = section.settings.height | default: false %}
-
-{% assign height_mobile = section.settings.height_mobile | default: false %}
-
-{% assign alignment = section.settings.alignment | default: false %}
-
-{% assign title = section.settings.title | default: false %}
-
-{% assign body = section.settings.body | default: false %}
-
-{% assign url = section.settings.url | default: false %}
-
-{% assign call_to_action = section.settings.call_to_action | default: false %}
-
-{%
-  include 'hero'
-  _id: section.id
-  _image: image
-  _image_url: image_url
-  _image_mobile: image_mobile
-  _image_mobile_url: image_mobile_url
-  _image_overlay: image_overlay
-  _text_color: text_color
-  _height: height
-  _height_mobile: height_mobile
-  _alignment: alignment
-  _title: title
-  _body: body
-  _url: url
-  _call_to_action: call_to_action
-%}

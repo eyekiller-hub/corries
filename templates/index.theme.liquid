@@ -2,18 +2,18 @@
 ' %}
 
 {% capture colors %}
-  dark
-  light
-  green
-  green-active
-  navy
-  beige
-  red
-  grey-lightest
-  grey-lighter
-  grey-light
-  grey
-  grey-dark
+  box-color-dark
+  box-color-light
+  box-color-green
+  box-color-green-active
+  box-color-navy
+  box-color-beige
+  box-color-red
+  box-color-grey-lightest
+  box-color-grey-lighter
+  box-color-grey-light
+  box-color-grey
+  box-color-grey-dark
 {% endcapture %}
 
 {% capture icon_snippets %}
@@ -123,7 +123,7 @@
 
               <div class="grid-item padding-bottom--up-1">
                 <div
-                  class="box-color-{{ color }}"
+                  class="{{ color }}"
                   style="height: 100px; width: 100px;"></div>
               </div>
             {% endfor %}

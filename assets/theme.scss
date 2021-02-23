@@ -1903,7 +1903,8 @@ $buttons: (primary, secondary);
 @mixin breakpoint-inline-styles($breakpoint: "") {
   $properties: (
     width,
-    max-width
+    max-width,
+    padding-bottom
   );
 
   @each $property in $properties {
@@ -2202,6 +2203,10 @@ $buttons: (primary, secondary);
     color: inherit;
   }
 
+  .#{$breakpoint}box-color-inherit {
+    background-color: inherit;
+  }
+
   @each $color in $colors {
     .#{$breakpoint}text-color-#{$color},
     .#{$breakpoint}hover-text-color-#{$color}:hover,
@@ -2279,6 +2284,16 @@ $buttons: (primary, secondary);
   .#{$breakpoint}border--none,
   .#{$breakpoint}last-child-border--none > :last-child {
     border: none;
+  }
+
+  .#{$breakpoint}border-current-color,
+  .#{$breakpoint}hover-border-current-color:hover {
+    border: 1px solid currentColor;
+  }
+
+  .#{$breakpoint}border-current-color-double,
+  .#{$breakpoint}hover-border-current-color-double:hover {
+    border: 2px solid currentColor;
   }
 
   @each $color in $colors {

@@ -45,9 +45,6 @@
       "placeholder": "Search"
     }
   },
-  "social": {
-    "title": "Follow us"
-  },
   "newsletter": {
     "confirmation": "Thanks for subscribing!",
     "email_placeholder": "Email address",

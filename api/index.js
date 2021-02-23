@@ -34,6 +34,8 @@ function check_unused_sections() {
 
   var sections = glob.sync('./sections/*.liquid').map((_) => _.split('/').pop().split('.')[0]);
 
+  sections = sections.filter((section) => !section.includes('homepage-'));
+
   var files_string = files
     .map((file) => fs.readFileSync(file, 'utf8'))
     .join('');
@@ -52,6 +54,8 @@ function check_unused_layouts() {
   var files = glob.sync('./**/*.liquid');
 
   var layouts = glob.sync('./layout/*.liquid').map((_) => _.split('/').pop().split('.')[0]);
+
+  layouts = layouts.filter((layout) => layout != 'theme');
 
   var files_string = files
     .map((file) => fs.readFileSync(file, 'utf8'))

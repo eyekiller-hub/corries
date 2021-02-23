@@ -2,6 +2,14 @@
 {% assign size = _size %}
 {% assign crop = _crop %}
 {% assign box_ratio = _box_ratio %}
+{% assign object_medium = _object_medium %}
+{% assign size_medium = _size_medium %}
+{% assign crop_medium = _crop_medium %}
+{% assign box_ratio_medium = _box_ratio_medium %}
+{% assign object_large = _object_large %}
+{% assign size_large = _size_large %}
+{% assign crop_large = _crop_large %}
+{% assign box_ratio_large = _box_ratio_large %}
 
 {% include 'attribute-image-box-ratio', image: object %}
 
@@ -11,6 +19,45 @@
 
 {% assign image_alt = object.alt | escape %}
 
-<div class="image-container box-ratio-inline" style="padding-bottom: {{ box_ratio }};">
-  <img data-src="{{ image_url }}" alt="{{ image_alt }}" />
+{% if object_medium %}
+  {% assign image_medium_url = object_medium | img_url: size_medium, crop: crop_medium %}
+
+  {% include 'attribute-image-box-ratio', image: object_medium %}
+
+  {% assign box_ratio_medium = box_ratio_medium | default: image_box_ratio %}
+{% endif %}
+
+{% if object_large %}
+  {% assign image_large_url = object_large | img_url: size_large, crop: crop_large %}
+
+  {% include 'attribute-image-box-ratio', image: object_large %}
+
+  {% assign box_ratio_large = box_ratio_large | default: image_box_ratio %}
+{% endif %}
+
+<div
+  class="image-container box-ratio-inline"
+  style="
+    padding-bottom: {{ box_ratio }};
+
+    {% if object_medium %}
+      --medium--padding-bottom: {{ box_ratio_medium }};
+    {% endif %}
+
+    {% if object_large %}
+      --large--padding-bottom: {{ box_ratio_large }};
+    {% endif %}
+  ">
+  <img
+    data-src="{{ image_url }}"
+
+    {% if object_medium %}
+      data-src-medium="{{ image_medium_url }}"
+    {% endif %}
+
+    {% if object_large %}
+      data-src-large="{{ image_large_url }}"
+    {% endif %}
+
+    alt="{{ image_alt }}" />
 </div>
