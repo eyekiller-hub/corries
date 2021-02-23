@@ -30,7 +30,8 @@
     "total": "Subtotal",
     "checkout": "Review & checkout",
     "upsells_title": "You may also like",
-    "empty": "Your shopping cart is currently empty."
+    "empty": "Your shopping cart is currently empty.",
+    "quantity": "Quantity:"
   },
   "search": {
     "title": "Search",
@@ -46,5 +47,10 @@
   },
   "social": {
     "title": "Follow us"
+  },
+  "newsletter": {
+    "confirmation": "Thanks for subscribing!",
+    "email_placeholder": "Email address",
+    "submit": "Join now"
   }
 }

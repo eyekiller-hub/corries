@@ -1,14 +1,16 @@
 {% assign object = _object %}
 {% assign size = _size %}
+{% assign crop = _crop %}
+{% assign box_ratio = _box_ratio %}
 
 {% include 'attribute-image-box-ratio', image: object %}
 
-{% assign image_url = object | img_url: size %}
+{% assign box_ratio = box_ratio | default: image_box_ratio %}
+
+{% assign image_url = object | img_url: size, crop: crop %}
 
 {% assign image_alt = object.alt | escape %}
 
-<div>
-  <div class="image-container box-ratio-inline" style="padding-bottom: {{ image_box_ratio }};">
-    <img src="{{ image_url }}" alt="{{ image_alt }}" />
-  </div>
+<div class="image-container box-ratio-inline" style="padding-bottom: {{ box_ratio }};">
+  <img data-src="{{ image_url }}" alt="{{ image_alt }}" />
 </div>

@@ -19,19 +19,21 @@
 {% assign blocks_megamenu = blocks | where: 'type', 'megamenu' | default: false %}
 
 <header class="header" role="banner">
-  <div class="container-default">
-    <div class="position-relative position-6">
-      <div class="padding-top-bottom--0 large--padding-top-bottom--up-1">
-        {% include 'header-actions-primary' %}
-        {% include 'header-logo' %}
-        {% include 'header-actions-secondary' %}
+  <div class="position-relative position-6">
+    <div class="container-default">
+      <div class="position-relative position-6">
+        <div class="padding-top-bottom--0 large--padding-top-bottom--up-1">
+          {% include 'header-actions-primary' %}
+          {% include 'header-logo' %}
+          {% include 'header-actions-secondary' %}
+        </div>
       </div>
     </div>
-  </div>
 
-  {% if menu %}
-    {% include 'header-menu' %}
-  {% endif %}
+    {% if menu %}
+      {% include 'header-menu' %}
+    {% endif %}
+  </div>
 </header>
 
 {% include 'mobile-menu' %}

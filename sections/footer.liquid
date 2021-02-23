@@ -1,3 +1,68 @@
+{% assign newsletter_enable = section.settings.newsletter_enable | default: false %}
+
+{% assign newsletter_title = section.settings.newsletter_title | default: false %}
+
+{% assign newsletter_copy = section.settings.newsletter_copy | default: false %}
+
+{% assign social_links_enable = section.settings.social_links_enable | default: false %}
+
+{% assign payment_icons_enable = section.settings.payment_icons_enable | default: false %}
+
+{% assign small_copy_enable = section.settings.small_copy_enable | default: false %}
+
+{% assign small_copy = section.settings.small_copy | default: false %}
+
+{% assign small_copy_menu = section.settings.small_copy_menu %}
+{% assign small_copy_menu = menus[small_copy_menu] | default: false %}
+
+{% assign blocks = section.blocks | default: false %}
+
+{% assign blocks_column = blocks | where: 'type', 'column' | default: false %}
+
+<footer role="contentinfo">
+  <div class="container-default">
+    <div class="medium--border-top-grey-lightest">
+      <div class="padding-bottom--up-2 medium--padding-top--up-2 large--padding-top-bottom--up-5">
+        <div class="xlarge--flex--up-1">
+          {% if blocks_column %}
+            <div class="xlarge--flex-item">
+              {% include 'footer-columns' %}
+            </div>
+          {% endif %}
+
+          {% if newsletter_enable or social_links_enable %}
+            <div class="xlarge--flex-item-auto">
+              <div style=" --xlarge--max-width: 410px;">
+                <div class="medium--flex-bar--up-1 medium--flex-wrap">
+                  <div class="medium--flex-item large--flex-item-auto xlarge--one">
+                    {% if newsletter_title %}
+                      {% include 'footer-newsletter' %}
+                    {% endif %}
+                  </div>
+
+                  <div class="medium--flex-item-auto xlarge--one">
+                    {% if social_links_enable %}
+                      {% include 'footer-social-links' %}
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+
+        {% if payment_icons_enable %}
+          {% include 'footer-payment-icons' %}
+        {% endif %}
+
+        {% if small_copy_enable %}
+          {% include 'footer-small-copy' %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
 {% schema %}
   {
     "name": "Footer",
@@ -8,7 +73,44 @@
       },
       {
         "type": "paragraph",
-        "content": "Use the below Content -> Add content to manage columns."
+        "content": "Managed via the 'Content' section."
+      },
+      {
+        "type": "header",
+        "content": "Newsletter"
+      },
+      {
+        "type": "checkbox",
+        "id": "newsletter_enable",
+        "label": "Enable?"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "newsletter_copy",
+        "label": "Copy"
+      },
+      {
+        "type": "header",
+        "content": "Social links"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_links_enable",
+        "label": "Enable?"
+      },
+      {
+        "type": "header",
+        "content": "Payment icons"
+      },
+      {
+        "type": "checkbox",
+        "id": "payment_icons_enable",
+        "label": "Enable?"
       },
       {
         "type": "header",
@@ -21,15 +123,19 @@
       },
       {
         "type": "richtext",
-        "id": "small_copy_body",
-        "label": "Body",
-        "info": "Use the placeholder \"{{ year }}\" and it'll be replaced with the current year."
+        "id": "small_copy",
+        "label": "Copy"
+      },
+      {
+        "type": "link_list",
+        "id": "small_copy_menu",
+        "label": "Menu"
       }
     ],
     "blocks": [
       {
-        "type": "menu",
-        "name": "Menu",
+        "type": "column",
+        "name": "Column",
         "settings": [
           {
             "type": "text",
@@ -40,50 +146,14 @@
             "type": "link_list",
             "id": "menu",
             "label": "Menu"
-          }
-        ]
-      },
-      {
-        "type": "social_links",
-        "name": "Social links",
-        "settings": [
+          },
           {
-            "type": "text",
-            "id": "title",
-            "label": "Title",
-            "info": "Content is managed via Theme settings -> Social."
+            "type": "richtext",
+            "id": "copy",
+            "label": "Copy"
           }
         ]
       }
     ]
   }
 {% endschema %}
-
-{% assign logo_image = section.settings.logo_image | default: false %}
-{% assign logo_image_url = logo_image | img_url: '500x' %}
-
-{% assign small_copy_enable = section.settings.small_copy_enable | default: false %}
-
-{% assign small_copy_body = section.settings.small_copy_body | default: false %}
-
-{% assign blocks = section.blocks | default: false %}
-
-<footer role="contentinfo">
-  <div>
-    <div class="padding-top-bottom--up-2 large--padding-top-bottom--up-4">
-      <div class="container-default">
-        <div class="text-center large--text-left">
-          {% if blocks %}
-            <div class="overflow-hidden">
-              {% include 'footer-columns' %}
-            </div>
-          {% endif %}
-
-          {% if small_copy_enable %}
-            {% include 'footer-small-copy' %}
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>

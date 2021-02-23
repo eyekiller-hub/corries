@@ -14,7 +14,6 @@ import './module-collection-pagination--or';
 import './module-collection-scroll';
 import './module-collection-url';
 import './module-cookies';
-import './module-countdown';
 import './module-image-gallery-slider';
 import './module-input-change-form-submit';
 import './module-input-change-link';
@@ -34,3 +33,5 @@ import './module-slide-panels-back';
 import './module-slide-panels-link';
 import './module-slide-panels';
 import './module-tabs';
+
+// document.querySelector('[data-module-offcanvas-trigger*="header-mini-cart"]').click();

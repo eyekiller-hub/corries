@@ -1,8 +1,6 @@
-{% assign is_header = _is_header %}
+{% assign social_networks = 'facebook, twitter, youtube, instagram, pinterest, tumblr, vimeo, linkedin, email' | split: ', ' %}
 
-{% assign social_networks = 'instagram, facebook, twitter, pinterest, tumblr, vimeo, youtube, linkedin, email' | split: ', ' %}
-
-<ul class="grid-bar--up-1 margin-bottom--none">
+<ul class="grid-bar--down-2 margin-bottom--none">
   {% for social_network in social_networks %}
     {% assign social_network_link_setting = 'social_links_' | append: social_network %}
     {% assign social_network_link_setting = settings[social_network_link_setting] | default: false %}
@@ -13,7 +11,7 @@
 
     <li class="grid-item">
       <a href="{{ social_network_link_setting }}" target="_blank">
-        <div class="{% if is_header %}font-size--up-4{% endif %} {% unless is_header %}font-size--up-12{% endunless %}">
+        <div class="font-size--up-14 text-color-navy">
           {% assign snippet = 'svg-social-' | append: social_network %}
           {% include snippet %}
         </div>

@@ -1,0 +1,19 @@
+<div class="margin-bottom--up-2 medium--margin--none">
+  <div style="max-width: 410px;">
+    {% if newsletter_title %}
+      <h3 class="font-size--down-2 line-height--up-4 medium--font-size--inherit medium--line-height--inherit font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark margin-bottom--down-1">
+        {{ newsletter_title }}
+      </h3>
+    {% endif %}
+
+    {% include 'newsletter-form' %}
+
+    {% if newsletter_copy %}
+      <div class="margin-top--0">
+        <div class="rte font-size--down-4 line-height--up-2">
+          {{ newsletter_copy }}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>

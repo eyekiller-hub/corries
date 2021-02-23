@@ -1,8 +1,47 @@
-<div style="max-width: 100px;">
-  <input
-    class="input block"
-    type="number"
-    name="updates[]"
-    id="updates_{{ line_item.key }}"
-    value="{{ line_item.quantity }}" />
+<div class="flex-bar--0">
+  <div class="flex-item-auto">
+    <label class="font-size--down-2 line-height--down-4" for="updates_{{ line_item.key }}">
+      {{ 'cart.quantity' | t }}
+    </label>
+  </div>
+
+  <div class="flex-item">
+    <div class="flex">
+      <div class="flex-item-auto">
+        <a href="{{ routes.cart_change_url }}?line={{ line }}&amp;quantity={{ line_item.quantity | minus: 1 }}" {% if mini_cart %}data-module-cart-change='{ "key": {{ line_item.key | json }}, "quantity": {{ line_item.quantity | minus: 1 }} }'{% endif %}>
+          <div class="box-color-grey-lightest height-full flex-bar flex-center" style="width: 35px;">
+            <div class="flex-item-auto">
+              <div class="font-size--down-8">
+                {% include 'svg-minus' %}
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="flex-item-auto">
+        <div style="max-width: 50px;">
+          <input
+            class="input block padding--none padding-top-bottom--down-3 border-radius--none text-center font-size--down-2 line-height--up-4"
+            type="number"
+            name="updates[]"
+            id="updates_{{ line_item.key }}"
+            value="{{ line_item.quantity }}"
+            readonly />
+        </div>
+      </div>
+
+      <div class="flex-item-auto">
+        <a href="{{ routes.cart_change_url }}?line={{ line }}&amp;quantity={{ line_item.quantity | plus: 1 }}" {% if mini_cart %}data-module-cart-change='{ "key": {{ line_item.key | json }}, "quantity": {{ line_item.quantity | plus: 1 }} }'{% endif %}>
+          <div class="box-color-grey-lightest height-full flex-bar flex-center" style="width: 35px;">
+            <div class="flex-item-auto">
+              <div class="font-size--down-8">
+                {% include 'svg-plus' %}
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
 </div>

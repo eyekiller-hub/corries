@@ -1,38 +1,109 @@
-<div class="overflow-hidden">
-  <div class="large--flex--up-1 margin-bottom-negative--up-1">
-    {% for block in blocks %}
-      {% assign block_title = block.settings.title | default: false %}
+<div class="margin-bottom--up-2 medium--margin-bottom--up-3 xlarge--margin--none">
+  <div class="container-margin-negative-x medium--margin--none">
+    <div data-module-accordion>
+      <div class="border-top-grey-lightest medium--border--none">
+        <div class="medium--flex--up-1">
+          {% for block in blocks_column %}
+            {% assign block_title = block.settings.title | default: false %}
 
-      {% assign block_menu = block.settings.menu %}
-      {% assign block_menu = menus[block_menu] | default: false %}
+            {% assign block_menu = block.settings.menu %}
+            {% assign block_menu = menus[block_menu] | default: false %}
 
-      <div class="large--flex-item padding-bottom--up-1">
-        {% if block_title %}
-          <h3 class="margin-bottom--0">
-            {{ block_title }}
-          </h3>
-        {% endif %}
+            {% assign block_copy = block.settings.copy | default: false %}
 
-        {% if block.type == 'menu' %}
-          {% if block_menu %}
-            <ul class="margin--none last-child-margin--none">
-              {% for link in block_menu.links %}
-                <li class="margin-bottom--down-2">
-                  <a href="{{ link.url }}">
-                    <div>
-                      {{ link.title }}
+            <div class="medium--flex-item">
+              <div class="overflow-hidden">
+                <div class="position-relative">
+                  <h3
+                    class="
+                      font-size--down-2
+                      line-height--up-7
+                      medium--font-size--inherit
+                      medium--line-height--inherit
+                      font-stack-inherit
+                      font-weight-500
+                      text-caps-letter-spacing
+                      text-color-grey-dark
+                      container-padding
+                      padding-top-bottom--down-1
+                      medium--padding--none
+                      {% unless forloop.last %}
+                        border-bottom-grey-lightest
+                      {% endunless %}
+                      medium--border--none
+                      margin-bottom--none
+                      medium--margin-bottom--down-1
+                    ">
+                    {{ block_title }}
+                  </h3>
+
+                  {% unless forloop.last %}
+                    <div class="medium--hide">
+                      <div class="position-absolute position-right position-center-vertical">
+                        <div class="container-padding">
+                          <div class="font-size--down-6">
+                            <div data-ref-icon-show='{ "index": {{ block.id | json }} }'>
+                              {% include 'svg-arrow-bottom' %}
+                            </div>
+
+                            <div style="display: none;" data-ref-icon-hide='{ "index": {{ block.id | json }} }'>
+                              {% include 'svg-arrow-top' %}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <button
+                        class="position-absolute position-full one height-full hidden-opacity"
+                        type="button"
+                        data-ref-button='{
+                          "index": {{ block.id | json }},
+                          "active": ["medium"]
+                        }'></button>
                     </div>
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        {% endif %}
+                  {% endunless %}
+                </div>
+              </div>
 
-        {% if block.type == 'social_links' %}
-          {% include 'social-links' %}
-        {% endif %}
+              <div {% unless forloop.last %}data-ref-panel='{ "index": {{ block.id | json }} }'{% endunless %}>
+                <div class="medium--margin-top--none!" style="margin-top: -1px;">
+                  <div class="{% unless forloop.last %}box-color-beige medium--box-color-base-background{% endunless %}">
+                    <div class="container-padding medium--padding--none {% unless forloop.last %}padding-top-bottom--down-1{% endunless %}">
+                      {% if block_menu %}
+                        <ul class="margin--none last-child-margin--none">
+                          {% for link in block_menu.links %}
+                            <li class="medium--margin-bottom--down-4">
+                              <a
+                                class="
+                                  block
+                                  padding-top-bottom--down-1
+                                  medium--padding--none
+                                  medium--font-size--down-2
+                                  medium--line-height--up-4
+                                  text-color-grey-dark
+                                  medium--text-color-base-text
+                                "
+                                href="{{ link.url }}">
+                                {{ link.title }}
+                              </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+
+                      {% if block_copy %}
+                        <div class="rte rte--footer-column-copy font-size--down-2 line-height--up-4">
+                          {{ block_copy }}
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
       </div>
-    {% endfor %}
+    </div>
   </div>
 </div>

@@ -828,6 +828,10 @@ $buttons: (primary, secondary);
     width: 1px;
     white-space: nowrap;
   }
+
+  .hidden-opacity {
+    opacity: 0;
+  }
 }
 
 @include layout();
@@ -1118,6 +1122,10 @@ $buttons: (primary, secondary);
       margin-bottom: 0;
     }
 
+    a {
+      text-decoration: underline;
+    }
+
     p,
     blockquote,
     ul, ol,
@@ -1180,6 +1188,43 @@ $buttons: (primary, secondary);
     li {
       display: list-item;
       list-style-position: inside;
+    }
+  }
+
+  .rte--form-errors {
+    font-size: var(--font-size--down-2);
+    line-height: var(--font-size--up-4);
+
+    ul {
+      margin: 0;
+      padding: 0;
+      padding-bottom: var(--spacing--down-1);
+      color: var(--colors-red);
+      list-style: inside;
+    }
+
+    li {
+      display: list-item;
+    }
+  }
+
+  .rte--footer-column-copy {
+    [style*="underline"] {
+      display: block;
+      text-decoration: none !important;
+      color: var(--colors-navy);
+      font-size: var(--font-size--up-6);
+      line-height: 1;
+      margin-bottom: var(--spacing--down-3);
+    }
+
+    a {
+      color: var(--colors-green);
+      text-decoration: underline;
+
+      &:hover {
+        color: var(--colors-green-active);
+      }
     }
   }
   /*! purgecss end ignore */
@@ -1815,6 +1860,15 @@ $buttons: (primary, secondary);
 
 @include border-radiuses();
 
+@each $breakpoint in $breakpoints {
+  $keyword: nth($breakpoint, 1);
+  $media-query: nth($breakpoint, 2);
+
+  @media only screen and #{$media-query} {
+    @include border-radiuses("#{$keyword}--");
+  }
+}
+
 @mixin text-transforms($breakpoint: "") {}
 
 @include text-transforms();
@@ -2317,14 +2371,30 @@ $buttons: (primary, secondary);
   .shopify-challenge__container {
     padding: var(--spacing--up-4) var(--spacing--up-1);
   }
+
   .shopify-challenge__button {
     @include input;
+    transition: var(--transition-easing);
     padding-left: var(--button-padding-x);
     padding-right: var(--button-padding-x);
     font-weight: var(--button-font-weight);
     text-align: center;
     border-radius: var(--button-border-radius);
+    border: var(--button-border);
+    color: var(--colors-button-primary-text);
+    background-color: var(--colors-button-primary-background);
+    border-color: var(--colors-button-primary-border);
+    font-size: var(--typography-buttons-font-size);
+    line-height: var(--typography-buttons-line-height);
+    text-transform: var(--typography-buttons-text-transform);
+    letter-spacing: var(--typography-buttons-letter-spacing);
     width: auto;
+
+    &:hover {
+      color: var(--colors-button-primary-text-hover);
+      background-color: var(--colors-button-primary-background-hover);
+      border-color: var(--colors-button-primary-border-hover);
+    }
   }
 }
 
@@ -2461,9 +2531,20 @@ $buttons: (primary, secondary);
     pointer-events: none;
     top: 0;
     bottom: 0;
+    box-shadow: -1px 0 5px rgba(0, 0, 0, .1);
 
     html.is-active-offcanvas-header-mini-cart & {
       transform: none;
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  .header-off-canvas-mini-cart-loading {
+    opacity: 0;
+    pointer-events: none;
+
+    html.is-loading-mini-cart & {
       opacity: 1;
       pointer-events: auto;
     }

@@ -1,0 +1,31 @@
+{% form 'customer' %}
+  <div class="rte rte--form-errors">
+    {{ form.errors | default_errors }}
+  </div>
+
+  {% if form.posted_successfully? %}
+    <div>
+      {{ 'newsletter.confirmation' | t }}
+    </div>
+  {% else %}
+    <input type="hidden" name="contact[tags]" value="newsletter" />
+
+    <div class="flex">
+      <div class="flex-item">
+        <input
+          class="input border-radius--none border-right--none"
+          type="email"
+          name="contact[email]"
+          value="{{ customer.email }}"
+          placeholder="{{ 'newsletter.email_placeholder' | t }}"
+          required />
+      </div>
+
+      <div class="flex-item-auto">
+        <button class="button-primary padding-left-right--0" type="submit" name="commit">
+          {{ 'newsletter.submit' | t }}
+        </button>
+      </div>
+    </div>
+  {% endif %}
+{% endform %}
