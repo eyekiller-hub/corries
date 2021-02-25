@@ -11,6 +11,8 @@
 {% assign crop_large = _crop_large %}
 {% assign box_ratio_large = _box_ratio_large %}
 
+{% assign object = object | default: settings.misc_images_fallback_image %}
+
 {% include 'attribute-image-box-ratio', image: object %}
 
 {% assign box_ratio = box_ratio | default: image_box_ratio %}

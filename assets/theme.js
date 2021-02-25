@@ -32,6 +32,5 @@ import './module-search-form-predictive-results';
 import './module-slide-panels-back';
 import './module-slide-panels-link';
 import './module-slide-panels';
+import './module-slider';
 import './module-tabs';
-
-// document.querySelector('[data-module-offcanvas-trigger*="header-mini-cart"]').click();

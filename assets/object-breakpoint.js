@@ -61,7 +61,13 @@ var Breakpoint = {
 
   min: function (width) {
     return matchMedia('(min-width: ' + width + ')').matches;
-  }
+  },
+
+  min_breakpoints: min_breakpoints,
+
+  max_breakpoints: max_breakpoints,
+
+  all_breakpoints: Object.assign({}, min_breakpoints, max_breakpoints)
 };
 
 export default Breakpoint;

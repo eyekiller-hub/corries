@@ -1,0 +1,106 @@
+{% assign spacing_top_enable = section.settings.spacing_top_enable | default: false %}
+
+{% assign spacing_bottom_enable = section.settings.spacing_bottom_enable | default: false %}
+
+{% assign blocks = section.blocks | default: false %}
+
+{% if blocks %}
+  <section
+    class="
+      {% if spacing_top_enable %}padding-top--up-1{% endif %}
+      {% if spacing_bottom_enable %}padding-bottom--up-1{% endif %}
+    ">
+    <div class="container-default">
+      <div class="container-margin-negative-x medium--margin--none">
+        <div data-module-slider='{
+          "swiper": {
+            "slidesPerView": 6,
+            "spaceBetween": "var(--spacing--up-1)",
+            "breakpoints": {
+              "small": {
+                "slidesPerView": 3.5,
+                "spaceBetween": "var(--spacing--down-1)",
+                "slidesOffsetBefore": "var(--container-padding-x)",
+                "slidesOffsetAfter": "var(--container-padding-x)"
+              }
+            }
+          }
+        }'>
+          <div class="swiper-container" data-ref-container>
+            <div class="swiper-wrapper">
+              {% for block in blocks %}
+                {% assign block_collection = block.settings.collection %}
+                {% assign block_collection = collections[block_collection] | default: false %}
+
+                {% unless block_collection %}
+                  {% continue %}
+                {% endunless %}
+
+                <div class="swiper-slide">
+                  <article>
+                    <a href="{{ block_collection.url }}">
+                      <div class="margin-bottom--up-1">
+                        <div class="box-center" style="max-width: 160px;">
+                          <div class="overflow-hidden border-radius-full">
+                            {%
+                              include 'image',
+                              _object: block_collection.image,
+                              _size: '300x300',
+                              _crop: 'center',
+                              _box_ratio: '100%'
+                            %}
+                          </div>
+                        </div>
+                      </div>
+
+                      <h3 class="font-size--down-2 line-height--up-4 large--font-size--inherit large--line-height--inherit font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark text-center margin-bottom--none">
+                        {{ block_collection.title }}
+                      </h3>
+                    </a>
+                  </article>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Featured collections",
+    "presets": [
+      {
+        "category": "Homepage",
+        "name": "Featured collections"
+      }
+    ],
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "spacing_top_enable",
+        "label": "Spacing top enable?"
+      },
+      {
+        "type": "checkbox",
+        "id": "spacing_bottom_enable",
+        "label": "Spacing bottom enable?"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
