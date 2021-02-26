@@ -1,0 +1,205 @@
+{% assign spacing_top_enable = section.settings.spacing_top_enable | default: false %}
+
+{% assign spacing_bottom_enable = section.settings.spacing_bottom_enable | default: false %}
+
+{% assign title = section.settings.title | default: false %}
+
+{% assign copy = section.settings.copy | default: false %}
+
+{% assign blocks = section.blocks | default: false %}
+
+<section
+  class="
+    {% if spacing_top_enable %}padding-top--up-1{% endif %}
+    {% if spacing_bottom_enable %}padding-bottom--up-1{% endif %}
+  ">
+  <div class="container-default">
+    {% if title %}
+      {% include 'featured-section-title', _title: title %}
+    {% endif %}
+
+    {% if copy %}
+      <div class="margin-bottom--up-3 large--margin-bottom--up-4">
+        <div class="rte large--font-size--up-2 large--line-height--up-8 text-center">
+          {{ copy }}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if blocks %}
+    <div data-module-slider='{
+      "swiper": {
+        "slidesPerView": 3,
+        "spaceBetween": "var(--spacing--up-7)",
+          "breakpoints": {
+            "large-down": {
+              "slidesPerView": 2,
+              "spaceBetween": "var(--spacing--up-5)"
+            },
+            "small": {
+              "slidesPerView": 1,
+              "spaceBetween": 0
+            }
+          }
+      }
+    }'>
+      <div class="position-relative">
+        <div class="container-default">
+          <div class="padding-left-right--up-4 medium--padding-left-right--up-5">
+            <div class="swiper-container" data-ref-container>
+              <div class="swiper-wrapper">
+                {% for block in blocks %}
+                  {% assign block_image = block.settings.image | default: false %}
+
+                  {% assign block_copy = block.settings.copy | default: false %}
+
+                  {% assign block_stars = block.settings.stars | default: false %}
+
+                  {% assign block_title = block.settings.title | default: false %}
+
+                  <div class="swiper-slide">
+                    <article class="text-center">
+                      {% if block_image %}
+                        <div class="margin-bottom--up-1">
+                          <div class="box-center" style="max-width: 110px;">
+                            <div class="border-radius-full overflow-hidden">
+                              {%
+                                include 'image',
+                                _object: block_image,
+                                _size: '300x300',
+                                _crop: 'center',
+                                _lazy: true
+                              %}
+                            </div>
+                          </div>
+                        </div>
+                      {% endif %}
+
+                      {% if block_copy %}
+                        <div class="margin-bottom--up-1">
+                          <div class="rte large--font-size--up-2 large--line-height--up-8">
+                            {{ block_copy }}
+                          </div>
+                        </div>
+                      {% endif %}
+
+                      {% if block_stars %}
+                        <div class="margin-bottom--up-1">
+                          <div class="grid--down-7 line-height--none">
+                            {% for i in (1..5) %}
+                              <div class="grid-item">
+                                <div class="
+                                  {% if forloop.index > block_stars %}
+                                    text-color-grey-lighter
+                                  {% else %}
+                                    text-color-green
+                                  {% endif %}
+                                ">
+                                  {% include 'svg-star' %}
+                                </div>
+                              </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                      {% endif %}
+
+                      {% if block_title %}
+                        <h3 class="font-size--down-2 line-height--up-4 large--font-size--inherit large--line-height--inherit font-stack-inherit font-weight-500 text-color-grey-dark margin--none">
+                          {{ block_title }}
+                        </h3>
+                      {% endif %}
+                    </article>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-button-prev" data-ref-previous>
+          <div class="border-grey-lightest flex-bar flex-center" style="width: 45px; height: 45px;">
+            <div class="font-size--down-2 text-color-navy">
+              {% include 'svg-arrow-left' %}
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-button-next" data-ref-next>
+          <div class="border-grey-lightest flex-bar flex-center" style="width: 45px; height: 45px;">
+            <div class="font-size--down-2 text-color-navy">
+              {% include 'svg-arrow-right' %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+  {
+    "name": "Reviews",
+    "presets": [
+      {
+        "category": "Homepage",
+        "name": "Reviews"
+      }
+    ],
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "spacing_top_enable",
+        "label": "Spacing top enable?"
+      },
+      {
+        "type": "checkbox",
+        "id": "spacing_bottom_enable",
+        "label": "Spacing bottom enable?"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "copy",
+        "label": "Copy"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "item",
+        "name": "Item",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "Suggested size: 500x500px."
+          },
+          {
+            "type": "richtext",
+            "id": "copy",
+            "label": "Copy"
+          },
+          {
+            "type": "range",
+            "id": "stars",
+            "min": 1,
+            "max": 5,
+            "step": 1,
+            "default": 1,
+            "label": "Stars"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

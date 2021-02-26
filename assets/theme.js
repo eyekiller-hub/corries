@@ -1,3 +1,5 @@
+import './polyfill-string-replace-all';
+
 import './module-accordion';
 import './module-breakpoint';
 import './module-cart-count';
@@ -15,6 +17,7 @@ import './module-collection-scroll';
 import './module-collection-url';
 import './module-cookies';
 import './module-image-gallery-slider';
+import './module-image-lazy-trigger';
 import './module-input-change-form-submit';
 import './module-input-change-link';
 import './module-mini-cart';

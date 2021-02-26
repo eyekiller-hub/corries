@@ -1,0 +1,167 @@
+{% assign spacing_top_enable = section.settings.spacing_top_enable | default: false %}
+
+{% assign spacing_bottom_enable = section.settings.spacing_bottom_enable | default: false %}
+
+{% assign blocks = section.blocks | default: false %}
+
+{% if blocks %}
+  <section
+    class="
+      {% if spacing_top_enable %}padding-top--up-1{% endif %}
+      {% if spacing_bottom_enable %}padding-bottom--up-1{% endif %}
+    ">
+    <div class="box-color-beige text-center">
+      <div class="padding-top-bottom--up-3 large--padding-top-bottom--up-5">
+        <div class="container-default">
+          <div class="overflow-hidden">
+            <div class="flex--up-3 large--flex--up-6 flex-wrap margin-bottom-negative--up-4">
+              {% for block in blocks %}
+                {% assign block_icon = block.settings.icon | default: false %}
+
+                {% assign block_title = block.settings.title | default: false %}
+
+                {% assign block_copy = block.settings.copy | default: false %}
+
+                <div class="flex-item-auto one-two medium--one-four">
+                  <div class="position-relative height-full padding-bottom--up-4">
+                    {% if block_icon %}
+                      <div class="margin-bottom--0 large--margin-bottom--up-1">
+                        <div class="position-relative" style="
+                          height: 48px;
+                          --large--height: 65px;
+                        ">
+                          <div class="position-absolute position-center">
+                            <div class="text-color-slate" style="
+                              {% if block_icon == 'cow' %}
+                                font-size: 68px;
+                                --large--font-size: 88px;
+                              {% endif %}
+
+                              {% if block_icon == 'badge' %}
+                                font-size: 58px;
+                                --large--font-size: 78px;
+                              {% endif %}
+
+                              {% if block_icon == 'tractor' %}
+                                font-size: 57px;
+                                --large--font-size: 77px;
+                              {% endif %}
+
+                              {% if block_icon == 'clock-24' %}
+                                font-size: 42px;
+                                --large--font-size: 62px;
+                              {% endif %}
+                            ">
+                              {% assign snippet = 'svg-' | append: block_icon %}
+                              {% include snippet %}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    {% endif %}
+
+                    {% if block_title %}
+                      <h3 class="font-size--inherit line-height--inherit large--font-size--up-4 large--line-height--up-10 font-stack-inherit font-weight-700 text-caps-letter-spacing text-color-slate margin-bottom--down-2 large--margin-bottom--down-1">
+                        {{ block_title }}
+                      </h3>
+                    {% endif %}
+
+                    {% if block_copy %}
+                      <div class="rte large--font-size--up-2 large--line-height--up-8">
+                        {{ block_copy }}
+                      </div>
+                    {% endif %}
+
+                    {% if forloop.index == 1 or forloop.index == 2 %}
+                      <div
+                        class="
+                          position-absolute
+                          position-left
+                          position-right
+                          position-top--full
+                          border-top-beige-active
+                          medium--hide
+                        "
+                        style="
+                          margin-top: calc(-1 * (var(--spacing--up-4) / 2));
+                          width: 200%;
+                        "></div>
+                    {% endif %}
+
+                    {% unless forloop.last %}
+                      <div
+                        class="
+                          position-absolute
+                          position-top
+                          position-bottom
+                          position-left--full
+                          border-left-beige-active
+                        "
+                        style="
+                          margin-left: calc(var(--spacing--up-3) / 2);
+                          --large--margin-left: calc(var(--spacing--up-6) / 2);
+                        "></div>
+                    {% endunless %}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Value propositions",
+    "presets": [
+      {
+        "category": "Homepage",
+        "name": "Value propositions"
+      }
+    ],
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "spacing_top_enable",
+        "label": "Spacing top enable?"
+      },
+      {
+        "type": "checkbox",
+        "id": "spacing_bottom_enable",
+        "label": "Spacing bottom enable?"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "item",
+        "name": "Item",
+        "settings": [
+          {
+            "type": "select",
+            "id": "icon",
+            "label": "Icon",
+            "options": [
+              { "value": "cow", "label": "Cow" },
+              { "value": "badge", "label": "Badge" },
+              { "value": "tractor", "label": "Tractor" },
+              { "value": "clock-24", "label": "Clock 24" }
+            ]
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "copy",
+            "label": "Copy"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

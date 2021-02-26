@@ -253,9 +253,16 @@
       <div class="margin-bottom--0">
         <div class="grid text-center">
           <div class="grid-item one-two">
-            <div class="image-container box-ratio-inline" style="padding-bottom: 56.25%;">
-              <img data-src="https://picsum.photos/1600/900" alt="This is an image!" />
-            </div>
+            {%
+              include 'image',
+              _image_url: 'https://placehold.it/1000x1000',
+              _image_alt: 'This is an image!',
+              _box_ratio: '100%',
+              _image_url_medium: 'https://placehold.it/1600x500',
+              _box_ratio_medium: '31.25%',
+              _image_url_large: 'https://placehold.it/1600x900',
+              _box_ratio_large: '56.25%'
+            %}
           </div>
         </div>
       </div>

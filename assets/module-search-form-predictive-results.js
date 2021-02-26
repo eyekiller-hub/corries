@@ -74,7 +74,7 @@ function Self(element, events, options, module) {
   };
 
   function get_results(query) {
-    var url = `/search/suggest.json?q=${query}&resources[type]=product&limit=4`;
+    var url = `/search/suggest.json?q=${query}&resources[type]=product&resources[limit]=4`;
 
     return fetch(url, {
       credentials: 'same-origin',

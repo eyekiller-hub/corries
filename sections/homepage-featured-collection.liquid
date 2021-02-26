@@ -1,0 +1,68 @@
+{% assign spacing_top_enable = section.settings.spacing_top_enable | default: false %}
+
+{% assign spacing_bottom_enable = section.settings.spacing_bottom_enable | default: false %}
+
+{% assign collection = section.settings.collection %}
+{% assign collection = collections[collection] | default: false %}
+
+{% if collection %}
+  <section
+    class="
+      {% if spacing_top_enable %}padding-top--up-1{% endif %}
+      {% if spacing_bottom_enable %}padding-bottom--up-1{% endif %}
+    ">
+    <div class="container-default">
+      {% include 'featured-section-title', _title: collection.title %}
+
+      <div class="overflow-hidden">
+        <div class="flex--0 medium--flex--up-1 large--flex--up-2 flex-wrap margin-bottom-negative--up-2">
+          {% for product in collection.products limit: 6 %}
+            <div class="
+              flex-item-auto padding-bottom--up-2 one-two medium--one-three xlarge--one-five
+
+              {% if forloop.index > 4 %}
+                hide
+                medium--show
+              {% endif %}
+
+              {% if forloop.index > 5 %}
+                xlarge--hide
+              {% endif %}
+            ">
+              {% include 'product-card' %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Featured collection",
+    "presets": [
+      {
+        "category": "Homepage",
+        "name": "Featured collection"
+      }
+    ],
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "spacing_top_enable",
+        "label": "Spacing top enable?"
+      },
+      {
+        "type": "checkbox",
+        "id": "spacing_bottom_enable",
+        "label": "Spacing bottom enable?"
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection"
+      }
+    ]
+  }
+{% endschema %}

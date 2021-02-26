@@ -1,9 +1,12 @@
 import EventEmitter from 'wolfy87-eventemitter';
 import get_element_options from './fn-get-element-options';
 import Events from './object-events';
+import ResponsiveImages from './object-responsive-images';
 
 function Self(element, events, options, module) {
   var class_name = `is-active-offcanvas-${options.id}`;
+
+  var offcanvas_element = document.querySelector(`#off-canvas-${options.id}`);
 
   element.addEventListener('click', (event) => {
     event.preventDefault();
@@ -25,25 +28,29 @@ function Self(element, events, options, module) {
 
   events
     .on('self:active', (id) => {
-      if (id == options.id) {
-        options.scroll = window.pageYOffset;
-      }
+      options.scroll = window.pageYOffset;
 
       document.documentElement.classList.add(class_name);
 
-      if ('scroll_to' in options) {
-        window.scrollTo(0, options.scroll_to);
-      }
+      document.body.style.top = `-${options.scroll}px`;
     })
     .on('self:inactive', (id) => {
       document.documentElement.classList.remove(class_name);
 
-      if ('scroll_to' in options) {
-        if (id == options.id) {
-          window.scrollTo(0, options.scroll);
-        }
+      document.body.style.top = '';
+
+      if (options.scroll) {
+        window.scrollTo(0, options.scroll);
       }
+
+      delete options.scroll;
     });
+
+  if (offcanvas_element) {
+    events.once('self:active', (id) => {
+      ResponsiveImages.load_lazy(offcanvas_element);
+    });
+  }
 };
 
 function Icon(element, events, options, module) {

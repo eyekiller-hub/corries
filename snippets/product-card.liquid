@@ -1,29 +1,50 @@
-{% assign image_lazy = _image_lazy %}
+{% assign current_variant = product.variants[0] %}
 
-{% assign url = product.url | within: collection %}
+<article class="height-full flex-vertical">
+  <div class="margin-bottom--up-1">
+    <a href="{{ product.url }}">
+      {%
+        include 'image',
+        _object: product.images[0],
+        _size: '600x'
+      %}
+    </a>
+  </div>
 
-{% assign image = product.images[0] %}
-{% assign image_url = image | img_url: '500x500', crop: 'center' %}
+  <h3 class="font-size--down-2 line-height--up-4 large--font-size--inherit large--line-height--inherit font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark margin-bottom--down-3">
+    <a href="{{ product.url }}">
+      {{ product.title }}
+    </a>
+  </h3>
 
-{% assign image_alt = image.alt | escape %}
+  <div class="margin-top--auto">
+    <div>
+      <span class="{% if product.compare_at_price_min > product.price_min %}text-color-red{% endif %}">
+        {% if product.price_varies %}
+          {{ 'products.product.from' | t }}
+        {% endif %}
 
-{% assign image_attributes = ' ' %}
+        {{ product.price_min | money }}
+      </span>
 
-{% assign title = product.title %}
+      {% if product.compare_at_price_min > product.price_min %}
+        <s class="text-color-grey-light">
+          {{ product.compare_at_price_min | money }}
+        </s>
+      {% endif %}
+    </div>
 
-{% assign price = product.price | money %}
-
-{% if image_lazy %}
-  {% assign image_attributes = 'data-lazy' %}
-{% endif %}
-
-{%
-  include 'product-card-template',
-  _url: url,
-  _image: image,
-  _image_url: image_url,
-  _image_alt: image_alt,
-  _image_attributes: image_attributes,
-  _title: title,
-  _price: price
-%}
+    <div class="margin-top--0">
+      <div data-module-product-form='{
+        "product": {{ product | json | escape }},
+        "variant_id": {{ current_variant.id | json | escape }},
+        "quantity": 1
+      }'>
+        {% form 'product', product %}
+          {% include 'product-form-id' %}
+          {% include 'product-form-submit' %}
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</article>

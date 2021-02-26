@@ -10,55 +10,82 @@
 {% assign size_large = _size_large %}
 {% assign crop_large = _crop_large %}
 {% assign box_ratio_large = _box_ratio_large %}
+{% assign lazy = _lazy %}
+{% assign image_url = _image_url %}
+{% assign image_url_medium = _image_url_medium %}
+{% assign image_url_large = _image_url_large %}
+{% assign image_alt = _image_alt %}
 
-{% assign object = object | default: settings.misc_images_fallback_image %}
+{% if object %}
+  {% include 'attribute-image-box-ratio', image: object %}
 
-{% include 'attribute-image-box-ratio', image: object %}
+  {% assign box_ratio = box_ratio | default: image_box_ratio %}
 
-{% assign box_ratio = box_ratio | default: image_box_ratio %}
+  {% assign image_url = object | img_url: size, crop: crop %}
 
-{% assign image_url = object | img_url: size, crop: crop %}
+  {% assign image_alt = object.alt | escape %}
 
-{% assign image_alt = object.alt | escape %}
+  {% if object_medium %}
+    {% assign image_url_medium = object_medium | img_url: size_medium, crop: crop_medium %}
 
-{% if object_medium %}
-  {% assign image_medium_url = object_medium | img_url: size_medium, crop: crop_medium %}
+    {% include 'attribute-image-box-ratio', image: object_medium %}
 
-  {% include 'attribute-image-box-ratio', image: object_medium %}
+    {% assign box_ratio_medium = box_ratio_medium | default: image_box_ratio %}
+  {% endif %}
 
-  {% assign box_ratio_medium = box_ratio_medium | default: image_box_ratio %}
+  {% if object_large %}
+    {% assign image_url_large = object_large | img_url: size_large, crop: crop_large %}
+
+    {% include 'attribute-image-box-ratio', image: object_large %}
+
+    {% assign box_ratio_large = box_ratio_large | default: image_box_ratio %}
+  {% endif %}
+{% else %}
+  {% assign fallback_image_image_url = settings.misc_images_fallback_image | img_url: '1000x' %}
+
+  {% assign image_url = image_url | default: fallback_image_image_url %}
+
+  {% assign image_alt = image_alt | escape %}
 {% endif %}
 
-{% if object_large %}
-  {% assign image_large_url = object_large | img_url: size_large, crop: crop_large %}
+{% unless object and image_url %}
+  {% assign object = settings.misc_images_fallback_image %}
 
-  {% include 'attribute-image-box-ratio', image: object_large %}
+  {% include 'attribute-image-box-ratio', image: object %}
 
-  {% assign box_ratio_large = box_ratio_large | default: image_box_ratio %}
-{% endif %}
+  {% assign box_ratio = image_box_ratio %}
+
+  {% assign image_url = object | img_url: size, crop: crop %}
+
+  {% assign image_alt = object.alt | escape %}
+{% endunless %}
 
 <div
   class="image-container box-ratio-inline"
   style="
     padding-bottom: {{ box_ratio }};
 
-    {% if object_medium %}
+    {% if box_ratio_medium %}
       --medium--padding-bottom: {{ box_ratio_medium }};
     {% endif %}
 
-    {% if object_large %}
+    {% if box_ratio_large %}
       --large--padding-bottom: {{ box_ratio_large }};
     {% endif %}
   ">
   <img
     data-src="{{ image_url }}"
 
-    {% if object_medium %}
-      data-src-medium="{{ image_medium_url }}"
+    {% if image_url_medium %}
+      data-src-medium="{{ image_url_medium }}"
     {% endif %}
 
-    {% if object_large %}
-      data-src-large="{{ image_large_url }}"
+    {% if image_url_large %}
+      data-src-large="{{ image_url_large }}"
+    {% endif %}
+
+    {% if lazy %}
+      data-lazy
     {% endif %}
 
     alt="{{ image_alt }}" />

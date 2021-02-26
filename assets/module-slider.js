@@ -91,7 +91,9 @@ function Container(element, events, options, module) {
     Object.keys(css_variable_map).forEach((css_variable_map_key) => {
       var css_variable_map_item = css_variable_map[css_variable_map_key];
 
-      element_swiper_options_string = element_swiper_options_string.replaceAll(css_variable_map_key, css_variable_map_item);
+      element_swiper_options_string = element_swiper_options_string
+        .split(css_variable_map_key)
+        .join(css_variable_map_item);
     });
 
     element_swiper_options = JSON.parse(element_swiper_options_string);

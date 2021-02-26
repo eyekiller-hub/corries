@@ -1904,7 +1904,10 @@ $buttons: (primary, secondary);
   $properties: (
     width,
     max-width,
-    padding-bottom
+    padding-bottom,
+    font-size,
+    margin-left,
+    height
   );
 
   @each $property in $properties {
@@ -2515,18 +2518,6 @@ $buttons: (primary, secondary);
   }
 }
 
-@mixin slider-button() {
-  .slider-button {
-    transition: opacity var(--transition-easing);
-    pointer-events: auto;
-
-    &.is-disabled {
-      opacity: 0;
-      pointer-events: none;
-    }
-  }
-}
-
 @mixin mini-cart() {
   html.is-active-offcanvas-header-mini-cart {
     &,
@@ -2597,6 +2588,29 @@ $buttons: (primary, secondary);
   }
 }
 
+@mixin swiper() {
+  .swiper-button-prev,
+  .swiper-button-next {
+    opacity: 1;
+    width: auto;
+    height: auto;
+    margin-top: 0;
+    transform: translateY(-50%);
+    background: none;
+    outline: 0;
+  }
+
+  .swiper-button-prev {
+    left: 0;
+  }
+
+  .swiper-button-next {
+    right: 0;
+  }
+
+  .swiper-button-disabled {}
+}
+
 /*! purgecss start ignore */
 @include responsive-images();
 @include shopify-challenge-page();
@@ -2605,7 +2619,7 @@ $buttons: (primary, secondary);
 @include header-offcanvas-mobile-menu();
 @include header-offcanvas-mobile-search();
 @include footer-logo();
-@include slider-button();
 @include mini-cart();
 @include search-form-element();
+@include swiper();
 /*! purgecss end ignore */

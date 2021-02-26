@@ -93,7 +93,12 @@
                       <div class="position-relative height-full" style="max-width: 265px;">
                         {% if block_megamenu_image %}
                           <div class="margin-bottom--0">
-                            {% include 'image', _object: block_megamenu_image, _size: '600x' %}
+                            {%
+                              include 'image',
+                              _object: block_megamenu_image,
+                              _size: '600x',
+                              _lazy: true
+                            %}
                           </div>
                         {% endif %}
 

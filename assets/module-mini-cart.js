@@ -22,9 +22,9 @@ function Self(element, events, options, module) {
 
         element.parentNode.replaceChild(new_element, element);
 
-        ResponsiveImages.load();
-
         element = new_element;
+
+        ResponsiveImages.load_lazy(element);
 
         unset_loading();
 
