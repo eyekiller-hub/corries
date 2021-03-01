@@ -1,0 +1,192 @@
+{% assign spacing_top_enable = section.settings.spacing_top_enable | default: false %}
+
+{% assign spacing_bottom_enable = section.settings.spacing_bottom_enable | default: false %}
+
+{% assign background_image = section.settings.background_image | default: false %}
+
+{% assign image_1 = section.settings.image_1 | default: false %}
+
+{% assign image_2 = section.settings.image_2 | default: false %}
+
+{% assign title = section.settings.title | default: false %}
+
+{% assign copy = section.settings.copy | default: false %}
+
+{% assign url_1 = section.settings.url_1 | default: false %}
+
+{% assign call_to_action_1 = section.settings.call_to_action_1 | default: false %}
+
+{% assign url_2 = section.settings.url_2 | default: false %}
+
+{% assign call_to_action_2 = section.settings.call_to_action_2 | default: false %}
+
+<section
+  class="
+    {% if spacing_top_enable %}padding-top--up-1{% endif %}
+    {% if spacing_bottom_enable %}padding-bottom--up-1{% endif %}
+  ">
+  <div class="overflow-hidden">
+    <div class="position-relative">
+      {% if background_image %}
+        <div>
+          {%
+            include 'image',
+            _object: background_image,
+            _size: '1000x',
+            _object_large: background_image,
+            _size_large: '2000x',
+            _box_ratio: false,
+            _box_ratio_large: false,
+            _class: 'position-absolute position-full one height-full object-full'
+          %}
+        </div>
+      {% endif %}
+
+      <div class="position-relative">
+        <div class="padding-top-bottom--up-4 large--padding-top-bottom--up-7">
+          <div class="container-default">
+            <div class="large--margin-left-negative--up-4 large--margin-right-negative--up-4 xlarge--margin--none">
+              <div class="flex-bar--up-1 xlarge--flex-bar--up-5">
+                {% if image_1 %}
+                  <div class="flex-item-auto three-ten hide medium--show">
+                    {%
+                      include 'image',
+                      _object: '',
+                      _object_medium: image_1,
+                      _size_medium: '1000x'
+                    %}
+                  </div>
+                {% endif %}
+
+                <div class="flex-item">
+                  <div class="text-center">
+                    {% if title %}
+                      <h2 class="
+                        font-size--up-8 line-height--up-10
+                        large--font-size--up-12 large--line-height--up-14
+                        font-weight-700 text-color-light
+                        margin-bottom--up-1
+                      ">
+                        {{ title }}
+                      </h2>
+                    {% endif %}
+
+                    {% if copy %}
+                      <div class="rte font-size--up-2 line-height--up-8 text-color-light">
+                        {{ copy }}
+                      </div>
+                    {% endif %}
+
+                    {% if url_1 or call_to_action_1 or url_2 or call_to_action_2 %}
+                      <div class="margin-top--up-3">
+                        <div class="grid--down-1">
+                          {% if url_1 and call_to_action_1 %}
+                            <div class="grid-item">
+                              <a class="button-primary large--font-size--0 large--line-height--up-10" href="{{ url_1 }}">
+                                {{ call_to_action_1 }}
+                              </a>
+                            </div>
+                          {% endif %}
+
+                          {% if url_2 and call_to_action_2 %}
+                            <div class="grid-item">
+                              <a class="button-primary large--font-size--0 large--line-height--up-10" href="{{ url_2 }}">
+                                {{ call_to_action_2 }}
+                              </a>
+                            </div>
+                          {% endif %}
+                        </div>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+
+                {% if image_2 %}
+                  <div class="flex-item-auto three-ten hide medium--show">
+                    {%
+                      include 'image',
+                      _object: image_2,
+                      _size: '1000x'
+                    %}
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "About",
+    "presets": [
+      {
+        "category": "Homepage",
+        "name": "About"
+      }
+    ],
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "spacing_top_enable",
+        "label": "Spacing top enable?"
+      },
+      {
+        "type": "checkbox",
+        "id": "spacing_bottom_enable",
+        "label": "Spacing bottom enable?"
+      },
+      {
+        "type": "image_picker",
+        "id": "background_image",
+        "label": "Background Image",
+        "info": "Suggested size: 2000x590px."
+      },
+      {
+        "type": "image_picker",
+        "id": "image_1",
+        "label": "Image #1",
+        "info": "Suggested size: 1000x940px."
+      },
+      {
+        "type": "image_picker",
+        "id": "image_2",
+        "label": "Image #2",
+        "info": "Suggested size: 1000x940px."
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "copy",
+        "label": "Copy"
+      },
+      {
+        "type": "url",
+        "id": "url_1",
+        "label": "URL #1"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action_1",
+        "label": "Call to action #1"
+      },
+      {
+        "type": "url",
+        "id": "url_2",
+        "label": "URL #2"
+      },
+      {
+        "type": "text",
+        "id": "call_to_action_2",
+        "label": "Call to action #2"
+      }
+    ]
+  }
+{% endschema %}

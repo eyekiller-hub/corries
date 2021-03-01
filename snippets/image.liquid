@@ -15,11 +15,17 @@
 {% assign image_url_medium = _image_url_medium %}
 {% assign image_url_large = _image_url_large %}
 {% assign image_alt = _image_alt %}
+{% assign image_alt = _image_alt %}
+{% assign class = _class %}
 
 {% if object %}
   {% include 'attribute-image-box-ratio', image: object %}
 
-  {% assign box_ratio = box_ratio | default: image_box_ratio %}
+  {% assign box_ratio = box_ratio %}
+
+  {% if box_ratio == nil %}
+    {% assign box_ratio = image_box_ratio %}
+  {% endif %}
 
   {% assign image_url = object | img_url: size, crop: crop %}
 
@@ -30,7 +36,11 @@
 
     {% include 'attribute-image-box-ratio', image: object_medium %}
 
-    {% assign box_ratio_medium = box_ratio_medium | default: image_box_ratio %}
+    {% assign box_ratio_medium = box_ratio_medium %}
+
+    {% if box_ratio_medium == nil %}
+      {% assign box_ratio_medium = image_box_ratio %}
+    {% endif %}
   {% endif %}
 
   {% if object_large %}
@@ -38,7 +48,11 @@
 
     {% include 'attribute-image-box-ratio', image: object_large %}
 
-    {% assign box_ratio_large = box_ratio_large | default: image_box_ratio %}
+    {% assign box_ratio_large = box_ratio_large %}
+
+    {% if box_ratio_large == nil %}
+      {% assign box_ratio_large = image_box_ratio %}
+    {% endif %}
   {% endif %}
 {% else %}
   {% assign fallback_image_image_url = settings.misc_images_fallback_image | img_url: '1000x' %}
@@ -48,7 +62,7 @@
   {% assign image_alt = image_alt | escape %}
 {% endif %}
 
-{% unless object and image_url %}
+{% unless object or image_url %}
   {% assign object = settings.misc_images_fallback_image %}
 
   {% include 'attribute-image-box-ratio', image: object %}
@@ -61,9 +75,16 @@
 {% endunless %}
 
 <div
-  class="image-container box-ratio-inline"
+  class="
+    image-container
+    {% if box_ratio or box_ratio_medium or box_ratio_large %}
+      box-ratio-inline
+    {% endif %}
+  "
   style="
-    padding-bottom: {{ box_ratio }};
+    {% if box_ratio %}
+      padding-bottom: {{ box_ratio }};
+    {% endif %}
 
     {% if box_ratio_medium %}
       --medium--padding-bottom: {{ box_ratio_medium }};
@@ -74,6 +95,8 @@
     {% endif %}
   ">
   <img
+    class="{{ class }}"
+
     data-src="{{ image_url }}"
 
     {% if image_url_medium %}
