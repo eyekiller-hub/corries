@@ -1,0 +1,139 @@
+{% assign spacing_top_enable = section.settings.spacing_top_enable | default: false %}
+
+{% assign spacing_bottom_enable = section.settings.spacing_bottom_enable | default: false %}
+
+{% assign pre_title = section.settings.pre_title | default: false %}
+
+{% assign title = section.settings.title | default: false %}
+
+{% assign copy = section.settings.copy | default: false %}
+
+{% assign small_copy = section.settings.small_copy | default: false %}
+
+<section
+  class="
+    {% if spacing_top_enable %}padding-top--up-1{% endif %}
+    {% if spacing_bottom_enable %}padding-bottom--up-1{% endif %}
+  ">
+  <div class="container-default">
+    <div class="box-color-navy">
+      <div class="padding--down-2">
+        <div class="border-grey-light">
+          <div class="padding-top-bottom--up-2 medium--padding-top-bottom--up-4 large--padding-top-bottom--up-5">
+            <div class="text-center">
+              {% if pre_title or title %}
+                <h2 class="margin-bottom--up-1">
+                  {% if pre_title %}
+                    <span class="
+                      block
+                      font-size--up-4 line-height--up-10
+                      medium--font-size--up-5 medium--line-height--up-10
+                      large--font-size--up-8 large--line-height--up-10
+                      text-color-light
+                      margin-bottom--down-5
+                    ">
+                      {{ pre_title }}
+                    </span>
+                  {% endif %}
+
+                  {% if title %}
+                    <span class="
+                      block
+                      font-size--up-10 line-height--up-13
+                      large--font-size--up-14 large--line-height--up-18
+                      text-caps-letter-spacing
+                      font-weight-700
+                      text-color-light
+                    ">
+                      {{ title }}
+                    </span>
+                  {% endif %}
+                </h2>
+              {% endif %}
+
+              <div class="margin-bottom--up-2">
+                <div class="box-center" style="max-width: 530px;">
+                  {%
+                    include 'newsletter-form',
+                    _input_class: 'medium--line-height--up-10 border-text-input-background',
+                    _submit_class: 'medium--padding-left-right--up-2 medium--line-height--up-10',
+                    _stack_xsmall: true
+                  %}
+                </div>
+              </div>
+
+              {% if copy %}
+                <div class="
+                  rte
+                  font-size--down-2 line-height--up-4
+                  large--font-size--inherit large--line-height--inherit
+                  text-color-grey-light
+                  child-a-text-color-light
+                ">
+                  {{ copy }}
+                </div>
+              {% endif %}
+
+              {% if small_copy %}
+                <div class="margin-top--up-2 large--margin-top--up-3">
+                  <div class="
+                    rte
+                    font-size--down-4 line-height--up-2
+                    large--font-size--down-2 large--line-height--up-4
+                    text-color-light
+                  ">
+                    {{ small_copy }}
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Newsletter",
+    "presets": [
+      {
+        "category": "Homepage",
+        "name": "Newsletter"
+      }
+    ],
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "spacing_top_enable",
+        "label": "Spacing top enable?"
+      },
+      {
+        "type": "checkbox",
+        "id": "spacing_bottom_enable",
+        "label": "Spacing bottom enable?"
+      },
+      {
+        "type": "text",
+        "id": "pre_title",
+        "label": "Pre-title"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "copy",
+        "label": "Copy"
+      },
+      {
+        "type": "richtext",
+        "id": "small_copy",
+        "label": "Small copy"
+      }
+    ]
+  }
+{% endschema %}

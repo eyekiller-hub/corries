@@ -1421,6 +1421,9 @@ $buttons: (primary, secondary);
   .#{$breakpoint}block {
     display: block;
   }
+  .#{$breakpoint}block\! {
+    display: block !important;
+  }
   .#{$breakpoint}inline {
     display: inline;
   }

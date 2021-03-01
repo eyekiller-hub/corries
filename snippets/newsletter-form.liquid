@@ -1,3 +1,7 @@
+{% assign input_class = _input_class %}
+{% assign submit_class = _submit_class %}
+{% assign stack_xsmall = _stack_xsmall %}
+
 {% form 'customer' %}
   <div class="rte rte--form-errors">
     {{ form.errors | default_errors }}
@@ -10,21 +14,36 @@
   {% else %}
     <input type="hidden" name="contact[tags]" value="newsletter" />
 
-    <div class="flex">
-      <div class="flex-item">
-        <input
-          class="input border-radius--none border-right--none"
-          type="email"
-          name="contact[email]"
-          value="{{ customer.email }}"
-          placeholder="{{ 'newsletter.email_placeholder' | t }}"
-          required />
-      </div>
+    <div class="overflow-hidden">
+      <div class="
+        flex margin-bottom-negative--0
+        {% if _stack_xsmall %}
+          xsmall--block!
+        {% endif %}
+      ">
+        <div class="flex-item padding-bottom--0">
+          <input
+            class="input border-radius--none border-right--none text-left {{ input_class }}"
+            type="email"
+            name="contact[email]"
+            value="{{ customer.email }}"
+            placeholder="{{ 'newsletter.email_placeholder' | t }}"
+            required />
+        </div>
 
-      <div class="flex-item-auto">
-        <button class="button-primary padding-left-right--0" type="submit" name="commit">
-          {{ 'newsletter.submit' | t }}
-        </button>
+        <div class="flex-item-auto padding-bottom--0">
+          <button
+            class="
+              button-primary padding-left-right--0
+              {{ submit_class }}
+              {% if _stack_xsmall %}
+                xsmall--one
+              {% endif %}
+            "
+            type="submit" name="commit">
+            {{ 'newsletter.submit' | t }}
+          </button>
+        </div>
       </div>
     </div>
   {% endif %}
