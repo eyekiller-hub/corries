@@ -158,6 +158,16 @@ $spacing-ratio: 1.333; // Perfect fourth
   --container-default-width: 1410px;
   --container-narrow-width: 1000px;
 
+  // Page spacing
+
+  --page-spacing-top: var(--spacing--up-1);
+  --page-spacing-bottom: var(--spacing--up-3);
+  --page-spacing-bottom--large: var(--spacing--up-6);
+
+  // Homepage section
+
+  --homepage-section-spacing: var(--spacing--up-2);
+
   // Input
 
   --input-padding-y: var(--spacing--down-2);
@@ -2614,6 +2624,45 @@ $buttons: (primary, secondary);
   .swiper-button-disabled {}
 }
 
+@mixin homepage-section() {
+  .homepage-section {
+    .shopify-section:first-child > & {
+      padding-top: 0;
+
+      @include media-query(large) {
+        padding-top: var(--page-spacing-top);
+      }
+    }
+
+    .shopify-section:last-child > & {
+      padding-bottom: var(--page-spacing-bottom);
+
+      @include media-query(large) {
+        padding-bottom: var(--page-spacing-bottom--large);
+      }
+    }
+  }
+
+  .homepage-section--spacing-top {
+    padding-top: var(--homepage-section-spacing);
+  }
+
+  .homepage-section--spacing-bottom {
+    padding-bottom: var(--homepage-section-spacing);
+  }
+}
+
+@mixin page-spacing() {
+  .page-spacing {
+    padding-bottom: var(--page-spacing-bottom);
+
+    @include media-query(large) {
+      padding-top: var(--page-spacing-top);
+      padding-bottom: var(--page-spacing-bottom--large);
+    }
+  }
+}
+
 /*! purgecss start ignore */
 @include responsive-images();
 @include shopify-challenge-page();
@@ -2625,4 +2674,6 @@ $buttons: (primary, secondary);
 @include mini-cart();
 @include search-form-element();
 @include swiper();
+@include homepage-section();
+@include page-spacing();
 /*! purgecss end ignore */

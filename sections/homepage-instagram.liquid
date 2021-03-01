@@ -1,0 +1,101 @@
+{% assign spacing_top_enable = section.settings.spacing_top_enable | default: false %}
+
+{% assign spacing_bottom_enable = section.settings.spacing_bottom_enable | default: false %}
+
+{% assign title = section.settings.title | default: false %}
+
+{% capture intafeed_template %}
+  <div class="overflow-hidden">
+    <div class="grid--down-1 large--grid--up-2 margin-bottom-negative--down-1 large--margin-bottom-negative--up-2">
+      {% raw %}{{ items }}{% endraw %}
+    </div>
+  </div>
+{% endcapture %}
+
+{% capture intafeed_item_template %}
+  <div class="grid-item padding-bottom--down-1 large--padding-bottom--up-2 one-two medium--one-four">
+    <a href="{% raw %}{{ url }}{% endraw %}" target="_blank">
+      {%
+        include 'image',
+        _image_url: '{{ image_url }}',
+        _image_alt: '{{ image_alt }',
+        _box_ratio: '100%'
+      %}
+    </a>
+  </div>
+{% endcapture %}
+
+<section
+  class="
+    homepage-section
+    {% if spacing_top_enable %}homepage-section--spacing-top{% endif %}
+    {% if spacing_bottom_enable %}homepage-section--spacing-bottom{% endif %}
+  ">
+  <div class="container-default">
+    {% if title %}
+      {% include 'featured-section-title', _title: title %}
+    {% endif %}
+
+    <div class="margin-bottom--up-2">
+      <div class="text-center">
+        {%
+          include 'social-links',
+          _minimal: true
+        %}
+      </div>
+    </div>
+
+    <div data-module-insta-feed='{
+      "template": {{ intafeed_template | json | escape }},
+      "item_template": {{ intafeed_item_template | json | escape }}
+    }'>
+      <div id="insta-feed"></div>
+    </div>
+
+    <div class="overflow-hidden">
+      <div class="grid--down-1 large--grid--up-2 margin-bottom-negative--down-1 large--margin-bottom-negative--up-2">
+        {% for i in (1..4) %}
+          <div class="grid-item padding-bottom--down-1 large--padding-bottom--up-2 one-two medium--one-four">
+            <a href="https://www.instagram.com/corriesonthefarm/" target="_blank">
+              {%
+                include 'image',
+                _image_url: '//placehold.it/1000',
+                _image_alt: 'Instagram',
+                _box_ratio: '100%'
+              %}
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Instagram",
+    "presets": [
+      {
+        "category": "Homepage",
+        "name": "Instagram"
+      }
+    ],
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "spacing_top_enable",
+        "label": "Spacing top enable?"
+      },
+      {
+        "type": "checkbox",
+        "id": "spacing_bottom_enable",
+        "label": "Spacing bottom enable?"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }
+    ]
+  }
+{% endschema %}

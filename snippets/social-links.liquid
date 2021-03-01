@@ -1,6 +1,15 @@
+{% assign minimal = _minimal %}
+
 {% assign social_networks = 'facebook, twitter, youtube, instagram, pinterest, tumblr, vimeo, linkedin, email' | split: ', ' %}
 
-<ul class="grid-bar--down-2 margin-bottom--none">
+<ul class="
+  {% if minimal %}
+    grid-bar--up-1
+  {% else %}
+    grid-bar--down-2
+  {% endif %}
+  margin-bottom--none
+">
   {% for social_network in social_networks %}
     {% assign social_network_link_setting = 'social_links_' | append: social_network %}
     {% assign social_network_link_setting = settings[social_network_link_setting] | default: false %}
@@ -11,10 +20,17 @@
 
     <li class="grid-item">
       <a href="{{ social_network_link_setting }}" target="_blank">
-        <div class="font-size--up-14 text-color-navy">
-          {% assign snippet = 'svg-social-' | append: social_network %}
-          {% include snippet %}
-        </div>
+        {% if minimal %}
+          <div class="font-size--up-4 text-color-green hover-text-color-green-active">
+            {% assign snippet = 'svg-social-' | append: social_network | append: '-minimal' %}
+            {% include snippet %}
+          </div>
+        {% else %}
+          <div class="font-size--up-14 text-color-navy">
+            {% assign snippet = 'svg-social-' | append: social_network %}
+            {% include snippet %}
+          </div>
+        {% endif %}
       </a>
     </li>
   {% endfor %}

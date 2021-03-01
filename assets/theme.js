@@ -20,6 +20,7 @@ import './module-image-gallery-slider';
 import './module-image-lazy-trigger';
 import './module-input-change-form-submit';
 import './module-input-change-link';
+import './module-insta-feed';
 import './module-mini-cart';
 import './module-offcanvas-trigger';
 import './module-product-form';
