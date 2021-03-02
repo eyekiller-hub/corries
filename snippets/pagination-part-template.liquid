@@ -11,10 +11,15 @@
 
 {% assign part_attributes = part_attributes | default: '{{ part_attributes }}' %}
 
-<li class="grid-item padding-bottom--down-2">
-  <a class="block border-radius-full flex-bar flex-center {{ part_class_name }}" style="width: 30px; height: 30px;" href="{{ part_url }}" data-ref-part-link {{ part_attributes }}>
-    <div class="font-size--down-2 line-height--down-4">
-      {{ part_title }}
+<li class="grid-item padding-bottom--down-3">
+  <a class="block {{ part_class_name }}" href="{{ part_url }}" data-ref-part-link {{ part_attributes }}>
+    <div class="padding-top-bottom--0 padding-left-right--up-1">
+      <div class="
+        font-size--down-2 line-height--down-4
+        font-weight-500 text-caps-letter-spacing
+      ">
+        {{ part_title }}
+      </div>
     </div>
   </a>
 </li>

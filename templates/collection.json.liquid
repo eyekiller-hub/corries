@@ -7,14 +7,22 @@
         {%- for product in collection.products -%}
           {
             "featured_image": {
-              "src": {{ product.featured_image | img_url: '500x500', crop: 'center' | json }},
-              "alt": {{ product.featured_image.alt | json }}
+              "src": {{ product.featured_image | img_url: '600x' | json }},
+              "alt": {{ product.featured_image.alt | json }},
+              "width": {{ product.featured_image.width | default: 600 | json }},
+              "height": {{ product.featured_image.height | default: 600 | json }}
             },
             "handle": {{ product.handle | json }},
             "price": {{ product.price | json }},
+            "compare_at_price_min": {{ product.compare_at_price_min | json }},
+            "price_varies": {{ product.price_varies | json }},
+            "price_min": {{ product.price_min | json }},
             "tags": {{ product.tags | json }},
             "title": {{ product.title | json }},
-            "url": {{ product.url | json }}
+            "url": {{ product.url | json }},
+            "first_available_variant": {{ product.first_available_variant | json }},
+            "id": {{ product.id | json }},
+            "variants": {{ product.variants | json }}
           }{%- unless forloop.last -%},{%- endunless -%}
         {%- endfor -%}
       ]

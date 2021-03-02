@@ -29,13 +29,15 @@
                         </li>
 
                         <li>
-                          <div class="container-padding padding-top-bottom--down-1 font-size--down-2 line-height--up-7 font-weight-500 text-caps-letter-spacing box-color-slate text-color-light">
-                            <div class="flex-bar--down-1">
-                              <div class="flex-item">
-                                {{ link.title }}
+                          <a href="{{ link.url }}">
+                            <div class="container-padding padding-top-bottom--down-1 font-size--down-2 line-height--up-7 font-weight-500 text-caps-letter-spacing box-color-slate text-color-light">
+                              <div class="flex-bar--down-1">
+                                <div class="flex-item">
+                                  {{ link.title }}
+                                </div>
                               </div>
                             </div>
-                          </div>
+                          </a>
                         </li>
 
                         {% for link_link in link.links %}

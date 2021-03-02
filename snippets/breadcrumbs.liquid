@@ -1,0 +1,47 @@
+{% assign one_url = routes.root_url %}
+
+{% assign one_title = 'breadcrumbs.home' | t %}
+
+{% assign two_url = false %}
+
+{% assign two_title = false %}
+
+{% if
+  template.name == 'page' or
+  template.name == 'collection' or
+  template.name == 'product' or
+  template.name == 'blog' or
+  template.name == 'article'
+%}
+  {% assign two_url = request.path %}
+
+  {% assign two_title = page_title %}
+{% endif %}
+
+<nav class="hide large--show">
+  <ul class="grid-bar--down-2 margin-bottom--up-1">
+    <li class="grid-item">
+      <a href="{{ one_url }}">
+        <div class="font-size--down-2 line-height--up-4">
+          {{ one_title }}
+        </div>
+      </a>
+    </li>
+
+    {% if two_url and two_title %}
+      <li class="grid-item">
+        <div class="font-size--down-12">
+          {% include 'svg-arrow-right' %}
+        </div>
+      </li>
+
+      <li class="grid-item">
+        <a href="{{ two_url }}">
+          <div class="font-size--down-2 line-height--up-4 text-color-grey-dark text-underline">
+            {{ two_title }}
+          </div>
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+</nav>

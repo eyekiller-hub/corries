@@ -61,10 +61,17 @@ function ProductSubmit(element, options) {
   });
 };
 
-var elements = document.querySelectorAll("[data-module-product-submit]");
+init();
 
-elements.forEach((element) => {
-  var options = get_element_options(element, "data-module-product-submit");
+Events.on('collection-body--or:products:render:success', init);
+Events.on('collection-body--and:products:render:success', init);
 
-  ProductSubmit(element, options);
-});
+function init() {
+  var elements = document.querySelectorAll("[data-module-product-submit]");
+
+  elements.forEach((element) => {
+    var options = get_element_options(element, "data-module-product-submit");
+
+    ProductSubmit(element, options);
+  });
+};

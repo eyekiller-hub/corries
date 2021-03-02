@@ -1,7 +1,149 @@
+{% assign menu = collection.metafields.menu.menu %}
+{% assign menu = menus[menu] | default: false %}
+
+{% assign filters_enable = section.settings.filters_enable | default: false %}
+
+{% assign filters_logic = section.settings.filters_logic | default: false %}
+
+{% assign products_limit = section.settings.products_limit | default: false %}
+
+{% assign pagination_type = section.settings.pagination_type | default: false %}
+
+{% assign empty_body = section.settings.empty_body | default: false %}
+
+{% capture product_card_grid_item_class_name_template %}
+  {% include 'product-card-grid-item-class-name-template' %}
+{% endcapture %}
+
+{% capture product_card_template %}
+  {% include 'product-card-template' %}
+{% endcapture %}
+
+{% capture empty_template %}
+  {% include 'collection-empty-template' %}
+{% endcapture %}
+
+{% capture tag_filters_json %}
+  {% include 'tag-filters-products-json' %}
+{% endcapture %}
+
+{% if filters_enable %}
+  {% assign filters_enable = false %}
+
+  {% assign break = false %}
+
+  {% for tag in collection.all_tags %}
+    {% assign tag_handle = tag | handle %}
+
+    {% for link in linklists['tag-filters-products'].links %}
+      {% for link_link in link.links %}
+        {% if
+          link.title == tag or
+          link.handle == tag_handle or
+          link_link.title == tag or
+          link_link.handle == tag_handle
+        %}
+          {% assign filters_enable = true %}
+          {% assign break = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+
+      {% if break %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+    {% if break %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if menu %}
+  {% assign filters_enable = false %}
+{% endif %}
+
+{% capture attibutes %}
+  {% if filters_enable %}
+    data-module-collection-body--{{ filters_logic }}='{
+      "collection": {
+        "handle": {{ collection.handle | json | escape }},
+        "products_count": {{ collection.products_count | json | escape }}
+      },
+      "money_format": {{ shop.money_format | json | escape }},
+      "limit": {{ products_limit | json | escape }},
+      "product_card_grid_item_class_name_template": {{ product_card_grid_item_class_name_template | json | escape }},
+      "product_card_template": {{ product_card_template | json | escape }},
+      "empty_template": {{ empty_template | json | escape }},
+      "tag_filters": {{ tag_filters_json | escape }},
+      "pagination_type": {{ pagination_type | json | escape }}
+    }'
+  {% endif %}
+{% endcapture %}
+
+{% assign image_lazy = false %}
+
+{% if filters_enable %}
+  {% assign image_lazy = true %}
+{% endif %}
+
+{% paginate collection.products by products_limit %}
+  <div {{ attibutes }}>
+    <div class="page-spacing">
+      <div class="container-default">
+        {% include 'breadcrumbs' %}
+
+        <div class="grid--up-3 position-relative">
+          <div class="grid-item one large--one-five hide! large--show-inline-block!"></div>
+
+          <div class="grid-item one large--four-five">
+            {% include 'collection-header' %}
+            {% include 'collection-toolbar' %}
+
+            <div class="margin-top--up-1">
+              <div style="{% if collection.products == empty %}display: none;{% endif %}" data-ref-products-wrap>
+                <div class="overflow-hidden">
+                  <div class="flex--0 medium--flex--up-1 large--flex--up-2 flex-wrap margin-bottom-negative--up-2" data-ref-products>
+                    {% for product in collection.products %}
+                      <div class="{{ product_card_grid_item_class_name_template }}">
+                        {% include 'product-card', _image_lazy: image_lazy %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+
+              {% include 'collection-empty' %}
+              {% include 'collection-pagination' %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endpaginate %}
+
 {% schema %}
   {
     "name": "Collection body",
     "settings": [
+      {
+        "type": "header",
+        "content": "Image"
+      },
+      {
+        "type": "paragraph",
+        "content": "This is managed on a per-collection basis via Collection -> Image. Suggested size: 2000x640px."
+      },
+      {
+        "type": "header",
+        "content": "Menu"
+      },
+      {
+        "type": "paragraph",
+        "content": "You can optionally define a menu on a per-collection basis via Collection -> More actions -> Custom fields -> Menu. This will display instead of the filters if defined."
+      },
       {
         "type": "header",
         "content": "Filters"
@@ -40,7 +182,7 @@
         "type": "number",
         "id": "products_limit",
         "label": "Limit",
-        "default": 12
+        "default": 16
       },
       {
         "type": "header",
@@ -51,9 +193,7 @@
         "id": "pagination_type",
         "label": "Type",
         "options": [
-          { "value": "default", "label": "Default" },
-          { "value": "load-more", "label": "Load more" },
-          { "value": "infinite", "label": "Infinite" }
+          { "value": "default", "label": "Default" }
         ]
       },
       {
@@ -68,96 +208,3 @@
     ]
   }
 {% endschema %}
-
-{% assign filters_enable = section.settings.filters_enable | default: false %}
-
-{% assign filters_logic = section.settings.filters_logic | default: false %}
-
-{% assign products_limit = section.settings.products_limit | default: false %}
-
-{% assign pagination_type = section.settings.pagination_type | default: false %}
-
-{% assign empty_body = section.settings.empty_body | default: false %}
-
-{% capture product_card_grid_item_class_name_template %}
-  {% include 'product-card-grid-item-class-name-template' %}
-{% endcapture %}
-
-{% capture product_card_template %}
-  {% include 'product-card-template' %}
-{% endcapture %}
-
-{% capture empty_template %}
-  {% include 'collection-empty-template' %}
-{% endcapture %}
-
-{% capture tag_filters_json %}
-  {% include 'tag-filters-products-json' %}
-{% endcapture %}
-
-{% paginate collection.products by products_limit %}
-<div data-module-collection-body--{{ filters_logic }}='{
-    "collection": {
-      "handle": {{ collection.handle | json | escape }},
-      "products_count": {{ collection.products_count | json | escape }}
-    },
-    "money_format": {{ shop.money_format | json | escape }},
-    "limit": {{ products_limit | json | escape }},
-    "product_card_grid_item_class_name_template": {{ product_card_grid_item_class_name_template | json | escape }},
-    "product_card_template": {{ product_card_template | json | escape }},
-    "empty_template": {{ empty_template | json | escape }},
-    "tag_filters": {{ tag_filters_json | escape }},
-    "pagination_type": {{ pagination_type | json | escape }}
-  }'>
-    <div class="padding-top-bottom--up-2 large--padding-top-bottom--up-4">
-      <div class="container-default">
-        <div class="overflow-hidden">
-          <div class="margin-bottom-negative--up-1">
-            <div class="grid--up-1">
-              {% if filters_enable %}
-                <div class="grid-item one large--one-four padding-bottom--up-1">
-                  {% case filters_logic %}
-                    {% when 'and' %}
-                      {% include 'collection-filters--and' %}
-                    {% when 'or' %}
-                      {% include 'collection-filters--or' %}
-                  {% endcase %}
-                </div>
-              {% endif %}
-
-              <div class="grid-item one {% if filters_enable %}large--three-four{% endif %} padding-bottom--up-1">
-                <h2 class="font-weight-700 margin-bottom--up-1">
-                  <span data-ref-all-products-count>
-                    {{ collection.products_count }}
-                  </span>
-
-                  {{ 'collection.products.count_suffix' | t }}
-                </h2>
-
-                <div style="{% if collection.products == empty %}display: none;{% endif %}" data-ref-products-wrap>
-                  <div class="overflow-hidden">
-                    <div class="grid--up-1 margin-bottom-negative--up-1" data-ref-products>
-                      {% for product in collection.products %}
-                        <div class="{{ product_card_grid_item_class_name_template }}">
-                          {% include 'product-card' _image_lazy: true %}
-                        </div>
-                      {% endfor %}
-                    </div>
-                  </div>
-                </div>
-
-                {% include 'collection-empty' %}
-
-                {% case pagination_type %}
-                  {% when 'default' %}
-                    {% include 'collection-pagination' %}
-                  {% when 'load-more' %}
-                    {% include 'collection-load-more' %}
-                {% endcase %}
-              </div>
-            </div>
-          </div>
-      </div>
-    </div>
-  </div>
-{% endpaginate %}

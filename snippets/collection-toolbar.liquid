@@ -1,0 +1,50 @@
+<div class="large--border-top-grey-lightest">
+  <div class="large--padding-top--up-1">
+    <div data-module-accordion>
+      <div class="flex-bar--up-1">
+        <div class="
+          flex-item
+          {% unless menu or filters_enable %}
+            hide large--show
+          {% endunless %}
+        ">
+          <div class="hide large--show">
+            <span data-ref-all-products-count>
+              {{ collection.products_count }}
+            </span>
+
+            {{ 'collection.products.count_suffix' | t }}
+          </div>
+
+          {% if menu %}
+            {% include 'collection-menu-button' %}
+          {% elsif filters_enable %}
+            {% include 'collection-filters-button' %}
+          {% endif %}
+        </div>
+
+        <div class="flex-item large--flex-item-shrink">
+          {% include 'collection-sort' %}
+        </div>
+      </div>
+
+      {% if menu or filters_enable %}
+        <div class="
+          large--position-absolute large--position-left large--position-top
+          large--one-five
+          large--padding-left--up-3
+        ">
+          {% if menu %}
+            <div class="hide large--show" data-ref-panel='{ "index": "menu" }'>
+              {% include 'collection-menu' %}
+            </div>
+          {% elsif filters_enable %}
+            <div class="hide large--show" data-ref-panel='{ "index": "filters" }'>
+              {% include 'collection-filters' %}
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

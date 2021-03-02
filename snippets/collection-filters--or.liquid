@@ -1,90 +1,102 @@
 <div data-module-collection-filters--{{ filters_logic }}>
-  <div style="display: none;" data-ref-active-filters>
-    <div class="margin-bottom--up-1">
-      <h2 class="font-weight-700 margin-bottom--up-1">
-        {{ 'collection.filters.active_filters_title' | t }}
-      </h2>
-
-      <div class="last-child-margin--none">
-        {% for link in linklists['tag-filters-products'].links %}
-          {% for link in link.links %}
-            <div class="margin-bottom--down-3" style="display: none;" data-ref-filter='{
-              "id": {{ link.handle | json | escape }},
-              "tag": {{ link.title | json | escape }}
-            }' data-ref-active-filter='{
-              "id": {{ link.handle | json | escape }},
-              "tag": {{ link.title | json | escape }}
-            }'>
-              <label class="block cursor-pointer">
-                <span class="invisible">
-                  <input class="checkbox" type="checkbox" data-ref-input='{ "filter_id": {{ link.handle | json | escape }} }' />
-                </span>
-
-                <span class="block border-text-input-border border-radius-default">
-                  <span class="block padding--0">
-                    <span class="flex-bar--down-1">
-                      <span class="flex-item-shrink">
-                        <span class="font-size--up-2">
-                          {% include 'svg-close' %}
-                        </span>
-                      </span>
-
-                      <span class="flex-item">
-                        <span>
-                          {{ link.title }}
-                        </span>
-                      </span>
-                    </span>
-                  </span>
-                </span>
-              </label>
-            </div>
-          {% endfor %}
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-
-  <div class="last-child-margin--none">
-    {% for link in linklists['tag-filters-products'].links %}
-      <div class="margin-bottom--up-1">
-        <h2 class="font-weight-700 margin-bottom--up-1">
-          {{ link.title }}
-        </h2>
-
-        <div class="last-child-margin--none">
-          {% for link in link.links %}
-            <div class="margin-bottom--down-3" data-ref-filter='{
-              "id": {{ link.handle | json | escape }},
-              "tag": {{ link.title | json | escape }}
-            }'>
-              <label class="block cursor-pointer">
-                <span class="flex-bar--up-1">
-                  <span class="flex-item-shrink">
-                    <span class="checkbox-wrap font-size--up-10">
-                      <input class="checkbox" type="checkbox" data-ref-input='{ "filter_id": {{ link.handle | json | escape }} }' />
-                      <span class="checkbox-icon">
-                        {% include 'svg-tick' %}
-                      </span>
-                    </span>
-                  </span>
-
-                  <span class="flex-item-shrink">
-                    <span>
-                      {{ link.title }}
-
-                      <span data-ref-products-count='{
-                        "filter_id": {{ link.handle | json | escape }},
-                        "tag": {{ link.title | json | escape }}
-                      }'></span>
-                    </span>
-                  </span>
-                </span>
-              </label>
-            </div>
-          {% endfor %}
+  <nav class="position-relative">
+    <div class="large--hide">
+      <div style="margin-top: -1px; margin-left: 1px; margin-right: 2px;">
+        <div class="flex-bar--up-1">
+          <div class="flex-item-shrink one-two">
+            <div class="border-top-base-background"></div>
+          </div>
         </div>
       </div>
-    {% endfor %}
-  </div>
+    </div>
+
+    <div style=" --margin-top: -1px; --large--margin-top: 0;">
+      <div class="border-grey-lightest large--border--none">
+        <div class="padding-top-bottom--up-1 large--padding--none">
+          <div class="last-child-margin--none last-child-padding--none last-child-border--none">
+            {% for link in linklists['tag-filters-products'].links %}
+              {% assign enable = false %}
+
+              {% for link in link.links %}
+                {% if
+                  collection.all_tags contains link.title or
+                  collection.all_tags contains link.handle
+                %}
+                  {% assign enable = true %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+
+              {% unless enable %}
+                {% continue %}
+              {% endunless %}
+
+              <div class="margin-bottom--0 border-bottom-grey-lightest padding-bottom--0 large--border--none large--padding--none">
+                <div class="padding-left-right--up-1 large--padding--none">
+                  <div class="margin-bottom--down-4 large--margin--none">
+                    <div class="large--box-color-slate">
+                      <div class="large--padding-top-bottom--down-1 large--padding-left-right--0">
+                        <div class="
+                          text-caps-letter-spacing font-weight-500
+                          text-color-grey-dark large--text-color-light
+                          large--line-height--up-8
+                        ">
+                          {{ link.title }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="large--border-grey-lightest">
+                    <div class="padding-top-bottom--down-5 large--padding-left-right--0 large--padding-top-bottom--up-1">
+                      <div class="last-child-margin--none">
+                        {% for link in link.links %}
+                          {% assign enable = false %}
+
+                          {% if
+                            collection.all_tags contains link.title or
+                            collection.all_tags contains link.handle
+                          %}
+                            {% assign enable = true %}
+                          {% endif %}
+
+                          {% unless enable %}
+                            {% continue %}
+                          {% endunless %}
+
+                          <div class="margin-bottom--down-3" data-ref-filter='{
+                            "id": {{ link.handle | json | escape }},
+                            "tag": {{ link.title | json | escape }}
+                          }'>
+                            <label class="block cursor-pointer">
+                              <span class="flex-bar--down-1">
+                                <span class="flex-item-shrink">
+                                  <span class="checkbox-wrap font-size--0">
+                                    <input class="checkbox" type="checkbox" data-ref-input='{ "filter_id": {{ link.handle | json | escape }} }' />
+                                    <span class="checkbox-icon">
+                                      {% include 'svg-tick' %}
+                                    </span>
+                                  </span>
+                                </span>
+
+                                <span class="flex-item-shrink">
+                                  <span>
+                                    {{ link.title }}
+                                  </span>
+                                </span>
+                              </span>
+                            </label>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 </div>

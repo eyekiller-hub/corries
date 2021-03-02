@@ -28,6 +28,10 @@ function Self(element, events, options, module) {
 
   events
     .on('self:active', (id) => {
+      if ('scroll_to' in options) {
+        window.scrollTo(0, options.scroll_to);
+      }
+
       options.scroll = window.pageYOffset;
 
       document.documentElement.classList.add(class_name);

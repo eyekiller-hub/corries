@@ -1,0 +1,27 @@
+<div class="large--hide">
+  <button
+    class="input input-border one border-radius--none"
+    type="button"
+    data-ref-button='{
+      "index": "filters",
+      "active": ["large"]
+    }'>
+    <div class="flex-bar--down-1">
+      <div class="flex-item">
+        {{ 'collection.filters.title' | t }}
+      </div>
+
+      <div class="flex-item-shrink">
+        <div class="font-size--down-6">
+          <div data-ref-icon-show='{ "index": "filters" }'>
+            {% include 'svg-arrow-bottom' %}
+          </div>
+
+          <div style="display: none;" data-ref-icon-hide='{ "index": "filters" }'>
+            {% include 'svg-arrow-top' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </button>
+</div>

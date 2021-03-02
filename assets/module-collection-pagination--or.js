@@ -41,6 +41,10 @@ function Self(element, events, options, module) {
       parts: parts_html
     });
 
+    if (parts.length == 1) {
+      html = '';
+    }
+
     element.innerHTML = html;
 
     setTimeout(() => Events.trigger('collection-pagination--or:render:success'));

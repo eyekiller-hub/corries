@@ -1,128 +1,133 @@
 {% assign current_tags_handles = request.path | split: '/' | slice: 3 | first | split: '+' %}
 
 <div data-module-collection-filters--{{ filters_logic }}>
-  {% if current_tags %}
-    <div class="margin-bottom--up-1">
-      <h2 class="margin-bottom--up-1">
-        {{ 'collection.filters.active_filters_title' | t }}
-      </h2>
-
-      <div class="last-child-margin--none">
-        {% for link in linklists['tag-filters-products'].links %}
-          {% for link in link.links %}
-            {% assign link_tag = link.title %}
-
-            {% assign link_tag_handle = link_tag | handle %}
-
-            {% assign link_tag_remove_url = '' %}
-
-            {% for tag_handle in current_tags_handles %}
-              {% unless tag_handle == link_tag_handle %}
-                {% assign link_tag_remove_url = link_tag_remove_url | append: '+' | append: tag_handle %}
-              {% endunless %}
-            {% endfor %}
-
-            {% assign link_tag_remove_url = collection.url | append: '/' | append: link_tag_remove_url | remove_first: '+' %}
-
-            {% unless current_tags_handles contains link_tag_handle %}
-              {% continue %}
-            {% endunless %}
-
-            <div class="margin-bottom--down-3">
-              <a href="{{ link_tag_remove_url }}" data-module-collection-link>
-                <span class="block border-text-input-border border-radius-default">
-                  <span class="block padding--0">
-                    <span class="flex-bar--down-1">
-                      <span class="flex-item-shrink">
-                        <span class="font-size--up-2">
-                          {% include 'svg-close' %}
-                        </span>
-                      </span>
-
-                      <span class="flex-item">
-                        <span>
-                          {{ link_tag }}
-                        </span>
-                      </span>
-                    </span>
-                  </span>
-                </span>
-              </a>
-            </div>
-          {% endfor %}
-        {% endfor %}
-      </div>
-    </div>
-  {% endif %}
-
-  <div class="last-child-margin--none">
-    {% for link in linklists['tag-filters-products'].links %}
-      <div class="margin-bottom--up-1">
-        <h2 class="font-weight-700 margin-bottom--up-1">
-          {{ link.title }}
-        </h2>
-
-        <div class="last-child-margin--none">
-          {% for link in link.links %}
-            {% assign link_tag = link.title %}
-
-            {% assign link_tag_handle = link_tag | handle %}
-
-            {% assign link_tag_handle_array = link_tag_handle | split: ' ' %}
-
-            {% assign link_tag_add_url = current_tags_handles | concat: link_tag_handle_array | join: '+' %}
-
-            {% assign link_tag_remove_url = '' %}
-
-            {% for tag_handle in current_tags_handles %}
-              {% unless tag_handle == link_tag_handle %}
-                {% assign link_tag_remove_url = link_tag_remove_url | append: '+' | append: tag_handle %}
-              {% endunless %}
-            {% endfor %}
-
-            {% assign link_tag_remove_url = collection.url | append: '/' | append: link_tag_remove_url | remove_first: '+' %}
-
-            {% assign link_tag_add_url = collection.url | append: '/' | append: link_tag_add_url %}
-
-            {% assign link_tag_toggle_url = link_tag_add_url %}
-
-            {% assign link_tag_active = false %}
-
-            {% if current_tags_handles contains link_tag_handle %}
-              {% assign link_tag_active = true %}
-
-              {% assign link_tag_toggle_url = link_tag_remove_url %}
-            {% endif %}
-
-            {% unless collection.all_tags contains link_tag %}
-              {% continue %}
-            {% endunless %}
-
-            <div class="margin-bottom--down-3">
-              <a href="{{ link_tag_toggle_url }}" data-module-collection-link>
-                <div>
-                  <span class="flex-bar--up-1">
-                    <span class="flex-item-shrink">
-                      <span class="checkbox-wrap font-size--up-10">
-                        <span class="checkbox {% if link_tag_active %}is-checked{% endif %}"></span>
-                        <span class="checkbox-icon">
-                          {% include 'svg-tick' %}
-                        </span>
-                      </span>
-                    </span>
-
-                    <span class="flex-item-shrink">
-                      <span>
-                        {{ link_tag }}
-                      </span>
-                    </span>
-                  </span>
-                </div>
-              </a>
-            </div>
-          {% endfor %}
+  <nav class="position-relative">
+    <div class="large--hide">
+      <div style="margin-top: -1px; margin-left: 1px; margin-right: 2px;">
+        <div class="flex-bar--up-1">
+          <div class="flex-item-shrink one-two">
+            <div class="border-top-base-background"></div>
+          </div>
         </div>
       </div>
-    {% endfor %}
-  </div>
+    </div>
+
+    <div style=" --margin-top: -1px; --large--margin-top: 0;">
+      <div class="border-grey-lightest large--border--none">
+        <div class="padding-top-bottom--up-1 large--padding--none">
+          <div class="last-child-margin--none last-child-padding--none last-child-border--none">
+            {% for link in linklists['tag-filters-products'].links %}
+              {% assign enable = false %}
+
+              {% for link in link.links %}
+                {% if
+                  collection.all_tags contains link.title or
+                  collection.all_tags contains link.handle
+                %}
+                  {% assign enable = true %}
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+
+              {% unless enable %}
+                {% continue %}
+              {% endunless %}
+
+              <div class="margin-bottom--0 border-bottom-grey-lightest padding-bottom--0 large--border--none large--padding--none">
+                <div class="padding-left-right--up-1 large--padding--none">
+                  <div class="margin-bottom--down-4 large--margin--none">
+                    <div class="large--box-color-slate">
+                      <div class="large--padding-top-bottom--down-1 large--padding-left-right--0">
+                        <div class="
+                          text-caps-letter-spacing font-weight-500
+                          text-color-grey-dark large--text-color-light
+                          large--line-height--up-8
+                        ">
+                          {{ link.title }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="large--border-grey-lightest">
+                    <div class="padding-top-bottom--down-5 large--padding-left-right--0 large--padding-top-bottom--up-1">
+                      <div class="last-child-margin--none">
+                        {% for link in link.links %}
+                          {% assign enable = false %}
+
+                          {% if
+                            collection.all_tags contains link.title or
+                            collection.all_tags contains link.handle
+                          %}
+                            {% assign enable = true %}
+                          {% endif %}
+
+                          {% unless enable %}
+                            {% continue %}
+                          {% endunless %}
+
+                          {% assign link_tag = link.title %}
+
+                          {% assign link_tag_handle = link_tag | handle %}
+
+                          {% assign link_tag_handle_array = link_tag_handle | split: ' ' %}
+
+                          {% assign link_tag_add_url = current_tags_handles | concat: link_tag_handle_array | join: '+' %}
+
+                          {% assign link_tag_remove_url = '' %}
+
+                          {% for tag_handle in current_tags_handles %}
+                            {% unless tag_handle == link_tag_handle %}
+                              {% assign link_tag_remove_url = link_tag_remove_url | append: '+' | append: tag_handle %}
+                            {% endunless %}
+                          {% endfor %}
+
+                          {% assign link_tag_remove_url = collection.url | append: '/' | append: link_tag_remove_url | remove_first: '+' %}
+
+                          {% assign link_tag_add_url = collection.url | append: '/' | append: link_tag_add_url %}
+
+                          {% assign link_tag_toggle_url = link_tag_add_url %}
+
+                          {% assign link_tag_active = false %}
+
+                          {% if current_tags_handles contains link_tag_handle %}
+                            {% assign link_tag_active = true %}
+
+                            {% assign link_tag_toggle_url = link_tag_remove_url %}
+                          {% endif %}
+
+                          <div class="margin-bottom--down-3">
+                            <a href="{{ link_tag_toggle_url }}" data-module-collection-link>
+                              <div>
+                                <span class="flex-bar--down-1">
+                                  <span class="flex-item-shrink">
+                                    <span class="checkbox-wrap font-size--0">
+                                      <span class="checkbox {% if link_tag_active %}is-checked{% endif %}"></span>
+                                      <span class="checkbox-icon">
+                                        {% include 'svg-tick' %}
+                                      </span>
+                                    </span>
+                                  </span>
+
+                                  <span class="flex-item-shrink">
+                                    <span>
+                                      {{ link_tag }}
+                                    </span>
+                                  </span>
+                                </span>
+                              </div>
+                            </a>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 </div>

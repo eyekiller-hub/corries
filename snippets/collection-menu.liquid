@@ -1,11 +1,47 @@
-<div class="select-wrap">
-  <select class="select" data-module-input-change-link>
-    <option disabled selected></option>
+<nav class="position-relative">
+  <div class="large--hide">
+    <div style="margin-top: -1px; margin-left: 1px; margin-right: 2px;">
+      <div class="flex-bar--up-1">
+        <div class="flex-item-shrink one-two">
+          <div class="border-top-base-background"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    {% for link in menu.links %}
-      <option value="{{ link.url }}" {% if link.active %}selected{% endif %}>
-        {{ link.title }}
-      </option>
-    {% endfor %}
-  </select>
-</div>
+  <div style=" --margin-top: -1px; --large--margin-top: 0;">
+    <div class="border-grey-lightest large--border--none">
+      <div class="padding-left-right--up-1 padding-top-bottom--up-1 large--padding--none">
+        <div class="margin-bottom--down-4 large--margin--none">
+          <div class="large--box-color-slate">
+            <div class="large--padding-top-bottom--down-1 large--padding-left-right--0">
+              <div class="
+                text-caps-letter-spacing font-weight-500
+                text-color-grey-dark large--text-color-light
+                large--line-height--up-8
+              ">
+                {{ menu.title }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="margin-bottom--none" style=" --large--padding-top: 1px;">
+          {% for link in menu.links %}
+            <li style=" --large--margin-top: -1px;">
+              <a href="{{ link.url }}">
+                <div class="large--border-grey-lightest">
+                  <div class="padding-top-bottom--down-5 large--padding-left-right--0 large--padding-top-bottom--down-1">
+                    <div class="large--line-height--up-4">
+                      {{ link.title }}
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

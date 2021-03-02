@@ -2,7 +2,11 @@
   window.theme_locales = {
     products: {
       product: {
-        from: {{ 'products.product.from' | t | json }}
+        from: {{ 'products.product.from' | t | json }},
+        add_to_cart: {{ "products.product.add_to_cart" | t | json }},
+        sold_out: {{ "products.product.sold_out" | t | json }},
+        unavailable: {{ "products.product.unavailable" | t | json }},
+        added: {{ "products.product.added" | t | json }}
       }
     }
   };

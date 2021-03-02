@@ -145,12 +145,12 @@ $spacing-ratio: 1.333; // Perfect fourth
   --colors-text-input-border-active: var(--colors-green);
   --colors-text-input-placeholder: var(--colors-text-input-text);
 
-  --colors-checkbox-input-text: var(--colors-dark);
-  --colors-checkbox-input-background: var(--colors-grey-lighter);
+  --colors-checkbox-input-text: var(--colors-base-text);
+  --colors-checkbox-input-background: var(--colors-base-background);
   --colors-checkbox-input-border: var(--colors-grey-lighter);
-  --colors-checkbox-input-text-active: var(--colors-dark);
-  --colors-checkbox-input-background-active: var(--colors-dark);
-  --colors-checkbox-input-border-active: var(--colors-dark);
+  --colors-checkbox-input-text-active: var(--colors-checkbox-input-text);
+  --colors-checkbox-input-background-active: var(--colors-checkbox-input-background);
+  --colors-checkbox-input-border-active: var(--colors-checkbox-input-border);
 
   // Container
 
@@ -190,8 +190,8 @@ $spacing-ratio: 1.333; // Perfect fourth
   // Select
 
   --select-border-radius: var(--border-radius-default);
-  --select-background-image: #{svg-url('<svg viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1395 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z"/></svg>')};
-  --select-background-size: var(--font-size--up-5);
+  --select-background-image: #{svg-url('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 9" fill="#666"><path d="M0 1.414L1.414 0l6 6 6-6 1.414 1.414-7.414 7.414z"/></svg>')};
+  --select-background-size: var(--font-size--down-6);
   --select-background-position: center right var(--input-padding-x);
   --select-padding-right: calc(calc(var(--input-padding-y) * 2) + 40px);
 
@@ -1052,7 +1052,6 @@ $buttons: (primary, secondary);
     background-color: var(--colors-checkbox-input-background);
     border: var(--checkbox-border);
     border-color: var(--colors-checkbox-input-border);
-    border-radius: var(--checkbox-border-radius);
 
     .checkbox:checked + &,
     .checkbox.is-checked + & {
@@ -1920,7 +1919,9 @@ $buttons: (primary, secondary);
     padding-bottom,
     font-size,
     margin-left,
-    height
+    height,
+    margin-top,
+    padding-top
   );
 
   @each $property in $properties {

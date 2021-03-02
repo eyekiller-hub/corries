@@ -128,10 +128,17 @@ function ProductForm(element, options) {
   });
 };
 
-var elements = document.querySelectorAll('[data-module-product-form]');
+init();
 
-elements.forEach((element) => {
-  var options = get_element_options(element, 'data-module-product-form');
+Events.on('collection-body--or:products:render:success', init);
+Events.on('collection-body--and:products:render:success', init);
 
-  ProductForm(element, options);
-});
+function init() {
+  var elements = document.querySelectorAll('[data-module-product-form]');
+
+  elements.forEach((element) => {
+    var options = get_element_options(element, 'data-module-product-form');
+
+    ProductForm(element, options);
+  });
+};

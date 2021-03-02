@@ -1,10 +1,19 @@
 {% assign url = _url %}
-{% assign image = _image %}
 {% assign image_url = _image_url %}
 {% assign image_alt = _image_alt %}
+{% assign image_box_ratio = _image_box_ratio %}
 {% assign image_attributes = _image_attributes %}
 {% assign title = _title %}
-{% assign price = _price %}
+{% assign price_class = _price_class %}
+{% assign price_min = _price_min %}
+{% assign compare_at_price_min_class = _compare_at_price_min_class %}
+{% assign compare_at_price_min = _compare_at_price_min %}
+{% assign from = _from %}
+{% assign product_json = _product_json %}
+{% assign first_available_variant_id = _first_available_variant_id %}
+{% assign submit_attributes = _submit_attributes %}
+{% assign product_id = _product_id %}
+{% assign submit_html = _submit_html %}
 
 {% assign url = url | default: '{{ url }}' %}
 
@@ -12,32 +21,83 @@
 
 {% assign image_alt = image_alt | default: '{{ image_alt }}' %}
 
+{% assign image_box_ratio = image_box_ratio | default: '{{ image_box_ratio }}' %}
+
 {% assign image_attributes = image_attributes | default: '{{ image_attributes }}' %}
 
 {% assign title = title | default: '{{ title }}' %}
 
-{% assign price = price | default: '{{ price }}' %}
+{% assign price_class = price_class | default: '{{ price_class }}' %}
 
-<article class="product-thumbnail">
-  <div class="margin-bottom--down-2">
+{% assign price_min = price_min | default: '{{ price_min }}' %}
+
+{% assign compare_at_price_min_class = compare_at_price_min_class | default: '{{ compare_at_price_min_class }}' %}
+
+{% assign compare_at_price_min = compare_at_price_min | default: '{{ compare_at_price_min }}' %}
+
+{% assign from = from | default: '{{ from }}' %}
+
+{% assign product_json = product_json | default: '{{ product_json }}' %}
+
+{% assign first_available_variant_id = first_available_variant_id | default: '{{ first_available_variant_id }}' %}
+
+{% assign submit_attributes = submit_attributes | default: '{{ submit_attributes }}' %}
+
+{% assign product_id = product_id | default: '{{ product_id }}' %}
+
+{% assign submit_html = submit_html | default: '{{ submit_html }}' %}
+
+<article class="height-full flex-vertical">
+  <div class="margin-bottom--up-1">
     <a href="{{ url }}">
-      <div class="image-container box-ratio--1-1">
+      <div class="image-container box-ratio-inline" style="padding-bottom: {{ image_box_ratio }};">
         <img data-src="{{ image_url }}" alt="{{ image_alt }}" {{ image_attributes }} />
       </div>
     </a>
   </div>
 
-  <div class="margin-bottom--down-4">
-    <h2 class="margin--none">
-      <a href="{{ url }}">
-        {{ title }}
-      </a>
-    </h2>
-  </div>
-
-  <div>
+  <h3 class="font-size--down-2 line-height--up-4 large--font-size--inherit large--line-height--inherit font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark margin-bottom--down-3">
     <a href="{{ url }}">
-      {{ price }}
+      {{ title }}
     </a>
+  </h3>
+
+  <div class="margin-top--auto">
+    <div>
+      <span class="{{ price_class }}">
+        {{ from }}
+        {{ price_min }}
+      </span>
+
+      <s class="text-color-grey-light {{ compare_at_price_min_class }}">
+        {{ compare_at_price_min }}
+      </s>
+    </div>
+
+    <div class="margin-top--0">
+      <div data-module-product-form='{
+        "product": {{ product_json }},
+        "variant_id": {{ first_available_variant_id }},
+        "quantity": 1
+      }'>
+        <form method="post" action="{{ routes.cart_add_url }}">
+          <input type="hidden" name="id" value="{{ first_available_variant_id }}" />
+
+          <button
+            class="button-primary padding-left-right--none one"
+            type="submit"
+            {{ submit_attributes }}
+            data-module-product-submit='{
+              "product_id": {{ product_id }},
+              "available": {{ "products.product.add_to_cart" | t | json | escape }},
+              "sold_out": {{ "products.product.sold_out" | t | json | escape }},
+              "unavailable": {{ "products.product.unavailable" | t | json | escape }},
+              "added": {{ "products.product.added" | t | json | escape }}
+            }'>
+            {{ submit_html }}
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
 </article>

@@ -2,6 +2,9 @@
   "mobile_menu": {
     "shop_all": "Shop all"
   },
+  "breadcrumbs": {
+    "home": "Home"
+  },
   "products": {
     "product": {
       "quantity": "Quantity",
@@ -15,14 +18,20 @@
     }
   },
   "collection": {
+    "sort": {
+      "title": "Sort by"
+    },
     "filters": {
-      "active_filters_title": "Applied filters"
+      "title": "Shop Filters"
     },
     "products": {
-      "count_suffix": "items"
+      "count_suffix": "product(s)"
     },
     "load_more": {
       "call_to_action": "Load more"
+    },
+    "menu": {
+      "title": "Category"
     }
   },
   "cart": {

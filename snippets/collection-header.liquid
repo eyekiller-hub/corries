@@ -1,0 +1,31 @@
+<header class="margin-bottom--up-1 large--margin-bottom--up-3">
+  {% if collection.image %}
+    <div class="margin-bottom--up-1 large--margin-bottom--up-2">
+      <div class="container-margin-negative-x large--margin--none">
+        {%
+          include 'image',
+          _object: collection.image,
+          _size: '1000x'
+        %}
+      </div>
+    </div>
+  {% endif %}
+
+  <h2 class="
+    font-size--up-8 line-height--up-10
+    large--font-size--up-12 large--line-height--up-14
+    text-caps-letter-spacing font-weight-700 text-color-grey-dark
+    text-center large--text-left
+    margin--none
+  ">
+    {{ collection.title }}
+  </h2>
+
+  {% if collection.description != blank %}
+    <div class="margin-top--down-3 large--margin-top--down-1">
+      <div class="rte large--font-size--up-2 large--line-height--up-8 text-center large--text-left">
+        {{ collection.description }}
+      </div>
+    </div>
+  {% endif %}
+</header>

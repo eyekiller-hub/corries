@@ -1,50 +1,79 @@
-{% assign current_variant = product.variants[0] %}
+{% assign image_lazy = _image_lazy %}
 
-<article class="height-full flex-vertical">
-  <div class="margin-bottom--up-1">
-    <a href="{{ product.url }}">
-      {%
-        include 'image',
-        _object: product.images[0],
-        _size: '600x'
-      %}
-    </a>
-  </div>
+{% assign variant = product.first_available_variant | default: product.variants[0] %}
 
-  <h3 class="font-size--down-2 line-height--up-4 large--font-size--inherit large--line-height--inherit font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark margin-bottom--down-3">
-    <a href="{{ product.url }}">
-      {{ product.title }}
-    </a>
-  </h3>
+{% assign url = product.url %}
 
-  <div class="margin-top--auto">
-    <div>
-      <span class="{% if product.compare_at_price_min > product.price_min %}text-color-red{% endif %}">
-        {% if product.price_varies %}
-          {{ 'products.product.from' | t }}
-        {% endif %}
+{% assign image_url = product.images[0] | img_url: '600x' %}
 
-        {{ product.price_min | money }}
-      </span>
+{% assign image_alt = product.images[0].alt | escape %}
 
-      {% if product.compare_at_price_min > product.price_min %}
-        <s class="text-color-grey-light">
-          {{ product.compare_at_price_min | money }}
-        </s>
-      {% endif %}
-    </div>
+{% assign image_box_ratio = '100%' %}
 
-    <div class="margin-top--0">
-      <div data-module-product-form='{
-        "product": {{ product | json | escape }},
-        "variant_id": {{ current_variant.id | json | escape }},
-        "quantity": 1
-      }'>
-        {% form 'product', product %}
-          {% include 'product-form-id' %}
-          {% include 'product-form-submit' %}
-        {% endform %}
-      </div>
-    </div>
-  </div>
-</article>
+{% assign image_attributes = ' ' %}
+
+{% if image_lazy %}
+  {% assign image_attributes = 'data-lazy' %}
+{% endif %}
+
+{% assign title = product.title %}
+
+{% assign price_class = ' ' %}
+
+{% if product.compare_at_price_min > product.price_min %}
+  {% assign price_class = 'text-color-red' %}
+{% endif %}
+
+{% assign price_min = product.price_min | money %}
+
+{% assign compare_at_price_min_class = ' ' %}
+
+{% if product.compare_at_price_min < product.price_min %}
+  {% assign compare_at_price_min_class = 'hide' %}
+{% endif %}
+
+{% assign compare_at_price_min = product.compare_at_price_min | money %}
+
+{% assign from = ' ' %}
+
+{% if product.price_varies %}
+  {% assign from = 'products.product.from' | t %}
+{% endif %}
+
+{% assign product_json = product | json %}
+
+{% assign first_available_variant_id = variant.id %}
+
+{% assign submit_attributes = ' ' %}
+
+{% unless variant.available %}
+  {% assign submit_attributes = 'disabled' %}
+{% endunless %}
+
+{% assign product_id = product.id %}
+
+{% assign submit_html = 'products.product.add_to_cart' | t %}
+
+{% unless variant.available %}
+  {% assign submit_html = 'products.product.sold_out' | t %}
+{% endunless %}
+
+{%
+  include 'product-card-template',
+  _url: url,
+  _image_url: image_url,
+  _image_alt: image_alt,
+  _image_box_ratio: image_box_ratio,
+  _image_attributes: image_attributes,
+  _title: title,
+  _price_class: price_class,
+  _price_min: price_min,
+  _compare_at_price_min_class: compare_at_price_min_class,
+  _compare_at_price_min: compare_at_price_min,
+  _from: from,
+  _product_json: product_json,
+  _first_available_variant_id: first_available_variant_id,
+  _submit_attributes: submit_attributes,
+  _product_id: product_id,
+  _submit_html: submit_html
+%}

@@ -65,28 +65,18 @@ function Self(element, events, options, module) {
 
     var url_suffix = `&sort_by=${sort_by}`;
 
-    var pages = Math.ceil(pagination_limit * page / pagination_limit);
+    var url = `${window.location.pathname}?page=${page}${url_suffix}`;
 
-    var promises = Array.from({length: pages}, (item, index) => {
-      var url = `${window.location.pathname}?page=${index + 1}${url_suffix}`;
-
-      return fetch(url, { credentials: 'same-origin' })
-        .then((res) => res.text());
-    });
-
-    return Promise.all(promises)
+    return fetch(url, { credentials: 'same-origin' })
+      .then((res) => res.text())
       .then((res) => {
-        return res.reduce((acc, res_item) => {
-          var document_element = document.createElement('div');
+        var document_element = document.createElement('div');
 
-          document_element.innerHTML = res_item;
+        document_element.innerHTML = res;
 
-          var html = document_element.querySelector('[data-ref-products]');
+        var html = document_element.querySelector('[data-ref-products]');
 
-          acc = acc.concat(html.innerHTML);
-
-          return acc;
-        }, []);
+        return html.innerHTML;
       });
   };
 };
