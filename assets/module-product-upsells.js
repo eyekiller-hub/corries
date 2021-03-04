@@ -17,6 +17,8 @@ function Self(element, events, options, module) {
       element.outerHTML = html;
 
       ResponsiveImages.load();
+
+      Events.trigger('product-upsells:render:success');
     })
     .catch((err) => {
       console.log({err});

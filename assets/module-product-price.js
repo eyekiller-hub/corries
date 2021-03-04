@@ -6,9 +6,14 @@ import money from './fn-money';
 function Self(element, events, options, module) {};
 
 function Retail(element, events, options, module) {
-  Events.on(`productform:${module.options.product_id}:variantchange`, (variant) => {
-    element.innerHTML = money(variant.price, module.options.money_format);
-  });
+  Events
+    .on(`productform:${module.options.product_id}:variantchange`, (variant) => {
+      element.innerHTML = money(variant.price, module.options.money_format);
+      element.classList.remove(module.options.retail_on_sale_class);
+    })
+    .on(`productform:${module.options.product_id}:variantchangeonsale`, (variant) => {
+      element.classList.add(module.options.retail_on_sale_class);
+    });
 };
 
 function Compare(element, events, options, module) {

@@ -1,34 +1,59 @@
-{% schema %}
-  {
-    "name": "Product body",
-    "settings": []
-  }
-{% endschema %}
+{% assign delivery_info_enable = section.settings.delivery_info_enable | default: false %}
+
+{% assign delivery_info_copy = section.settings.delivery_info_copy | default: false %}
+
+{% assign dynamic_checkout_buttons_enable = section.settings.dynamic_checkout_buttons_enable | default: false %}
 
 {% assign current_collection = collection %}
 {% assign current_product = product %}
 {% assign current_variant = product.selected_or_first_available_variant %}
 
-<div class="padding-top-bottom--up-2 large--padding-top-bottom--up-4">
-  <div class="container-default">
-    <div class="overflow-hidden">
-      <div class="grid--up-1 margin-bottom-negative--up-1">
-        <div class="grid-item float-right one large--one-two padding-bottom--up-1">
-          {% include 'product-info' %}
-        </div>
+<div class="container-default">
+  {% include 'breadcrumbs' %}
 
-        <div class="grid-item float-left one large--one-two padding-bottom--up-1">
-          {% include 'product-gallery' %}
-        </div>
+  <div class="overflow-hidden">
+    <div class="grid--up-3 xlarge--grid--up-5 margin-bottom-negative--up-1">
+      <div class="grid-item one large--one-two padding-bottom--up-1">
+        {% include 'product-gallery' %}
+      </div>
 
-        <div class="grid-item float-right one large--one-two padding-bottom--up-1">
-          {% if product.description != blank %}
-            {% include 'product-description' %}
-          {% endif %}
-
-          {% include 'product-form' %}
-        </div>
+      <div class="grid-item one large--one-two padding-bottom--up-1">
+        {% include 'product-info' %}
+        {% include 'product-form' %}
+        {% include 'product-description' %}
       </div>
     </div>
   </div>
 </div>
+
+{% schema %}
+  {
+    "name": "Product body",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Delivery info"
+      },
+      {
+        "type": "checkbox",
+        "id": "delivery_info_enable",
+        "label": "Enable?"
+      },
+      {
+        "type": "richtext",
+        "id": "delivery_info_copy",
+        "label": "Copy"
+      },
+      {
+        "type": "header",
+        "content": "Dynamic checkout buttons"
+      },
+      {
+        "type": "checkbox",
+        "id": "dynamic_checkout_buttons_enable",
+        "label": "Enable?",
+        "info": "Customers can use the dynamic checkout button to quickly buy the product they're viewing. They skip the cart and complete their payment with the checkout method displayed on the button. The button dynamically changes to reflect the customer's preferred accelerated checkout method. [More info here](https://help.shopify.com/en/manual/online-store/os/dynamic-checkout)."
+      }
+    ]
+  }
+{% endschema %}

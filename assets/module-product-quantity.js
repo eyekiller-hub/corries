@@ -4,6 +4,7 @@ import get_element_options from "./fn-get-element-options";
 
 function Self(element, events, options, module) {
   element.addEventListener('change', () => {
+    Events.trigger('productquantity:change', [+(element.value)]);
     Events.trigger(`productquantity:${module.options.product_id}:change`, [+(element.value)]);
   });
 };

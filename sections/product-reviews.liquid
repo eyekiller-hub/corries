@@ -1,0 +1,38 @@
+{% schema %}
+  {
+    "name": "Product reviews",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enable?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }
+    ]
+  }
+{% endschema %}
+
+{% assign enable = section.settings.enable | default: false %}
+
+{% assign title = section.settings.title | default: false %}
+
+{% if enable %}
+  <div class="padding-top--up-2 large--padding-top--up-5">
+    <div class="container-default">
+      {% if title %}
+        {% include 'featured-section-title', _title: title %}
+      {% endif %}
+
+      <div class="overflow-hidden">
+        <div class="text-center">
+          Product reviews
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

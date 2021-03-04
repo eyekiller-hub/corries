@@ -12,35 +12,37 @@
   <div style=" --margin-top: -1px; --large--margin-top: 0;">
     <div class="border-grey-lightest large--border--none">
       <div class="padding-left-right--up-1 padding-top-bottom--up-1 large--padding--none">
-        <div class="margin-bottom--down-4 large--margin--none">
-          <div class="large--box-color-slate">
-            <div class="large--padding-top-bottom--down-1 large--padding-left-right--0">
-              <div class="
-                text-caps-letter-spacing font-weight-500
-                text-color-grey-dark large--text-color-light
-                large--line-height--up-8
-              ">
-                {{ menu.title }}
+        {% for link in menu.links %}
+          <div class="margin-bottom--down-4 large--margin--none">
+            <div class="large--box-color-slate">
+              <div class="large--padding-top-bottom--down-1 large--padding-left-right--0">
+                <div class="
+                  text-caps-letter-spacing font-weight-500
+                  text-color-grey-dark large--text-color-light
+                  large--line-height--up-8
+                ">
+                  {{ link.title }}
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <ul class="margin-bottom--none" style=" --large--padding-top: 1px;">
-          {% for link in menu.links %}
-            <li style=" --large--margin-top: -1px;">
-              <a href="{{ link.url }}">
-                <div class="large--border-grey-lightest">
-                  <div class="padding-top-bottom--down-5 large--padding-left-right--0 large--padding-top-bottom--down-1">
-                    <div class="large--line-height--up-4">
-                      {{ link.title }}
+          <ul class="margin-bottom--none" style=" --large--padding-top: 1px;">
+            {% for link_link in link.links %}
+              <li style=" --large--margin-top: -1px;">
+                <a href="{{ link_link.url }}">
+                  <div class="large--border-grey-lightest">
+                    <div class="padding-top-bottom--down-5 large--padding-left-right--0 large--padding-top-bottom--down-1">
+                      <div class="large--line-height--up-4">
+                        {{ link_link.title }}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endfor %}
       </div>
     </div>
   </div>

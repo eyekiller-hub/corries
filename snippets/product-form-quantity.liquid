@@ -1,11 +1,74 @@
-<label class="font-size--down-2 line-height--up-4 margin-bottom--down-2" for="quantity-{{ product.id }}">
-  {{ 'products.product.quantity' | t }}
+<label
+  class="
+    font-size--down-2 line-height--up-4
+    large--font-size--inherit large--line-height--inherit
+    font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark
+    margin-bottom--down-3
+  "
+  for="quantity-{{ product.id }}">
+  {{ 'products.product.quantity' | t }}:
 </label>
 
-<input
-  class="input"
-  type="number"
-  name="quantity"
-  id="quantity-{{ product.id }}"
-  value="1"
-  data-module-product-quantity='{ "product_id": {{ product.id | json | escape }} }' />
+<div data-module-number-input>
+  <div class="flex">
+    <div class="flex-item-auto">
+      <button class="input-reset block height-full" type="button" data-ref-decrement>
+        <div
+          class="
+            height-full
+            box-color-beige hover-box-color-beige-active
+            border-grey-lighter
+            flex-bar flex-center
+          "
+          style=" --width: 45px; --large--width: 50px;">
+          <div class="flex-item-auto">
+            <div class="font-size--down-8 text-color-slate">
+              {% include 'svg-minus' %}
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+
+    <div class="flex-item-auto">
+      <div style="width: 65px;">
+        <div style="margin-left: -1px; margin-right: -1px;">
+          <input
+            class="
+              input block
+              padding--none padding-top-bottom--down-2
+              large--font-size--up-2 large--line-height--up-10
+              border-radius--none
+              text-center
+            "
+            type="number"
+            name="quantity"
+            id="quantity-{{ product.id }}"
+            value="1"
+            min="1"
+            data-ref-input
+            data-module-product-quantity='{ "product_id": {{ product.id | json | escape }} }' />
+        </div>
+      </div>
+    </div>
+
+    <div class="flex-item-auto">
+      <button class="input-reset block height-full" type="button" data-ref-increment>
+        <div
+          class="
+            height-full
+            box-color-beige hover-box-color-beige-active
+            border-grey-lighter
+            flex-bar flex-center
+          "
+          style=" --width: 45px; --large--width: 50px;">
+          <div class="flex-item-auto">
+            <div class="font-size--down-8 text-color-slate">
+              {% include 'svg-plus' %}
+            </div>
+          </div>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>

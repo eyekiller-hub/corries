@@ -12,8 +12,6 @@
       "sold_out": "Sold out",
       "unavailable": "Unavailable",
       "added": "Added!",
-      "upsells_title": "Products related to: {{ product_title }}",
-      "recently_viewed_products_title": "Recently viewed products",
       "from": "From"
     }
   },
@@ -26,9 +24,6 @@
     },
     "products": {
       "count_suffix": "product(s)"
-    },
-    "load_more": {
-      "call_to_action": "Load more"
     },
     "menu": {
       "title": "Category"

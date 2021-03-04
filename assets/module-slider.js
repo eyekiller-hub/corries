@@ -5,7 +5,25 @@ import Swiper from 'swiper';
 import Breakpoint from './object-breakpoint';
 import Events from './object-events';
 
-function Self(element, events, options, module) {};
+function Self(element, events, options, module) {
+  if (!options.slide_product_variants) {
+    return;
+  }
+
+  Events.on('productform:variantchange', (variant) => {
+    var variant_slide_index = options.slide_product_variants.findIndex((slide_product_variants_set) => {
+      var slide_product_variant_ids = slide_product_variants_set.map((slide_product_variants_set_item) => {
+        return slide_product_variants_set_item.id;
+      });
+
+      return slide_product_variant_ids.includes(variant.id);
+    });
+
+    if (variant_slide_index >= 0) {
+      events.trigger('self:product-variant:active', [variant_slide_index]);
+    }
+  });
+};
 
 function Container(element, events, options, module) {
   var default_swiper_options = {
@@ -31,11 +49,9 @@ function Container(element, events, options, module) {
 
   var swiper = new Swiper(element, swiper_options);
 
-  if (module.options.product_cards) {
-    setTimeout(() => {
-      swiper.updateAutoHeight();
-    }, 1000);
-  }
+  events.on('self:product-variant:active', (variant_slide_index) => {
+    swiper.slideTo(variant_slide_index);
+  });
 
   if (module.options.breakpoints) {
     if (!Breakpoint.current.some((value) => module.options.breakpoints.includes(value))) {

@@ -1,10 +1,14 @@
-{% assign one_url = routes.root_url %}
+{% assign array_url = '' | split: '' %}
 
-{% assign one_title = 'breadcrumbs.home' | t %}
+{% assign array_title = '' | split: '' %}
 
-{% assign two_url = false %}
+{% assign array_item_url = routes.root_url | sort %}
 
-{% assign two_title = false %}
+{% assign array_item_title = 'breadcrumbs.home' | t | sort %}
+
+{% assign array_url = array_url | concat: array_item_url %}
+
+{% assign array_title = array_title | concat: array_item_title %}
 
 {% if
   template.name == 'page' or
@@ -13,35 +17,70 @@
   template.name == 'blog' or
   template.name == 'article'
 %}
-  {% assign two_url = request.path %}
+  {% if template.name == 'collection' or template.name == 'product' %}
+    {% if collection.template_suffix != 'menu' %}
+      {% assign menu = collection.metafields.menu.menu %}
+      {% assign menu = menus[menu] | default: false %}
 
-  {% assign two_title = page_title %}
+      {% for link in menu.links %}
+        {% for link_link in link.links %}
+          {% if link_link.active %}
+            {% assign array_item_url = link.url | sort %}
+
+            {% assign array_item_title = link.title | sort %}
+
+            {% assign array_url = array_url | concat: array_item_url %}
+
+            {% assign array_title = array_title | concat: array_item_title %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    {% endif %}
+  {% endif %}
+
+  {% if template.name == 'product' and collection %}
+    {% assign array_item_url = collection.url | sort %}
+
+    {% assign array_item_title = collection.title | sort %}
+
+    {% assign array_url = array_url | concat: array_item_url %}
+
+    {% assign array_title = array_title | concat: array_item_title %}
+  {% endif %}
+
+  {% assign array_item_url = request.path | sort %}
+
+  {% assign array_item_title = page_title | sort %}
+
+  {% assign array_url = array_url | concat: array_item_url %}
+
+  {% assign array_title = array_title | concat: array_item_title %}
 {% endif %}
 
 <nav class="hide large--show">
   <ul class="grid-bar--down-2 margin-bottom--up-1">
-    <li class="grid-item">
-      <a href="{{ one_url }}">
-        <div class="font-size--down-2 line-height--up-4">
-          {{ one_title }}
-        </div>
-      </a>
-    </li>
+    {% for url in array_url %}
+      {% assign title = array_title[forloop.index0] %}
 
-    {% if two_url and two_title %}
-      <li class="grid-item">
-        <div class="font-size--down-12">
-          {% include 'svg-arrow-right' %}
-        </div>
-      </li>
+      {% unless forloop.first %}
+        <li class="grid-item">
+          <div class="font-size--down-12">
+            {% include 'svg-arrow-right' %}
+          </div>
+        </li>
+      {% endunless %}
 
       <li class="grid-item">
-        <a href="{{ two_url }}">
-          <div class="font-size--down-2 line-height--up-4 text-color-grey-dark text-underline">
-            {{ two_title }}
+        <a href="{{ url }}">
+          <div class="
+            font-size--down-2 line-height--up-4
+            {% if forloop.last %}text-color-grey-dark text-underline{% endif %}
+          ">
+            {{ title }}
           </div>
         </a>
       </li>
-    {% endif %}
+    {% endfor %}
   </ul>
 </nav>

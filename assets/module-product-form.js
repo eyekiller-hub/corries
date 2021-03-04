@@ -130,8 +130,10 @@ function ProductForm(element, options) {
 
 init();
 
-Events.on('collection-body--or:products:render:success', init);
-Events.on('collection-body--and:products:render:success', init);
+Events
+  .on('collection-body--or:products:render:success', init)
+  .on('collection-body--and:products:render:success', init)
+  .on('product-upsells:render:success', init);
 
 function init() {
   var elements = document.querySelectorAll('[data-module-product-form]');

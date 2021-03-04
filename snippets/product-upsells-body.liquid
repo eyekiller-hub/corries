@@ -1,18 +1,25 @@
-<div class="padding-bottom--up-2 large--padding-bottom--up-4">
+<div class="padding-top--up-2 large--padding-top--up-5">
   <div class="container-default">
-    <h2 class="text-center margin-bottom--0">
-      {% if recommendations.performed %}
-        {{ 'products.product.upsells_title' | t }}
-      {% else %}
-        {{ 'products.product.upsells_title' | t: product_title: product.title }}
-      {% endif %}
-    </h2>
+    {% if title %}
+      {% include 'featured-section-title', _title: title %}
+    {% endif %}
 
     <div class="overflow-hidden">
-      <div class="grid--up-1 margin-bottom-negative--up-1">
+      <div class="flex--0 medium--flex--up-1 large--flex--up-2 flex-wrap margin-bottom-negative--up-2">
         {% if recommendations.performed %}
           {% for product in recommendations.products %}
-            <div class="{{ product_card_grid_item_class_name_template }}">
+            <div class="
+              flex-item-auto padding-bottom--up-2 one-two medium--one-three xlarge--one-five
+
+              {% if forloop.index > 4 %}
+                hide
+                medium--show
+              {% endif %}
+
+              {% if forloop.index > 5 %}
+                xlarge--hide
+              {% endif %}
+            ">
               {% include 'product-card' %}
             </div>
           {% endfor %}
@@ -20,7 +27,18 @@
           {% for handle in product_upsells_handles limit: limit %}
             {% assign product = all_products[handle] %}
 
-            <div class="{{ product_card_grid_item_class_name_template }}">
+            <div class="
+              flex-item-auto padding-bottom--up-2 one-two medium--one-three xlarge--one-five
+
+              {% if forloop.index > 4 %}
+                hide
+                medium--show
+              {% endif %}
+
+              {% if forloop.index > 5 %}
+                xlarge--hide
+              {% endif %}
+            ">
               {% include 'product-card' %}
             </div>
           {% endfor %}

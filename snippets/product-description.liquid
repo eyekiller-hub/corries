@@ -1,5 +1,16 @@
-<div class="margin-bottom--0">
-  <div class="rte">
-    {{ product.description }}
+{% if product.description != blank %}
+  <div class="padding-top--up-1 large--padding-top--up-2">
+    <div class="border-top-grey-lighter">
+      <div class="padding-top--up-1 large--padding-top--up-2">
+        <div
+          class="
+            rte
+            font-size--down-2 line-height--up-6
+            large--font-size--inherit large--line-height--up-8
+          ">
+          {{ product.description }}
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+{% endif %}

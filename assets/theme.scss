@@ -1,5 +1,5 @@
 /*! purgecss start ignore */
-@import '../node_modules/swiper/dist/css/swiper';
+@import '../node_modules/swiper/css/swiper';
 /*! purgecss end ignore */
 
 /*============================================================================
@@ -962,6 +962,9 @@ $buttons: (primary, secondary);
   .text-regular-case {
     text-transform: none;
   }
+  .text-regular-case\! {
+    text-transform: none !important;
+  }
   .text-underline,
   .links-text-underline a {
     text-decoration: underline;
@@ -1894,7 +1897,11 @@ $buttons: (primary, secondary);
   }
 }
 
-@mixin letter-spacings($breakpoint: "") {}
+@mixin letter-spacings($breakpoint: "") {
+  .#{$breakpoint}letter-spacing--inherit {
+    letter-spacing: inherit;
+  }
+}
 
 @include letter-spacings();
 
@@ -2468,17 +2475,6 @@ $buttons: (primary, secondary);
 }
 
 @mixin header-offcanvas-mobile-menu() {
-  html.is-active-offcanvas-header-mobile-menu {
-    &,
-    body {
-      overflow: hidden;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-    }
-  }
-
   .header-off-canvas-mobile-menu {
     transform: translateX(-100%);
     transition: var(--transition-easing);
@@ -2495,17 +2491,6 @@ $buttons: (primary, secondary);
 }
 
 @mixin header-offcanvas-mobile-search() {
-  html.is-active-offcanvas-header-mobile-search {
-    &,
-    body {
-      overflow: hidden;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-    }
-  }
-
   .header-off-canvas-mobile-search {
     transform: translateX(-100%);
     transition: var(--transition-easing);
@@ -2533,17 +2518,6 @@ $buttons: (primary, secondary);
 }
 
 @mixin mini-cart() {
-  html.is-active-offcanvas-header-mini-cart {
-    &,
-    body {
-      overflow: hidden;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-    }
-  }
-
   .header-off-canvas-mini-cart {
     transform: translateX(100%);
     transition: var(--transition-easing);
@@ -2605,6 +2579,8 @@ $buttons: (primary, secondary);
 @mixin swiper() {
   .swiper-button-prev,
   .swiper-button-next {
+    display: block;
+    color: inherit;
     opacity: 1;
     width: auto;
     height: auto;
@@ -2612,6 +2588,10 @@ $buttons: (primary, secondary);
     transform: translateY(-50%);
     background: none;
     outline: 0;
+
+    &:after {
+      display: none;
+    }
   }
 
   .swiper-button-prev {
@@ -2623,6 +2603,25 @@ $buttons: (primary, secondary);
   }
 
   .swiper-button-disabled {}
+
+  .swiper-pagination {
+    position: static;
+    font-size: 0;
+    line-height: 0;
+    margin-top: var(--spacing--up-1);
+  }
+
+  .swiper-pagination-bullet {
+    opacity: 1;
+    width: 12px;
+    height: 12px;
+    margin: 0 var(--spacing--down-5);
+    background-color: var(--colors-grey-lightest);
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: var(--colors-navy);
+  }
 }
 
 @mixin homepage-section() {
@@ -2664,6 +2663,82 @@ $buttons: (primary, secondary);
   }
 }
 
+@mixin product-gallery-thumbs() {
+  .product-gallery-thumbs {}
+
+  .product-gallery-thumb {
+    position: relative;
+
+    .swiper-slide-thumb-active & {
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        border: 3px solid var(--colors-green);
+        pointer-events: none;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+@mixin product-option-radio() {
+  .product-option-radio {
+    :checked + & {
+      background-color: var(--colors-slate);
+      border-color: var(--colors-slate);
+      color: var(--colors-light);
+    }
+  }
+}
+
+@mixin dynamic-checkout-buttons() {
+  .shopify-payment-button {
+    border-top: 1px solid var(--colors-grey-lighter);
+    padding-top: var(--spacing--0);
+    margin-top: var(--spacing--0);
+    position: relative;
+
+    &:before {
+      content: 'OR';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      background-color: var(--colors-light);
+      padding-left: var(--spacing--down-3);
+      padding-right: var(--spacing--down-3);
+      font-size: var(--font-size--down-4);
+      line-height: 1;
+      color: var(--colors-grey-dark);
+      text-transform: uppercase;
+      letter-spacing: var(--typography-uppercase-letter-spacing);
+    }
+  }
+
+  .shopify-payment-button__button {
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .shopify-payment-button__button--hidden {
+    display: none !important;
+  }
+
+  .shopify-payment-button__button--unbranded {
+    background-color: var(--colors-dark) !important;
+    text-transform: uppercase !important;
+    letter-spacing: var(--typography-uppercase-letter-spacing) !important;
+    font-weight: 700 !important;
+    font-size: var(--font-size--down-2) !important;
+    line-height: var(--font-size--down-4) !important;
+  }
+}
+
 /*! purgecss start ignore */
 @include responsive-images();
 @include shopify-challenge-page();
@@ -2677,4 +2752,7 @@ $buttons: (primary, secondary);
 @include swiper();
 @include homepage-section();
 @include page-spacing();
+@include product-gallery-thumbs();
+@include product-option-radio();
+@include dynamic-checkout-buttons();
 /*! purgecss end ignore */

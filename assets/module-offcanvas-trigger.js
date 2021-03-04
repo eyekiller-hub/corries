@@ -1,6 +1,7 @@
 import EventEmitter from 'wolfy87-eventemitter';
 import get_element_options from './fn-get-element-options';
 import Events from './object-events';
+import ScrollLock from './object-scroll-lock';
 import ResponsiveImages from './object-responsive-images';
 
 function Self(element, events, options, module) {
@@ -32,22 +33,14 @@ function Self(element, events, options, module) {
         window.scrollTo(0, options.scroll_to);
       }
 
-      options.scroll = window.pageYOffset;
-
       document.documentElement.classList.add(class_name);
 
-      document.body.style.top = `-${options.scroll}px`;
+      ScrollLock.enable();
     })
     .on('self:inactive', (id) => {
       document.documentElement.classList.remove(class_name);
 
-      document.body.style.top = '';
-
-      if (options.scroll) {
-        window.scrollTo(0, options.scroll);
-      }
-
-      delete options.scroll;
+      ScrollLock.disable();
     });
 
   if (offcanvas_element) {

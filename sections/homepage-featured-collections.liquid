@@ -15,14 +15,16 @@
       <div class="container-margin-negative-x medium--margin--none">
         <div data-module-slider='{
           "swiper": {
-            "slidesPerView": 6,
-            "spaceBetween": "var(--spacing--up-1)",
+            "slidesPerView": 3.5,
+            "spaceBetween": "var(--spacing--down-1)",
+            "slidesOffsetBefore": "var(--container-padding-x)",
+            "slidesOffsetAfter": "var(--container-padding-x)",
             "breakpoints": {
-              "small": {
-                "slidesPerView": 3.5,
-                "spaceBetween": "var(--spacing--down-1)",
-                "slidesOffsetBefore": "var(--container-padding-x)",
-                "slidesOffsetAfter": "var(--container-padding-x)"
+              "medium": {
+                "slidesPerView": 6,
+                "spaceBetween": "var(--spacing--up-1)",
+                "slidesOffsetBefore": 0,
+                "slidesOffsetAfter": 0
               }
             }
           }

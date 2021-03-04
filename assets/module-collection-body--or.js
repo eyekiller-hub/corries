@@ -113,7 +113,7 @@ function Products(element, events, options, module) {
         var variant = product.first_available_variant || product.variants[0];
 
         var product_card = transform_liquid_attributes(product_card_html, {
-          url: product.url,
+          url: `/collections/${module.options.collection.handle}${product.url}`,
           image_url: product.featured_image.src,
           image_alt: product.featured_image.alt,
           image_box_ratio: `${product.featured_image.height / product.featured_image.width * 100}%`,

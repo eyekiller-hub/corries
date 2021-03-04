@@ -31,18 +31,18 @@
   {% if blocks %}
     <div data-module-slider='{
       "swiper": {
-        "slidesPerView": 3,
-        "spaceBetween": "var(--spacing--up-7)",
-          "breakpoints": {
-            "large-down": {
-              "slidesPerView": 2,
-              "spaceBetween": "var(--spacing--up-5)"
-            },
-            "small": {
-              "slidesPerView": 1,
-              "spaceBetween": 0
-            }
+        "slidesPerView": 1,
+        "spaceBetween": 0,
+        "breakpoints": {
+          "medium": {
+            "slidesPerView": 2,
+            "spaceBetween": "var(--spacing--up-5)"
+          },
+          "large": {
+            "slidesPerView": 3,
+            "spaceBetween": "var(--spacing--up-7)"
           }
+        }
       }
     }'>
       <div class="position-relative">

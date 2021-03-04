@@ -1,0 +1,46 @@
+{% schema %}
+  {
+    "name": "Product recipes",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enable?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "number",
+        "id": "limit",
+        "label": "Limit",
+        "default": 6
+      }
+    ]
+  }
+{% endschema %}
+
+{% assign enable = section.settings.enable | default: false %}
+
+{% assign title = section.settings.title | default: false %}
+
+{% assign limit = section.settings.limit | default: 4 %}
+
+{% if enable %}
+  <div class="padding-top--up-2 large--padding-top--up-5">
+    <div class="container-default">
+      {% if title %}
+        {% include 'featured-section-title', _title: title %}
+      {% endif %}
+
+      <div class="overflow-hidden">
+        <div class="text-center">
+          Product recipes
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

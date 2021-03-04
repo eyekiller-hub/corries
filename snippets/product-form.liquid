@@ -1,22 +1,43 @@
-<div data-module-product-form='{
-  "product": {{ product | json | escape }},
-  "variant_id": {{ current_variant.id | json | escape }},
-  "quantity": 1,
-  "history_state": true
-}'>
-  {% form 'product', product %}
-    {% include 'product-form-id' %}
+  <div data-module-product-form='{
+    "product": {{ product | json | escape }},
+    "variant_id": {{ current_variant.id | json | escape }},
+    "quantity": 1,
+    "history_state": true
+  }'>
+    {% form 'product', product %}
+      {% include 'product-form-id' %}
 
-    {% unless product.has_only_default_variant %}
-      <div class="margin-bottom--0">
-        {% include 'product-form-options' %}
-      </div>
-    {% endunless %}
+      {% unless product.has_only_default_variant %}
+        <div class="margin-bottom--0">
+          {% if template.suffix == 'dropdown' %}
+            {% include 'product-form-options' %}
+          {% else %}
+            {% include 'product-form-options-radio' %}
+          {% endif %}
+        </div>
+      {% endunless %}
 
-    <div class="margin-bottom--0">
       {% include 'product-form-quantity' %}
-    </div>
 
-    {% include 'product-form-submit' %}
-  {% endform %}
-</div>
+      <div class="padding-top--up-1 large--padding-top--up-2">
+        <div class="border-top-grey-lighter">
+          <div class="padding-top--up-1 large--padding-top--up-2">
+            <div class="large--flex--up-1">
+              <div class="large--flex-item margin-bottom--0 large--margin-bottom--none">
+                {% include 'product-form-summary' %}
+                {% include 'product-price' %}
+
+                {% if delivery_info_enable %}
+                  {% include 'product-delivery-info' %}
+                {% endif %}
+              </div>
+
+              <div class="large--flex-item-shrink">
+                {% include 'product-form-submit' %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endform %}
+  </div>

@@ -11,6 +11,16 @@
 
 {% assign empty_body = section.settings.empty_body | default: false %}
 
+{% assign menu_enable = false %}
+
+{% if menu and template.suffix == 'menu' %}
+  {% assign menu_enable = true %}
+{% endif %}
+
+{% capture product_card_grid_class_name_template %}
+  {% include 'product-card-grid-class-name-template' %}
+{% endcapture %}
+
 {% capture product_card_grid_item_class_name_template %}
   {% include 'product-card-grid-item-class-name-template' %}
 {% endcapture %}
@@ -60,7 +70,7 @@
   {% endfor %}
 {% endif %}
 
-{% if menu %}
+{% if menu_enable %}
   {% assign filters_enable = false %}
 {% endif %}
 
@@ -104,7 +114,7 @@
             <div class="margin-top--up-1">
               <div style="{% if collection.products == empty %}display: none;{% endif %}" data-ref-products-wrap>
                 <div class="overflow-hidden">
-                  <div class="flex--0 medium--flex--up-1 large--flex--up-2 flex-wrap margin-bottom-negative--up-2" data-ref-products>
+                  <div class="{{ product_card_grid_class_name_template }}" data-ref-products>
                     {% for product in collection.products %}
                       <div class="{{ product_card_grid_item_class_name_template }}">
                         {% include 'product-card', _image_lazy: image_lazy %}
@@ -142,7 +152,7 @@
       },
       {
         "type": "paragraph",
-        "content": "You can optionally define a menu on a per-collection basis via Collection -> More actions -> Custom fields -> Menu. This will display instead of the filters if defined."
+        "content": "You can optionally define a menu on a per-collection basis via Collection -> More actions -> Custom fields -> Menu. You'll need to specify the same menu for the parent collection and all child collections within for the site breadcrumbs to work properly. When you want the menu to display instead of the filters on the collection pages, change the collection template to 'collection.menu'."
       },
       {
         "type": "header",

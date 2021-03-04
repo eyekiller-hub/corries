@@ -1,49 +1,82 @@
-<div data-module-image-gallery-slider='{ "product_id": {{ product.id | json | escape }} }'>
-  <div class="position-relative">
-    <div class="swiper-container" data-ref-slider>
-      <div class="swiper-wrapper">
-        {% for image in product.images %}
-          {% include 'attribute-image-box-ratio' %}
+{% assign initial_slide = 0 %}
 
-          {% assign image_url = image | img_url: '2000x' %}
-          {% assign image_url_thumbnail = image | img_url: '1000x' %}
+{% for image in product.images %}
+  {% assign image_variant_ids = image.variants | map: 'id' %}
 
-          {% assign image_variant_ids = image.variants | map: 'id' %}
+  {% if image_variant_ids contains current_variant.id %}
+    {% assign initial_slide = forloop.index0 %}
+    {% break %}
+  {% endif %}
+{% endfor %}
 
-          {% assign image_lazy_attr = '' %}
+<div class="slider" data-module-slider='{
+  "swiper": {
+    "initialSlide": {{ initial_slide | json }}
 
-          {% unless forloop.first %}
-            {% assign image_lazy_attr = 'data-lazy' %}
-          {% endunless %}
+    {% if product.images.size > 1 %}
+      ,
+      "thumbs": {
+        "swiper": {
+          "el": ".swiper-container-thumbs",
+          "slidesPerView": 6,
+          "spaceBetween": "var(--spacing--down-2)"
+        }
+      }
+    {% endif %}
+  },
 
-          <div class="swiper-slide" data-ref-slide='{
-            "index": {{ forloop.index0 | json | escape }},
-            "variant_ids": {{ image_variant_ids | json | escape }}
-          }'>
-            <a href="{{ image_url }}" title="{{ image.alt | escape }}">
-              <div class="image-container box-ratio-inline" style="padding-bottom: {{ image_box_ratio }};">
-                <img data-src="{{ image_url_thumbnail }}" alt="{{ image.alt | escape }}" {{ image_lazy_attr }} />
-              </div>
-            </a>
-          </div>
-        {% endfor %}
-      </div>
+  "slide_product_variants": {{ product.images | map: 'variants' | json }}
+}'>
+  <div class="swiper-container" data-ref-container>
+    <div class="swiper-wrapper">
+      {% for image in product.images %}
+        <div class="swiper-slide">
+          {%
+            include 'image',
+            _object: image,
+            _size: '1000x',
+            _lazy: true
+          %}
+        </div>
+      {% endfor %}
     </div>
 
-    <div class="position-absolute position-center-vertical position-left position-1">
-      <button class="slider-button input-reset block" type="button" data-ref-previous>
-        <div class="font-size--up-16">
-          {% include 'svg-arrow-left' %}
-        </div>
-      </button>
-    </div>
-
-    <div class="position-absolute position-center-vertical position-right position-1">
-      <button class="slider-button input-reset block" type="button" data-ref-next>
-        <div class="font-size--up-16">
-          {% include 'svg-arrow-right' %}
-        </div>
-      </button>
+    <div class="large--hide">
+      <div class="swiper-pagination" data-ref-pagination></div>
     </div>
   </div>
 </div>
+
+{% if product.images.size > 1 %}
+  <div class="hide large--show">
+    <div class="product-gallery-thumbs">
+      <div class="margin-top--up-1">
+        <div class="slider" data-module-slider='{
+          "swiper": {
+            "slidesPerView": 6,
+            "spaceBetween": "var(--spacing--down-2)"
+          }
+        }'>
+          <div class="swiper-container swiper-container-thumbs" data-ref-container>
+            <div class="swiper-wrapper">
+              {% for image in product.images %}
+                <div class="swiper-slide">
+                  <div class="cursor-pointer">
+                    <div class="product-gallery-thumb">
+                      {%
+                        include 'image',
+                        _object: image,
+                        _size: '200x',
+                        _lazy: true
+                      %}
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

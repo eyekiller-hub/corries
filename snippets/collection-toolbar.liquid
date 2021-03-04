@@ -4,7 +4,7 @@
       <div class="flex-bar--up-1">
         <div class="
           flex-item
-          {% unless menu or filters_enable %}
+          {% unless menu_enable or filters_enable %}
             hide large--show
           {% endunless %}
         ">
@@ -16,7 +16,7 @@
             {{ 'collection.products.count_suffix' | t }}
           </div>
 
-          {% if menu %}
+          {% if menu_enable %}
             {% include 'collection-menu-button' %}
           {% elsif filters_enable %}
             {% include 'collection-filters-button' %}
@@ -28,13 +28,13 @@
         </div>
       </div>
 
-      {% if menu or filters_enable %}
+      {% if menu_enable or filters_enable %}
         <div class="
           large--position-absolute large--position-left large--position-top
           large--one-five
           large--padding-left--up-3
         ">
-          {% if menu %}
+          {% if menu_enable %}
             <div class="hide large--show" data-ref-panel='{ "index": "menu" }'>
               {% include 'collection-menu' %}
             </div>

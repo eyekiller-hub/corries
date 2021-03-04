@@ -1,14 +1,34 @@
 <div data-module-product-price='{
   "money_format": {{ shop.money_format | json | escape }},
-  "product_id": {{ product.id | json | escape }}
+  "product_id": {{ product.id | json | escape }},
+  "retail_on_sale_class": "text-color-red"
 }'>
-  <div data-ref-retail>
-    {{ current_variant.price | money }}
-  </div>
+  <span
+    class="
+      font-size--up-8 line-height--up-10
+      large--font-size--up-10 large--line-height--up-13
 
-  <s style="{% unless current_variant.compare_at_price > current_variant.price %}display: none;{% endunless %}" data-ref-compare>
-    {% if current_variant.compare_at_price > current_variant.price %}
-      {{ current_variant.compare_at_price | money }}
-    {% endif %}
+      {% unless current_variant.price > current_variant.compare_at_price %}
+        text-color-red
+      {% endunless %}
+    "
+    data-ref-retail>
+    {{- current_variant.price | money -}}
+  </span>
+
+  <s
+    class="
+      font-size--up-4 line-height--up-10
+      large--font-size--up-6 large--line-height--up-12
+      text-color-grey-light
+    "
+    style="
+      {% unless current_variant.compare_at_price > current_variant.price %}
+        display: none;
+      {% endunless %}"
+    data-ref-compare>
+    {%- if current_variant.compare_at_price > current_variant.price -%}
+      {{- current_variant.compare_at_price | money -}}
+    {%- endif -%}
   </s>
 </div>

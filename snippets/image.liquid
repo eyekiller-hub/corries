@@ -16,6 +16,7 @@
 {% assign image_url_large = _image_url_large %}
 {% assign image_alt = _image_alt %}
 {% assign class = _class %}
+{% assign object_fit = _object_fit %}
 
 {% if object %}
   {% include 'attribute-image-box-ratio', image: object %}
@@ -76,8 +77,13 @@
 <div
   class="
     image-container
+
     {% if box_ratio or box_ratio_medium or box_ratio_large %}
       box-ratio-inline
+    {% endif %}
+
+    {% if object_fit %}
+      position-relative
     {% endif %}
   "
   style="
@@ -94,7 +100,18 @@
     {% endif %}
   ">
   <img
-    class="{{ class }}"
+    class="
+      {{ class }}
+
+      {% if object_fit %}
+        position-absolute
+        position-top
+        position-left
+        one
+        height-full
+        object-full
+      {% endif %}
+    "
 
     data-src="{{ image_url }}"
 

@@ -2,7 +2,7 @@
 
 {% assign variant = product.first_available_variant | default: product.variants[0] %}
 
-{% assign url = product.url %}
+{% assign url = product.url | within: collection %}
 
 {% assign image_url = product.images[0] | img_url: '600x' %}
 
