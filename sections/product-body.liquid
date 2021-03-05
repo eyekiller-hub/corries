@@ -4,9 +4,19 @@
 
 {% assign dynamic_checkout_buttons_enable = section.settings.dynamic_checkout_buttons_enable | default: false %}
 
+{% if product.metafields.delivery_info.disable %}
+  {% assign delivery_info_enable = false %}
+{% endif %}
+
+{% if product.metafields.delivery_info.copy %}
+  {% assign delivery_info_copy = product.metafields.delivery_info.copy %}
+{% endif %}
+
 {% assign current_collection = collection %}
 {% assign current_product = product %}
 {% assign current_variant = product.selected_or_first_available_variant %}
+
+{% include 'attribute-product-tag-badge' %}
 
 <div class="container-default">
   {% include 'breadcrumbs' %}
@@ -19,6 +29,7 @@
 
       <div class="grid-item one large--one-two padding-bottom--up-1">
         {% include 'product-info' %}
+        {% include 'product-short-description' %}
         {% include 'product-form' %}
         {% include 'product-description' %}
       </div>

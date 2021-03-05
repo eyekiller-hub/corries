@@ -44,6 +44,17 @@
     <div class="large--hide">
       <div class="swiper-pagination" data-ref-pagination></div>
     </div>
+
+    {% if product_tag_badge %}
+      <div class="position-absolute position-top--0 position-right--0 position-1">
+        <div style=" --max-width: 70px; --medium--max-width: 80px; --large--max-width: 90px;">
+          {%
+            include 'image',
+            _image_url: product_tag_badge_image_url
+          %}
+        </div>
+      </div>
+    {% endif %}
   </div>
 </div>
 

@@ -1,0 +1,21 @@
+{% assign product_tag_badge = false %}
+
+{% assign product_tag_badge_image_url = false %}
+
+{% assign product_tag_badge_image_alt = false %}
+
+{% if shop.metafields.product_tag_badges.tag %}
+  {% for product_tag_badges_tag in shop.metafields.product_tag_badges.tag %}
+    {% assign product_tag_badges_image = shop.metafields.product_tag_badges.image[forloop.index0][0] %}
+
+    {% if product.tags contains product_tag_badges_tag %}
+      {% assign product_tag_badge = true %}
+
+      {% assign product_tag_badge_image_url = product_tag_badges_image.src %}
+
+      {% assign product_tag_badge_image_alt = product_tag_badges_image.alt %}
+
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}

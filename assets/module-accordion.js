@@ -30,6 +30,26 @@ function Button(element, events, options, module) {
     setTimeout(() => events.trigger(`button:active:${options.index}`));
   }
 
+  events
+    .on('panel:inactive', () => {
+      if (options.active_class) {
+        element.classList.remove(...options.active_class);
+      }
+
+      if (options.inactive_class) {
+        element.classList.add(...options.inactive_class);
+      }
+    })
+    .on(`panel:active:${options.index}`, () => {
+      if (options.active_class) {
+        element.classList.add(...options.active_class);
+      }
+
+      if (options.inactive_class) {
+        element.classList.remove(...options.inactive_class);
+      }
+    });
+
   function is_active() {
     var active = options.active && !Array.isArray(options.active);
 
@@ -91,12 +111,12 @@ function IconHide(element, events, options, module) {
 };
 
 function Panel(element, events, options, module) {
-  element.style.display = 'none';
+  hide();
 
   events
     .on('button:click', (index) => {
       if (index != options.index) {
-        element.style.display = 'none';
+        hide();
       }
     })
     .on(`button:click:${options.index}`, toggle)
@@ -105,16 +125,25 @@ function Panel(element, events, options, module) {
     .on(`button:resizeinactive:${options.index}`, hide);
 
   function toggle() {
-    var display = window.getComputedStyle(element).display == 'block' ? 'none' : 'block';
-    element.style.display = display;
+    var display = window.getComputedStyle(element).display;
+
+    if (display == 'block') {
+      return hide();
+    }
+
+    show();
   };
 
   function hide() {
     element.style.display = 'none';
+    events.trigger('panel:inactive');
+    events.trigger(`panel:inactive:${options.index}`);
   };
 
   function show() {
     element.style.display = 'block';
+    events.trigger('panel:active');
+    events.trigger(`panel:active:${options.index}`);
   };
 };
 

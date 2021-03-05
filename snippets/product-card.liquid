@@ -1,3 +1,5 @@
+{% include 'attribute-product-tag-badge' %}
+
 {% assign image_lazy = _image_lazy %}
 
 {% assign variant = product.first_available_variant | default: product.variants[0] %}
@@ -40,6 +42,16 @@
   {% assign from = 'products.product.from' | t %}
 {% endif %}
 
+{% assign copy = ' ' %}
+
+{% assign copy_class = 'hide' %}
+
+{% if product.metafields.card.copy %}
+  {% assign copy = from | append: ' ' | append: product.metafields.card.copy %}
+
+  {% assign copy_class = ' ' %}
+{% endif %}
+
 {% assign product_json = product | json %}
 
 {% assign first_available_variant_id = variant.id %}
@@ -58,6 +70,26 @@
   {% assign submit_html = 'products.product.sold_out' | t %}
 {% endunless %}
 
+{% assign promo_badge_copy = ' ' %}
+
+{% assign promo_badge_class = 'hide' %}
+
+{% if product.metafields.promo_badge.copy %}
+  {% assign promo_badge_copy = product.metafields.promo_badge.copy %}
+
+  {% assign promo_badge_class = ' ' %}
+{% endif %}
+
+{% assign tag_badge_html = ' ' %}
+
+{% assign tag_badge_class = 'hide' %}
+
+{% if product_tag_badge %}
+  {% assign tag_badge_html = '<img data-src="' | append: product_tag_badge_image_url | append: '" alt="' | append: product_tag_badge_image_alt | append: '" />' %}
+
+  {% assign tag_badge_class = ' ' %}
+{% endif %}
+
 {%
   include 'product-card-template',
   _url: url,
@@ -70,10 +102,15 @@
   _price_min: price_min,
   _compare_at_price_min_class: compare_at_price_min_class,
   _compare_at_price_min: compare_at_price_min,
+  _copy: copy,
   _from: from,
   _product_json: product_json,
   _first_available_variant_id: first_available_variant_id,
   _submit_attributes: submit_attributes,
   _product_id: product_id,
-  _submit_html: submit_html
+  _submit_html: submit_html,
+  _promo_badge_copy: promo_badge_copy,
+  _promo_badge_class: promo_badge_class,
+  _tag_badge_html: tag_badge_html,
+  _tag_badge_class: tag_badge_class
 %}

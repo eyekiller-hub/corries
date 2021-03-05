@@ -14,6 +14,10 @@
 {% assign submit_attributes = _submit_attributes %}
 {% assign product_id = _product_id %}
 {% assign submit_html = _submit_html %}
+{% assign promo_badge_copy = _promo_badge_copy %}
+{% assign promo_badge_class = _promo_badge_class %}
+{% assign tag_badge_html = _tag_badge_html %}
+{% assign tag_badge_class = _tag_badge_class %}
 
 {% assign url = url | default: '{{ url }}' %}
 
@@ -35,6 +39,10 @@
 
 {% assign compare_at_price_min = compare_at_price_min | default: '{{ compare_at_price_min }}' %}
 
+{% assign copy = copy | default: '{{ copy }}' %}
+
+{% assign copy_class = copy_class | default: '{{ copy_class }}' %}
+
 {% assign from = from | default: '{{ from }}' %}
 
 {% assign product_json = product_json | default: '{{ product_json }}' %}
@@ -47,16 +55,58 @@
 
 {% assign submit_html = submit_html | default: '{{ submit_html }}' %}
 
+{% assign promo_badge_class = promo_badge_class | default: '{{ promo_badge_class }}' %}
+
+{% assign promo_badge_copy = promo_badge_copy | default: '{{ promo_badge_copy }}' %}
+
+{% assign tag_badge_html = tag_badge_html | default: '{{ tag_badge_html }}' %}
+
+{% assign tag_badge_class = tag_badge_class | default: '{{ tag_badge_class }}' %}
+
 <article class="height-full flex-vertical">
   <div class="margin-bottom--up-1">
     <a href="{{ url }}">
-      <div class="image-container box-ratio-inline" style="padding-bottom: {{ image_box_ratio }};">
-        <img data-src="{{ image_url }}" alt="{{ image_alt }}" {{ image_attributes }} />
+      <div class="position-relative">
+        <div class="image-container box-ratio-inline" style="padding-bottom: {{ image_box_ratio }};">
+          <img data-src="{{ image_url }}" alt="{{ image_alt }}" {{ image_attributes }} />
+        </div>
+
+        <div class="no-pointer">
+          <div class="{{ promo_badge_class }}">
+            <div class="position-absolute position-top--down-1 position-left">
+              <div class="box-color-red">
+                <div class="padding-top-bottom--down-4 padding-left-right--down-2">
+                  <div class="
+                    font-size--down-2 line-height--up-4
+                    font-weight-700 text-caps-letter-spacing text-color-light
+                  ">
+                    {{ promo_badge_copy }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="{{ tag_badge_class }}">
+            <div class="position-absolute position-top--down-2 position-right--down-2 position-1">
+              <div style=" --max-width: 70px; --medium--max-width: 80px; --large--max-width: 90px;">
+                <div class="image-container">
+                  {{ tag_badge_html }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </a>
   </div>
 
-  <h3 class="font-size--down-2 line-height--up-4 large--font-size--inherit large--line-height--inherit font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark margin-bottom--down-3">
+  <h3 class="
+    font-size--down-2 line-height--up-4
+    large--font-size--inherit large--line-height--inherit
+    font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark
+    margin-bottom--down-3
+  ">
     <a href="{{ url }}">
       {{ title }}
     </a>
@@ -72,6 +122,14 @@
       <s class="text-color-grey-light {{ compare_at_price_min_class }}">
         {{ compare_at_price_min }}
       </s>
+    </div>
+
+    <div class="{{ copy_class }}">
+      <div class="padding-top--down-4">
+        <div class="font-size--down-2 line-height--up-4 text-color-grey-light">
+          {{ copy }}
+        </div>
+      </div>
     </div>
 
     <div class="margin-top--0">

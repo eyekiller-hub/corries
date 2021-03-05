@@ -5,6 +5,8 @@
     {
       "products": [
         {%- for product in collection.products -%}
+          {% include 'attribute-product-tag-badge' %}
+
           {
             "featured_image": {
               "src": {{ product.featured_image | img_url: '600x' | json }},
@@ -22,7 +24,29 @@
             "url": {{ product.url | json }},
             "first_available_variant": {{ product.first_available_variant | json }},
             "id": {{ product.id | json }},
-            "variants": {{ product.variants | json }}
+            "variants": {{ product.variants | json }},
+            "metafields": {
+              {% if product.metafields.card.copy %}
+                "card": {
+                  "copy": {{ product.metafields.card.copy | json }}
+                }
+              {% endif %}
+
+              {% if product.metafields.promo_badge.copy %}
+                ,
+                "promo_badge": {
+                  "copy": {{ product.metafields.promo_badge.copy | json }}
+                }
+              {% endif %}
+            },
+            "custom": {
+              {% if product_tag_badge %}
+                "product_tag_badge": {
+                  "image_url": {{ product_tag_badge_image_url | json }},
+                  "image_alt": {{ product_tag_badge_image_alt | json }}
+                }
+              {% endif %}
+            }
           }{%- unless forloop.last -%},{%- endunless -%}
         {%- endfor -%}
       ]

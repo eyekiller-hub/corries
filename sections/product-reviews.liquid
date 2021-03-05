@@ -28,10 +28,13 @@
         {% include 'featured-section-title', _title: title %}
       {% endif %}
 
-      <div class="overflow-hidden">
-        <div class="text-center">
-          Product reviews
-        </div>
+      <div class="box-center" style="max-width: 930px;">
+        {%
+          include 'judgeme_widgets',
+          widget_type: 'judgeme_review_widget',
+          concierge_install: false,
+          product: product
+        %}
       </div>
     </div>
   </div>

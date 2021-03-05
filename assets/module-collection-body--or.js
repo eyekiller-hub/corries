@@ -112,6 +112,16 @@ function Products(element, events, options, module) {
 
         var variant = product.first_available_variant || product.variants[0];
 
+        var from = product.price_varies ? window.theme_locales.products.product.from : '';
+
+        var copy = `${(product.metafields && product.metafields.card && `${from} ${product.metafields.card.copy}`) || ''}`;
+
+        var promo_badge_copy = (product.metafields && product.metafields.promo_badge && product.metafields.promo_badge.copy) || '';
+
+        var tag_badge_html = product.custom.product_tag_badge ? `
+          <img data-src="${product.custom.product_tag_badge.image_url}" alt="${product.custom.product_tag_badge.image_alt}" />
+        ` : '';
+
         var product_card = transform_liquid_attributes(product_card_html, {
           url: `/collections/${module.options.collection.handle}${product.url}`,
           image_url: product.featured_image.src,
@@ -123,14 +133,20 @@ function Products(element, events, options, module) {
           compare_at_price_min: money(product.compare_at_price_min, module.options.money_format),
           price_varies: money(product.price_varies, module.options.money_format),
           price_min: money(product.price_min, module.options.money_format),
-          from: product.price_varies ? window.theme_locales.products.product.from : '',
+          from: from,
+          copy: copy,
+          copy_class: copy ? '' : 'hide',
           price_class: product.compare_at_price_min > product.price_min ? 'text-color-red' : '',
           compare_at_price_min_class: product.compare_at_price_min > product.price_min ? '' : 'hide',
           product_json: JSON.stringify(product),
           first_available_variant_id: variant.id,
           product_id: product.id,
           submit_html: variant.available ? window.theme_locales.products.product.add_to_cart : window.theme_locales.products.product.sold_out,
-          submit_attributes: variant.available ? '' : 'disabled'
+          submit_attributes: variant.available ? '' : 'disabled',
+          promo_badge_class: promo_badge_copy ? '' : 'hide',
+          promo_badge_copy: promo_badge_copy,
+          tag_badge_html: tag_badge_html,
+          tag_badge_class: tag_badge_html ? '' : 'hide',
         });
 
         return `
@@ -143,6 +159,7 @@ function Products(element, events, options, module) {
 
     element.innerHTML = html;
 
+    ResponsiveImages.load();
     ResponsiveImages.load_lazy(element);
 
     events.trigger('products:render:success', [products.length, module.options, element]);

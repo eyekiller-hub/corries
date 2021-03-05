@@ -9,24 +9,40 @@
         "default": true
       },
       {
+        "type": "header",
+        "content": "Tab #1"
+      },
+      {
         "type": "text",
         "id": "tab_1_title",
-        "label": "Tab #1 title"
+        "label": "Title"
+      },
+      {
+        "type": "header",
+        "content": "Tab #2"
       },
       {
         "type": "text",
         "id": "tab_2_title",
-        "label": "Tab #2 title"
+        "label": "Title"
+      },
+      {
+        "type": "header",
+        "content": "Tab #3"
       },
       {
         "type": "text",
         "id": "tab_3_title",
-        "label": "Tab #3 title"
+        "label": "Title"
+      },
+      {
+        "type": "header",
+        "content": "Tab #4"
       },
       {
         "type": "text",
         "id": "tab_4_title",
-        "label": "Tab #4 title"
+        "label": "Title"
       }
     ]
   }
@@ -34,39 +50,33 @@
 
 {% assign enable = section.settings.enable | default: false %}
 
-{% assign tab_1_title = section.settings.tab_1_title | default: false %}
+{% assign tab_1_title = section.settings.tab_1_title | default: '' | sort %}
 
-{% assign tab_2_title = section.settings.tab_2_title | default: false %}
+{% assign tab_2_title = section.settings.tab_2_title | default: '' | sort %}
 
-{% assign tab_3_title = section.settings.tab_3_title | default: false %}
+{% assign tab_3_title = section.settings.tab_3_title | default: '' | sort %}
 
-{% assign tab_4_title = section.settings.tab_4_title | default: false %}
+{% assign tab_4_title = section.settings.tab_4_title | default: '' | sort %}
 
-{% assign tab_1_body = 'tab_1_body' %}
+{% assign tab_1_body = product.metafields.tab_1.copy | default: '' | sort %}
 
-{% assign tab_2_body = 'tab_2_body' %}
+{% assign tab_2_body = product.metafields.tab_2.copy | default: '' | sort %}
 
-{% assign tab_3_body = 'tab_3_body' %}
+{% assign tab_3_body = product.metafields.tab_3.copy | default: '' | sort %}
 
-{% assign tab_4_body = 'tab_4_body' %}
+{% assign tab_4_body = product.metafields.tab_4.copy | default: '' | sort %}
 
-{% capture array_title %}
-{{ tab_1_title }} |
-{{ tab_2_title }} |
-{{ tab_3_title }} |
-{{ tab_4_title }}
-{% endcapture %}
+{% assign array_title = '' | split: '' | concat: tab_1_title | concat: tab_2_title | concat: tab_3_title | concat: tab_4_title %}
 
-{% assign array_title = array_title | strip | split: '|' %}
+{% assign array_body = '' | split: '' | concat: tab_1_body | concat: tab_2_body | concat: tab_3_body | concat: tab_4_body %}
 
-{% capture array_body %}
-{{ tab_1_body }} |
-{{ tab_2_body }} |
-{{ tab_3_body }} |
-{{ tab_4_body }}
-{% endcapture %}
+{% assign array_title_handle = array_title | handle %}
 
-{% assign array_body = array_body | strip | split: '|' %}
+{% assign array_body_handle = array_body | handle %}
+
+{% if array_title_handle == blank or array_body_handle == blank %}
+  {% assign enable = false %}
+{% endif %}
 
 {% if enable %}
   <div class="padding-top--up-2 large--padding-top--up-5">
@@ -89,6 +99,7 @@
                     class="
                       button-primary
                       padding-top-bottom--0
+                      padding-left-right--0 xlarge--padding-left-right--up-1
                       box-color-light hover-box-color-beige
                       border-grey-lighter hover-border-beige
                       text-color-grey-dark hover-text-color-grey-dark
@@ -98,7 +109,9 @@
                     type="button"
                     data-ref-button='{
                       "index": {{ forloop.index0 | json }},
-                      "active": {% if forloop.first %}["large"]{% else %}false{% endif %}
+                      "active": {% if forloop.first %}["large"]{% else %}false{% endif %},
+                      "active_class": ["box-color-beige", "border-beige", "no-pointer"],
+                      "inactive_class": ["box-color-light", "border-grey-lighter"]
                     }'>
                     {{ title }}
                   </button>
@@ -109,55 +122,78 @@
         </nav>
       </div>
 
-      <div class="box-color-beige">
-        <div class="padding-top-bottom--up-2 large--padding-top-bottom--up-5">
-          <div class="container-default">
-            <div class="box-center" style="max-width: 750px;">
-              {% for title_ in array_title %}
-                {% assign title = title_ | default: false %}
+      <div class="container-margin-negative-x large--margin--none">
+        <div class="large--box-color-beige">
+          <div class="large--padding-top-bottom--up-5">
+            <div class="container-default">
+              <div class="box-center" style="max-width: 750px;">
+                {% for title_ in array_title %}
+                  {% assign title = title_ | default: false %}
 
-                {% assign body = array_body[forloop.index0] | default: false %}
+                  {% assign body = array_body[forloop.index0] | default: false %}
 
-                {% unless title and body %}
-                  {% continue %}
-                {% endunless %}
+                  {% unless title and body %}
+                    {% continue %}
+                  {% endunless %}
 
-                <div>
-                  <div class="large--hide">
-                    <button
-                      class="
-                        button-primary
-                        padding-top-bottom--0
-                        box-color-light hover-box-color-beige
-                        border-grey-lighter hover-border-beige
-                        text-color-grey-dark hover-text-color-grey-dark
-                        font-size--inherit line-height--up-8
-                        font-weight-500
-                      "
-                      type="button"
-                      data-ref-button='{ "index": {{ forloop.index0 | json }} }'>
-                      {{ title }}
-                    </button>
-                  </div>
+                  <div>
+                    <div class="large--hide">
+                      <button
+                        class="
+                          input-reset block one
+                          container-padding padding-top-bottom--down-1
+                          box-color-beige
+                          border-bottom-light
+                        "
+                        type="button"
+                        data-ref-button='{ "index": {{ forloop.index0 | json }} }'>
+                        <div class="flex-bar--down-1">
+                          <div class="flex-item">
+                            <div class="
+                              font-size--down-2 line-height--up-7
+                              font-weight-500 text-caps-letter-spacing
+                              text-color-grey-dark
+                            ">
+                              {{ title }}
+                            </div>
+                          </div>
 
-                  <div data-ref-panel='{ "index": {{ forloop.index0 | json }} }'>
-                    <h2 class="
-                      font-size--up-4
-                      medium--font-size--up-5
-                      large--font-size--up-8 large--line-height--up-10
-                      font-weight-700 text-caps text-color-navy
-                      margin-bottom--0 large--margin-bottom--up-2
-                      hide large--show
-                    ">
-                      {{ title }}
-                    </h2>
+                          <div class="flex-item-auto">
+                            <div class="font-size--down-6 text-color-grey-dark">
+                              <div data-ref-icon-show='{ "index": {{ forloop.index0 | json }} }'>
+                                {% include 'svg-arrow-bottom' %}
+                              </div>
 
-                    <div class="rte large--font-size--up-2 large--line-height--up-8">
-                      {{ body }}
+                              <div style="display: none;" data-ref-icon-hide='{ "index": {{ forloop.index0 | json }} }'>
+                                {% include 'svg-arrow-top' %}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </button>
+                    </div>
+
+                    <div data-ref-panel='{ "index": {{ forloop.index0 | json }} }'>
+                      <div class="container-padding padding-top-bottom--0 medium--padding--none">
+                        <h2 class="
+                          font-size--up-4
+                          medium--font-size--up-5
+                          large--font-size--up-8 large--line-height--up-10
+                          font-weight-700 text-caps text-color-navy
+                          margin-bottom--0 large--margin-bottom--up-2
+                          hide large--show
+                        ">
+                          {{ title }}
+                        </h2>
+
+                        <div class="rte rte--product-tabs large--font-size--up-2 large--line-height--up-8">
+                          {{ body }}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              {% endfor %}
+                {% endfor %}
+              </div>
             </div>
           </div>
         </div>
