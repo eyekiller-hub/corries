@@ -4,16 +4,23 @@
   }
 {% endschema %}
 
-<div class="padding-top-bottom--up-2 large--padding-top-bottom--up-4">
-  <div class="container-default">
-    <h1 class="margin-bottom--0">
-      {{ 'cart.title' | t }}
-    </h1>
+<div class="page-spacing">
+  <div class="padding-top--up-2 large--padding-top--up-5">
+    <div class="container-default">
+      <h1 class="
+        font-size--up-8 line-height--up-10
+        large--font-size--up-12 large--line-height--up-14
+        text-caps-letter-spacing font-weight-700 text-color-grey-dark
+        text-center
+        margin-bottom--up-2
+      ">
+        {{ 'cart.title' | t }}
+      </h1>
 
-    {% if cart.items != empty %}
-      {% include 'cart-form' %}
-    {% else %}
-      {% include 'cart-empty' %}
-    {% endif %}
-  </div>
+      {% if cart.items != empty %}
+        {% include 'cart-form' %}
+      {% else %}
+        {% include 'cart-empty' %}
+      {% endif %}
+    </div>
 </div>

@@ -42,7 +42,7 @@
         {% if cart.items != empty %}
           {% include 'cart-form', _mini_cart: true %}
         {% else %}
-          {% include 'cart-empty' %}
+          {% include 'cart-empty', _mini_cart: true %}
         {% endif %}
       </div>
     </div>
