@@ -122,6 +122,29 @@ function Products(element, events, options, module) {
           <img data-src="${product.custom.product_tag_badge.image_url}" alt="${product.custom.product_tag_badge.image_alt}" />
         ` : '';
 
+        var bis_product_data = {
+          id: product.id,
+          handle: product.handle,
+          available: product.available,
+          tags: product.tags,
+          variants: product.variants.map((variant) => {
+            return {
+              id: variant.id,
+              available: variant.available,
+              title: variant.title,
+              inventory_quantity: variant.inventory_quantity,
+              inventory_management: variant.inventory_management
+            };
+          })
+        };
+
+        bis_product_data = JSON.stringify(bis_product_data)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+
+
         var product_card = transform_liquid_attributes(product_card_html, {
           url: `/collections/${module.options.collection.handle}${product.url}`,
           image_url: product.featured_image.src,
@@ -142,7 +165,8 @@ function Products(element, events, options, module) {
           first_available_variant_id: variant.id,
           product_id: product.id,
           submit_html: variant.available ? window.theme_locales.products.product.add_to_cart : window.theme_locales.products.product.sold_out,
-          submit_attributes: variant.available ? '' : 'disabled',
+          submit_class: variant.available ? '' : 'BIS_trigger',
+          submit_attributes: variant.available ? '' : `data-product-data="${bis_product_data}"`,
           promo_badge_class: promo_badge_copy ? '' : 'hide',
           promo_badge_copy: promo_badge_copy,
           tag_badge_html: tag_badge_html,

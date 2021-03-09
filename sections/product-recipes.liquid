@@ -3,6 +3,10 @@
     "name": "Product recipes",
     "settings": [
       {
+        "type": "paragraph",
+        "content": "You can associate recipes to products via Product -> More actions -> Custom fields -> Product recipes."
+      },
+      {
         "type": "checkbox",
         "id": "enable",
         "label": "Enable?",
@@ -17,17 +21,27 @@
         "type": "number",
         "id": "limit",
         "label": "Limit",
-        "default": 6
+        "default": 4
       }
     ]
   }
 {% endschema %}
+
+{% include 'attribute-product-recipes' %}
 
 {% assign enable = section.settings.enable | default: false %}
 
 {% assign title = section.settings.title | default: false %}
 
 {% assign limit = section.settings.limit | default: 4 %}
+
+{% if product.metafields.recipes.disable %}
+  {% assign enable = false %}
+{% endif %}
+
+{% unless product_recipes_handles %}
+  {% assign enable = false %}
+{% endunless %}
 
 {% if enable %}
   <div class="padding-top--up-2 large--padding-top--up-5">
@@ -37,8 +51,14 @@
       {% endif %}
 
       <div class="overflow-hidden">
-        <div class="text-center">
-          Product recipes
+        <div class="flex--0 medium--flex--up-1 large--flex--up-2 flex-wrap margin-bottom-negative--up-2">
+          {% for handle in product_recipes_handles limit: limit %}
+            {% assign article = articles[handle] %}
+
+            <div class="flex-item-auto padding-bottom--up-2 one-two medium--one-four">
+              {% include 'article-card-recipe' %}
+            </div>
+          {% endfor %}
         </div>
       </div>
     </div>

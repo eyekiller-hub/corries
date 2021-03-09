@@ -1,0 +1,57 @@
+{% assign article_tags_handles = article.tags | join: '_____' | handle | split: '_____' %}
+
+{% assign article_blog_url = article.url | split: '/' | slice: 1, 2 | join: '/' | prepend: '/' %}
+
+{% assign article_category_tag = false %}
+
+{% assign article_category_tag_handle = false %}
+
+{% assign article_category_tag_url = false %}
+
+{% for link in linklists['tag-filters-recipes'].links %}
+  {% if article_tags_handles contains link.handle %}
+    {% assign article_category_tag = link.title %}
+
+    {% assign article_category_tag_handle = link.handle %}
+
+    {% assign article_category_tag_url = article_blog_url | append: '/tagged/' | append: article_category_tag_handle %}
+
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+<article>
+  <div class="margin-bottom--up-1">
+    <a href="{{ article.url }}">
+      {%
+        include 'image',
+        _object: article.image,
+        _size: '600x'
+      %}
+    </a>
+  </div>
+
+  <h3 class="
+    font-size--down-2 line-height--up-4
+    large--font-size--inherit large--line-height--inherit
+    font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark
+    margin-bottom--none
+  ">
+    <a href="{{ article.url }}">
+      {{ article.title }}
+    </a>
+  </h3>
+
+  {% if article_category_tag %}
+    <div class="margin-top--down-3">
+      <a href="{{ article_category_tag_url }}">
+        <div class="
+          font-size--down-2 line-height--up-4
+          large--font-size--inherit large--line-height--inherit
+        ">
+          {{ article_category_tag }} {{ 'recipes.category_tag_suffix' | t }}
+        </div>
+      </a>
+    </div>
+  {% endif %}
+</article>

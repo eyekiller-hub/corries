@@ -142,5 +142,7 @@ function init() {
     var options = get_element_options(element, 'data-module-product-form');
 
     ProductForm(element, options);
+
+    element.removeAttribute('data-module-product-form');
   });
 };

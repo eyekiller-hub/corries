@@ -1,3 +1,3 @@
-{% assign product_upsells = product.metafields.product_upsells.handles %}
+{% assign product_upsells = product.metafields.upsells.handles %}
 
 {% assign product_upsells_handles = product_upsells | split: '|' | default: false %}

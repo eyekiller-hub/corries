@@ -9,7 +9,7 @@
     "product": {
       "quantity": "Quantity",
       "add_to_cart": "Add to cart",
-      "sold_out": "Sold out",
+      "sold_out": "Email when available",
       "unavailable": "Unavailable",
       "added": "Added!",
       "from": "From"
@@ -53,5 +53,8 @@
     "confirmation": "Thanks for subscribing!",
     "email_placeholder": "Email address",
     "submit": "Join now"
+  },
+  "recipes": {
+    "category_tag_suffix": "Recipes"
   }
 }

@@ -49,6 +49,8 @@
 
 {% assign first_available_variant_id = first_available_variant_id | default: '{{ first_available_variant_id }}' %}
 
+{% assign submit_class = submit_class | default: '{{ submit_class }}' %}
+
 {% assign submit_attributes = submit_attributes | default: '{{ submit_attributes }}' %}
 
 {% assign product_id = product_id | default: '{{ product_id }}' %}
@@ -142,7 +144,7 @@
           <input type="hidden" name="id" value="{{ first_available_variant_id }}" />
 
           <button
-            class="button-primary padding-left-right--none one"
+            class="button-primary padding-left-right--none one {{ submit_class }}"
             type="submit"
             {{ submit_attributes }}
             data-module-product-submit='{

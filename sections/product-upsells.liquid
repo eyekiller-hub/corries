@@ -4,7 +4,7 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "Products are recommended based on an algorithm that predicts the most relevant products based on the product a customer is interacting with. You can manually associate upsells to products by adding tags to the product via Product -> More actions -> Custom fields -> Product upsells."
+        "content": "Products are recommended based on an algorithm that predicts the most relevant products based on the product a customer is interacting with. You can manually associate upsells to products via Product -> More actions -> Custom fields -> Product upsells."
       },
       {
         "type": "checkbox",
@@ -33,7 +33,7 @@
 
 {% assign limit = section.settings.limit | default: 6 %}
 
-{% if product.metafields.product_upsells.disable %}
+{% if product.metafields.upsells.disable %}
   {% assign enable = false %}
 {% endif %}
 

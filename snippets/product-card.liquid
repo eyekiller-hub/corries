@@ -56,10 +56,16 @@
 
 {% assign first_available_variant_id = variant.id %}
 
+{% assign submit_class = ' ' %}
+
 {% assign submit_attributes = ' ' %}
 
 {% unless variant.available %}
-  {% assign submit_attributes = 'disabled' %}
+  {% assign submit_class = 'BIS_trigger' %}
+
+  {% capture submit_attributes %}
+    data-product-data="{{ product | json | escape }}"
+  {% endcapture %}
 {% endunless %}
 
 {% assign product_id = product.id %}

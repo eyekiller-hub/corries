@@ -8,15 +8,18 @@ function Self(element, events, options, module) {
   var map = {
     [`productform:${options.product_id}:variantchangeavailable`]: {
       text: options.available,
-      disabled: false
+      disabled: false,
+      id: ''
     },
     [`productform:${options.product_id}:variantchangeunavailable`]: {
       text: options.unavailable,
-      disabled: true
+      disabled: true,
+      id: ''
     },
     [`productform:${options.product_id}:variantchangesoldout`]: {
       text: options.sold_out,
-      disabled: true
+      disabled: false,
+      id: 'BIS_trigger'
     }
   };
 
@@ -25,6 +28,7 @@ function Self(element, events, options, module) {
       text = map[key].text;
       element.innerHTML = map[key].text;
       element.disabled = map[key].disabled;
+      element.id = map[key].id;
     });
   });
 

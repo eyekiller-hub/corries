@@ -6,8 +6,10 @@
     font-size--inherit line-height--up-7
     large--line-height--up-9
   "
+  {% unless current_variant.available %}
+    id="BIS_trigger"
+  {% endunless %}
   type="submit"
-  {% unless current_variant.available %}disabled{% endunless %}
   data-module-product-submit='{
     "product_id": {{ product.id | json | escape }},
     "available": {{ "products.product.add_to_cart" | t | json | escape }},
