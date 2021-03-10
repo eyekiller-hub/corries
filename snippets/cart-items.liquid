@@ -1,4 +1,7 @@
-<div class="margin-bottom--up-1">
+<div class="
+  margin-bottom--up-1
+  {% unless mini_cart %}large--margin-bottom--up-2{% endunless %}
+">
   <div class="{% if mini_cart %}container-padding medium--padding-left-right--up-2{% endif %}">
     {% for line_item in cart.items %}
       {% include 'cart-item' _line: forloop.index %}

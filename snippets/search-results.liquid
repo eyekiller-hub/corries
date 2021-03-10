@@ -1,17 +1,7 @@
-{% assign products = search.results %}
-
-{% capture product_card_grid_item_class_name_template %}
-  {% include 'product-card-grid-item-class-name-template' %}
-{% endcapture %}
-
-<h1 class="margin-bottom--0">
-  {{ 'search.title' | t }}
-</h1>
-
 <div class="overflow-hidden">
-  <div class="grid--up-1 margin-bottom-negative--up-1">
-    {% for product in products %}
-      <div class="{{ product_card_grid_item_class_name_template }}">
+  <div class="flex--0 medium--flex--up-1 large--flex--up-2 flex-wrap margin-bottom-negative--up-2">
+    {% for product in search.results %}
+      <div class="flex-item-auto padding-bottom--up-2 one-two medium--one-three xlarge--one-five">
         {% include 'product-card' %}
       </div>
     {% endfor %}

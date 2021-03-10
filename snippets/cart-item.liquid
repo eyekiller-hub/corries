@@ -3,36 +3,75 @@
 {% include 'attribute-line-item-properties' %}
 
 <article class="border-bottom-grey-lightest">
-  <div class="padding-top-bottom--up-1">
+  <div class="
+    padding-top-bottom--up-1
+
+    {% unless mini_cart %}
+      large--padding-top-bottom--up-2
+    {% endunless %}
+  ">
     <div class="position-relative">
       <div class="flex--up-1">
         <div class="flex-item">
           <div class="grid--up-1">
-            <div class="grid-item one-three large--five-sixteen">
+            <div class="
+              grid-item one-three
+
+              {% if mini_cart %}
+                large--five-sixteen
+              {% else %}
+                large--one-ten
+              {% endif %}
+            ">
               {% include 'cart-item-image' %}
             </div>
 
-            <div class="grid-item two-three large--eleven-sixteen">
-              <div class="last-child-margin--none">
-                {% include 'cart-item-title' %}
+            <div class="
+              grid-item two-three
 
-                {% unless line_item.product.has_only_default_variant %}
-                  <div class="margin-bottom--down-1">
-                    {% include 'cart-item-options' %}
-                  </div>
-                {% endunless %}
+              {% if mini_cart %}
+                large--eleven-sixteen
+              {% else %}
+                large--nine-ten
+              {% endif %}
+            ">
+              <div class="grid--up-1 margin-bottom-negative--down-1">
+                <div class="
+                  grid-item padding-bottom--down-1 one
+                  {% unless mini_cart %}large--two-four xlarge--four-six{% endunless %}
+                ">
+                  {% include 'cart-item-title' %}
 
-                {% if line_item_properties %}
-                  <div class="margin-bottom--down-1">
-                    {% include 'cart-item-properties' %}
-                  </div>
-                {% endif %}
+                  {% unless line_item.product.has_only_default_variant %}
+                    <div class="margin-top--down-4">
+                      {% include 'cart-item-options' %}
+                    </div>
+                  {% endunless %}
 
-                <div class="margin-bottom--down-1">
-                  {% include 'cart-item-quantity' %}
+                  {% if line_item_properties %}
+                    <div class="margin-top--down-4">
+                      {% include 'cart-item-properties' %}
+                    </div>
+                  {% endif %}
                 </div>
 
-                <div class="margin-bottom--down-1">
+                <div class="
+                  grid-item one padding-bottom--down-1
+                  {% unless mini_cart %}large--one-four xlarge--one-six{% endunless %}
+                ">
+                  {% include 'cart-item-quantity' %}
+
+                  {% unless mini_cart %}
+                    <div class="hide large--show">
+                      {% include 'cart-item-remove' %}
+                    </div>
+                  {% endunless %}
+                </div>
+
+                <div class="
+                  grid-item one padding-bottom--down-1
+                  {% unless mini_cart %}large--one-four xlarge--one-six large--text-right{% endunless %}
+                ">
                   {% include 'cart-item-price' %}
                 </div>
               </div>
@@ -40,7 +79,7 @@
           </div>
         </div>
 
-        <div class="flex-item-auto">
+        <div class="flex-item-auto {% unless mini_cart %}large--hide{% endunless %}">
           {% include 'cart-item-remove' %}
         </div>
       </div>

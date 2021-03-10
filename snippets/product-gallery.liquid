@@ -41,9 +41,11 @@
       {% endfor %}
     </div>
 
-    <div class="large--hide">
-      <div class="swiper-pagination" data-ref-pagination></div>
-    </div>
+    {% if product.images.size > 1 %}
+      <div class="large--hide">
+        <div class="swiper-pagination" data-ref-pagination></div>
+      </div>
+    {% endif %}
 
     {% if product_tag_badge %}
       <div class="position-absolute position-top--0 position-right--0 position-1">

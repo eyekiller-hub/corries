@@ -1181,6 +1181,11 @@ $buttons: (primary, secondary);
     font-size: var(--typography-base-font-size);
     line-height: var(--typography-base-line-height);
 
+    @include media-query(large) {
+      font-size: var(--font-size--up-2);
+      line-height: var(--font-size--up-10);
+    }
+
     p,
     blockquote,
     h1, h2, h3, h4, h5, h6,
@@ -1189,7 +1194,24 @@ $buttons: (primary, secondary);
     table,
     .video-container,
     .rte-margin-bottom {
-      margin-bottom: var(--spacing--up-3);
+      margin-bottom: var(--spacing--up-2);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-size: var(--font-size--up-8);
+      line-height: var(--font-size--up-8);
+      text-transform: uppercase;
+      letter-spacing: var(--typography-uppercase-letter-spacing);
+      font-weight: 700;
+      color: var(--colors-grey-dark);
+      padding-top: var(--spacing--up-1);
+    }
+
+    h1 {
+      @include media-query(large) {
+        font-size: var(--font-size--up-12);
+        line-height: var(--font-size--up-14);
+      }
     }
 
     ul,
@@ -1200,6 +1222,64 @@ $buttons: (primary, secondary);
     li {
       display: list-item;
       list-style-position: inside;
+    }
+
+    table {
+      font-size: var(--typography-base-font-size);
+      line-height: var(--typography-base-line-height);
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    td {
+      vertical-align: top;
+      padding: var(--spacing--down-2) var(--spacing--0);
+      border: 1px solid var(--colors-grey-lightest);
+
+      p {
+        margin-bottom: var(--spacing--down-3);
+      }
+
+      > :last-child {
+        margin-bottom: 0;
+      }
+
+      &:first-child {
+        background-color: var(--colors-beige);
+        color: var(--colors-grey-dark);
+        text-transform: uppercase;
+        letter-spacing: var(--typography-uppercase-letter-spacing);
+        font-weight: 500;
+      }
+
+      @include media-query(large) {
+        padding: var(--spacing--down-1) var(--spacing--up-1);
+      }
+    }
+
+    a[title="button"] {
+      @include input;
+      transition: var(--transition-easing);
+      padding-left: var(--button-padding-x);
+      padding-right: var(--button-padding-x);
+      font-weight: var(--button-font-weight);
+      text-align: center;
+      border-radius: var(--button-border-radius);
+      border: var(--button-border);
+      color: var(--colors-button-primary-text);
+      background-color: var(--colors-button-primary-background);
+      border-color: var(--colors-button-primary-border);
+      font-size: var(--typography-buttons-font-size);
+      line-height: var(--typography-buttons-line-height);
+      text-transform: var(--typography-buttons-text-transform);
+      letter-spacing: var(--typography-buttons-letter-spacing);
+      width: auto;
+
+      &:hover {
+        color: var(--colors-button-primary-text-hover);
+        background-color: var(--colors-button-primary-background-hover);
+        border-color: var(--colors-button-primary-border-hover);
+      }
     }
   }
 

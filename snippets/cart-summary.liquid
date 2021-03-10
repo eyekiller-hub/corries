@@ -1,29 +1,99 @@
-<div class="{% if mini_cart %}margin-top--auto{% endif %}">
-  <div class="{% if mini_cart %}box-color-beige{% endif %}">
-    <div class="padding-top-bottom--up-2 container-padding medium--padding-left-right--up-2">
-      <div class="margin-bottom--up-1">
-        <div class="flex-bar--up-1">
-          <div class="flex-item">
-            <h2 class="font-size--up-2 line-height--up-8 font-stack-inherit margin--none margin--none">
-              {{ 'cart.total' | t }}
-            </h2>
-          </div>
+<div class="margin-top--auto">
+  <div class="grid--up-1">
+    <div class="
+      grid-item one
+      {% unless mini_cart %}large--one-ten{% endunless %}
+      hide! {% unless mini_cart %}large--show-inline-block!{% endunless %}
+    ">
+      <a
+        class="
+          text-caps-letter-spacing text-underline font-weight-500
+          text-color-green
+          nowrap
+          position-relative
+        "
+        href="{{ routes.root_url }}">
+        {{ 'cart.continue' | t }}
+      </a>
+    </div>
 
-          <div class="flex-item-shrink">
-            <div class="font-size--up-4 line-height--up-10 font-weight-500 text-color-grey-dark">
-              {{ cart.total_price | money }}
+    <div class="grid-item one {% unless mini_cart %}large--nine-ten{% endunless %}">
+      <div class="grid--up-1">
+        <div class="
+          grid-item one
+          {% unless mini_cart %}large--two-four xlarge--four-six{% endunless %}
+          hide! {% unless mini_cart %}large--show-inline-block!{% endunless %}
+        "></div>
+
+        <div class="grid-item one {% unless mini_cart %}large--two-four xlarge--two-six{% endunless %}">
+          <div>
+            <div class="{% if mini_cart %}box-color-beige{% endif %}">
+              <div class="
+                {% if mini_cart %}
+                  padding-top-bottom--up-2
+                  container-padding medium--padding-left-right--up-2
+                {% endif %}
+              ">
+                <div class="margin-bottom--up-1">
+                  <div class="flex-bar--up-1">
+                    <div class="flex-item">
+                      <h2 class="
+                        {% if mini_cart %}
+                          font-size--up-2 line-height--up-8
+                        {% else %}
+                          font-size--inherit line-height--inherit
+                          text-caps-letter-spacing
+                          font-weight-500
+                          text-color-grey-dark
+                        {% endif %}
+                        font-stack-inherit
+                        margin--none
+                      ">
+                        {{ 'cart.total' | t }}
+                      </h2>
+                    </div>
+
+                    <div class="flex-item-shrink">
+                      <div class="font-size--up-4 line-height--up-10 font-weight-500 text-color-grey-dark">
+                        {{ cart.total_price | money }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% if mini_cart %}
+                  <a class="button-primary block one" href="{{ routes.cart_url }}">
+                    {{ 'mini_cart.checkout' | t }}
+                  </a>
+                {% else %}
+                  <button
+                    class="
+                      button-primary block one
+                      large--padding-top-bottom--down-1 large--padding-left-right--up-5
+                      large--font-size--inherit large--line-height--up-9
+                    "
+                    type="submit"
+                    name="checkout">
+                    {{ 'cart.checkout' | t }}
+                  </button>
+                {% endif %}
+
+                {% unless mini_cart %}
+                  <div class="margin-top--up-1">
+                    <div class="font-size--down-2 line-height--up-4 text-center">
+                      {{ 'cart.discount' | t }}
+                    </div>
+                  </div>
+                {% endunless %}
+
+                <div class="margin-top--down-1">
+                  <div class="font-size--up-13">
+                    {% include 'payment-icons' %}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <button class="button-primary block one" type="submit" name="checkout">
-        {{ 'cart.checkout' | t }}
-      </button>
-
-      <div class="margin-top--up-1">
-        <div class="font-size--up-13">
-          {% include 'payment-icons' %}
         </div>
       </div>
     </div>

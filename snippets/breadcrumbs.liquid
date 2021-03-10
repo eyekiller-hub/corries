@@ -15,7 +15,9 @@
   template.name == 'collection' or
   template.name == 'product' or
   template.name == 'blog' or
-  template.name == 'article'
+  template.name == 'article' or
+  template.name == 'search' or
+  template.name == '404'
 %}
   {% if template.name == 'collection' or template.name == 'product' %}
     {% if collection.template_suffix != 'menu' %}
@@ -60,8 +62,8 @@
 
 <nav class="hide large--show">
   <ul class="grid-bar--down-2 margin-bottom--up-1">
-    {% for url in array_url %}
-      {% assign title = array_title[forloop.index0] %}
+    {% for array_item_url in array_url %}
+      {% assign array_item_title = array_title[forloop.index0] %}
 
       {% unless forloop.first %}
         <li class="grid-item">
@@ -72,12 +74,12 @@
       {% endunless %}
 
       <li class="grid-item">
-        <a href="{{ url }}">
+        <a href="{{ array_item_url }}">
           <div class="
             font-size--down-2 line-height--up-4
             {% if forloop.last %}text-color-grey-dark text-underline{% endif %}
           ">
-            {{ title }}
+            {{ array_item_title }}
           </div>
         </a>
       </li>

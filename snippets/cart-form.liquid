@@ -1,6 +1,10 @@
 {% assign mini_cart = _mini_cart %}
 
 <form class="{% if mini_cart %}height-full flex-vertical{% endif %}" action="/cart" method="post">
+  {% unless mini_cart %}
+    {% include 'cart-header' %}
+  {% endunless %}
+
   {% include 'cart-items' %}
   {% include 'cart-summary' %}
 </form>

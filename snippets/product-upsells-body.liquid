@@ -7,7 +7,7 @@
     <div class="overflow-hidden">
       <div class="flex--0 medium--flex--up-1 large--flex--up-2 flex-wrap margin-bottom-negative--up-2">
         {% if recommendations.performed %}
-          {% for product in recommendations.products %}
+          {% for product in recommendations.products limit: limit %}
             <div class="
               flex-item-auto padding-bottom--up-2 one-two medium--one-three xlarge--one-five
 

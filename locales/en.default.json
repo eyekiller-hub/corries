@@ -30,23 +30,29 @@
     }
   },
   "cart": {
-    "title": "Shopping cart",
+    "title": "Your shopping cart",
     "total": "Subtotal",
-    "checkout": "Review & checkout",
-    "upsells_title": "You may also like",
+    "checkout": "Checkout",
     "empty": "Your shopping cart is currently empty.",
-    "quantity": "Quantity:"
+    "quantity": "Quantity",
+    "remove": "Remove",
+    "item": "Item",
+    "price": "Price",
+    "discount": "Got a discount code? Add it in the next step",
+    "continue": "Continue shopping"
+  },
+  "mini_cart": {
+    "title": "Shopping cart",
+    "checkout": "Review & checkout"
   },
   "search": {
-    "title": "Search",
-    "not_performed": {
-      "title": "Search"
-    },
-    "empty": {
-      "title": "Search"
-    },
+    "title": "Search results",
+    "copy": "You searched for ‘{{ search_terms }}’",
     "form": {
       "placeholder": "Search"
+    },
+    "results": {
+      "count_suffix": "result(s)"
     }
   },
   "newsletter": {

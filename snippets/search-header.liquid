@@ -1,0 +1,23 @@
+<header class="margin-bottom--up-1">
+  <div class="border-bottom-grey-lightest">
+    <div class="padding-bottom--up-2">
+      <h2 class="
+        font-size--up-8 line-height--up-10
+        large--font-size--up-12 large--line-height--up-14
+        text-caps-letter-spacing font-weight-700 text-color-grey-dark
+        text-center
+        margin--none
+      ">
+        {{ 'search.title' | t }}
+      </h2>
+
+      {% if search.performed %}
+        <div class="margin-top--down-1 large--margin-top--0">
+          <div class="rte large--font-size--up-2 large--line-height--up-8 text-center">
+            {{ 'search.copy' | t: search_terms: search.terms }}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</header>

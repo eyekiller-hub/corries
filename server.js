@@ -8,6 +8,8 @@ var opn = require("opn");
 var config = yaml.load(fs.readFileSync("./config.yml"));
 var port = 3000;
 
+var reload_timeout = 1000;
+
 bs.init({
   port: port,
   proxy: `https://${config.development.store}?preview_theme_id=${config.development.theme_id}&${config.development.url_params}`,
@@ -62,7 +64,9 @@ bs.watch("assets/{theme.min.css,theme.min.js}", (event, file) => {
 
 bs.watch("{config,layout,locales,sections,snippets,templates}/*", (event, file) => {
   var watcher = fs.watch("theme.update", () => {
-    bs.reload();
-    watcher.close();
+    setTimeout(() => {
+      bs.reload();
+      watcher.close();
+    }, reload_timeout);
   });
 });

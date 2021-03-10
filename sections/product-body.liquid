@@ -21,17 +21,19 @@
 <div class="container-default">
   {% include 'breadcrumbs' %}
 
-  <div class="overflow-hidden">
-    <div class="grid--up-3 xlarge--grid--up-5 margin-bottom-negative--up-1">
-      <div class="grid-item one large--one-two padding-bottom--up-1">
-        {% include 'product-gallery' %}
-      </div>
+  <div class="box-center" style=" --max-width: 490px; --large--max-width: none;">
+    <div class="overflow-hidden">
+      <div class="grid--up-3 xlarge--grid--up-5 margin-bottom-negative--up-1">
+        <div class="grid-item one large--one-two padding-bottom--up-1">
+          {% include 'product-gallery' %}
+        </div>
 
-      <div class="grid-item one large--one-two padding-bottom--up-1">
-        {% include 'product-info' %}
-        {% include 'product-short-description' %}
-        {% include 'product-form' %}
-        {% include 'product-description' %}
+        <div class="grid-item one large--one-two padding-bottom--up-1">
+          {% include 'product-info' %}
+          {% include 'product-short-description' %}
+          {% include 'product-form' %}
+          {% include 'product-description' %}
+        </div>
       </div>
     </div>
   </div>

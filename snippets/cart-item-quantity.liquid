@@ -1,15 +1,31 @@
 <div class="flex-bar--0">
-  <div class="flex-item-auto">
-    <label class="font-size--down-2 line-height--down-4" for="updates_{{ line_item.key }}">
-      {{ 'cart.quantity' | t }}
+  <div class="flex-item-auto {% unless mini_cart %}large--hide{% endunless %}">
+    <label
+      class="font-size--down-2 line-height--down-4"
+      for="updates_{{ line_item.key }}">
+      {{ 'cart.quantity' | t }}:
     </label>
   </div>
 
   <div class="flex-item">
     <div class="flex">
       <div class="flex-item-auto">
-        <a href="{{ routes.cart_change_url }}?line={{ line }}&amp;quantity={{ line_item.quantity | minus: 1 }}" {% if mini_cart %}data-module-cart-change='{ "key": {{ line_item.key | json }}, "quantity": {{ line_item.quantity | minus: 1 }} }'{% endif %}>
-          <div class="box-color-grey-lightest height-full flex-bar flex-center" style="width: 35px;">
+        <a
+          href="{{ routes.cart_change_url }}?line={{ line }}&amp;quantity={{ line_item.quantity | minus: 1 }}"
+          {% if mini_cart %}
+            data-module-cart-change='{
+              "key": {{ line_item.key | json }},
+              "quantity": {{ line_item.quantity | minus: 1 }}
+            }'
+          {% endif %}>
+          <div
+            class="box-color-grey-lightest height-full flex-bar flex-center"
+            style="
+              --width: 35px;
+              {% unless mini_cart %}
+                --large--width: 50px;
+              {% endunless %}
+            ">
             <div class="flex-item-auto">
               <div class="font-size--down-8">
                 {% include 'svg-minus' %}
@@ -20,9 +36,29 @@
       </div>
 
       <div class="flex-item-auto">
-        <div style="max-width: 50px;">
+        <div style="
+          --width: 50px;
+          {% unless mini_cart %}
+            --large--width: 65px;
+          {% endunless %}
+        ">
           <input
-            class="input block padding--none padding-top-bottom--down-3 border-radius--none text-center font-size--down-2 line-height--up-4"
+            class="
+              input block
+              padding--none
+              padding-top-bottom--down-3
+
+              {% unless mini_cart %}
+                large--padding-top-bottom--down-2
+              {% endunless %}
+
+              border-radius--none
+              text-center font-size--down-2 line-height--up-4
+
+              {% unless mini_cart %}
+                large--font-size--up-2 large--line-height--up-10
+              {% endunless %}
+            "
             type="number"
             name="updates[]"
             id="updates_{{ line_item.key }}"
@@ -32,8 +68,22 @@
       </div>
 
       <div class="flex-item-auto">
-        <a href="{{ routes.cart_change_url }}?line={{ line }}&amp;quantity={{ line_item.quantity | plus: 1 }}" {% if mini_cart %}data-module-cart-change='{ "key": {{ line_item.key | json }}, "quantity": {{ line_item.quantity | plus: 1 }} }'{% endif %}>
-          <div class="box-color-grey-lightest height-full flex-bar flex-center" style="width: 35px;">
+        <a
+          href="{{ routes.cart_change_url }}?line={{ line }}&amp;quantity={{ line_item.quantity | plus: 1 }}"
+          {% if mini_cart %}
+            data-module-cart-change='{
+              "key": {{ line_item.key | json }},
+              "quantity": {{ line_item.quantity | plus: 1 }}
+            }'
+          {% endif %}>
+          <div
+            class="box-color-grey-lightest height-full flex-bar flex-center"
+            style="
+              --width: 35px;
+              {% unless mini_cart %}
+                --large--width: 50px;
+              {% endunless %}
+            ">
             <div class="flex-item-auto">
               <div class="font-size--down-8">
                 {% include 'svg-plus' %}

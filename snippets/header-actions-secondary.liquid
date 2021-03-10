@@ -20,7 +20,9 @@
       <a
         class="block"
         href="{{ routes.cart_url }}"
-        data-module-offcanvas-trigger='{ "id": "header-mini-cart" }'>
+        {% if template.name != 'cart' %}
+          data-module-offcanvas-trigger='{ "id": "header-mini-cart" }'
+        {% endif %}>
         <div class="font-size--up-6">
           {% include 'svg-cart' %}
         </div>

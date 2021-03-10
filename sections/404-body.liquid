@@ -20,18 +20,18 @@
 
 {% assign body = section.settings.body | default: false %}
 
-<div class="padding-top-bottom--up-2 large--padding-top-bottom--up-4">
+<div class="page-spacing">
   <div class="container-default">
-    {% if title %}
-      <h1 class="margin-bottom--0">
-        {{ title }}
-      </h1>
-    {% endif %}
+    {% include 'breadcrumbs' %}
 
-    {% if body %}
-      <div class="rte">
+    <div class="box-center" style="max-width: 690px;">
+      <div class="rte rte--page">
+        <h1>
+          {{ title }}
+        </h1>
+
         {{ body }}
       </div>
-    {% endif %}
+    </div>
   </div>
 </div>

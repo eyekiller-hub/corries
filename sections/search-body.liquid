@@ -4,43 +4,13 @@
     "settings": [
       {
         "type": "header",
-        "content": "Search form menu",
-        "info": "This menu will display under the search form when focused into."
-      },
-      {
-        "type": "checkbox",
-        "id": "search_form_menu_enable",
-        "label": "Enable?"
-      },
-      {
-        "type": "text",
-        "id": "search_form_menu_title",
-        "label": "Title"
-      },
-      {
-        "type": "link_list",
-        "id": "search_form_menu",
-        "label": "Menu"
-      },
-      {
-        "type": "header",
-        "content": "Search form predictive results",
-        "info": "This will enable automatic predictive search results to display under the search form when typed into."
-      },
-      {
-        "type": "checkbox",
-        "id": "search_form_predictive_results_enable",
-        "label": "Enable?"
-      },
-      {
-        "type": "header",
         "content": "Results"
       },
       {
         "type": "number",
         "id": "results_limit",
         "label": "Limit",
-        "default": 12
+        "default": 16
       },
       {
         "type": "header",
@@ -55,36 +25,33 @@
   }
 {% endschema %}
 
-
-{% assign search_form_menu_enable = section.settings.search_form_menu_enable | default: false %}
-
-{% assign search_form_menu_title = section.settings.search_form_menu_title | default: false %}
-
-{% assign search_form_menu = section.settings.search_form_menu %}
-{% assign search_form_menu = menus[search_form_menu] | default: false %}
-
-{% assign search_form_predictive_results_enable = section.settings.search_form_predictive_results_enable | default: false %}
-
 {% assign results_limit = section.settings.results_limit | default: false %}
 
 {% assign empty_body = section.settings.empty_body | default: false %}
 
 {% paginate search.results by results_limit %}
-  <div class="padding-top-bottom--up-2 large--padding-top-bottom--up-4">
+  <div class="page-spacing">
     <div class="container-default">
-      {% if search.performed %}
-        {% if search.results != empty %}
-          {% include 'search-results' %}
+      {% include 'breadcrumbs' %}
 
-          {% if paginate.pages > 1 %}
-            {% include 'pagination' %}
+      <div class="padding-top--up-2">
+        {% include 'search-header' %}
+        {% include 'search-toolbar' %}
+
+        {% if search.performed %}
+          {% if search.results != empty %}
+            {% include 'search-results' %}
+
+            {% if paginate.pages > 1 %}
+              {% include 'pagination' %}
+            {% endif %}
+          {% else %}
+            {% include 'search-empty' %}
           {% endif %}
         {% else %}
           {% include 'search-empty' %}
         {% endif %}
-      {% else %}
-        {% include 'search-not-performed' %}
-      {% endif %}
+      </div>
     </div>
   </div>
 {% endpaginate %}
