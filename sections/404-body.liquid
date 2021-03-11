@@ -1,21 +1,3 @@
-{% schema %}
-  {
-    "name": "404 body",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Title"
-      },
-      {
-        "type": "richtext",
-        "id": "body",
-        "label": "Body"
-      }
-    ]
-  }
-{% endschema %}
-
 {% assign title = section.settings.title | default: false %}
 
 {% assign body = section.settings.body | default: false %}
@@ -35,3 +17,21 @@
     </div>
   </div>
 </div>
+
+{% schema %}
+  {
+    "name": "404 body",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "body",
+        "label": "Body"
+      }
+    ]
+  }
+{% endschema %}

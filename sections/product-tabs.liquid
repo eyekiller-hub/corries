@@ -1,53 +1,3 @@
-{% schema %}
-  {
-    "name": "Product tabs",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "enable",
-        "label": "Enable?",
-        "default": true
-      },
-      {
-        "type": "header",
-        "content": "Tab #1"
-      },
-      {
-        "type": "text",
-        "id": "tab_1_title",
-        "label": "Title"
-      },
-      {
-        "type": "header",
-        "content": "Tab #2"
-      },
-      {
-        "type": "text",
-        "id": "tab_2_title",
-        "label": "Title"
-      },
-      {
-        "type": "header",
-        "content": "Tab #3"
-      },
-      {
-        "type": "text",
-        "id": "tab_3_title",
-        "label": "Title"
-      },
-      {
-        "type": "header",
-        "content": "Tab #4"
-      },
-      {
-        "type": "text",
-        "id": "tab_4_title",
-        "label": "Title"
-      }
-    ]
-  }
-{% endschema %}
-
 {% assign enable = section.settings.enable | default: false %}
 
 {% assign tab_1_title = section.settings.tab_1_title | default: '' | sort %}
@@ -201,3 +151,53 @@
     </div>
   </div>
 {% endif %}
+
+{% schema %}
+  {
+    "name": "Product tabs",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enable?",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Tab #1"
+      },
+      {
+        "type": "text",
+        "id": "tab_1_title",
+        "label": "Title"
+      },
+      {
+        "type": "header",
+        "content": "Tab #2"
+      },
+      {
+        "type": "text",
+        "id": "tab_2_title",
+        "label": "Title"
+      },
+      {
+        "type": "header",
+        "content": "Tab #3"
+      },
+      {
+        "type": "text",
+        "id": "tab_3_title",
+        "label": "Title"
+      },
+      {
+        "type": "header",
+        "content": "Tab #4"
+      },
+      {
+        "type": "text",
+        "id": "tab_4_title",
+        "label": "Title"
+      }
+    ]
+  }
+{% endschema %}

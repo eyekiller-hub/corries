@@ -1,14 +1,14 @@
-{% assign array_url = '' | split: '' %}
+{% assign breadcrumbs_array_url = '' | split: '' %}
 
-{% assign array_title = '' | split: '' %}
+{% assign breadcrumbs_array_title = '' | split: '' %}
 
-{% assign array_item_url = routes.root_url | sort %}
+{% assign breadcrumbs_array_item_url = routes.root_url | sort %}
 
-{% assign array_item_title = 'breadcrumbs.home' | t | sort %}
+{% assign breadcrumbs_array_item_title = 'breadcrumbs.home' | t | sort %}
 
-{% assign array_url = array_url | concat: array_item_url %}
+{% assign breadcrumbs_array_url = breadcrumbs_array_url | concat: breadcrumbs_array_item_url %}
 
-{% assign array_title = array_title | concat: array_item_title %}
+{% assign breadcrumbs_array_title = breadcrumbs_array_title | concat: breadcrumbs_array_item_title %}
 
 {% if
   template.name == 'page' or
@@ -27,13 +27,13 @@
       {% for link in menu.links %}
         {% for link_link in link.links %}
           {% if link_link.active %}
-            {% assign array_item_url = link.url | sort %}
+            {% assign breadcrumbs_array_item_url = link.url | sort %}
 
-            {% assign array_item_title = link.title | sort %}
+            {% assign breadcrumbs_array_item_title = link.title | sort %}
 
-            {% assign array_url = array_url | concat: array_item_url %}
+            {% assign breadcrumbs_array_url = breadcrumbs_array_url | concat: breadcrumbs_array_item_url %}
 
-            {% assign array_title = array_title | concat: array_item_title %}
+            {% assign breadcrumbs_array_title = breadcrumbs_array_title | concat: breadcrumbs_array_item_title %}
             {% break %}
           {% endif %}
         {% endfor %}
@@ -42,28 +42,28 @@
   {% endif %}
 
   {% if template.name == 'product' and collection %}
-    {% assign array_item_url = collection.url | sort %}
+    {% assign breadcrumbs_array_item_url = collection.url | sort %}
 
-    {% assign array_item_title = collection.title | sort %}
+    {% assign breadcrumbs_array_item_title = collection.title | sort %}
 
-    {% assign array_url = array_url | concat: array_item_url %}
+    {% assign breadcrumbs_array_url = breadcrumbs_array_url | concat: breadcrumbs_array_item_url %}
 
-    {% assign array_title = array_title | concat: array_item_title %}
+    {% assign breadcrumbs_array_title = breadcrumbs_array_title | concat: breadcrumbs_array_item_title %}
   {% endif %}
 
-  {% assign array_item_url = request.path | sort %}
+  {% assign breadcrumbs_array_item_url = request.path | sort %}
 
-  {% assign array_item_title = page_title | sort %}
+  {% assign breadcrumbs_array_item_title = page_title | sort %}
 
-  {% assign array_url = array_url | concat: array_item_url %}
+  {% assign breadcrumbs_array_url = breadcrumbs_array_url | concat: breadcrumbs_array_item_url %}
 
-  {% assign array_title = array_title | concat: array_item_title %}
+  {% assign breadcrumbs_array_title = breadcrumbs_array_title | concat: breadcrumbs_array_item_title %}
 {% endif %}
 
 <nav class="hide large--show">
   <ul class="grid-bar--down-2 margin-bottom--up-1">
-    {% for array_item_url in array_url %}
-      {% assign array_item_title = array_title[forloop.index0] %}
+    {% for breadcrumbs_array_item_url in breadcrumbs_array_url %}
+      {% assign breadcrumbs_array_item_title = breadcrumbs_array_title[forloop.index0] %}
 
       {% unless forloop.first %}
         <li class="grid-item">
@@ -74,12 +74,12 @@
       {% endunless %}
 
       <li class="grid-item">
-        <a href="{{ array_item_url }}">
+        <a href="{{ breadcrumbs_array_item_url }}">
           <div class="
             font-size--down-2 line-height--up-4
             {% if forloop.last %}text-color-grey-dark text-underline{% endif %}
           ">
-            {{ array_item_title }}
+            {{ breadcrumbs_array_item_title }}
           </div>
         </a>
       </li>

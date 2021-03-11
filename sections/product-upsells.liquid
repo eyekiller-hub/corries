@@ -1,32 +1,3 @@
-{% schema %}
-  {
-    "name": "Product upsells",
-    "settings": [
-      {
-        "type": "paragraph",
-        "content": "Products are recommended based on an algorithm that predicts the most relevant products based on the product a customer is interacting with. You can manually associate upsells to products via Product -> More actions -> Custom fields -> Product upsells."
-      },
-      {
-        "type": "checkbox",
-        "id": "enable",
-        "label": "Enable?",
-        "default": true
-      },
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Title"
-      },
-      {
-        "type": "number",
-        "id": "limit",
-        "label": "Limit",
-        "default": 6
-      }
-    ]
-  }
-{% endschema %}
-
 {% assign enable = section.settings.enable | default: false %}
 
 {% assign title = section.settings.title | default: false %}
@@ -56,3 +27,32 @@
     {% endif %}
   {% endif %}
 {% endif %}
+
+{% schema %}
+  {
+    "name": "Product upsells",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Products are recommended based on an algorithm that predicts the most relevant products based on the product a customer is interacting with. You can manually associate upsells to products via Product -> More actions -> Custom fields -> Product upsells."
+      },
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enable?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "number",
+        "id": "limit",
+        "label": "Limit",
+        "default": 6
+      }
+    ]
+  }
+{% endschema %}

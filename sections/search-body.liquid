@@ -1,30 +1,3 @@
-{% schema %}
-  {
-    "name": "Search body",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Results"
-      },
-      {
-        "type": "number",
-        "id": "results_limit",
-        "label": "Limit",
-        "default": 16
-      },
-      {
-        "type": "header",
-        "content": "Empty"
-      },
-      {
-        "type": "richtext",
-        "id": "empty_body",
-        "label": "Empty body"
-      }
-    ]
-  }
-{% endschema %}
-
 {% assign results_limit = section.settings.results_limit | default: false %}
 
 {% assign empty_body = section.settings.empty_body | default: false %}
@@ -55,3 +28,30 @@
     </div>
   </div>
 {% endpaginate %}
+
+{% schema %}
+  {
+    "name": "Search body",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Results"
+      },
+      {
+        "type": "number",
+        "id": "results_limit",
+        "label": "Limit",
+        "default": 16
+      },
+      {
+        "type": "header",
+        "content": "Empty"
+      },
+      {
+        "type": "richtext",
+        "id": "empty_body",
+        "label": "Empty body"
+      }
+    ]
+  }
+{% endschema %}

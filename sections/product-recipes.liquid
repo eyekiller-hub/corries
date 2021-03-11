@@ -1,32 +1,3 @@
-{% schema %}
-  {
-    "name": "Product recipes",
-    "settings": [
-      {
-        "type": "paragraph",
-        "content": "You can associate recipes to products via Product -> More actions -> Custom fields -> Product recipes."
-      },
-      {
-        "type": "checkbox",
-        "id": "enable",
-        "label": "Enable?",
-        "default": true
-      },
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Title"
-      },
-      {
-        "type": "number",
-        "id": "limit",
-        "label": "Limit",
-        "default": 4
-      }
-    ]
-  }
-{% endschema %}
-
 {% include 'attribute-product-recipes' %}
 
 {% assign enable = section.settings.enable | default: false %}
@@ -64,3 +35,32 @@
     </div>
   </div>
 {% endif %}
+
+{% schema %}
+  {
+    "name": "Product recipes",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "You can associate recipes to products via Product -> More actions -> Custom fields -> Product recipes."
+      },
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enable?",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "number",
+        "id": "limit",
+        "label": "Limit",
+        "default": 4
+      }
+    ]
+  }
+{% endschema %}

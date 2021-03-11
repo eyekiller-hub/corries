@@ -2479,6 +2479,9 @@ $buttons: (primary, secondary);
       .#{$breakpoint}border-#{$side}-#{$color} {
         border-#{$side}: 1px solid var(--colors-#{$color});
       }
+      .#{$breakpoint}border-#{$side}-#{$color}\! {
+        border-#{$side}: 1px solid var(--colors-#{$color}) !important;
+      }
       .#{$breakpoint}border-#{$side}-#{$color}-double {
         border-#{$side}: 2px solid var(--colors-#{$color});
       }
