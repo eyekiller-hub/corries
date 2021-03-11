@@ -34,6 +34,131 @@
     ]
   },
   {
+    "name": "Value propositions",
+    "settings": [
+      {
+        "type": "header",
+        "content": "#1"
+      },
+      {
+        "type": "checkbox",
+        "id": "value_propositions_enable_1",
+        "label": "Enable?"
+      },
+      {
+        "type": "select",
+        "id": "value_propositions_icon_1",
+        "label": "Icon",
+        "options": [
+          { "value": "cow", "label": "Cow" },
+          { "value": "badge", "label": "Badge" },
+          { "value": "tractor", "label": "Tractor" },
+          { "value": "clock-24", "label": "Clock 24" }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "value_propositions_title_1",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "value_propositions_copy_1",
+        "label": "Copy"
+      },
+      {
+        "type": "header",
+        "content": "#2"
+      },
+      {
+        "type": "checkbox",
+        "id": "value_propositions_enable_2",
+        "label": "Enable?"
+      },
+      {
+        "type": "select",
+        "id": "value_propositions_icon_2",
+        "label": "Icon",
+        "options": [
+          { "value": "cow", "label": "Cow" },
+          { "value": "badge", "label": "Badge" },
+          { "value": "tractor", "label": "Tractor" },
+          { "value": "clock-24", "label": "Clock 24" }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "value_propositions_title_2",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "value_propositions_copy_2",
+        "label": "Copy"
+      },
+      {
+        "type": "header",
+        "content": "#3"
+      },
+      {
+        "type": "checkbox",
+        "id": "value_propositions_enable_3",
+        "label": "Enable?"
+      },
+      {
+        "type": "select",
+        "id": "value_propositions_icon_3",
+        "label": "Icon",
+        "options": [
+          { "value": "cow", "label": "Cow" },
+          { "value": "badge", "label": "Badge" },
+          { "value": "tractor", "label": "Tractor" },
+          { "value": "clock-24", "label": "Clock 24" }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "value_propositions_title_3",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "value_propositions_copy_3",
+        "label": "Copy"
+      },
+      {
+        "type": "header",
+        "content": "#4"
+      },
+      {
+        "type": "checkbox",
+        "id": "value_propositions_enable_4",
+        "label": "Enable?"
+      },
+      {
+        "type": "select",
+        "id": "value_propositions_icon_4",
+        "label": "Icon",
+        "options": [
+          { "value": "cow", "label": "Cow" },
+          { "value": "badge", "label": "Badge" },
+          { "value": "tractor", "label": "Tractor" },
+          { "value": "clock-24", "label": "Clock 24" }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "value_propositions_title_4",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "value_propositions_copy_4",
+        "label": "Copy"
+      }
+    ]
+  },
+  {
     "name": "Social",
     "settings": [
       {

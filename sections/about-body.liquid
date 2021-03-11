@@ -1,0 +1,144 @@
+{% assign blocks = section.blocks | default: false %}
+
+<div class="page-spacing">
+  <div class="container-default">
+    {% include 'breadcrumbs' %}
+
+    <div class="box-center" style="max-width: 910px;">
+      <div class="rte rte--page text-center">
+        <h1>
+          {{ page.title }}
+        </h1>
+
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+
+  {% for block in blocks %}
+    {% assign snippet = 'about-' | append: block.type %}
+    {% include snippet %}
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "About body",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Content is managed via Content -> Add content."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "value-propositions",
+        "name": "Value propositions",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "spacing_top_enable",
+            "label": "Spacing top enable?"
+          },
+          {
+            "type": "checkbox",
+            "id": "spacing_bottom_enable",
+            "label": "Spacing bottom enable?"
+          },
+          {
+            "type": "paragraph",
+            "content": "Content is managed via Theme settings -> Value propositions."
+          }
+        ]
+      },
+      {
+        "type": "image-with-text",
+        "name": "Image with text",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "spacing_top_enable",
+            "label": "Spacing top enable?"
+          },
+          {
+            "type": "checkbox",
+            "id": "spacing_bottom_enable",
+            "label": "Spacing bottom enable?"
+          },
+          {
+            "type": "checkbox",
+            "id": "reverse",
+            "label": "Reverse?",
+            "info": "This will reverse the order of the image/text."
+          },
+          {
+            "type": "checkbox",
+            "id": "background_color",
+            "label": "Background color?",
+            "info": "This will add a background color to the section."
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "Suggested size: 1000x680px."
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "copy",
+            "label": "Copy"
+          }
+        ]
+      },
+      {
+        "type": "info",
+        "name": "Info",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "spacing_top_enable",
+            "label": "Spacing top enable?"
+          },
+          {
+            "type": "checkbox",
+            "id": "spacing_bottom_enable",
+            "label": "Spacing bottom enable?"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "copy",
+            "label": "Copy"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_1",
+            "label": "Image #1",
+            "info": "Suggested size: 1000x680px."
+          },
+          {
+            "type": "image_picker",
+            "id": "image_2",
+            "label": "Image #2",
+            "info": "Suggested size: 1000x680px."
+          },
+          {
+            "type": "image_picker",
+            "id": "image_3",
+            "label": "Image #3",
+            "info": "Suggested size: 1000x680px."
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

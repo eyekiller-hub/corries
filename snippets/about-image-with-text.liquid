@@ -1,0 +1,62 @@
+{% assign spacing_top_enable = block.settings.spacing_top_enable | default: false %}
+
+{% assign spacing_bottom_enable = block.settings.spacing_bottom_enable | default: false %}
+
+{% assign reverse = block.settings.reverse | default: false %}
+
+{% assign background_color = block.settings.background_color | default: false %}
+
+{% assign image = block.settings.image | default: false %}
+
+{% assign title = block.settings.title | default: false %}
+
+{% assign copy = block.settings.copy | default: false %}
+
+<section
+  class="
+    homepage-section
+    {% if spacing_top_enable %}homepage-section--spacing-top{% endif %}
+    {% if spacing_bottom_enable %}homepage-section--spacing-bottom{% endif %}
+  ">
+  <div class="{% if background_color %}box-color-beige{% endif %}">
+    <div class="{% if background_color %}padding-top-bottom--up-3 large--padding-top-bottom--up-6{% endif %}">
+      <div class="container-default">
+        <div class="overflow-hidden">
+          <div class="flex-bar--up-6 flex-wrap margin-bottom-negative--up-1 {% if reverse %}flex-reverse{% endif %}">
+            {% if image %}
+              <div class="flex-item-shrink padding-bottom--up-1 one large--one-two">
+                {%
+                  include 'image',
+                  _object: image,
+                  _size: '1000x'
+                %}
+              </div>
+            {% endif %}
+
+            {% if title or copy %}
+              <div class="flex-item-shrink padding-bottom--up-1 one large--one-two">
+                {% if title %}
+                  <h3 class="
+                    font-size--up-4
+                    large--font-size--up-5
+                    large--font-size--up-8 large--line-height--up-10
+                    font-weight-700 text-caps text-color-grey-dark
+                    margin-bottom--0
+                  ">
+                    {{ title }}
+                  </h3>
+                {% endif %}
+
+                {% if copy %}
+                  <div class="rte large--font-size--up-2 large--line-height--up-10">
+                    {{ copy }}
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
