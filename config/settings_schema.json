@@ -4,8 +4,8 @@
     "theme_name": "Corries",
     "theme_version": "1.0.0",
     "theme_author": "Eyekiller",
-    "theme_documentation_url": "https://docs.google.com/document/d/1KIoHQsDiUXEbqwan2SgQvtpyhAtnMuKRdBw0AJ_as0w",
-    "theme_support_url": "https://eyekiller.com"
+    "theme_documentation_url": "https:\/\/docs.google.com\/document\/d\/1KIoHQsDiUXEbqwan2SgQvtpyhAtnMuKRdBw0AJ_as0w",
+    "theme_support_url": "https:\/\/eyekiller.com"
   },
   {
     "name": "Favicon",
@@ -44,7 +44,7 @@
         "type": "image_picker",
         "id": "social_share_image",
         "label": "Image",
-        "info": "Shown when sharing a link on social media. [Learn more](https://help.shopify.com/manual/using-themes/troubleshooting/showing-social-media-thumbnail-images/) about image thumbnails."
+        "info": "Shown when sharing a link on social media. [Learn more](https:\/\/help.shopify.com\/manual\/using-themes\/troubleshooting\/showing-social-media-thumbnail-images\/) about image thumbnails."
       },
       {
         "type": "header",
