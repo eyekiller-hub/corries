@@ -73,5 +73,20 @@
       "message": "Message",
       "send": "Send Message"
     }
+  },
+  "wholesale": {
+    "form": {
+      "confirmation": "Thanks for contacting us. We'll get back to you as soon as possible.",
+      "name": "Contact Name",
+      "company": "Company Name",
+      "email": "Email Address",
+      "address": "Address Line 1",
+      "city": "Town/City",
+      "postcode": "Postcode",
+      "country": "Country",
+      "phone": "Telephone",
+      "message": "Enquiry",
+      "send": "Send Enquiry"
+    }
   }
 }

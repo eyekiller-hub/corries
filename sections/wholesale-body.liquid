@@ -1,0 +1,105 @@
+{% assign info_enable = section.settings.info_enable | default: false %}
+
+{% assign info_title = section.settings.info_title | default: false %}
+
+{% assign info_copy = section.settings.info_copy | default: false %}
+
+{% assign form_enable = section.settings.form_enable | default: false %}
+
+{% assign form_title = section.settings.form_title | default: false %}
+
+{% assign blocks = section.blocks | default: false %}
+
+<div class="page-spacing">
+  <div class="container-default">
+    {% include 'breadcrumbs' %}
+
+    <div class="box-center" style="max-width: 910px;">
+      <div class="rte rte--page text-center">
+        <h1>
+          {{ page.title }}
+        </h1>
+
+        {{ page.content }}
+      </div>
+    </div>
+
+    <div class="margin-top--up-2 large--margin-top--up-4">
+      <div class="box-center" style="max-width: 1170px;">
+        <div class="overflow-hidden">
+          <div class="flex flex-wrap">
+            <div class="flex-item-shrink one large--one-two">
+              {% if info_enable %}
+                {% include 'wholesale-info' %}
+              {% endif %}
+            </div>
+
+            <div class="flex-item-shrink one large--one-two">
+              {% if form_enable %}
+                {% include 'wholesale-form' %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Wholesale body",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Info"
+      },
+      {
+        "type": "checkbox",
+        "id": "info_enable",
+        "label": "Enable?"
+      },
+      {
+        "type": "text",
+        "id": "info_title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "info_copy",
+        "label": "Copy"
+      },
+      {
+        "type": "paragraph",
+        "content": "List item content is managed via Content -> Add Info list item."
+      },
+      {
+        "type": "header",
+        "content": "Form"
+      },
+      {
+        "type": "checkbox",
+        "id": "form_enable",
+        "label": "Enable?"
+      },
+      {
+        "type": "text",
+        "id": "form_title",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "info-list-item",
+        "name": "Info list item",
+        "settings": [
+          {
+            "type": "richtext",
+            "id": "copy",
+            "label": "Copy"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

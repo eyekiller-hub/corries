@@ -1,0 +1,60 @@
+<div class="height-full box-color-slate text-color-light">
+  <div class="padding--up-1 medium--padding--up-3">
+    {% if info_title %}
+      <h3 class="
+        font-size--up-4
+        large--font-size--up-5
+        large--font-size--up-8 large--line-height--up-10
+        font-weight-700 text-caps text-color-inherit
+        margin-bottom--0
+      ">
+        {{ info_title }}
+      </h3>
+    {% endif %}
+
+    {% if info_copy %}
+      <div class="rte large--font-size--up-2 large--line-height--up-10">
+        {{ info_copy }}
+      </div>
+    {% endif %}
+
+    {% if blocks %}
+      <div class="margin-top--up-1 large--margin-top--up-3">
+        <ul class="margin--none last-child-margin--none">
+          {% for block in blocks %}
+            {% assign block_copy = block.settings.copy | default: false %}
+
+            {% if block_copy %}
+              <li class="margin-bottom--up-1 large--margin-bottom--up-2">
+                <div class="flex-bar--up-1">
+                  <div class="flex-item-shrink">
+                    <div
+                      class="box-color-navy border-radius-full flex-bar flex-center"
+                      style="
+                        --width: 25px;
+                        --height: 25px;
+                        --large--width: 40px;
+                        --large--height: 40px;
+                      ">
+                        <div class="flex-item-shrink">
+                          <div class="font-size--down-2">
+                            {% include 'svg-tick' %}
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class="flex-item">
+                    <div class="rte large--font-size--up-2 large--line-height--up-10">
+                      {{ block_copy }}
+                    </div>
+                  </div>
+                </div>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+</div>

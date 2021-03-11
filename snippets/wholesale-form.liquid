@@ -1,0 +1,180 @@
+<div class="height-full box-color-beige">
+  <div class="padding--up-1 medium--padding--up-3">
+    {% if form_title %}
+      <h3 class="
+        font-size--up-4
+        large--font-size--up-5
+        large--font-size--up-8 large--line-height--up-10
+        font-weight-700 text-caps text-color-navy
+        margin-bottom--0
+      ">
+        {{ form_title }}
+      </h3>
+    {% endif %}
+
+    {% form 'contact' %}
+      <div class="rte rte--form-errors">
+        {{ form.errors | default_errors }}
+      </div>
+
+      {% if form.posted_successfully? %}
+        <div>
+          {{ 'wholesale.form.confirmation' | t }}
+        </div>
+      {% else %}
+        <div class="margin-bottom--down-1">
+          <label class="block margin-bottom--down-4" for="wholesale-form-name">
+            {{ 'wholesale.form.name' | t }}
+          </label>
+
+          <input
+            class="input border--none border-radius--none large--padding-top-bottom--down-1"
+            type="text"
+            name="contact[name]"
+            id="wholesale-form-name"
+            value="{{ form['name'] }}"
+            required />
+        </div>
+
+        <div class="margin-bottom--down-1">
+          <label class="block margin-bottom--down-4" for="wholesale-form-company">
+            {{ 'wholesale.form.company' | t }}
+          </label>
+
+          <input
+            class="input border--none border-radius--none large--padding-top-bottom--down-1"
+            type="text"
+            name="contact[company]"
+            id="wholesale-form-company"
+            value="{{ form['company'] }}"
+            required />
+        </div>
+
+        <div class="margin-bottom--down-1">
+          <label class="block margin-bottom--down-4" for="wholesale-form-email">
+            {{ 'wholesale.form.email' | t }}
+          </label>
+
+          <input
+            class="input border--none border-radius--none large--padding-top-bottom--down-1"
+            type="email"
+            name="contact[email]"
+            id="wholesale-form-email"
+            value="{{ form['email'] }}"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off"
+            required />
+        </div>
+
+        <div class="margin-bottom--down-1">
+          <label class="block margin-bottom--down-4" for="wholesale-form-address">
+            {{ 'wholesale.form.address' | t }}
+          </label>
+
+          <input
+            class="input border--none border-radius--none large--padding-top-bottom--down-1"
+            type="text"
+            name="contact[address_1]"
+            id="wholesale-form-address"
+            value="{{ form['address_1'] }}"
+            required />
+
+          <div class="margin-top--down-2">
+            <input
+              class="input border--none border-radius--none large--padding-top-bottom--down-1"
+              type="text"
+              name="contact[address_2]"
+              id="wholesale-form-address_2"
+              value="{{ form['address_2'] }}" />
+          </div>
+        </div>
+
+        <div class="margin-bottom--down-1">
+          <label class="block margin-bottom--down-4" for="wholesale-form-city">
+            {{ 'wholesale.form.city' | t }}
+          </label>
+
+          <input
+            class="input border--none border-radius--none large--padding-top-bottom--down-1"
+            type="text"
+            name="contact[city]"
+            id="wholesale-form-city"
+            value="{{ form['city'] }}"
+            required />
+        </div>
+
+        <div class="margin-bottom--down-1">
+          <label class="block margin-bottom--down-4" for="wholesale-form-postcode">
+            {{ 'wholesale.form.postcode' | t }}
+          </label>
+
+          <input
+            class="input border--none border-radius--none large--padding-top-bottom--down-1"
+            type="text"
+            name="contact[postcode]"
+            id="wholesale-form-postcode"
+            value="{{ form['postcode'] }}"
+            required />
+        </div>
+
+        <div class="margin-bottom--down-1">
+          <label class="block margin-bottom--down-4" for="wholesale-form-country">
+            {{ 'wholesale.form.country' | t }}
+          </label>
+
+          <div class="select-wrap border-radius--none">
+            <select
+              class="select border--none border-radius--none large--padding-top-bottom--down-1"
+              name="contact[country]"
+              id="wholesale-form-country"
+              required />
+              {{
+                country_option_tags |
+                replace: 'value="---"', 'value=""' |
+                replace: '---', 'Please select'
+              }}
+            </select>
+          </div>
+        </div>
+
+        <div class="margin-bottom--down-1">
+          <label class="block margin-bottom--down-4" for="wholesale-form-phone">
+            {{ 'wholesale.form.phone' | t }}
+          </label>
+
+          <input
+            class="input border--none border-radius--none large--padding-top-bottom--down-1"
+            type="tel"
+            name="contact[phone]"
+            id="wholesale-form-phone"
+            value="{{ form['phone'] }}"
+            required />
+        </div>
+
+        <div class="margin-bottom--up-2">
+          <label class="block margin-bottom--down-4" for="wholesale-form-message">
+            {{ 'wholesale.form.message' | t }}
+          </label>
+
+          <textarea
+            class="input border--none border-radius--none large--padding-top-bottom--down-1"
+            rows="5"
+            name="contact[body]"
+            id="wholesale-form-message"
+            required>{{ form.body }}</textarea>
+        </div>
+
+        <button
+          class="
+            button-primary
+            large--padding-top-bottom--down-1 large--padding-left-right--up-4
+            large--font-size--inherit large--line-height--inherit
+          "
+          type="submit">
+          {{ 'wholesale.form.send' | t }}
+        </button>
+      {% endif %}
+    {% endform %}
+  </div>
+</div>
