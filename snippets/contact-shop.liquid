@@ -1,0 +1,66 @@
+<div class="overflow-hidden">
+  <div class="grid--up-2 margin-bottom-negative--up-1">
+    <div class="grid-item padding-bottom--up-1 one xlarge--one-three">
+      <div class="last-child-margin--none">
+        {% if shop_title %}
+          <h3 class="
+            font-size--up-4
+            large--font-size--up-5
+            large--font-size--up-8 large--line-height--up-10
+            font-weight-700 text-caps text-color-navy
+            margin-bottom--0
+          ">
+            {{ shop_title }}
+          </h3>
+        {% endif %}
+
+        {% if shop_phone %}
+          <div class="margin-bottom--down-4">
+            <div class="
+              font-size--up-4 line-height--up-10
+              large--font-size--up-6 large--line-height--up-12
+            ">
+              {{ shop_phone }}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if shop_email %}
+          <div class="margin-bottom--up-1">
+            <div class="text-color-green links-text-underline word-break-all">
+              <a href="mailto:{{ shop_email }}">
+                {{ shop_email }}
+              </a>
+            </div>
+          </div>
+        {% endif %}
+
+        {% if shop_address %}
+          <div class="margin-bottom--up-2">
+            <div class="rte">
+              {{ shop_address }}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if shop_url and shop_call_to_action %}
+          <div class="text-color-green text-caps-letter-spacing font-weight-700 links-text-underline">
+            <a href="{{ shop_url }}">
+              {{ shop_call_to_action }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if shop_image %}
+      <div class="grid-item padding-bottom--up-1 one xlarge--two-three">
+        {%
+          include 'image',
+          _object: shop_image,
+          _size: '1000x'
+        %}
+      </div>
+    {% endif %}
+  </div>
+</div>

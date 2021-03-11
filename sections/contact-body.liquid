@@ -1,0 +1,181 @@
+{% assign shop_enable = section.settings.shop_enable | default: false %}
+
+{% assign shop_image = section.settings.shop_image | default: false %}
+
+{% assign shop_title = section.settings.shop_title | default: false %}
+
+{% assign shop_phone = section.settings.shop_phone | default: false %}
+
+{% assign shop_email = section.settings.shop_email | default: false %}
+
+{% assign shop_address = section.settings.shop_address | default: false %}
+
+{% assign shop_url = section.settings.shop_url | default: false %}
+
+{% assign shop_call_to_action = section.settings.shop_call_to_action | default: false %}
+
+{% assign butchers_enable = section.settings.butchers_enable | default: false %}
+
+{% assign butchers_title = section.settings.butchers_title | default: false %}
+
+{% assign form_enable = section.settings.form_enable | default: false %}
+
+{% assign form_title = section.settings.form_title | default: false %}
+
+{% assign blocks = section.blocks | default: false %}
+
+<div class="page-spacing">
+  <div class="container-default">
+    {% include 'breadcrumbs' %}
+
+    <div class="box-center" style="max-width: 910px;">
+      <div class="rte rte--page text-center">
+        <h1>
+          {{ page.title }}
+        </h1>
+
+        {{ page.content }}
+      </div>
+    </div>
+
+    <div class="margin-top--up-2 large--margin-top--up-6">
+      <div class="overflow-hidden">
+        <div class="grid--up-2 margin-bottom-negative--up-1">
+          <div class="grid-item padding-bottom--up-1 one large--one-two xlarge--seven-twelve">
+            {% if shop_enable %}
+              {% include 'contact-shop' %}
+            {% endif %}
+
+            {% if butchers_enable %}
+              {% include 'contact-butchers' %}
+            {% endif %}
+          </div>
+
+          <div class="grid-item padding-bottom--up-1 one large--one-two xlarge--five-twelve">
+            {% if form_enable %}
+              {% include 'contact-form' %}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Contact body",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Shop"
+      },
+      {
+        "type": "checkbox",
+        "id": "shop_enable",
+        "label": "Enable?"
+      },
+      {
+        "type": "image_picker",
+        "id": "shop_image",
+        "label": "Image",
+        "info": "Suggested size: 1000x540px."
+      },
+      {
+        "type": "text",
+        "id": "shop_title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "shop_phone",
+        "label": "Phone"
+      },
+      {
+        "type": "text",
+        "id": "shop_email",
+        "label": "Email"
+      },
+      {
+        "type": "richtext",
+        "id": "shop_address",
+        "label": "Address"
+      },
+      {
+        "type": "url",
+        "id": "shop_url",
+        "label": "URL"
+      },
+      {
+        "type": "text",
+        "id": "shop_call_to_action",
+        "label": "Call to action"
+      },
+      {
+        "type": "header",
+        "content": "Butchers"
+      },
+      {
+        "type": "checkbox",
+        "id": "butchers_enable",
+        "label": "Enable?"
+      },
+      {
+        "type": "text",
+        "id": "butchers_title",
+        "label": "Title"
+      },
+      {
+        "type": "paragraph",
+        "content": "Butchers content is managed via Content -> Add Butcher."
+      },
+      {
+        "type": "header",
+        "content": "Form"
+      },
+      {
+        "type": "checkbox",
+        "id": "form_enable",
+        "label": "Enable?"
+      },
+      {
+        "type": "text",
+        "id": "form_title",
+        "label": "Title"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "butcher",
+        "name": "Butcher",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "phone",
+            "label": "Phone"
+          },
+          {
+            "type": "text",
+            "id": "email",
+            "label": "Email"
+          },
+          {
+            "type": "url",
+            "id": "url",
+            "label": "URL"
+          },
+          {
+            "type": "text",
+            "id": "call_to_action",
+            "label": "Call to action"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -62,5 +62,16 @@
   },
   "recipes": {
     "category_tag_suffix": "Recipes"
+  },
+  "contact": {
+    "form": {
+      "confirmation": "Thanks for contacting us. We'll get back to you as soon as possible.",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "company": "Company (optional)",
+      "email": "Email Address",
+      "message": "Message",
+      "send": "Send Message"
+    }
   }
 }

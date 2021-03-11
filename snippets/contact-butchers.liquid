@@ -1,0 +1,76 @@
+<div class="margin-top--up-2 large--margin-top--up-4">
+  {% if butchers_title %}
+    <h3 class="
+      font-size--up-4
+      large--font-size--up-5
+      large--font-size--up-8 large--line-height--up-10
+      font-weight-700 text-caps text-color-navy
+      margin-bottom--0 large--margin-bottom--up-1
+    ">
+      {{ butchers_title }}
+    </h3>
+  {% endif %}
+
+  {% if blocks %}
+    <div class="border-top-grey-lightest">
+      <div class="padding-top--up-1 large--padding-top--up-3">
+        <div class="overflow-hidden">
+          <ul class="grid--up-1 margin-bottom-negative--up-4">
+            {% for block in blocks %}
+              {% assign block_title = block.settings.title | default: false %}
+
+              {% assign block_phone = block.settings.phone | default: false %}
+
+              {% assign block_email = block.settings.email | default: false %}
+
+              {% assign block_url = block.settings.url | default: false %}
+
+              {% assign block_call_to_action = block.settings.call_to_action | default: false %}
+
+              <li class="grid-item padding-bottom--up-4 one-two xlarge--one-three">
+                {% if block_title %}
+                  <h4 class="
+                    font-size--inherit line-height--inherit
+                    font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark
+                    margin-bottom--down-2
+                  ">
+                    {{ block_title }}
+                  </h4>
+                {% endif %}
+
+                {% if block_phone %}
+                  <div class="margin-bottom--down-4">
+                    <div class="
+                      font-size--up-4 line-height--up-10
+                      large--font-size--up-6 large--line-height--up-12
+                    ">
+                      {{ block_phone }}
+                    </div>
+                  </div>
+                {% endif %}
+
+                {% if block_email %}
+                  <div class="margin-bottom--up-1">
+                    <div class="text-color-green links-text-underline word-break-all">
+                      <a href="mailto:{{ block_email }}">
+                        {{ block_email }}
+                      </a>
+                    </div>
+                  </div>
+                {% endif %}
+
+                {% if block_url and block_call_to_action %}
+                  <div class="text-color-green text-caps-letter-spacing font-weight-700 links-text-underline">
+                    <a href="{{ block_url }}">
+                      {{ block_call_to_action }}
+                    </a>
+                  </div>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,108 @@
+<div class="box-color-beige">
+  <div class="padding--up-1 medium--padding--up-3">
+    {% if form_title %}
+      <h3 class="
+        font-size--up-4
+        large--font-size--up-5
+        large--font-size--up-8 large--line-height--up-10
+        font-weight-700 text-caps text-color-navy
+        margin-bottom--0
+      ">
+        {{ form_title }}
+      </h3>
+    {% endif %}
+
+    {% form 'contact' %}
+      <div class="rte rte--form-errors">
+        {{ form.errors | default_errors }}
+      </div>
+
+      {% if form.posted_successfully? %}
+        <div>
+          {{ 'contact.form.confirmation' | t }}
+        </div>
+      {% else %}
+        <div class="margin-bottom--down-1">
+          <label class="block margin-bottom--down-4" for="contact-form-first-name">
+            {{ 'contact.form.first_name' | t }}
+          </label>
+
+          <input
+            class="input border--none border-radius--none large--padding-top-bottom--down-1"
+            type="text"
+            name="contact[first_name]"
+            id="contact-form-first-name"
+            value="{{ form['first_name'] | default: customer.first_name }}"
+            required />
+        </div>
+
+        <div class="margin-bottom--down-1">
+          <label class="block margin-bottom--down-4" for="contact-form-last-name">
+            {{ 'contact.form.last_name' | t }}
+          </label>
+
+          <input
+            class="input border--none border-radius--none large--padding-top-bottom--down-1"
+            type="text"
+            name="contact[last_name]"
+            id="contact-form-last-name"
+            value="{{ form['last_name'] | default: customer.last_name }}"
+            required />
+        </div>
+
+        <div class="margin-bottom--down-1">
+          <label class="block margin-bottom--down-4" for="contact-form-company">
+            {{ 'contact.form.company' | t }}
+          </label>
+
+          <input
+            class="input border--none border-radius--none large--padding-top-bottom--down-1"
+            type="text"
+            name="contact[company]"
+            id="contact-form-company"
+            value="{{ form['company'] | default: customer.company }}" />
+        </div>
+
+        <div class="margin-bottom--down-1">
+          <label class="block margin-bottom--down-4" for="contact-form-email">
+            {{ 'contact.form.email' | t }}
+          </label>
+
+          <input
+            class="input border--none border-radius--none large--padding-top-bottom--down-1"
+            type="email"
+            name="contact[email]"
+            id="contact-form-email"
+            value="{{ form['email'] | default: customer.email }}"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off"
+            required />
+        </div>
+
+        <div class="margin-bottom--up-2">
+          <label class="block margin-bottom--down-4" for="contact-form-message">
+            {{ 'contact.form.message' | t }}
+          </label>
+
+          <textarea
+            class="input border--none border-radius--none large--padding-top-bottom--down-1"
+            rows="5"
+            name="contact[body]"
+            id="contact-form-message"
+            required>{{ form.body }}</textarea>
+        </div>
+
+        <button
+          class="
+            button-primary
+            large--padding-top-bottom--down-1 large--padding-left-right--up-4
+            large--font-size--inherit large--line-height--inherit
+          "
+          type="submit">
+          {{ 'contact.form.send' | t }}
+        </button>
+      {% endif %}
+    {% endform %}
+  </div>
+</div>

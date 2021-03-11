@@ -693,6 +693,10 @@ $buttons: (primary, secondary);
     }
   }
 
+  .word-break-all {
+    word-break: break-all;
+  }
+
   .scroll-horizontal {
     overflow-y: hidden;
     overflow-x: auto;
