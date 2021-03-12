@@ -1,0 +1,30 @@
+{% assign enable = section.settings.enable | default: false %}
+
+{% assign title = section.settings.title | default: false %}
+
+{% if enable %}
+  <section class="margin-top--up-2 large--margin-top--up-6">
+    {%
+      include 'instagram-feed',
+      _title: title
+    %}
+  </section>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Blog Instagram",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable",
+        "label": "Enable?"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      }
+    ]
+  }
+{% endschema %}

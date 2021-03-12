@@ -29,6 +29,11 @@
       "title": "Category"
     }
   },
+  "blog": {
+    "article": {
+      "read_more": "Read more"
+    }
+  },
   "cart": {
     "title": "Your shopping cart",
     "total": "Subtotal",

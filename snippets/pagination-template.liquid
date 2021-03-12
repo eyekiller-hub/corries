@@ -1,3 +1,5 @@
+{% assign align_large = _align_large %}
+
 {% assign parts = _parts %}
 
 {% assign parts = parts | default: '{{ parts }}' %}
@@ -5,7 +7,13 @@
 <div class="padding-top--up-1 large--padding-top--up-3">
   <div class="border-top-grey-lightest">
     <div class="padding-top--up-1 large--padding-top--up-3">
-      <div class="text-left large--text-right">
+      <div class="
+        text-left
+        {% if align_large == 'center' %}
+          large--text-center
+        {% else %}
+          large--text-right
+        {% endif %}">
         <div class="overflow-hidden">
           <ul class="grid-bar--down-3 margin-bottom-negative--down-3 font-size--none margin-bottom--none">
             {{ parts }}

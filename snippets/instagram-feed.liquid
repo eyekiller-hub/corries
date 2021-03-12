@@ -1,0 +1,45 @@
+{% assign title = _title %}
+
+{% capture intafeed_template %}
+  <div class="overflow-hidden">
+    <div class="grid--down-1 large--grid--up-2 margin-bottom-negative--down-1 large--margin-bottom-negative--up-2">
+      {% raw %}{{ items }}{% endraw %}
+    </div>
+  </div>
+{% endcapture %}
+
+{% capture intafeed_item_template %}
+  <div class="grid-item padding-bottom--down-1 large--padding-bottom--up-2 one-two medium--one-four">
+    <a href="{% raw %}{{ url }}{% endraw %}" target="_blank">
+      {%
+        include 'image',
+        _image_url: '{{ image_url }}',
+        _image_alt: '{{ image_alt }}',
+        _box_ratio: '100%',
+        _object_fit: 'cover'
+      %}
+    </a>
+  </div>
+{% endcapture %}
+
+<div class="container-default">
+  {% if title %}
+    {% include 'featured-section-title', _title: title %}
+  {% endif %}
+
+  <div class="margin-bottom--up-2">
+    <div class="text-center">
+      {%
+        include 'social-links',
+        _minimal: true
+      %}
+    </div>
+  </div>
+
+  <div data-module-insta-feed='{
+    "template": {{ intafeed_template | json | escape }},
+    "item_template": {{ intafeed_item_template | json | escape }}
+  }'>
+    <div id="insta-feed"></div>
+  </div>
+</div>

@@ -1,3 +1,5 @@
+{% assign align_large = _align_large %}
+
 {% capture part_inactive_class_name_template %}
   {% include 'pagination-part-inactive-class-name-template' %}
 {% endcapture %}
@@ -34,4 +36,4 @@
   {% endfor %}
 {% endcapture %}
 
-{% include 'pagination-template', _parts: parts %}
+{% include 'pagination-template', _parts: parts, _align_large: align_large %}
