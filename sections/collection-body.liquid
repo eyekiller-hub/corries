@@ -1,6 +1,3 @@
-{% assign menu = collection.metafields.menu.menu %}
-{% assign menu = menus[menu] | default: false %}
-
 {% assign filters_enable = section.settings.filters_enable | default: false %}
 
 {% assign filters_logic = section.settings.filters_logic | default: false %}
@@ -10,12 +7,6 @@
 {% assign pagination_type = section.settings.pagination_type | default: false %}
 
 {% assign empty_body = section.settings.empty_body | default: false %}
-
-{% assign menu_enable = false %}
-
-{% if menu and template.suffix == 'menu' %}
-  {% assign menu_enable = true %}
-{% endif %}
 
 {% capture product_card_grid_class_name_template %}
   {% include 'product-card-grid-class-name-template' %}
@@ -36,6 +27,16 @@
 {% capture tag_filters_json %}
   {% include 'tag-filters-products-json' %}
 {% endcapture %}
+
+{% assign menu_enable = false %}
+
+{% for link in linklists['collections'].links %}
+  {% if link.active %}
+    {% assign menu_enable = true %}
+    {% assign filters_enable = false %}
+    {% break %}
+  {% endif %}
+{% endfor %}
 
 {% if filters_enable %}
   {% assign filters_enable = false %}
@@ -70,8 +71,10 @@
   {% endfor %}
 {% endif %}
 
-{% if menu_enable %}
-  {% assign filters_enable = false %}
+{% assign image_lazy = false %}
+
+{% if filters_enable %}
+  {% assign image_lazy = true %}
 {% endif %}
 
 {% capture attibutes %}
@@ -91,12 +94,6 @@
     }'
   {% endif %}
 {% endcapture %}
-
-{% assign image_lazy = false %}
-
-{% if filters_enable %}
-  {% assign image_lazy = true %}
-{% endif %}
 
 {% paginate collection.products by products_limit %}
   <div {{ attibutes }}>
@@ -152,7 +149,7 @@
       },
       {
         "type": "paragraph",
-        "content": "You can optionally define a menu on a per-collection basis via Collection -> More actions -> Custom fields -> Menu. You'll need to specify the same menu for the parent collection and all child collections within for the site breadcrumbs to work properly. When you want the menu to display instead of the filters on the collection pages, change the collection template to 'collection.menu'."
+        "content": "This menu depends on the collection structure via the [menu](/admin/menus) \"Collections\"."
       },
       {
         "type": "header",

@@ -12,7 +12,11 @@
   <div style=" --margin-top: -1px; --large--margin-top: 0;">
     <div class="border-grey-lightest large--border--none">
       <div class="padding-left-right--up-1 padding-top-bottom--up-1 large--padding--none">
-        {% for link in menu.links %}
+        {% for link in linklists['collections'].links %}
+          {% unless link.active %}
+            {% continue %}
+          {% endunless %}
+
           <div class="margin-bottom--down-4 large--margin--none">
             <div class="large--box-color-slate">
               <div class="large--padding-top-bottom--down-1 large--padding-left-right--0">
@@ -42,6 +46,10 @@
               </li>
             {% endfor %}
           </ul>
+
+          {% if link.active %}
+            {% break %}
+          {% endif %}
         {% endfor %}
       </div>
     </div>

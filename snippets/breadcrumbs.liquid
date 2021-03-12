@@ -20,25 +20,28 @@
   template.name == '404'
 %}
   {% if template.name == 'collection' or template.name == 'product' %}
-    {% if collection.template_suffix != 'menu' %}
-      {% assign menu = collection.metafields.menu.menu %}
-      {% assign menu = menus[menu] | default: false %}
+    {% for link in linklists['collections'].links %}
+      {% assign break = false %}
 
-      {% for link in menu.links %}
-        {% for link_link in link.links %}
-          {% if link_link.active %}
-            {% assign breadcrumbs_array_item_url = link.url | sort %}
+      {% for link_link in link.links %}
+        {% if link_link.active %}
+          {% assign breadcrumbs_array_item_url = link.url | sort %}
 
-            {% assign breadcrumbs_array_item_title = link.title | sort %}
+          {% assign breadcrumbs_array_item_title = link.title | sort %}
 
-            {% assign breadcrumbs_array_url = breadcrumbs_array_url | concat: breadcrumbs_array_item_url %}
+          {% assign breadcrumbs_array_url = breadcrumbs_array_url | concat: breadcrumbs_array_item_url %}
 
-            {% assign breadcrumbs_array_title = breadcrumbs_array_title | concat: breadcrumbs_array_item_title %}
-            {% break %}
-          {% endif %}
-        {% endfor %}
+          {% assign breadcrumbs_array_title = breadcrumbs_array_title | concat: breadcrumbs_array_item_title %}
+
+          {% assign break = true %}
+          {% break %}
+        {% endif %}
       {% endfor %}
-    {% endif %}
+
+      {% if break %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
   {% endif %}
 
   {% if template.name == 'product' and collection %}
