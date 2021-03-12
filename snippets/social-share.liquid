@@ -1,0 +1,56 @@
+{% assign platforms = nil | sort %}
+
+{% assign urls = nil | sort %}
+
+{% assign platform_1 = 'facebook' | sort %}
+
+{% assign url_1 = 'https://www.facebook.com/sharer/sharer.php?u=' | append: canonical_url | sort %}
+
+{% assign platform_2 = 'twitter' | sort %}
+
+{% assign url_2 = 'https://twitter.com/intent/tweet?url=' | append: canonical_url | sort %}
+
+{% assign platform_3 = 'linkedin' | sort %}
+
+{% assign url_3 = 'https://www.linkedin.com/shareArticle?mini=true&url=' | append: canonical_url | sort %}
+
+{% assign platforms = platforms | concat: platform_1 | concat: platform_2 | concat: platform_3 %}
+
+{% assign urls = urls | concat: url_1 | concat: url_2 | concat: url_3 %}
+
+<footer class="margin-top--up-4 medium--margin-top--up-6">
+  <div class="text-center">
+    <h4 class="
+      position-relative
+      font-stack-inherit
+      font-size--down-2 line-height--up-4
+      text-caps-letter-spacing font-weight-500 text-color-grey-dark
+      large--margin-bottom--down-2
+    ">
+      <span class="border-top-grey-lightest position-absolute position-center one"></span>
+
+      <span class="
+        position-relative
+        inline-block align-top
+        padding-left-right--0 box-color-base-background
+      ">
+        {{ 'social.share.title' | t }}
+      </span>
+    </h4>
+
+    <ul class="grid-bar--down-2 margin-bottom--none">
+      {% for platform in platforms %}
+        {% assign url = urls[forloop.index0] %}
+
+        <li class="grid-item">
+          <a href="{{ url }}" target="_blank">
+            <div class="font-size--up-16 text-color-green hover-text-color-green-active">
+              {% assign snippet = 'svg-social-' | append: platform %}
+              {% include snippet %}
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</footer>

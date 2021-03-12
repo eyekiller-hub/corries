@@ -32,6 +32,9 @@
   "blog": {
     "article": {
       "read_more": "Read more"
+    },
+    "related": {
+      "call_to_action": "All Posts"
     }
   },
   "cart": {
@@ -92,6 +95,11 @@
       "phone": "Telephone",
       "message": "Enquiry",
       "send": "Send Enquiry"
+    }
+  },
+  "social": {
+    "share": {
+      "title": "Share On"
     }
   }
 }

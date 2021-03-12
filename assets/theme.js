@@ -29,6 +29,7 @@ import './module-product-upsells';
 import './module-product-url';
 import './module-product-variant-title';
 import './module-responsive-images';
+import './module-rte';
 import './module-search-form-input';
 import './module-search-form-predictive-results';
 import './module-slide-panels-back';

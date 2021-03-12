@@ -1285,6 +1285,44 @@ $buttons: (primary, secondary);
         border-color: var(--colors-button-primary-border-hover);
       }
     }
+
+    img,
+    .video-container {
+      display: block;
+      max-width: none;
+      width: calc(100% + (var(--container-padding-x) * 2));
+      margin-left: calc(-1 * var(--container-padding-x));
+
+      @include media-query(xlarge) {
+        width: calc(100% + (55px * 2));
+        margin-left: -55px;
+      }
+    }
+
+    a {
+      color: var(--colors-green);
+
+      &:hover {
+        color: var(--colors-green-active);
+      }
+    }
+
+    .video-container {
+      padding-bottom: 60%;
+    }
+  }
+
+  .rte--article {
+    h2, h3, h4, h5, h6 {
+      font: inherit;
+      font-size: var(--font-size--up-4);
+      line-height: var(--font-size--up-10);
+      text-transform: uppercase;
+      letter-spacing: var(--typography-uppercase-letter-spacing);
+      font-weight: 500;
+      color: var(--colors-grey-dark);
+      padding-top: var(--spacing--up-1);
+    }
   }
 
   .rte--form-errors {

@@ -1,3 +1,7 @@
+{% assign content_content = article.content | strip_html | truncatewords: 30 %}
+
+{% assign excerpt_or_content = article.excerpt | default: content_content %}
+
 <article>
   <div class="margin-bottom--up-1">
     <a href="{{ article.url }}">
@@ -19,10 +23,10 @@
     </a>
   </h3>
 
-  {% if article.excerpt_or_content != blank %}
+  {% if excerpt_or_content != blank %}
     <div class="margin-top--down-1">
       <div class="rte large--font-size--up-2 large--line-height--up-10">
-        {{ article.excerpt_or_content }}
+        {{ excerpt_or_content | strip_html }}
       </div>
     </div>
   {% endif %}

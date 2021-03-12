@@ -44,6 +44,16 @@
     {% endfor %}
   {% endif %}
 
+  {% if template.name == 'article' %}
+    {% assign breadcrumbs_array_item_url = blog.url | sort %}
+
+    {% assign breadcrumbs_array_item_title = blog.title | sort %}
+
+    {% assign breadcrumbs_array_url = breadcrumbs_array_url | concat: breadcrumbs_array_item_url %}
+
+    {% assign breadcrumbs_array_title = breadcrumbs_array_title | concat: breadcrumbs_array_item_title %}
+  {% endif %}
+
   {% if template.name == 'product' and collection %}
     {% assign breadcrumbs_array_item_url = collection.url | sort %}
 
