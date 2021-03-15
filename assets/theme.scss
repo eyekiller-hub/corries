@@ -973,6 +973,14 @@ $buttons: (primary, secondary);
   .links-text-underline a {
     text-decoration: underline;
   }
+  .text-no-underline,
+  .links-no-text-underline a {
+    text-decoration: none;
+  }
+  .text-no-underline\!,
+  .links-no-text-underline\! a {
+    text-decoration: none !important;
+  }
   .text-line-through {
     text-decoration: line-through;
   }
@@ -1322,6 +1330,54 @@ $buttons: (primary, secondary);
       font-weight: 500;
       color: var(--colors-grey-dark);
       padding-top: var(--spacing--up-1);
+    }
+  }
+
+  .rte--recipe {
+    li {}
+
+    ul {
+      list-style: none;
+
+      li {
+        display: block;
+        border-top: 1px solid var(--colors-grey-lighter);
+        padding: var(--spacing--down-2) 0;
+      }
+    }
+
+    ol {
+      list-style: none;
+      counter-reset: recipe-counter;
+
+      li {
+        display: block;
+        counter-increment: recipe-counter;
+        display: flex;
+        align-items: center;
+
+        & + li {
+          margin-top: var(--spacing--up-2);
+        }
+
+        &:before {
+          content: counter(recipe-counter);
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 45px;
+          height: 45px;
+          border-radius: 100%;
+          background-color: var(--colors-green);
+          color: var(--colors-light);
+          font-weight: 500;
+          font-size: var(--font-size--down-2);
+          text-transform: uppercase;
+          letter-spacing: var(--typography-uppercase-letter-spacing);
+          margin-right: var(--spacing--up-2);
+        }
+      }
     }
   }
 
@@ -2411,6 +2467,11 @@ $buttons: (primary, secondary);
   .#{$breakpoint}text-color-inherit,
   .#{$breakpoint}child-a-text-color-inherit a {
     color: inherit;
+  }
+
+  .#{$breakpoint}text-color-inherit\!,
+  .#{$breakpoint}child-a-text-color-inherit\! a {
+    color: inherit !important;
   }
 
   .#{$breakpoint}box-color-inherit {

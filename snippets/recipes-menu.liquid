@@ -1,0 +1,59 @@
+<div class="margin-top--up-2 large--margin-top--up-4">
+  <div class="border-top-bottom-grey-lightest">
+    <div class="padding-top-bottom--down-1">
+      <ul class="grid--up-1 medium--grid--up-3 text-center margin-bottom--none">
+        {% for link in linklists['tag-filters-recipes'].links %}
+          {% assign category_tag = link.title %}
+
+          {% assign category_tag_handle = link.handle %}
+
+          {% assign category_tag_url = blog.url | append: '/tagged/' | append: category_tag_handle %}
+
+          {% assign category_tag_active = false %}
+
+          {% if category_tag_url == request.path %}
+            {% assign category_tag_active = true %}
+          {% endif %}
+
+          {% if forloop.first %}
+            <li class="grid-item">
+              <a href="{{ blog.url }}">
+                <div class="
+                  font-size--down-2 line-height--up-6
+                  medium--font-size--inherit medium--line-height--up-8
+                  text-caps-letter-spacing font-weight-500
+
+                  {% if current_tags %}
+                    text-color-grey-light hover-text-color-grey
+                  {% else %}
+                    text-color-grey-dark
+                  {% endif %}
+                ">
+                  {{ 'recipes.menu.all' | t }}
+                </div>
+              </a>
+            </li>
+          {% endif %}
+
+          <li class="grid-item">
+            <a href="{{ category_tag_url }}">
+              <div class="
+                font-size--down-2 line-height--up-6
+                medium--font-size--inherit medium--line-height--up-8
+                text-caps-letter-spacing font-weight-500
+
+                {% if category_tag_active %}
+                  text-color-grey-dark
+                {% else %}
+                  text-color-grey-light hover-text-color-grey
+                {% endif %}
+              ">
+                {{ link.title }}
+              </div>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+{% assign menu_enable = section.settings.menu_enable | default: false %}
+
+{% assign articles_limit = section.settings.articles_limit | default: false %}
+
+{% assign empty_body = section.settings.empty_body | default: false %}
+
+{% paginate blog.articles by articles_limit %}
+  <div class="page-spacing">
+    <div class="container-default">
+      {% include 'breadcrumbs' %}
+
+      <div class="box-center" style="max-width: 910px;">
+        <div class="rte rte--page text-center" data-module-rte>
+          <h1>
+            {{ blog.title }}
+          </h1>
+
+          {{ blog.metafields.description.description }}
+        </div>
+      </div>
+
+      {% if menu_enable %}
+        {% include 'recipes-menu' %}
+      {% endif %}
+
+      <div class="overflow-hidden">
+        <div class="margin-top--up-2 large--margin-top--up-4">
+          {% if blog.articles != empty %}
+            <div class="overflow-hidden">
+              <div class="
+                flex-wrap flex--0 medium--flex--up-1 large--flex--up-2
+                margin-bottom-negative--up-2
+                large--margin-bottom-negative--up-4
+              ">
+                {% for article in blog.articles %}
+                  <div class="
+                    flex-item-auto one-two medium--one-four
+                    padding-bottom--up-2 large--padding-bottom--up-4
+                  ">
+                    {% include 'article-card-recipe' %}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+
+            {% if paginate.pages > 1 %}
+              {% include 'pagination', _align_large: 'center' %}
+            {% endif %}
+          {% else %}
+            {% include 'blog-empty' %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endpaginate %}
+
+{% schema %}
+  {
+    "name": "Recipes body",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Menu"
+      },
+      {
+        "type": "checkbox",
+        "id": "menu_enable",
+        "label": "Enable?"
+      },
+      {
+        "type": "paragraph",
+        "content": "This is managed via the [menu](/admin/menus) \"Tag filters: Recipes\"."
+      },
+      {
+        "type": "header",
+        "content": "Articles"
+      },
+      {
+        "type": "number",
+        "id": "articles_limit",
+        "label": "Limit",
+        "default": 16
+      },
+      {
+        "type": "header",
+        "content": "Empty"
+      },
+      {
+        "type": "richtext",
+        "id": "empty_body",
+        "label": "Empty body"
+      }
+    ]
+  }
+{% endschema %}

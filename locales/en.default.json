@@ -69,7 +69,13 @@
     "submit": "Join now"
   },
   "recipes": {
-    "category_tag_suffix": "Recipes"
+    "category_tag_suffix": "Recipes",
+    "menu": {
+      "all": "All Recipes"
+    },
+    "related": {
+      "call_to_action": "All Recipes"
+    }
   },
   "contact": {
     "form": {

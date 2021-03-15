@@ -1,4 +1,9 @@
-<div class="page-spacing">
-  {% section 'article-body' %}
-  {% section 'article-related' %}
-</div>
+{% assign blog_template_suffix = blog.template_suffix | default: false %}
+
+{% assign snippet = 'article' %}
+
+{% if blog_template_suffix %}
+  {% assign snippet = snippet | append: '-' | append: blog_template_suffix %}
+{% endif %}
+
+{% include snippet %}
