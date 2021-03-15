@@ -1,0 +1,112 @@
+{% assign featured = _featured %}
+
+{% assign content_content = article.content | strip_html | truncatewords: 25 %}
+
+{% assign excerpt_or_content = article.excerpt | default: content_content %}
+
+{% assign phone = article.metafields.shop.phone | default: false %}
+
+{% assign email = article.metafields.shop.email | default: false %}
+
+{% assign address = article.metafields.shop.address | newline_to_br | default: false %}
+
+<article class="{% if featured %}large--flex-bar large--box-color-beige{% endif %}">
+  <div class="
+    margin-bottom--up-1
+
+    {% if featured %}
+      large--flex-item large--margin-bottom--none
+    {% endif %}
+  ">
+    <a href="{{ article.url }}">
+      {%
+        include 'image',
+        _object: article.image,
+        _size: '1000x'
+      %}
+    </a>
+  </div>
+
+  <div class="{% if featured %}large--flex-item{% endif %}">
+    <div class="{% if featured %}large--padding-left-right--up-4{% endif %}">
+      <h3 class="
+        font-size--up-4
+        large--font-size--up-5
+        large--font-size--up-8 large--line-height--up-10
+        font-weight-700 text-caps text-color-navy
+        margin-bottom--down-2
+      ">
+        <a href="{{ article.url }}">
+          {{ article.title }}
+        </a>
+      </h3>
+
+      {% if featured %}
+        {% if excerpt_or_content != blank %}
+          <div class="margin-top--down-1 margin-bottom--up-1">
+            <div class="rte large--font-size--up-2 large--line-height--up-10">
+              {{ excerpt_or_content | strip_html }}
+            </div>
+          </div>
+        {% endif %}
+      {% endif %}
+
+      {% if phone %}
+        <div class="
+          font-size--up-4 line-height--up-10
+          large--font-size--up-6 large--line-height--up-12
+
+          {% if featured %}
+            text-color-grey-dark
+          {% endif %}
+        ">
+          {{ phone }}
+        </div>
+      {% endif %}
+
+      {% if email %}
+        <div class="
+          margin-top--down-4
+
+          {% if featured %}
+            large--margin-top--down-6
+          {% endif %}
+        ">
+          <div class="
+            text-color-green links-text-underline word-break-all
+
+            {% if featured %}
+              medium--font-size--up-2 large--line-height--up-8
+            {% endif %}
+          ">
+            <a href="mailto:{{ email }}">
+              {{ email }}
+            </a>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if address %}
+        <div class="margin-top--0">
+          <div class="
+            rte
+
+            {% if featured %}
+              medium--font-size--up-2 large--line-height--up-8
+            {% endif %}
+          ">
+            {{ address }}
+          </div>
+        </div>
+      {% endif %}
+
+      <div class="margin-top--up-1">
+        <a
+          class="font-weight-700 text-caps-letter-spacing text-underline text-color-green"
+          href="{{ article.url }}">
+          {{ 'shops.shop.read_more' | t }}
+        </a>
+      </div>
+    </div>
+  </div>
+</article>

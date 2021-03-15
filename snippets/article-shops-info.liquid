@@ -1,0 +1,119 @@
+{% assign newline = '
+' %}
+
+{% assign open_hours_lines = open_hours | split: newline %}
+
+<div class="margin-top--up-3 large--margin-top--up-5">
+  <div class="box-center" style="max-width: 930px;">
+    <div class="overflow-hidden">
+      <div class="flex--up-2 xlarge--flex--up-6 flex-wrap margin-bottom-negative--up-1">
+        {% if phone or email %}
+          <div class="flex-item-shrink padding-bottom--up-1 one medium--one-three">
+            <h2 class="
+              font-size--inherit line-height--inherit
+              large--font-size--up-4 large--line-height--up-12
+              font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark
+              margin-bottom--down-2
+            ">
+              {{ 'shops.shop.contact' | t }}
+            </h2>
+
+            {% if phone %}
+              <div class="
+                font-size--up-4 line-height--up-10
+                large--font-size--up-6 large--line-height--up-12
+                xlarge--font-size--up-10 xlarge--line-height--up-14
+              ">
+                {{ phone }}
+              </div>
+            {% endif %}
+
+            {% if email %}
+              <div class="margin-top--down-4">
+                <div class="text-color-green links-text-underline word-break-all">
+                  <a href="mailto:{{ email }}">
+                    {{ email }}
+                  </a>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if address or url or call_to_action %}
+          <div class="flex-item-shrink padding-bottom--up-1 one medium--one-three">
+            <h2 class="
+              font-size--inherit line-height--inherit
+              large--font-size--up-4 large--line-height--up-12
+              font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark
+              margin-bottom--down-2
+            ">
+              {{ 'shops.shop.address' | t }}
+            </h2>
+
+            {% if address %}
+              <div class="rte large--font-size--up-2 large--line-height--up-10">
+                {{ article.title }}<br />
+                {{ address }}
+              </div>
+            {% endif %}
+
+            {% if url and call_to_action %}
+              <div class="margin-top--up-2">
+                <a
+                  class="
+                    font-weight-700 text-caps-letter-spacing text-underline
+                    text-color-green hover-text-color-green-active
+                  "
+                  href="{{ url }}"
+                  target="_blank">
+                  {{ call_to_action }}
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if open_hours %}
+          <div class="flex-item-shrink padding-bottom--up-1 one medium--one-three">
+            <h2 class="
+              font-size--inherit line-height--inherit
+              large--font-size--up-4 large--line-height--up-12
+              font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark
+              margin-bottom--down-2
+            ">
+              {{ 'shops.shop.open_hours' | t }}
+            </h2>
+
+            <div class="
+              rte rte--shop-open-hours
+              large--font-size--up-2 large--line-height--up-10
+            ">
+              <table>
+                <tbody>
+                  {% for line in open_hours_lines %}
+                    {% assign line_day = line | split: '|' | first | strip %}
+
+                    {% assign line_hours = line | split: '|' | slice: 1, 1 | first | strip | default: false %}
+
+                    <tr>
+                      <td>
+                        {{ line_day }}
+                      </td>
+
+                      {% if line_hours %}
+                        <td>
+                          {{ line_hours }}
+                        </td>
+                      {% endif %}
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

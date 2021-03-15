@@ -37,6 +37,15 @@
       "call_to_action": "All Posts"
     }
   },
+  "shops": {
+    "shop": {
+      "back": "All Shops",
+      "contact": "Get In Touch",
+      "address": "Address",
+      "open_hours": "Opening Hours",
+      "read_more": "Shop Details"
+    }
+  },
   "cart": {
     "title": "Your shopping cart",
     "total": "Subtotal",

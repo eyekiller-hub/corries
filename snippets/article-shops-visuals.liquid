@@ -1,0 +1,36 @@
+<div class="margin-top--up-3 large--margin-top--up-5">
+  <div class="overflow-hidden">
+    <div class="flex flex-wrap" style="margin-left: -1px; margin-bottom: -1px;">
+      {% if images %}
+        <div class="flex-item-shrink one large--two-three" style="padding-left: 1px; padding-bottom: 1px;">
+          <div class="overflow-hidden">
+            <div class="flex flex-wrap" style="margin-left: -1px; margin-bottom: -1px;">
+              {% for image in images %}
+                {% include 'attribute-image-box-ratio' %}
+
+                {% assign image_url = image.cloudinary_src | append: 'w_1000' %}
+
+                <div class="flex-item-shrink one-two" style="padding-left: 1px; padding-bottom: 1px;">
+                  {%
+                    include 'image',
+                    _image_url: image_url,
+                    _image_alt: image.alt,
+                    _box_ratio: image_box_ratio
+                  %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if map_embed_code %}
+        <div class="flex-item-shrink one large--one-three" style="padding-left: 1px; padding-bottom: 1px;">
+          <div class="height-full rte rte--shop-map">
+            {{ map_embed_code }}
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

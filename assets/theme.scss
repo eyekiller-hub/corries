@@ -1481,6 +1481,29 @@ $buttons: (primary, secondary);
       }
     }
   }
+
+  .rte--shop-map {
+    iframe {
+      width: 100%;
+      height: 100%;
+
+      @include media-query(medium-down) {
+        height: 400px;
+      }
+    }
+  }
+
+  .rte--shop-open-hours {
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    td {
+      padding: 0;
+    }
+  }
   /*! purgecss end ignore */
 }
 

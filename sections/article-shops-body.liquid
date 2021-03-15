@@ -1,0 +1,59 @@
+{% assign images = article.metafields.shop.images | default: false %}
+
+{% assign map_embed_code = article.metafields.shop.map_embed_code | default: false %}
+
+{% assign phone = article.metafields.shop.phone | default: false %}
+
+{% assign email = article.metafields.shop.email | default: false %}
+
+{% assign address = article.metafields.shop.address | newline_to_br | default: false %}
+
+{% assign url = article.metafields.shop.url | default: false %}
+
+{% assign call_to_action = article.metafields.shop.call_to_action | default: false %}
+
+{% assign open_hours = article.metafields.shop.open_hours | default: false %}
+
+<div class="container-default">
+  {% include 'breadcrumbs' %}
+
+  <div class="box-center" style="max-width: 910px;">
+    <div class="rte rte--page rte--article" data-module-rte>
+      <h1 class="text-center">
+        {{ article.title }}
+      </h1>
+
+      {{ article.content }}
+    </div>
+  </div>
+
+  {% if images or map_embed_code %}
+    {% include 'article-shops-visuals' %}
+  {% endif %}
+
+  {% include 'article-shops-info' %}
+
+  <div class="margin-top--up-3 large--margin-top--up-5">
+    <div class="border-top-grey-lightest">
+      <div class="padding-top--up-3 large--padding-top--up-5">
+        <div class="text-center">
+          <a
+            class="
+              button-primary
+              medium--font-size--0
+              padding-left-right--up-2 medium--padding-left-right--up-4
+            "
+            href="{{ blog.url }}">
+            {{ 'shops.shop.back' | t }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Article shops body"
+  }
+{% endschema %}
