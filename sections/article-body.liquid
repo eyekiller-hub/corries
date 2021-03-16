@@ -12,6 +12,22 @@
 
     {% include 'social-share' %}
   </div>
+
+  {% if blog.template_suffix == 'careers' %}
+    <div class="margin-top--up-3 large--margin-top--up-5">
+      <div class="text-center">
+        <a
+          class="
+            button-primary
+            medium--font-size--0
+            padding-left-right--up-2 medium--padding-left-right--up-4
+          "
+          href="{{ blog.url }}">
+          {{ 'careers.career.back' | t }}
+        </a>
+      </div>
+    </div>
+  {% endif %}
 </div>
 
 {% schema %}

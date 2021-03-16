@@ -1,0 +1,115 @@
+{% assign image = section.settings.image | default: false %}
+
+{% assign title = section.settings.title | default: false %}
+
+{% assign copy = section.settings.copy | default: false %}
+
+{% assign empty_body = section.settings.empty_body | default: false %}
+
+{% paginate blog.articles by 1000 %}
+  <div class="page-spacing">
+    <div class="container-default">
+      {% include 'breadcrumbs' %}
+
+      <div class="box-center" style="max-width: 910px;">
+        <div class="rte rte--page text-center" data-module-rte>
+          <h1>
+            {{ blog.title }}
+          </h1>
+
+          {{ blog.metafields.description.description }}
+        </div>
+      </div>
+    </div>
+
+    <div class="margin-top--up-2 large--margin-top--up-4">
+      {% if blog.articles != empty %}
+        <div class="box-color-beige">
+          <div class="padding-top-bottom--up-3 large--padding-top-bottom--up-6">
+            <div class="container-default">
+              <div class="overflow-hidden">
+                <div class="flex-bar--up-6 flex-wrap margin-bottom-negative--up-1">
+                  <div class="flex-item-shrink padding-bottom--up-1 one large--one-two">
+                    {% if title %}
+                      <h3 class="
+                        font-size--up-4
+                        large--font-size--up-5
+                        large--font-size--up-8 large--line-height--up-10
+                        font-weight-700 text-caps text-color-grey-dark
+                        margin-bottom--0
+                      ">
+                        {{ title }}
+                      </h3>
+                    {% endif %}
+
+                    {% if copy %}
+                      <div class="rte large--font-size--up-2 large--line-height--up-10">
+                        {{ copy }}
+                      </div>
+                    {% endif %}
+
+                    <div class="margin-top--up-1 large--margin-top--up-2">
+                      <div class="border-top-beige-active">
+                        {% for article in blog.articles %}
+                          <div>
+                            {% include 'article-card-career' %}
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+
+                  {% if image %}
+                    <div class="flex-item-shrink padding-bottom--up-1 one large--one-two">
+                      {%
+                        include 'image',
+                        _object: image,
+                        _size: '1000x'
+                      %}
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <div class="container-default">
+          {% include 'blog-empty' %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endpaginate %}
+
+{% schema %}
+  {
+    "name": "Careers body",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "copy",
+        "label": "Copy"
+      },
+      {
+        "type": "header",
+        "content": "Empty"
+      },
+      {
+        "type": "richtext",
+        "id": "empty_body",
+        "label": "Empty body"
+      }
+    ]
+  }
+{% endschema %}

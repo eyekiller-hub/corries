@@ -46,6 +46,12 @@
       "read_more": "Shop Details"
     }
   },
+  "careers": {
+    "career": {
+      "back": "All Job Vacancies",
+      "read_more": "Job Details"
+    }
+  },
   "cart": {
     "title": "Your shopping cart",
     "total": "Subtotal",
