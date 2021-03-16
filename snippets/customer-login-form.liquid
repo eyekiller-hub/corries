@@ -1,0 +1,66 @@
+{% form 'customer_login' %}
+  <div class="rte rte--form-errors">
+    {{ form.errors | default_errors }}
+  </div>
+
+  <div class="margin-bottom--up-1">
+    <label class="block margin-bottom--down-4" for="customer-email">
+      {{ 'customer.login.email' | t }}
+    </label>
+
+    <input
+      class="input border--none border-radius--none large--padding-top-bottom--down-1"
+      type="email"
+      name="customer[email]"
+      id="customer-email"
+      placeholder="{{ 'customer.login.email_placeholder' | t }}"
+      spellcheck="false"
+      autocomplete="off"
+      autocapitalize="off"
+      autofocus
+      required />
+  </div>
+
+  {% if form.password_needed %}
+    <div class="margin-bottom--up-2">
+      <label class="block margin-bottom--down-4" for="customer-password">
+        {{ 'customer.login.password' | t }}
+      </label>
+
+      <input
+        class="input border--none border-radius--none large--padding-top-bottom--down-1"
+        type="password"
+        name="customer[password]"
+        id="customer-password"
+        placeholder="{{ 'customer.login.password_placeholder' | t }}"
+        required />
+
+      <div class="margin-top--up-1">
+        <a href="#recover">
+          <div class="
+            font-size--down-2 line-height--up-4
+            font-weight-500 text-underline text-color-green
+          ">
+            {{ 'customer.login.forgot_password' | t }}
+          </div>
+        </a>
+      </div>
+    </div>
+  {% endif %}
+
+  <button class="button-primary one padding-top-bottom--down-1" type="submit">
+    {{ 'customer.login.sign_in' | t }}
+  </button>
+
+  <div class="margin-top--up-2">
+    <div class="font-size--down-2 line-height--up-4 text-color-grey-dark">
+      {{ 'customer.login.create_account' | t }}
+
+      <a
+        class="font-weight-500 text-underline text-color-green"
+        href="{{ routes.account_register_url }}">
+        {{ 'customer.login.create_account_link' | t }}
+      </a>
+    </div>
+  </div>
+{% endform %}

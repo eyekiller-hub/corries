@@ -122,5 +122,24 @@
     "share": {
       "title": "Share On"
     }
+  },
+  "customer": {
+    "login": {
+      "email": "Email Address",
+      "email_placeholder": "Required*",
+      "password": "Password",
+      "password_placeholder": "Required*",
+      "forgot_password": "Forgotten Password?",
+      "sign_in": "Login",
+      "create_account": "Don’t have an account yet?",
+      "create_account_link": "Sign up here"
+    },
+    "recover_password": {
+      "email": "Email Address",
+      "email_placeholder": "Required*",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "success": "We've sent you an email to reset your password."
+    }
   }
 }

@@ -159,6 +159,37 @@
     ]
   },
   {
+    "name": "Customer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Login"
+      },
+      {
+        "type": "text",
+        "id": "customer_login_title",
+        "label": "Title",
+        "default": "Login"
+      },
+      {
+        "type": "image_picker",
+        "id": "customer_login_image",
+        "label": "Image",
+        "info": "Suggested size: 2000x1540px."
+      },
+      {
+        "type": "header",
+        "content": "Recover password"
+      },
+      {
+        "type": "text",
+        "id": "customer_recover_password_title",
+        "label": "Title",
+        "default": "Forgotten Password"
+      }
+    ]
+  },
+  {
     "name": "Social",
     "settings": [
       {

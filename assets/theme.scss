@@ -725,6 +725,7 @@ $buttons: (primary, secondary);
     background: var(--colors-placeholder);
   }
 
+  /*! purgecss start ignore */
   .video-container {
     position: relative;
 
@@ -736,6 +737,7 @@ $buttons: (primary, secondary);
       height: 100%;
     }
   }
+  /*! purgecss end ignore */
 
   @each $value in baseline, middle, top, bottom {
     .align-#{$value} {
@@ -778,6 +780,26 @@ $buttons: (primary, secondary);
       height: auto;
     }
     .medium-down--height--auto\! {
+      height: auto !important;
+    }
+  }
+  @include media-query(medium) {
+    .medium--height-full {
+      height: 100%;
+    }
+    .medium--height-full\! {
+      height: 100% !important;
+    }
+    .medium--height-full-vh {
+      height: 100vh;
+    }
+    .medium--height-full-vh\! {
+      height: 100vh !important;
+    }
+    .medium--height--auto {
+      height: auto;
+    }
+    .medium--height--auto\! {
       height: auto !important;
     }
   }
@@ -3171,6 +3193,20 @@ $buttons: (primary, secondary);
   }
 }
 
+@mixin customer() {
+  .customer-recover {
+    &:not(:target) {
+      display: none;
+    }
+  }
+
+  .customer-login {
+    .customer-recover:target + & {
+      display: none;
+    }
+  }
+}
+
 /*! purgecss start ignore */
 @include responsive-images();
 @include shopify-challenge-page();
@@ -3188,4 +3224,5 @@ $buttons: (primary, secondary);
 @include product-option-radio();
 @include dynamic-checkout-buttons();
 @include judge-me();
+@include customer();
 /*! purgecss end ignore */
