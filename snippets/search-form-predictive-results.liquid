@@ -1,6 +1,6 @@
 {% capture empty_template %}
   <div class="border-bottom-grey-lighter">
-    <div class="padding-top-bottom--0 large--padding--0">
+    <div class="padding-top-bottom--0 medium--padding--0">
       <h3 class="font-size--down-2 line-height--up-4 font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark margin-bottom--none">
         No products found for “{% raw %}{{ query }}{% endraw %}”.
       </h3>
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="padding-top-bottom--0 large--padding--0">
+  <div class="padding-top-bottom--0 medium--padding--0">
     <a class="button-primary one" href="{{ routes.all_products_collection_url }}">
       View all products
     </a>
@@ -23,7 +23,7 @@
     {% raw %}{{ results }}{% endraw %}
   </ul>
 
-  <div class="padding-top-bottom--0 large--padding--0">
+  <div class="padding-top-bottom--0 medium--padding--0">
     <a
       class="button-primary one"
       href="{{ routes.search_url }}?q={% raw %}{{ query }}{% endraw %}&type=product">
@@ -36,7 +36,7 @@
   <li>
     <a href="{% raw %}{{ url }}{% endraw %}">
       <div class="border-bottom-grey-lighter">
-        <div class="padding-top-bottom--0 large--padding--0">
+        <div class="padding-top-bottom--0 medium--padding--0">
           <div class="flex-bar--0">
             <div class="flex-item-shrink">
               <div style="width: 55px;">
@@ -84,10 +84,10 @@
   "result_compare_at_price_template": {{ result_compare_at_price_template | json | escape }}
 }'>
   <div
-    class="large--position-absolute large--position-left large--position-top--full large--position-1 large--margin-top-negative--down-3">
-    <div class="search-form-element-width">
-      <div class="large--box-color-light large--border-grey-lighter large--border-radius-default">
-        <div class="large--padding-top--down-3">
+    class="medium--position-absolute medium--position-left medium--position-top--full medium--position-1 medium--margin-top-negative--down-3">
+    <div class="search-form-element-width" style="min-width: 250px;">
+      <div class="medium--box-color-light medium--border-grey-lighter medium--border-radius-default">
+        <div class="medium--padding-top--down-3">
           <div>
             <div data-ref-body></div>
           </div>

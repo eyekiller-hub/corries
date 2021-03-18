@@ -14,16 +14,6 @@ function Button(element, events, options, module) {
     Events.trigger('accordion:button:click');
   });
 
-  window.addEventListener('resize', debounce(() => {
-    var active = is_active();
-
-    if (active) {
-      events.trigger(`button:resizeactive:${options.index}`);
-    } else {
-      events.trigger(`button:resizeinactive:${options.index}`);
-    }
-  }));
-
   var active = is_active();
 
   if (active) {

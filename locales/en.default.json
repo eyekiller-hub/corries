@@ -166,7 +166,7 @@
       "password": "Password",
       "password_placeholder": "Required*",
       "submit": "Sign up",
-      "login": "Already have an account yet?",
+      "login": "Already have an account?",
       "login_link": "Login here"
     }
   }

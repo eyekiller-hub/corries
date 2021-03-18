@@ -12,7 +12,7 @@
 <div data-module-number-input>
   <div class="flex">
     <div class="flex-item-auto">
-      <button class="input-reset block height-full" type="button" data-ref-decrement>
+      <div class="height-full position-relative overflow-hidden">
         <div
           class="
             height-full
@@ -27,7 +27,12 @@
             </div>
           </div>
         </div>
-      </button>
+
+        <button
+          class="hidden-opacity position-absolute position-full one height-full"
+          type="button"
+          data-ref-decrement></button>
+      </div>
     </div>
 
     <div class="flex-item-auto">
@@ -53,7 +58,7 @@
     </div>
 
     <div class="flex-item-auto">
-      <button class="input-reset block height-full" type="button" data-ref-increment>
+      <div class="height-full position-relative overflow-hidden">
         <div
           class="
             height-full
@@ -68,7 +73,12 @@
             </div>
           </div>
         </div>
-      </button>
+
+        <button
+          class="hidden-opacity position-absolute position-full one height-full"
+          type="button"
+          data-ref-increment></button>
+      </div>
     </div>
   </div>
 </div>
