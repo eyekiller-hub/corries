@@ -186,6 +186,42 @@
         "id": "customer_recover_password_title",
         "label": "Title",
         "default": "Forgotten Password"
+      },
+      {
+        "type": "header",
+        "content": "Reset password"
+      },
+      {
+        "type": "text",
+        "id": "customer_reset_password_title",
+        "label": "Title",
+        "default": "Reset Password"
+      },
+      {
+        "type": "header",
+        "content": "Activate account"
+      },
+      {
+        "type": "text",
+        "id": "customer_activate_account_title",
+        "label": "Title",
+        "default": "Activate Account"
+      },
+      {
+        "type": "header",
+        "content": "Register"
+      },
+      {
+        "type": "text",
+        "id": "customer_register_title",
+        "label": "Title",
+        "default": "Register"
+      },
+      {
+        "type": "image_picker",
+        "id": "customer_register_image",
+        "label": "Image",
+        "info": "Suggested size: 2000x1540px."
       }
     ]
   },

@@ -1,0 +1,83 @@
+{% form 'create_customer' %}
+  <div class="rte rte--form-errors">
+    {{ form.errors | default_errors }}
+  </div>
+
+  <div class="margin-bottom--up-1">
+    <label class="block margin-bottom--down-4" for="FirstName">
+      {{ 'customer.register.first_name' | t }}
+    </label>
+
+    <input
+      class="input border--none border-radius--none large--padding-top-bottom--down-1"
+      type="text"
+      name="customer[first_name]"
+      id="FirstName"
+      placeholder="{{ 'customer.register.first_name_placeholder' | t }}"
+      autofocus
+      value="{{ form.first_name }}"
+      required />
+  </div>
+
+  <div class="margin-bottom--up-1">
+    <label class="block margin-bottom--down-4" for="LastName">
+      {{ 'customer.register.last_name' | t }}
+    </label>
+
+    <input
+      class="input border--none border-radius--none large--padding-top-bottom--down-1"
+      type="text"
+      name="customer[last_name]"
+      id="LastName"
+      placeholder="{{ 'customer.register.last_name_placeholder' | t }}"
+      value="{{ form.last_name }}"
+      required />
+  </div>
+
+  <div class="margin-bottom--up-1">
+    <label class="block margin-bottom--down-4" for="Email">
+      {{ 'customer.register.email' | t }}
+    </label>
+
+    <input
+      class="input border--none border-radius--none large--padding-top-bottom--down-1"
+      type="email"
+      name="customer[email]"
+      id="Email"
+      placeholder="{{ 'customer.register.email_placeholder' | t }}"
+      value="{{ form.email }}"
+      spellcheck="false"
+      autocomplete="off"
+      autocapitalize="off"
+      required />
+  </div>
+
+  <div class="margin-bottom--up-2">
+    <label class="block margin-bottom--down-4" for="CreatePassword">
+      {{ 'customer.register.password' | t }}
+    </label>
+
+    <input
+      class="input border--none border-radius--none large--padding-top-bottom--down-1"
+      type="password"
+      name="customer[password]"
+      id="CreatePassword"
+      placeholder="{{ 'customer.register.password_placeholder' | t }}" />
+  </div>
+
+  <button class="button-primary one padding-top-bottom--down-1" type="submit">
+    {{ 'customer.register.submit' | t }}
+  </button>
+
+  <div class="margin-top--up-2">
+    <div class="font-size--down-2 line-height--up-4 text-color-grey-dark">
+      {{ 'customer.register.login' | t }}
+
+      <a
+        class="font-weight-500 text-underline text-color-green"
+        href="{{ routes.account_login_url }}">
+        {{ 'customer.register.login_link' | t }}
+      </a>
+    </div>
+  </div>
+{% endform %}

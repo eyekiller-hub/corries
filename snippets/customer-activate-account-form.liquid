@@ -1,0 +1,45 @@
+{% form 'activate_customer_password' %}
+  <div class="rte rte--form-errors">
+    {{ form.errors | default_errors }}
+  </div>
+
+  <div class="margin-bottom--up-1">
+    <label class="block margin-bottom--down-4" for="customer-password">
+      {{ 'customer.activate_account.password' | t }}
+    </label>
+
+    <input
+      class="input border--none border-radius--none large--padding-top-bottom--down-1"
+      type="password"
+      name="customer[password]"
+      id="customer-password"
+      placeholder="{{ 'customer.activate_account.password_placeholder' | t }}"
+      required />
+  </div>
+
+  <div class="margin-bottom--up-2">
+    <label class="block margin-bottom--down-4" for="customer-password-confirmation">
+      {{ 'customer.activate_account.password_confirm' | t }}
+    </label>
+
+    <input
+      class="input border--none border-radius--none large--padding-top-bottom--down-1"
+      type="password"
+      name="customer[password_confirmation]"
+      id="customer-password-confirmation"
+      placeholder="{{ 'customer.activate_account.password_confirm_placeholder' | t }}"
+      required />
+  </div>
+
+  <button class="button-primary one padding-top-bottom--down-1" type="submit">
+    {{ 'customer.activate_account.submit' | t }}
+  </button>
+
+  <div class="margin-top--up-2">
+    <a href="{{ routes.root_url }}">
+      <div class="font-size--down-2 line-height--up-4 font-weight-500 text-underline text-color-green">
+        {{ 'customer.activate_account.cancel' | t }}
+      </div>
+    </a>
+  </div>
+{% endform %}

@@ -140,6 +140,34 @@
       "submit": "Submit",
       "cancel": "Cancel",
       "success": "We've sent you an email to reset your password."
+    },
+    "reset_password": {
+      "password": "Password",
+      "password_placeholder": "Required*",
+      "password_confirm": "Password confirm",
+      "password_confirm_placeholder": "Required*",
+      "submit": "Submit"
+    },
+    "activate_account": {
+      "password": "Password",
+      "password_placeholder": "Required*",
+      "password_confirm": "Password confirm",
+      "password_confirm_placeholder": "Required*",
+      "submit": "Submit",
+      "cancel": "Cancel"
+    },
+    "register": {
+      "first_name": "First Name",
+      "first_name_placeholder": "Required*",
+      "last_name": "Last Name",
+      "last_name_placeholder": "Required*",
+      "email": "Email Address",
+      "email_placeholder": "Required*",
+      "password": "Password",
+      "password_placeholder": "Required*",
+      "submit": "Sign up",
+      "login": "Already have an account yet?",
+      "login_link": "Login here"
     }
   }
 }
