@@ -17,7 +17,8 @@
   template.name == 'blog' or
   template.name == 'article' or
   template.name == 'search' or
-  template.name == '404'
+  template.name == '404' or
+  template.directory == 'customers'
 %}
   {% if template.name == 'collection' or template.name == 'product' %}
     {% for link in linklists['collections'].links %}

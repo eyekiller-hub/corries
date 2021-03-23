@@ -1,3 +1,27 @@
-<div>
-  {{ template }}
+{% assign title = settings.customer_account_title | default: false %}
+
+{% assign empty_body = settings.customer_account_empty_body | default: false %}
+
+<div class="page-spacing">
+  <div class="container-default">
+    {% include 'breadcrumbs' %}
+
+    <div class="margin-top--up-2 large--margin-top--up-4">
+      {% include 'customer-account-header' %}
+
+      <div class="overflow-hidden">
+        <div class="grid--up-1 margin-bottom-negative--up-3">
+          <div class="grid-item padding-bottom--up-3 one large--three-four">
+            <div class="large--padding-right--up-3 xlarge--padding-right--up-6">
+              {% include 'customer-account-orders' %}
+            </div>
+          </div>
+
+          <div class="grid-item padding-bottom--up-3 one large--one-four">
+            {% include 'customer-account-info' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

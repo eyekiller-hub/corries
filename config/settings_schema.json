@@ -222,6 +222,21 @@
         "id": "customer_register_image",
         "label": "Image",
         "info": "Suggested size: 2000x1540px."
+      },
+      {
+        "type": "header",
+        "content": "Account"
+      },
+      {
+        "type": "text",
+        "id": "customer_account_title",
+        "label": "Title",
+        "default": "Account Details"
+      },
+      {
+        "type": "richtext",
+        "id": "customer_account_empty_body",
+        "label": "Empty body"
       }
     ]
   },

@@ -1,0 +1,30 @@
+<div>
+  <div class="margin-bottom--up-1">
+    <div class="border-bottom-grey-lightest">
+      <div class="padding-botttom--0">
+        <h2 class="
+          font-size--up-4 line-height--up-10
+          large--font-size--up-6 large--line-height--up-12
+          font-weight-700 text-caps text-caps-letter-spacing text-color-grey-dark
+          margin-bottom--none
+        ">
+          {{ customer.name }}
+        </h2>
+      </div>
+    </div>
+  </div>
+
+  {% if customer.default_address %}
+    <div class="margin-bottom--up-1">
+      <div class="rte line-height--up-10">
+        {{ customer.default_address | format_address }}
+      </div>
+    </div>
+  {% endif %}
+
+  <a
+    class="text-underline font-weight-500 text-color-green hover-text-color-green-active"
+    href="{{ routes.account_logout_url }}">
+    {{ 'customer.account.view_addresses' | t }}
+  </a>
+</div>

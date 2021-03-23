@@ -5,12 +5,35 @@
 {% assign recover_password_title = settings.customer_recover_password_title | default: false %}
 
 <div class="box-color-beige">
-  <div class="flex flex-wrap">
+  <div class="flex flex-wrap medium--flex-reverse">
+    {% if image %}
+      <div class="flex-item-shrink one medium--one-two">
+        <div
+          class="position-relative"
+          style=" --medium--height: 500px; --large--height: 740px;">
+          {%
+            include 'image',
+            _object: image,
+            _size: '1400x',
+            _box_ratio_medium: '0',
+            _class: '
+              medium--position-absolute
+              medium--position-top
+              medium--position-left
+              medium--one
+              medium--height-full
+              object-full
+            '
+          %}
+        </div>
+      </div>
+    {% endif %}
+
     <div class="flex-item-shrink one medium--one-two flex-bar">
       <div class="flex-item">
         <div class="
           container-padding
-          padding-top-bottom--up-2 medium--padding-top-bottom--none
+          padding-top-bottom--up-3 medium--padding-top-bottom--none
         ">
           <div class="box-center" style="max-width: 450px;">
             <div class="customer-recover" id="recover">
@@ -46,28 +69,5 @@
         </div>
       </div>
     </div>
-
-    {% if image %}
-      <div class="flex-item-shrink one medium--one-two">
-        <div
-          class="position-relative"
-          style=" --medium--height: 500px; --large--height: 740px;">
-          {%
-            include 'image',
-            _object: image,
-            _size: '1400x',
-            _box_ratio_medium: '0',
-            _class: '
-              medium--position-absolute
-              medium--position-top
-              medium--position-left
-              medium--one
-              medium--height-full
-              object-full
-            '
-          %}
-        </div>
-      </div>
-    {% endif %}
   </div>
 </div>

@@ -3209,6 +3209,45 @@ $buttons: (primary, secondary);
   }
 }
 
+@mixin responsive-table() {
+  .responsive-table {
+    overflow: auto;
+
+    table {
+      width: 100%;
+      min-width: 700px;
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    td,
+    th {
+      padding: 0;
+      font: inherit;
+      text-align: inherit;
+    }
+
+    th {
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: var(--typography-uppercase-letter-spacing);
+      color: var(--colors-grey-dark);
+      padding-bottom: var(--spacing--up-1);
+    }
+
+    td {
+      border-top: 1px solid var(--colors-grey-lightest);
+      padding-top: var(--spacing--up-1);
+      padding-bottom: var(--spacing--up-1);
+
+      @include media-query(large) {
+        font-size: var(--font-size--up-2);
+        line-height: var(--font-size--up-10);
+      }
+    }
+  }
+}
+
 /*! purgecss start ignore */
 @include responsive-images();
 @include shopify-challenge-page();
@@ -3227,4 +3266,5 @@ $buttons: (primary, secondary);
 @include dynamic-checkout-buttons();
 @include judge-me();
 @include customer();
+@include responsive-table();
 /*! purgecss end ignore */

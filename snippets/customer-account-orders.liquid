@@ -1,0 +1,63 @@
+{% paginate customer.orders by 20 %}
+  {% if customer.orders != empty %}
+    <div class="responsive-table">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              {{ 'customer.account.order_number' | t }}
+            </th>
+
+            <th>
+              {{ 'customer.account.date' | t }}
+            </th>
+
+            <th>
+              {{ 'customer.account.payment_status' | t }}
+            </th>
+
+            <th>
+              {{ 'customer.account.fulfillment_status' | t }}
+            </th>
+
+            <th>
+              {{ 'customer.account.total' | t }}
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for order in customer.orders %}
+            <tr>
+              <td>
+                {{ order.name | link_to: order.customer_url }}
+              </td>
+
+              <td>
+                {{ order.created_at | date: '%d.%m.%Y' }}
+              </td>
+
+              <td>
+                {{ order.financial_status_label }}
+              </td>
+
+              <td>
+                {{ order.fulfillment_status_label }}
+              </td>
+
+              <td>
+                {{ order.total_price | money }}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    {% include 'customer-account-empty' %}
+  {% endif %}
+
+  {% if paginate.pages > 1 %}
+    {% include 'pagination', _align_large: 'center' %}
+  {% endif %}
+{% endpaginate %}

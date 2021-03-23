@@ -1,0 +1,26 @@
+<div class="margin-bottom--up-2 large--margin-bottom--up-4">
+  <div class="overflow-hidden">
+    <div class="grid-bar--up-1 margin-bottom-negative--down-3">
+      <div class="grid-item padding-bottom--down-3 one medium--auto">
+        {% if title %}
+          <h1 class="
+            font-size--up-8 line-height--up-10
+            large--font-size--up-12 large--line-height--up-14
+            text-caps-letter-spacing font-weight-700 text-color-grey-dark
+            margin-bottom--none
+          ">
+            {{ title }}
+          </h1>
+        {% endif %}
+      </div>
+
+      <div class="grid-item padding-bottom--down-3 one medium--auto">
+        <a
+          class="text-underline font-weight-500 text-color-green hover-text-color-green-active"
+          href="{{ routes.account_logout_url }}">
+          {{ 'customer.account.logout' | t }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
