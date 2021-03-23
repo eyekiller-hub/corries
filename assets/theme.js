@@ -23,6 +23,7 @@ import './module-collection-pagination--and';
 import './module-collection-pagination--or';
 import './module-collection-scroll';
 import './module-collection-url';
+import './module-country-province-selector';
 import './module-image-lazy-trigger';
 import './module-input-change-link';
 import './module-insta-feed';

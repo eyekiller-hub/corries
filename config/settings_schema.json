@@ -237,6 +237,21 @@
         "type": "richtext",
         "id": "customer_account_empty_body",
         "label": "Empty body"
+      },
+      {
+        "type": "header",
+        "content": "Addresses"
+      },
+      {
+        "type": "text",
+        "id": "customer_addresses_title",
+        "label": "Title",
+        "default": "Account Addresses"
+      },
+      {
+        "type": "richtext",
+        "id": "customer_addresses_empty_body",
+        "label": "Empty body"
       }
     ]
   },
