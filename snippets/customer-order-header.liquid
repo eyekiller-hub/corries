@@ -1,0 +1,20 @@
+<div class="margin-bottom--up-2 large--margin-bottom--up-4">
+  <div class="overflow-hidden">
+    <div class="grid-bar--up-1 margin-bottom-negative--down-3">
+      <div class="grid-item align-bottom! padding-bottom--down-3 one medium--auto">
+        <h1 class="
+          font-size--up-8 line-height--up-10
+          large--font-size--up-12 large--line-height--up-14
+          text-caps-letter-spacing font-weight-700 text-color-grey-dark
+          margin-bottom--none
+        ">
+          {{ 'customer.order.title' | t: name: order.name }}
+        </h1>
+      </div>
+
+      <div class="grid-item align-bottom! padding-bottom--down-3 one medium--auto">
+        - {{ order.created_at | date: '%B %d, %Y %I:%M%p' }}
+      </div>
+    </div>
+  </div>
+</div>

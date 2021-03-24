@@ -1,0 +1,276 @@
+{% assign cancelled_at = order.cancelled_at | date: '%B %d, %Y %I:%M%p' %}
+
+{% if order.cancelled %}
+  <div class="margin-bottom--up-2 large--margin-bottom--up-4">
+    <div class="rte large--font-size--up-2 large--line-height--up-10">
+      <p>
+        {{ 'customer.order.cancelled' | t: date: cancelled_at }}
+      </p>
+
+      <p>
+        {{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason }}
+      </p>
+    </div>
+  </div>
+{% endif %}
+
+<div class="responsive-table">
+  <table>
+    <thead>
+      <tr>
+        <th>
+          {{ 'customer.order.product' | t }}
+        </th>
+
+        <th>
+          {{ 'customer.order.sku' | t }}
+        </th>
+
+        <th>
+          {{ 'customer.order.price' | t }}
+        </th>
+
+        <th>
+          {{ 'customer.order.quantity' | t }}
+        </th>
+
+        <th>
+          <div class="text-right">
+            {{ 'customer.order.total' | t }}
+          </div>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for line_item in order.line_items %}
+        <tr>
+          <td>
+            <div class="
+              font-size--0 line-height--up-6
+              text-caps-letter-spacing font-weight-500 text-color-grey-dark
+            ">
+              <a href="{{ line_item.product.url }}">
+                {{ line_item.product.title }}
+              </a>
+            </div>
+
+            {% unless line_item.product.has_only_default_variant %}
+              <div class="margin-top--down-4">
+                {% for option_name in line_item.product.options %}
+                  {% assign option_value = line_item.variant.options[forloop.index0] %}
+
+                  <div class="font-size--none">
+                    <div class="grid--down-3">
+                      <div class="grid-item">
+                        <div class="font-size--down-2 line-height--up-4">
+                          {{ option_name }}:
+                        </div>
+                      </div>
+
+                      <div class="grid-item">
+                        <div class="font-size--down-2 line-height--up-4">
+                          {{ option_value }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endunless %}
+
+            {% if line_item_properties %}
+              <div class="margin-top--down-4">
+                {% for property_name in line_item_properties_names %}
+                  {% assign property_value = line_item_properties_values[forloop.index0] %}
+
+                  <div class="font-size--none">
+                    <div class="grid--down-3">
+                      <div class="grid-item">
+                        <div class="font-size--down-2 line-height--up-4">
+                          {{ property_name }}:
+                        </div>
+                      </div>
+
+                      <div class="grid-item">
+                        <div class="font-size--down-2 line-height--up-4">
+                          {% if property_value contains '/uploads/' %}
+                            <a href="{{ property_value }}">
+                              {{ property_value | split: '/' | last }}
+                            </a>
+                          {% else %}
+                            {{ property_value }}
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            {% if line_item.fulfillment %}
+              <div class="margin-top--down-4">
+                <div class="font-size--none">
+                  <div class="grid--down-3">
+                    <div class="grid-item">
+                      <div class="font-size--down-2 line-height--up-4">
+                        {{ 'customer.order.fulfilled_at' | t }}
+                      </div>
+                    </div>
+
+                    <div class="grid-item">
+                      <div class="font-size--down-2 line-height--up-4">
+                        {{ line_item.fulfillment.created_at | date: '%d.%m.%Y' }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% if line_item.fulfillment.tracking_url %}
+                  <div class="font-size--none">
+                    <div class="grid--down-3">
+                      <div class="grid-item">
+                        <div class="font-size--down-2 line-height--up-4">
+                          {{ 'customer.order.tracking_url' | t }}
+                        </div>
+                      </div>
+
+                      <div class="grid-item">
+                        <div class="font-size--down-2 line-height--up-4">
+                          <a href="{{ line_item.fulfillment.tracking_url }}">
+                            {{ 'customer.order.track_shipment' | t }}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+
+                <div class="font-size--none">
+                  <div class="grid--down-3">
+                    <div class="grid-item">
+                      <div class="font-size--down-2 line-height--up-4">
+                        {{ 'customer.order.tracking_company' | t }}
+                      </div>
+                    </div>
+
+                    <div class="grid-item">
+                      <div class="font-size--down-2 line-height--up-4">
+                        {{ line_item.fulfillment.tracking_company }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% if line_item.fulfillment.tracking_number %}
+                  <div class="font-size--none">
+                    <div class="grid--down-3">
+                      <div class="grid-item">
+                        <div class="font-size--down-2 line-height--up-4">
+                          {{ 'customer.order.tracking_number' | t }}
+                        </div>
+                      </div>
+
+                      <div class="grid-item">
+                        <div class="font-size--down-2 line-height--up-4">
+                          {{ line_item.fulfillment.tracking_number }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          </td>
+
+          <td>
+            {{ line_item.sku }}
+          </td>
+
+          <td>
+            {{ line_item.price | money }}
+          </td>
+
+          <td>
+            {{ line_item.quantity }}
+          </td>
+
+          <td>
+            <div class="text-right">
+              {{ line_item.quantity | times: line_item.price | money }}
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <td colspan="4">
+          {{ 'customer.order.subtotal' | t }}
+        </td>
+
+        <td>
+          <div class="text-right">
+            {{ order.line_items_subtotal_price | money }}
+          </div>
+        </td>
+      </tr>
+
+      {% for discount in order.discounts %}
+        <tr>
+          <td colspan="4">
+            {{ discount.code }} {{ 'customer.order.discount' | t }}
+          </td>
+
+          <td>
+            <div class="text-right">
+              {{ discount.savings | money }}
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+
+      {% for shipping_method in order.shipping_methods %}
+        <tr>
+          <td colspan="4">
+            {{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})
+          </td>
+
+          <td>
+            <div class="text-right">
+              {{ shipping_method.price | money }}
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+
+      {% for tax_line in order.tax_lines %}
+        <tr>
+          <td colspan="4">
+            {{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)
+          </td>
+
+          <td>
+            <div class="text-right">
+              {{ tax_line.price | money }}
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+
+      <tr>
+        <td colspan="4">
+          {{ 'customer.order.total' | t }}
+        </td>
+
+        <td>
+          <div class="text-right">
+            {{ order.total_price | money }}
+          </div>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

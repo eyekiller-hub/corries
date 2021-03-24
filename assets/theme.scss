@@ -745,6 +745,9 @@ $buttons: (primary, secondary);
     .align-#{$value} {
       vertical-align: $value;
     }
+    .align-#{$value}\! {
+      vertical-align: $value !important;
+    }
   }
 
   .height-full {

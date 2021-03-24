@@ -1,0 +1,49 @@
+<div class="margin-bottom--up-2 large--margin-bottom--up-4 xlarge--margin-bottom--up-5">
+  <div class="overflow-hidden">
+    <div class="grid--up-1 large--grid--up-4 xlarge--grid--up-7 margin-bottom-negative--up-3">
+      <div class="grid-item padding-bottom--up-3 one large--one-three">
+        <div class="margin-bottom--up-1">
+          <div class="border-bottom-grey-lightest">
+            <div class="padding-bottom--0">
+              <h2 class="
+                font-size--up-4 line-height--up-10
+                large--font-size--up-6 large--line-height--up-12
+                font-weight-700 text-caps text-caps-letter-spacing text-color-grey-dark
+                margin-bottom--none
+              ">
+                {{ 'customer.order.billing_address' | t }}
+              </h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="rte line-height--up-10">
+          {{ 'customer.order.payment_status' | t }} {{ order.financial_status_label }}
+          {{ order.billing_address | format_address }}
+        </div>
+      </div>
+
+      <div class="grid-item padding-bottom--up-3 one large--one-three">
+        <div class="margin-bottom--up-1">
+          <div class="border-bottom-grey-lightest">
+            <div class="padding-bottom--0">
+              <h2 class="
+                font-size--up-4 line-height--up-10
+                large--font-size--up-6 large--line-height--up-12
+                font-weight-700 text-caps text-caps-letter-spacing text-color-grey-dark
+                margin-bottom--none
+              ">
+                {{ 'customer.order.shipping_address' | t }}
+              </h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="rte line-height--up-10">
+          {{ 'customer.order.fulfillment_status' | t }} {{ order.fulfillment_status_label }}
+          {{ order.shipping_address | format_address }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

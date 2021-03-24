@@ -30,7 +30,9 @@
           {% for order in customer.orders %}
             <tr>
               <td>
-                {{ order.name | link_to: order.customer_url }}
+                <div class="text-underline">
+                  {{ order.name | link_to: order.customer_url }}
+                </div>
               </td>
 
               <td>
