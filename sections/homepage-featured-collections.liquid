@@ -11,59 +11,66 @@
       {% if spacing_top_enable %}homepage-section--spacing-top{% endif %}
       {% if spacing_bottom_enable %}homepage-section--spacing-bottom{% endif %}
     ">
-    <div class="container-default">
-      <div class="container-margin-negative-x medium--margin--none">
-        <div data-module-slider='{
-          "swiper": {
-            "slidesPerView": 3.5,
-            "spaceBetween": "var(--spacing--down-1)",
-            "slidesOffsetBefore": "var(--container-padding-x)",
-            "slidesOffsetAfter": "var(--container-padding-x)",
-            "breakpoints": {
-              "medium": {
-                "slidesPerView": 6,
-                "spaceBetween": "var(--spacing--up-1)",
-                "slidesOffsetBefore": 0,
-                "slidesOffsetAfter": 0
+    <div
+      class="
+        xsmall--margin-top-negative--up-2 xsmall--margin-bottom-negative--up-2
+      ">
+      <div class="container-default">
+        <div class="container-margin-negative-x medium--margin--none">
+          <div data-module-slider='{
+            "swiper": {
+              "slidesPerView": 3.5,
+              "spaceBetween": "var(--spacing--down-1)",
+              "slidesOffsetBefore": "var(--container-padding-x)",
+              "slidesOffsetAfter": "var(--container-padding-x)",
+              "breakpoints": {
+                "medium": {
+                  "slidesPerView": 6,
+                  "spaceBetween": "var(--spacing--up-1)",
+                  "slidesOffsetBefore": 0,
+                  "slidesOffsetAfter": 0
+                }
               }
             }
-          }
-        }'>
-          <div class="swiper-container" data-ref-container>
-            <div class="swiper-wrapper">
-              {% for block in blocks %}
-                {% assign block_collection = block.settings.collection %}
-                {% assign block_collection = collections[block_collection] | default: false %}
+          }'>
+            <div class="swiper-container" data-ref-container>
+              <div class="swiper-wrapper">
+                {% for block in blocks %}
+                  {% assign block_collection = block.settings.collection %}
+                  {% assign block_collection = collections[block_collection] | default: false %}
 
-                {% unless block_collection %}
-                  {% continue %}
-                {% endunless %}
+                  {% unless block_collection %}
+                    {% continue %}
+                  {% endunless %}
 
-                <div class="swiper-slide">
-                  <article>
-                    <a href="{{ block_collection.url }}">
-                      <div class="margin-bottom--up-1">
-                        <div class="box-center" style="max-width: 160px;">
-                          <div class="overflow-hidden border-radius-full">
-                            {%
-                              include 'image',
-                              _object: block_collection.image,
-                              _size: '300x300',
-                              _crop: 'center',
-                              _box_ratio: '100%',
-                              _lazy: true
-                            %}
+                  <div class="swiper-slide">
+                    <article>
+                      <a class="hover-text-underline hover-zoom" href="{{ block_collection.url }}">
+                        <div class="margin-bottom--up-1">
+                          <div class="box-center" style="max-width: 160px;">
+                            <div class="overflow-hidden border-radius-full">
+                              <div class="hover-zoom-item">
+                                {%
+                                  include 'image',
+                                  _object: block_collection.image,
+                                  _size: '300x300',
+                                  _crop: 'center',
+                                  _box_ratio: '100%',
+                                  _lazy: true
+                                %}
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
 
-                      <h3 class="font-size--down-2 line-height--up-4 large--font-size--inherit large--line-height--inherit font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark text-center margin-bottom--none">
-                        {{ block_collection.title }}
-                      </h3>
-                    </a>
-                  </article>
-                </div>
-              {% endfor %}
+                        <h3 class="font-size--down-2 line-height--up-4 large--font-size--inherit large--line-height--inherit font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark text-center margin-bottom--none">
+                          {{ block_collection.title }}
+                        </h3>
+                      </a>
+                    </article>
+                  </div>
+                {% endfor %}
+              </div>
             </div>
           </div>
         </div>

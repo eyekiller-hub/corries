@@ -28,77 +28,85 @@
     {% if spacing_top_enable %}homepage-section--spacing-top{% endif %}
     {% if spacing_bottom_enable %}homepage-section--spacing-bottom{% endif %}
   ">
-  <div class="position-relative">
-    {%
-      include 'image',
-      _object: image_mobile,
-      _size: '1000x',
-      _object_medium: image_tablet,
-      _size_medium: '1000x',
-      _object_large: image,
-      _size_large: '2000x'
-    %}
+  <div class="container-default medium--padding--none">
+    <div class="position-relative">
+      {%
+        include 'image',
+        _object: image_mobile,
+        _size: '1000x',
+        _object_medium: image_tablet,
+        _size_medium: '1000x',
+        _object_large: image,
+        _size_large: '2000x'
+      %}
 
-    {% if image_overlay %}
-      <div
-        class="position-absolute position-full"
-        style="background: #000; opacity: {{ image_overlay }};"></div>
-    {% endif %}
+      {% if image_overlay %}
+        <div
+          class="position-absolute position-full"
+          style="background: #000; opacity: {{ image_overlay }};"></div>
+      {% endif %}
 
-    {% if title %}
-      <div class="position-absolute position-center one">
-        <div class="text-color-light text-center">
-          <h2
-            class="
-              font-size--up-13 line-height--up-13
-              medium--font-size--up-16 medium--line-height--up-16
-              large--font-size--up-23 large--line-height--up-22
-              font-weight-700 text-color-inherit
-              margin--none
-            ">
-            {{ title }}
-          </h2>
+      {% if title %}
+        <div class="position-absolute position-center one">
+          <div class="text-color-light text-center">
+            <h2
+              class="
+                font-size--up-13 line-height--up-13
+                medium--font-size--up-16 medium--line-height--up-16
+                large--font-size--up-23 large--line-height--up-22
+                font-weight-700 text-color-inherit
+                margin--none
+              ">
+              {{ title }}
+            </h2>
 
-          {% if url_1 or call_to_action_1 or url_2 or call_to_action_2 %}
-            <div class="margin-top--up-2">
-              <div class="grid--down-1">
-                {% if url_1 and call_to_action_1 %}
-                  <div class="grid-item">
-                    <a
-                      class="
-                        button-primary box-color-inherit border-current-color-double
-                        padding-left-right--0 medium--padding-left-right--up-2
-                        medium--padding-top-bottom--down-1
-                        line-height--up-8
-                        medium--font-size--inherit medium--line-height--up-8
-                      "
-                      href="{{ url_1 }}">
-                      {{ call_to_action_1 }}
-                    </a>
-                  </div>
-                {% endif %}
+            {% if url_1 or call_to_action_1 or url_2 or call_to_action_2 %}
+              <div class="margin-top--up-2">
+                <div class="grid--down-1">
+                  {% if url_1 and call_to_action_1 %}
+                    <div class="grid-item">
+                      <a
+                        class="
+                          button-primary
+                          box-color-inherit border-current-color-double
+                          hover-box-color-light hover-border-light-double
+                          hover-text-color-grey-dark
+                          padding-left-right--0 medium--padding-left-right--up-2
+                          medium--padding-top-bottom--down-1
+                          line-height--up-8
+                          medium--font-size--inherit medium--line-height--up-8
+                        "
+                        href="{{ url_1 }}">
+                        {{ call_to_action_1 }}
+                      </a>
+                    </div>
+                  {% endif %}
 
-                {% if url_2 and call_to_action_2 %}
-                  <div class="grid-item">
-                    <a
-                      class="
-                        button-primary box-color-inherit border-current-color-double
-                        padding-left-right--0 medium--padding-left-right--up-2
-                        medium--padding-top-bottom--down-1
-                        line-height--up-8
-                        medium--font-size--inherit medium--line-height--up-8
-                      "
-                      href="{{ url_2 }}">
-                      {{ call_to_action_2 }}
-                    </a>
-                  </div>
-                {% endif %}
+                  {% if url_2 and call_to_action_2 %}
+                    <div class="grid-item">
+                      <a
+                        class="
+                          button-primary
+                          box-color-inherit border-current-color-double
+                          hover-box-color-light hover-border-light-double
+                          hover-text-color-grey-dark
+                          padding-left-right--0 medium--padding-left-right--up-2
+                          medium--padding-top-bottom--down-1
+                          line-height--up-8
+                          medium--font-size--inherit medium--line-height--up-8
+                        "
+                        href="{{ url_2 }}">
+                        {{ call_to_action_2 }}
+                      </a>
+                    </div>
+                  {% endif %}
+                </div>
               </div>
-            </div>
-          {% endif %}
+            {% endif %}
+          </div>
         </div>
-      </div>
-    {% endif %}
+      {% endif %}
+    </div>
   </div>
 </section>
 

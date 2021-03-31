@@ -9,13 +9,17 @@
                 grid-item
                 header-menu__item
                 transition
-                {% if link.links != empty %}
-                  hover-box-color-beige
-                  hover-text-color-dark
+
+
+                {% if menu_highlight_item_handle == link.handle %}
+                  box-color-green
+                  text-color-light
                 {% else %}
-                  hover-box-color-green
-                  hover-text-color-light
+                  text-color-grey-dark
                 {% endif %}
+
+                hover-box-color-beige
+                hover-text-color-dark
               "
               data-module-image-lazy-trigger='{ "event": "mouseover" }'>
               <a
@@ -25,7 +29,6 @@
                   xlarge--font-size--down-1 xlarge--line-height--up-8
                   font-weight-500
                   text-caps-letter-spacing
-                  text-color-grey-dark
                   padding-top-bottom--down-1 padding-left-right--down-1
                   xlarge--padding-top-bottom--down-1 xlarge--padding-left-right--up-2
                 "

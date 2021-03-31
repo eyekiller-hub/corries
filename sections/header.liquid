@@ -1,6 +1,9 @@
 {% assign menu = section.settings.menu %}
 {% assign menu = menus[menu] | default: false %}
 
+{% assign menu_highlight_item = section.settings.menu_highlight_item | default: false %}
+{% assign menu_highlight_item_handle = menu_highlight_item | handle %}
+
 {% assign menu_secondary = section.settings.menu_secondary %}
 {% assign menu_secondary = menus[menu_secondary] | default: false %}
 
@@ -63,6 +66,12 @@
         "label": "Menu"
       },
       {
+        "type": "text",
+        "id": "menu_highlight_item",
+        "label": "Menu highlight item",
+        "info": "Set this value to the name of a menu link and this item will be highlighted."
+      },
+      {
         "type": "header",
         "content": "Menu (secondary)"
       },
@@ -90,7 +99,7 @@
             "type": "text",
             "id": "title",
             "label": "Title",
-            "info": "Set this value is the name of a menu link and this megamenu will be applied to it."
+            "info": "Set this value to the name of a menu link and this megamenu will be applied to it."
           },
           {
             "type": "select",

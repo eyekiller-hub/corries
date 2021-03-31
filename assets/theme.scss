@@ -242,7 +242,7 @@ $spacing-ratio: 1.333; // Perfect fourth
 
 $xsmall: 480px;
 $small: 767px;
-$medium: 768px;
+$medium: 1024px;
 $large: 1160px;
 
 $breakpoints: (
@@ -997,11 +997,15 @@ $buttons: (primary, secondary);
     text-transform: none !important;
   }
   .text-underline,
+  .hover-text-underline:hover,
+  .hover-text-underline-target:hover .hover-text-underline-target-item,
   .links-text-underline a {
     text-decoration: underline;
   }
   .text-no-underline,
-  .links-no-text-underline a {
+  .hover-no-text-underline:hover,
+  .links-no-text-underline a,
+  .hover-links-no-text-underline:hover a {
     text-decoration: none;
   }
   .text-no-underline\!,
@@ -1175,6 +1179,10 @@ $buttons: (primary, secondary);
 
     a {
       text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
 
     p,
@@ -2771,6 +2779,11 @@ $buttons: (primary, secondary);
       opacity: 0;
       pointer-events: none;
     }
+
+    .header-menu__item:nth-child(3) & {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 }
 
@@ -3251,6 +3264,19 @@ $buttons: (primary, secondary);
   }
 }
 
+@mixin hover-zoom() {
+  .hover-zoom {}
+
+  .hover-zoom-item {
+    transition: transform var(--transition-easing);
+    will-change: transform;
+
+    .hover-zoom:hover & {
+      transform: scale(1.1);
+    }
+  }
+}
+
 /*! purgecss start ignore */
 @include responsive-images();
 @include shopify-challenge-page();
@@ -3270,4 +3296,5 @@ $buttons: (primary, secondary);
 @include judge-me();
 @include customer();
 @include responsive-table();
+@include hover-zoom();
 /*! purgecss end ignore */

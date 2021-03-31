@@ -12,7 +12,7 @@
                       <ul class="margin-bottom--none" data-module-accordion>
                         <li>
                           <button class="input-reset block one" type="button" data-module-slide-panels-back>
-                            <div class="container-padding padding-top-bottom--down-1 font-size--down-2 line-height--up-7 font-weight-500 text-caps-letter-spacing text-color-grey-dark hover-box-color-green hover-text-color-light">
+                            <div class="container-padding padding-top-bottom--down-1 font-size--down-2 line-height--up-7 font-weight-500 text-caps-letter-spacing text-color-grey-dark">
                               <div class="flex-bar--down-1">
                                 <div class="flex-item-auto">
                                   <div class="font-size--down-6">
@@ -42,7 +42,7 @@
 
                         {% for link_link in link.links %}
                           <li>
-                            <a class="block container-padding padding-top-bottom--down-1 border-bottom-grey-lightest font-size--down-2 line-height--up-7 font-weight-500 text-caps-letter-spacing text-color-grey-dark hover-box-color-green hover-text-color-light" href="{{ link_link.url }}" {% if link_link.links != empty %}data-ref-button='{ "index": {{ forloop.index | json }} }'{% endif %}>
+                            <a class="block container-padding padding-top-bottom--down-1 border-bottom-grey-lightest font-size--down-2 line-height--up-7 font-weight-500 text-caps-letter-spacing text-color-grey-dark" href="{{ link_link.url }}" {% if link_link.links != empty %}data-ref-button='{ "index": {{ forloop.index | json }} }'{% endif %}>
                               <div class="flex-bar--down-1">
                                 <div class="flex-item">
                                   {{ link_link.title }}

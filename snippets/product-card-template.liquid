@@ -65,12 +65,16 @@
 
 {% assign tag_badge_class = tag_badge_class | default: '{{ tag_badge_class }}' %}
 
-<article class="height-full flex-vertical">
+<article class="height-full flex-vertical hover-zoom hover-text-underline-target">
   <div class="margin-bottom--up-1">
     <a href="{{ url }}">
       <div class="position-relative">
-        <div class="image-container box-ratio-inline" style="padding-bottom: {{ image_box_ratio }};">
-          <img data-src="{{ image_url }}" alt="{{ image_alt }}" {{ image_attributes }} />
+        <div class="overflow-hidden">
+          <div class="hover-zoom-item">
+            <div class="image-container box-ratio-inline" style="padding-bottom: {{ image_box_ratio }};">
+              <img data-src="{{ image_url }}" alt="{{ image_alt }}" {{ image_attributes }} />
+            </div>
+          </div>
         </div>
 
         <div class="no-pointer">
@@ -107,6 +111,7 @@
     font-size--down-2 line-height--up-4
     large--font-size--inherit large--line-height--inherit
     font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark
+    hover-text-underline-target-item
     margin-bottom--down-3
   ">
     <a href="{{ url }}">

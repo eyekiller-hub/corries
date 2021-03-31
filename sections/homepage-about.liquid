@@ -47,15 +47,17 @@
         <div class="padding-top-bottom--up-4 large--padding-top-bottom--up-7">
           <div class="container-default">
             <div class="medium--margin-left-negative--up-4 medium--margin-right-negative--up-4 xlarge--margin--none">
-              <div class="flex-bar--up-1 xlarge--flex-bar--up-5">
+              <div class="flex-bar">
                 {% if image_1 %}
                   <div class="flex-item-auto three-ten hide medium--show">
-                    {%
-                      include 'image',
-                      _object: '',
-                      _object_medium: image_1,
-                      _size_medium: '1000x'
-                    %}
+                    <div class="padding-right--up-1 xlarge--padding-right--up-4">
+                      {%
+                        include 'image',
+                        _object: '',
+                        _object_medium: image_1,
+                        _size_medium: '1000x'
+                      %}
+                    </div>
                   </div>
                 {% endif %}
 
@@ -104,11 +106,13 @@
 
                 {% if image_2 %}
                   <div class="flex-item-auto three-ten hide medium--show">
-                    {%
-                      include 'image',
-                      _object: image_2,
-                      _size: '1000x'
-                    %}
+                    <div class="padding-left--up-1 xlarge--padding-left--up-4">
+                      {%
+                        include 'image',
+                        _object: image_2,
+                        _size: '1000x'
+                      %}
+                    </div>
                   </div>
                 {% endif %}
               </div>

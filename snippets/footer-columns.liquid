@@ -72,7 +72,7 @@
                       {% if block_menu %}
                         <ul class="margin--none last-child-margin--none">
                           {% for link in block_menu.links %}
-                            <li class="medium--margin-bottom--down-4">
+                            <li class="medium--margin-bottom--down-1">
                               <a
                                 class="
                                   block
@@ -82,6 +82,7 @@
                                   medium--line-height--up-4
                                   text-color-grey-dark
                                   medium--text-color-base-text
+                                  hover-text-underline
                                 "
                                 href="{{ link.url }}">
                                 {{ link.title }}
