@@ -148,9 +148,9 @@ $spacing-ratio: 1.333; // Perfect fourth
   --colors-checkbox-input-text: var(--colors-base-text);
   --colors-checkbox-input-background: var(--colors-base-background);
   --colors-checkbox-input-border: var(--colors-grey-lighter);
-  --colors-checkbox-input-text-active: var(--colors-checkbox-input-text);
-  --colors-checkbox-input-background-active: var(--colors-checkbox-input-background);
-  --colors-checkbox-input-border-active: var(--colors-checkbox-input-border);
+  --colors-checkbox-input-text-active: var(--colors-light);
+  --colors-checkbox-input-background-active: var(--colors-green);
+  --colors-checkbox-input-border-active: var(--colors-green);
 
   // Container
 
@@ -1468,19 +1468,28 @@ $buttons: (primary, secondary);
 
     li {
       display: flex;
-      align-items: center;
 
       + li {
-        margin-top: var(--spacing--down-4);
+        margin-top: var(--spacing--down-2);
       }
 
       &:before {
         content: '';
+        display: block;
+        flex: 0 1 auto;
+        flex-shrink: 0;
         width: 24px;
         height: 24px;
         background-image: svg-url('<svg width="24" height="24" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><circle fill="#ECE7E4" cx="12" cy="12" r="12"/><path d="M16.525 8.185a.63.63 0 01.89.89l-7.127 7.128a.63.63 0 01-.89 0l.051.046a.628.628 0 01-.192-.131l-2.672-2.673a.63.63 0 01.89-.891l2.34 2.339z" fill="#333" fill-rule="nonzero"/></g></svg>');
         background-size: cover;
-        margin-right: var(--spacing--0);
+        margin-right: var(--spacing--down-1);
+        position: relative;
+        top: var(--spacing-negative--down-10);
+
+        @include media-query(large) {
+          top: var(--spacing--down-7);
+          margin-right: var(--spacing--0);
+        }
       }
     }
   }
@@ -2226,9 +2235,12 @@ $buttons: (primary, secondary);
     padding-bottom,
     font-size,
     margin-left,
+    margin-right,
     height,
     margin-top,
-    padding-top
+    padding-top,
+    column-gap,
+    padding-left
   );
 
   @each $property in $properties {
@@ -2631,6 +2643,11 @@ $buttons: (primary, secondary);
       border: 1px solid var(--colors-#{$color});
     }
 
+    .#{$breakpoint}border-#{$color}\!,
+    .#{$breakpoint}hover-border-#{$color}\!:hover {
+      border: 1px solid var(--colors-#{$color}) !important;
+    }
+
     .#{$breakpoint}border-#{$color}-double,
     .#{$breakpoint}hover-border-#{$color}-double:hover {
       border: 2px solid var(--colors-#{$color});
@@ -2648,6 +2665,12 @@ $buttons: (primary, secondary);
       }
       .#{$breakpoint}border-#{$side}--none {
         border-#{$side}: none;
+      }
+      .#{$breakpoint}border-#{$side}--none\! {
+        border-#{$side}: none !important;
+      }
+      .#{$breakpoint}hover-border-#{$side}--none\!:hover {
+        border-#{$side}: none !important;
       }
     }
 
@@ -2704,6 +2727,11 @@ $buttons: (primary, secondary);
 
     &.is-loaded {
       animation: $animation;
+    }
+
+    &.is-no-animation {
+      opacity: 1;
+      animation: none;
     }
   }
 
@@ -2780,10 +2808,10 @@ $buttons: (primary, secondary);
       pointer-events: none;
     }
 
-    .header-menu__item:nth-child(3) & {
-      opacity: 1;
-      pointer-events: auto;
-    }
+    // .header-menu__item:nth-child(3) & {
+    //   opacity: 1;
+    //   pointer-events: auto;
+    // }
   }
 }
 
@@ -2805,14 +2833,11 @@ $buttons: (primary, secondary);
 
 @mixin header-offcanvas-mobile-search() {
   .header-off-canvas-mobile-search {
-    transform: translateX(-100%);
     transition: var(--transition-easing);
     opacity: 0;
     pointer-events: none;
-    top: calc(var(--utility-bar-height) + var(--header-height));
 
     html.is-active-offcanvas-header-mobile-search & {
-      transform: none;
       opacity: 1;
       pointer-events: auto;
     }
@@ -2969,7 +2994,7 @@ $buttons: (primary, secondary);
   .page-spacing {
     padding-bottom: var(--page-spacing-bottom);
 
-    @include media-query(large) {
+    @include media-query(medium) {
       padding-top: var(--page-spacing-top);
       padding-bottom: var(--page-spacing-bottom--large);
     }
@@ -3000,6 +3025,10 @@ $buttons: (primary, secondary);
 
 @mixin product-option-radio() {
   .product-option-radio {
+    .product-option-radio-label:hover & {
+      border-color: var(--colors-slate);
+    }
+
     :checked + & {
       background-color: var(--colors-slate);
       border-color: var(--colors-slate);

@@ -11,7 +11,7 @@
     </div>
 
     <div style=" --margin-top: -1px; --large--margin-top: 0;">
-      <div class="border-grey-lightest large--border--none">
+      <div class="border-green large--border--none">
         <div class="padding-top-bottom--up-1 large--padding--none">
           <div class="last-child-margin--none last-child-padding--none last-child-border--none">
             {% for link in linklists['tag-filters-products'].links %}
@@ -64,12 +64,12 @@
                             {% continue %}
                           {% endunless %}
 
-                          <div class="margin-bottom--down-3" data-ref-filter='{
+                          <div class="margin-bottom--down-1" data-ref-filter='{
                             "id": {{ link.handle | json | escape }},
                             "tag": {{ link.title | json | escape }}
                           }'>
                             <label class="block cursor-pointer">
-                              <span class="flex-bar--down-1">
+                              <span class="flex--down-1 line-height--none">
                                 <span class="flex-item-shrink">
                                   <span class="checkbox-wrap font-size--0">
                                     <input class="checkbox" type="checkbox" data-ref-input='{ "filter_id": {{ link.handle | json | escape }} }' />
@@ -80,8 +80,10 @@
                                 </span>
 
                                 <span class="flex-item-shrink">
-                                  <span>
-                                    {{ link.title }}
+                                  <span class="block margin-top-negative--down-7">
+                                    <span class="font-size--0 line-height--up-6">
+                                      {{ link.title }}
+                                    </span>
                                   </span>
                                 </span>
                               </span>

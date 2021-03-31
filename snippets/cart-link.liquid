@@ -1,0 +1,34 @@
+<a
+  class="block"
+  href="{{ routes.cart_url }}"
+  {% if template.name != 'cart' %}
+    data-module-offcanvas-trigger='{
+      "id": "header-mini-cart",
+      "active_event": "productform:success"
+    }'
+  {% endif %}>
+  <div class="position-relative">
+    <div class="font-size--up-6">
+      {% include 'svg-cart' %}
+    </div>
+
+    <div style="{% if cart.items == empty %}display: none;{% endif %}" data-module-cart-count>
+      <div class="
+        position-absolute position-top-negative--down-8 position-right-negative--down-3
+      ">
+        <div
+          class="flex-bar flex-center box-color-green border-radius-full"
+          style="min-width: 18px; height: 18px;">
+          <div class="flex-item-shrink">
+            <div
+              class="font-size--down-6 line-height--none
+              font-weight-700 text-color-light"
+              data-ref-count>
+              {{ cart.item_count }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

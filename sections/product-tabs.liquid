@@ -51,17 +51,19 @@
                       padding-top-bottom--0
                       padding-left-right--0 xlarge--padding-left-right--up-1
                       box-color-light hover-box-color-beige
-                      border-grey-lighter hover-border-beige
+                      border-grey-lighter! border-bottom--none!
+                      hover-border-beige! hover-border-bottom--none!
                       text-color-grey-dark hover-text-color-grey-dark
                       font-size--inherit line-height--up-8
                       font-weight-500
+                      position-relative
                     "
                     type="button"
                     data-ref-button='{
                       "index": {{ forloop.index0 | json }},
                       "active": {% if forloop.first %}["large"]{% else %}false{% endif %},
-                      "active_class": ["box-color-beige", "border-beige", "no-pointer"],
-                      "inactive_class": ["box-color-light", "border-grey-lighter"]
+                      "active_class": ["box-color-beige", "border-beige!", "no-pointer", "position-1"],
+                      "inactive_class": ["box-color-light", "border-grey-lighter!"]
                     }'>
                     {{ title }}
                   </button>

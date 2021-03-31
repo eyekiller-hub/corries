@@ -87,8 +87,11 @@
                 {% endunless %}
 
                 <div class="margin-top--down-1">
-                  <div class="font-size--up-13">
-                    {% include 'payment-icons' %}
+                  <div class="{% unless mini_cart %}text-center{% endunless %}">
+                    {%
+                      include 'payment-icons',
+                      _class: 'font-size--up-12 medium--font-size--up-13'
+                    %}
                   </div>
                 </div>
               </div>

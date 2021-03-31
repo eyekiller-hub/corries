@@ -1,7 +1,76 @@
+{% assign seperator = '<p>----------</p>' %}
+
+{% capture read_more %}
+  <button
+    class="input-reset small--hide!"
+    data-ref-button='{
+      "index": 2,
+      "active_class": ["hide!"]
+    }'>
+    <span class="
+      font-size--0 line-height--up-6
+      text-caps-letter-spacing text-color-green font-weight-500
+      text-underline
+    ">
+      {{ 'collection.description.read_more' | t }}
+    </span>
+  </button>
+{% endcapture %}
+
+{% capture read_less %}
+  <button
+    class="input-reset small--hide!"
+    data-ref-button='{
+      "index": 2
+    }'>
+    <span class="
+      font-size--0 line-height--up-6
+      text-caps-letter-spacing text-color-green font-weight-500
+      text-underline
+    ">
+      {{ 'collection.description.read_less' | t }}
+    </span>
+  </button>
+{% endcapture %}
+
+{% assign description_pre_seperator = collection.description | split: seperator | first %}
+
+{% assign description_post_seperator = collection.description | split: seperator | slice: 1, 1 | first | default: false %}
+
+{% if description_post_seperator %}
+  {% unless description_pre_seperator contains '<p' %}
+    {% assign description_pre_seperator = '<p>' | append: description_pre_seperator | append: '</p>' %}
+  {% endunless %}
+
+  {%
+    include 'filter-replace-last',
+    string: description_pre_seperator,
+    find: '</p>',
+    replace: read_more
+  %}
+
+  {% assign description_pre_seperator = output %}
+{% endif %}
+
+{% if description_post_seperator %}
+  {% unless description_post_seperator contains '<p' %}
+    {% assign description_post_seperator = '<p>' | append: description_post_seperator | append: '</p>' %}
+  {% endunless %}
+
+  {%
+    include 'filter-replace-last',
+    string: description_post_seperator,
+    find: '</p>',
+    replace: read_less
+  %}
+
+  {% assign description_post_seperator = output %}
+{% endif %}
+
 <header class="margin-bottom--up-1 large--margin-bottom--up-3">
   {% if collection.image %}
     <div class="margin-bottom--up-1 large--margin-bottom--up-2">
-      <div class="container-margin-negative-x large--margin--none">
+      <div class="container-margin-negative-x medium--margin--none">
         {%
           include 'image',
           _object: collection.image,
@@ -24,9 +93,60 @@
   </h2>
 
   {% if collection.description != blank %}
-    <div class="margin-top--down-3 large--margin-top--down-1">
-      <div class="rte large--font-size--up-2 large--line-height--up-8 text-center large--text-left">
-        {{ collection.description }}
+    <div class="padding-top--down-3 large--padding-top--down-1">
+      <div data-module-accordion>
+        <div class="medium--hide">
+          <button
+            class="input-reset block one text-center"
+            type="button" data-ref-button='{
+              "index": 1,
+              "active": ["medium"],
+              "active_class": ["hide!"]
+            }'>
+            <span class="
+              font-size--down-2 line-height--up-4
+              text-caps-letter-spacing text-color-green font-weight-500
+              text-underline
+            ">
+              {{ 'collection.description.read_more' | t }}
+            </span>
+          </button>
+        </div>
+
+        <div class="small--hide medium--show!" data-ref-panel='{ "index": 1 }'>
+          <div class="large--padding-top--down-1">
+            <div class="rte large--font-size--up-2 large--line-height--up-8 text-center large--text-left">
+              {{ description_pre_seperator }}
+            </div>
+
+            {% if description_post_seperator %}
+              <div class="small--show! medium--hide" data-ref-panel='{ "index": 2 }'>
+                <div class="padding-top--up-1">
+                  <div class="rte large--font-size--up-2 large--line-height--up-8 text-center large--text-left">
+                    {{ description_post_seperator }}
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+
+          <div class="medium--hide">
+            <div class="padding-top--down-3 large--padding-top--down-1">
+              <button
+                class="input-reset block one text-center"
+                type="button"
+                data-ref-button='{ "index": 1 }'>
+                <span class="
+                  font-size--down-2 line-height--up-4
+                  text-caps-letter-spacing text-color-green font-weight-500
+                  text-underline
+                ">
+                  {{ 'collection.description.read_less' | t }}
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   {% endif %}

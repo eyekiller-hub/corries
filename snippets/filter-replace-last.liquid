@@ -1,0 +1,7 @@
+{% assign output = '' %}
+
+{% assign string_reversed = string | split: '' | reverse | join: '' %}
+{% assign find_reversed = find | split: '' | reverse | join: '' %}
+{% assign replace_reversed = replace | split: '' | reverse | join: '' %}
+
+{% assign output = string_reversed | replace_first: find_reversed, replace_reversed | split: '' | reverse | join: '' %}

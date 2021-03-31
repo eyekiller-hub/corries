@@ -1,3 +1,7 @@
+{% assign promo_badge = product.metafields.promo_badge.copy %}
+
+{% assign promo_badge_copy = promo_badge %}
+
 {% assign delivery_info_enable = section.settings.delivery_info_enable | default: false %}
 
 {% assign delivery_info_copy = section.settings.delivery_info_copy | default: false %}

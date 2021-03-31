@@ -1,7 +1,23 @@
 <div class="medium--hide">
   <div class="header-off-canvas-mobile-search position-fixed position-top position-right position-bottom position-left position-6">
-    <div class="height-full box-color-light border-top-grey-lightest scroll-vertical">
-      <div class="container-padding padding-top-bottom--down-1">
+    <div class="height-full box-color-light scroll-vertical">
+      <div class="container-padding padding-top-bottom--up-2">
+        <div class="margin-bottom--up-2">
+          <div class="text-right">
+            <a
+              class="inline-block align-top"
+              href="{{ routes.search_url }}"
+              data-module-offcanvas-trigger='{
+                "id": "header-mobile-search",
+                "scroll_to": 0
+              }'>
+              <div class="font-size--down-1">
+                {% include 'svg-close' %}
+              </div>
+            </a>
+          </div>
+        </div>
+
         {% include 'search-form', _id: 'mobile-search-form' %}
       </div>
     </div>

@@ -27,6 +27,10 @@
     },
     "menu": {
       "title": "Category"
+    },
+    "description": {
+      "read_more": "Read More",
+      "read_less": "Read less"
     }
   },
   "blog": {

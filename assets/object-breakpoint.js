@@ -1,6 +1,6 @@
 var min_breakpoints = {
-  'medium': 1024,
-  'large': 769,
+  'medium': 768,
+  'large': 1025,
   'xlarge': 1161
 };
 

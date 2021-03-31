@@ -12,6 +12,7 @@ import './polyfill-url-search-params';
 import './module-accordion';
 import './module-breakpoint';
 import './module-cart-change';
+import './module-cart-count';
 import './module-collection-body--and';
 import './module-collection-body--or';
 import './module-collection-filters--and';

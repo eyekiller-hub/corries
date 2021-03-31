@@ -14,7 +14,9 @@
         <div class="grid-bar--down-2 margin-bottom-negative--down-2">
           {% for value in option.values %}
             <div class="grid-item padding-bottom--down-2">
-              <label class="cursor-pointer" for="{{ product.id | append: option.position | append: forloop.index0 }}">
+              <label
+                class="product-option-radio-label cursor-pointer"
+                for="{{ product.id | append: option.position | append: forloop.index0 }}">
                 <input
                   class="visually-hidden"
                   type="radio"

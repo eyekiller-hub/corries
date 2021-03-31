@@ -10,12 +10,15 @@
                 header-menu__item
                 transition
 
-
                 {% if menu_highlight_item_handle == link.handle %}
                   box-color-green
                   text-color-light
                 {% else %}
                   text-color-grey-dark
+
+                  {% if link.active or link.child_active %}
+                    box-color-beige
+                  {% endif %}
                 {% endif %}
 
                 hover-box-color-beige

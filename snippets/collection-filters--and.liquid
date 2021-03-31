@@ -13,7 +13,7 @@
     </div>
 
     <div style=" --margin-top: -1px; --large--margin-top: 0;">
-      <div class="border-grey-lightest large--border--none">
+      <div class="border-green large--border--none">
         <div class="padding-top-bottom--up-1 large--padding--none">
           <div class="last-child-margin--none last-child-padding--none last-child-border--none">
             {% for link in linklists['tag-filters-products'].links %}
@@ -96,10 +96,10 @@
                             {% assign link_tag_toggle_url = link_tag_remove_url %}
                           {% endif %}
 
-                          <div class="margin-bottom--down-3">
+                          <div class="margin-bottom--down-1">
                             <a href="{{ link_tag_toggle_url }}" data-module-collection-link>
                               <div>
-                                <span class="flex-bar--down-1">
+                                <span class="flex--down-1 line-height--none">
                                   <span class="flex-item-shrink">
                                     <span class="checkbox-wrap font-size--0">
                                       <span class="checkbox {% if link_tag_active %}is-checked{% endif %}"></span>
@@ -110,8 +110,10 @@
                                   </span>
 
                                   <span class="flex-item-shrink">
-                                    <span>
-                                      {{ link_tag }}
+                                    <span class="block margin-top-negative--down-7">
+                                      <span class="font-size--0 line-height--up-6">
+                                        {{ link_tag }}
+                                      </span>
                                     </span>
                                   </span>
                                 </span>

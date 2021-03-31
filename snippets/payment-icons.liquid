@@ -1,3 +1,5 @@
+{% assign class = _class %}
+
 {% assign newline = '
 ' %}
 
@@ -15,11 +17,13 @@ google-pay
 {% assign payment_icons = payment_icons | strip | split: newline %}
 
 <div class="overflow-hidden">
-  <div class="flex--down-3 flex-wrap padding-top--down-1">
+  <div class="grid--down-3 padding-top--down-1">
     {% for payment_icon in payment_icons %}
-      <div class="flex-item-auto margin-top-negative--down-1">
-        {% assign snippet = 'svg-payment-' | append: payment_icon %}
-        {% include snippet %}
+      <div class="grid-item margin-top-negative--down-1">
+        <div class="{{ class }}">
+          {% assign snippet = 'svg-payment-' | append: payment_icon %}
+          {% include snippet %}
+        </div>
       </div>
     {% endfor %}
   </div>
