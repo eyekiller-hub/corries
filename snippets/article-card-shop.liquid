@@ -10,7 +10,17 @@
 
 {% assign address = article.metafields.shop.address | newline_to_br | default: false %}
 
-<article class="{% if featured %}large--flex-bar large--box-color-beige{% endif %}">
+{% assign image_box_ratio_large = nil %}
+
+{% assign image_class = nil %}
+
+{% if featured %}
+  {% assign image_box_ratio_large = 0 %}
+
+  {% assign image_class = 'large--position-absolute large--position-full large--one large--height-full object-full' %}
+{% endif %}
+
+<article class="{% if featured %}large--flex-bar box-color-beige{% endif %}">
   <div class="
     margin-bottom--up-1
 
@@ -19,16 +29,30 @@
     {% endif %}
   ">
     <a href="{{ article.url }}">
-      {%
-        include 'image',
-        _object: article.image,
-        _size: '1000x'
-      %}
+      <div
+        class="position-relative"
+        style="
+          {% if featured %}
+            --large--height: 470px;
+          {% endif %}
+        ">
+        {%
+          include 'image',
+          _object: article.image,
+          _size: '1000x',
+          _box_ratio_large: image_box_ratio,
+          _class: image_class
+        %}
+      </div>
     </a>
   </div>
 
   <div class="{% if featured %}large--flex-item{% endif %}">
-    <div class="{% if featured %}large--padding-left-right--up-4{% endif %}">
+    <div class="
+      {% if featured %}
+        padding--up-1 padding-top--none large--padding-top-bottom--none large--padding-left-right--up-4
+      {% endif %}
+    ">
       <h3 class="
         font-size--up-4
         large--font-size--up-5

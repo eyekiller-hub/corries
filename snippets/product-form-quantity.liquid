@@ -1,7 +1,7 @@
 <label
   class="
     font-size--down-2 line-height--up-4
-    large--font-size--inherit large--line-height--inherit
+    xlarge--font-size--inherit xlarge--line-height--inherit
     font-stack-inherit font-weight-500 text-caps-letter-spacing text-color-grey-dark
     margin-bottom--down-3
   "
@@ -20,7 +20,7 @@
             border-grey-lighter
             flex-bar flex-center
           "
-          style=" --width: 45px; --large--width: 50px;">
+          style=" --width: 45px; --xlarge--width: 50px;">
           <div class="flex-item-auto">
             <div class="font-size--down-8 text-color-slate">
               {% include 'svg-minus' %}
@@ -42,7 +42,7 @@
             class="
               input block
               padding--none padding-top-bottom--down-2
-              large--font-size--up-2 large--line-height--up-10
+              xlarge--font-size--up-2 xlarge--line-height--up-10
               border-radius--none
               text-center
             "
@@ -51,7 +51,7 @@
             id="quantity-{{ product.id }}"
             value="1"
             min="1"
-            data-ref-input
+            data-ref-number-input
             data-module-product-quantity='{ "product_id": {{ product.id | json | escape }} }' />
         </div>
       </div>
@@ -66,7 +66,7 @@
             border-grey-lighter
             flex-bar flex-center
           "
-          style=" --width: 45px; --large--width: 50px;">
+          style=" --width: 45px; --xlarge--width: 50px;">
           <div class="flex-item-auto">
             <div class="font-size--down-8 text-color-slate">
               {% include 'svg-plus' %}

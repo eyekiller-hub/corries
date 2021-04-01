@@ -31,15 +31,16 @@ function Self(element, events, options, module) {
 
     Object.keys(map).forEach((key) => {
       if (map[key]) {
-        events.trigger(`self:${key}`, [variant]);
-        Events.trigger(`productform:${key}`, [variant]);
-        Events.trigger(`productform:${options.product.id}:${key}`, [variant]);
+        events.trigger(`self:${key}`, [variant, options.quantity]);
+        Events.trigger(`productform:${key}`, [variant, options.quantity]);
+        Events.trigger(`productform:${options.product.id}:${key}`, [variant, options.quantity]);
       }
     });
   });
 
   Events.on(`productquantity:${module.options.product.id}:change`, (value) => {
     options.quantity = value;
+    events.trigger('self:quantity:change');
   });
 
   element.addEventListener('submit', submit);
@@ -81,6 +82,12 @@ function Input(element, events, options, module) {
     }
 
     events.trigger('input:change', [options]);
+  });
+
+  events.on('self:quantity:change', () => {
+    if (element.tagName == 'SELECT' || element.checked) {
+      element.dispatchEvent(new Event('change'));
+    }
   });
 };
 

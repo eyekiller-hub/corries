@@ -42,14 +42,14 @@
     </div>
 
     {% if product.images.size > 1 %}
-      <div class="large--hide">
+      <div class="xlarge--hide">
         <div class="swiper-pagination" data-ref-pagination></div>
       </div>
     {% endif %}
 
     {% if product_tag_badge %}
       <div class="position-absolute position-top--0 position-right--0 position-1">
-        <div style=" --max-width: 70px; --medium--max-width: 80px; --large--max-width: 90px;">
+        <div style=" --max-width: 70px; --medium--max-width: 80px; --xlarge--max-width: 90px;">
           {%
             include 'image',
             _image_url: product_tag_badge_image_url
@@ -78,7 +78,7 @@
 </div>
 
 {% if product.images.size > 1 %}
-  <div class="hide large--show">
+  <div class="hide xlarge--show">
     <div class="product-gallery-thumbs">
       <div class="margin-top--up-1">
         <div class="slider" data-module-slider='{

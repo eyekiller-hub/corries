@@ -15,7 +15,7 @@
     <div class="border-top-grey-lightest">
       <div class="padding-top--up-1 large--padding-top--up-3">
         <div class="overflow-hidden">
-          <ul class="grid--up-1 margin-bottom-negative--up-4">
+          <ul class="grid--up-1 margin-bottom-negative--up-2 medium--margin-bottom-negative--up-4">
             {% for block in blocks %}
               {% assign block_title = block.settings.title | default: false %}
 
@@ -27,7 +27,11 @@
 
               {% assign block_call_to_action = block.settings.call_to_action | default: false %}
 
-              <li class="grid-item padding-bottom--up-4 one-two xlarge--one-three">
+              <li class="
+                grid-item
+                padding-bottom--up-2 medium--padding-bottom--up-4
+                one medium--one-two xlarge--one-three
+              ">
                 {% if block_title %}
                   <h4 class="
                     font-size--inherit line-height--inherit
@@ -60,7 +64,11 @@
                 {% endif %}
 
                 {% if block_url and block_call_to_action %}
-                  <div class="text-color-green text-caps-letter-spacing font-weight-700 links-text-underline">
+                  <div class="
+                    font-size--down-2 line-height--up-4
+                    medium--font-size--inherit medium--line-height--inherit
+                    text-color-green text-caps-letter-spacing font-weight-700 links-text-underline
+                  ">
                     <a href="{{ block_url }}">
                       {{ block_call_to_action }}
                     </a>

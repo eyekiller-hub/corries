@@ -7,23 +7,27 @@ function Self(element, events, options, module) {};
 
 function Retail(element, events, options, module) {
   Events
-    .on(`productform:${module.options.product_id}:variantchange`, (variant) => {
-      element.innerHTML = money(variant.price, module.options.money_format);
+    .on(`productform:${module.options.product_id}:variantchange`, (variant, quantity) => {
+      var variant_price_total = variant.price * quantity;
+
+      element.innerHTML = money(variant_price_total, module.options.money_format);
       element.classList.remove(module.options.retail_on_sale_class);
     })
-    .on(`productform:${module.options.product_id}:variantchangeonsale`, (variant) => {
+    .on(`productform:${module.options.product_id}:variantchangeonsale`, (variant, quantity) => {
       element.classList.add(module.options.retail_on_sale_class);
     });
 };
 
 function Compare(element, events, options, module) {
   Events
-    .on(`productform:${module.options.product_id}:variantchange`, (variant) => {
+    .on(`productform:${module.options.product_id}:variantchange`, (variant, quantity) => {
       element.innerHTML = '';
       element.style.display = 'none';
     })
-    .on(`productform:${module.options.product_id}:variantchangeonsale`, (variant) => {
-      element.innerHTML = money(variant.compare_at_price, module.options.money_format);
+    .on(`productform:${module.options.product_id}:variantchangeonsale`, (variant, quantity) => {
+      var variant_compare_at_price_total = variant.compare_at_price * quantity;
+
+      element.innerHTML = money(variant_compare_at_price_total, module.options.money_format);
       element.style.display = '';
     });
 };

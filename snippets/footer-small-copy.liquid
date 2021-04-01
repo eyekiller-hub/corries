@@ -2,33 +2,47 @@
 
 {% assign small_copy = small_copy | replace: '{{ year }}', year %}
 
+{% assign credits_copy = '<p>Website by <a href="https://www.eyekiller.com" target="_blank">Eyekiller</a></p>' %}
+
 <div class="medium--padding-top--up-2">
   <div class="medium--border-top-grey-lightest">
     <div class="padding-top--up-2">
-      <div class="grid--up-1 grid-reverse margin-bottom-negative--down-1">
-        {% if small_copy_menu %}
-          <div class="grid-item padding-bottom--down-1">
-            <ul class="grid--up-1 margin-bottom--none">
-              {% for link in small_copy_menu.links %}
-                <li class="grid-item">
-                  <a
-                    class="font-size--down-2 line-height--up-4 hover-text-underline"
-                    href="{{ link.url }}">
-                    {{ link.title }}
-                  </a>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        {% endif %}
+      <div class="overflow-hidden">
+        <div class="medium--flex--up-1 margin-bottom-negative--down-1">
+          <div class="medium--flex-item padding-bottom--down-1">
+            <div class="grid--up-1 grid-reverse margin-bottom-negative--down-1">
+              {% if small_copy_menu %}
+                <div class="grid-item padding-bottom--down-1">
+                  <ul class="grid--up-1 margin-bottom--none">
+                    {% for link in small_copy_menu.links %}
+                      <li class="grid-item">
+                        <a
+                          class="font-size--down-2 line-height--up-4 hover-text-underline"
+                          href="{{ link.url }}">
+                          {{ link.title }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
 
-        {% if small_copy %}
-          <div class="grid-item padding-bottom--down-1">
-            <div class="rte font-size--down-2 line-height--up-4">
-              {{ small_copy }}
+              {% if small_copy %}
+                <div class="grid-item padding-bottom--down-1">
+                  <div class="rte font-size--down-2 line-height--up-4">
+                    {{ small_copy }}
+                  </div>
+                </div>
+              {% endif %}
             </div>
           </div>
-        {% endif %}
+
+          <div class="medium--flex-item-shrink padding-bottom--down-1">
+            <div class="rte font-size--down-2 line-height--up-4">
+              {{ credits_copy }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

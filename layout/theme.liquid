@@ -1,3 +1,11 @@
+{% liquid
+  assign content_border = false
+
+  if template.name == 'cart' or template.name == 'account' or template.name == 'addresses' or template.name == 'order' or template.name == 'page' or template.name == '404' or template.name == 'blog' or template.name == 'article' or template.name == 'search'
+    assign content_border = true
+  endif
+%}
+
 <!DOCTYPE html>
 <html class="template-{{ template | handle }}" lang="{{ shop.locale }}">
   <head>
@@ -13,20 +21,26 @@
     {% include 'judgeme_core' %}
 </head>
 
-  <body>
-    {% section 'utility-bar' %}
-    {% section 'header' %}
+<body>
+  {% section 'utility-bar' %}
+  {% section 'header' %}
 
-    <main role="main">
-      {{ content_for_layout }}
-    </main>
+  <main
+      class="
+        {% if content_border %}
+          border-top-grey-lightest medium--border--none
+        {% endif %}
+      "
+      role="main">
+    {{ content_for_layout }}
+  </main>
 
-    {% section 'footer' %}
+  {% section 'footer' %}
 
-    {% include 'layout-scripts' %}
-  
-<!-- Back in Stock helper snippet -->
-{% render 'back-in-stock-helper' %}
-<!-- End Back in Stock helper snippet -->
+  {% include 'layout-scripts' %}
+
+  <!-- Back in Stock helper snippet -->
+  {% render 'back-in-stock-helper' %}
+  <!-- End Back in Stock helper snippet -->
 </body>
 </html>

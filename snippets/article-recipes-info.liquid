@@ -34,7 +34,7 @@
   <div class="margin-top-negative--down-2 margin-bottom--up-3">
     <div class="grid--0 line-height--none text-center">
       {% if article_category_tag %}
-        <div class="grid-item">
+        <div class="grid-item one medium--auto">
           <a class="text-color-inherit! text-no-underline!" href="{{ article_category_tag_url }}">
             <div class="large--font-size--up-2 large--line-height--up-10">
               {{ article_category_tag }} {{ 'recipes.category_tag_suffix' | t }}
@@ -47,8 +47,10 @@
         <div class="grid-item">
           <div class="flex-bar--down-3">
             <div class="flex-item-shrink">
-              <div class="font-size--up-2 text-color-green">
-                {% include 'svg-clock' %}
+              <div class="position-relative position-top-negative--down-9">
+                <div class="font-size--up-2 text-color-green">
+                  {% include 'svg-clock' %}
+                </div>
               </div>
             </div>
 
@@ -65,8 +67,10 @@
         <div class="grid-item">
           <div class="flex-bar--down-3">
             <div class="flex-item-shrink">
-              <div class="font-size--up-2 text-color-green">
-                {% include 'svg-clock' %}
+              <div class="position-relative position-top-negative--down-9">
+                <div class="font-size--up-2 text-color-green">
+                  {% include 'svg-clock' %}
+                </div>
               </div>
             </div>
 
@@ -83,8 +87,10 @@
         <div class="grid-item">
           <div class="flex-bar--down-3">
             <div class="flex-item-shrink">
-              <div class="font-size--up-2 text-color-green">
-                {% include 'svg-person' %}
+              <div class="position-relative position-top-negative--down-9">
+                <div class="font-size--up-2 text-color-green">
+                  {% include 'svg-person' %}
+                </div>
               </div>
             </div>
 

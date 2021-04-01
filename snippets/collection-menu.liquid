@@ -34,12 +34,15 @@
           <ul class="margin-bottom--none" style=" --large--padding-top: 1px;">
             {% for link_link in link.links %}
               <li style=" --large--margin-top: -1px;">
-                <a href="{{ link_link.url }}">
-                  <div class="large--border-grey-lightest">
-                    <div class="padding-top-bottom--down-5 large--padding-left-right--0 large--padding-top-bottom--down-1">
-                      <div class="large--line-height--up-4">
-                        {{ link_link.title }}
-                      </div>
+                <a
+                  class="block large--border-grey-lightest hover-box-color-beige"
+                  href="{{ link_link.url }}">
+                  <div class="
+                    padding-top-bottom--down-5
+                    large--padding-left-right--0 large--padding-top-bottom--down-1
+                  ">
+                    <div class="large--line-height--up-4">
+                      {{ link_link.title }}
                     </div>
                   </div>
                 </a>

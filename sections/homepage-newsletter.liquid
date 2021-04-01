@@ -1,6 +1,10 @@
 {% assign spacing_top_enable = section.settings.spacing_top_enable | default: false %}
 
+{% assign spacing_top_mobile_enable = section.settings.spacing_top_mobile_enable | default: false %}
+
 {% assign spacing_bottom_enable = section.settings.spacing_bottom_enable | default: false %}
+
+{% assign spacing_bottom_mobile_enable = section.settings.spacing_bottom_mobile_enable | default: false %}
 
 {% assign pre_title = section.settings.pre_title | default: false %}
 
@@ -13,8 +17,12 @@
 <section
   class="
     homepage-section
-    {% if spacing_top_enable %}homepage-section--spacing-top{% endif %}
-    {% if spacing_bottom_enable %}homepage-section--spacing-bottom{% endif %}
+
+    {% if spacing_top_enable %}medium--homepage-section--spacing-top{% endif %}
+    {% if spacing_bottom_enable %}medium--homepage-section--spacing-bottom{% endif %}
+
+    {% if spacing_top_mobile_enable %}small--homepage-section--spacing-top{% endif %}
+    {% if spacing_bottom_mobile_enable %}small--homepage-section--spacing-bottom{% endif %}
   ">
   <div class="container-default small--padding--none">
     <div class="box-color-navy">
@@ -116,8 +124,18 @@
       },
       {
         "type": "checkbox",
+        "id": "spacing_top_mobile_enable",
+        "label": "Spacing top enable (mobile)?"
+      },
+      {
+        "type": "checkbox",
         "id": "spacing_bottom_enable",
         "label": "Spacing bottom enable?"
+      },
+      {
+        "type": "checkbox",
+        "id": "spacing_bottom_mobile_enable",
+        "label": "Spacing bottom enable (mobile)?"
       },
       {
         "type": "text",

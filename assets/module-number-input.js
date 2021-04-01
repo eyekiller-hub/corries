@@ -38,7 +38,7 @@ function NumberInput(element, options) {
 
   var refs = {
     self: [element],
-    input: element.querySelectorAll('[data-ref-input]'),
+    number_input: element.querySelectorAll('[data-ref-number-input]'),
     decrement: element.querySelectorAll('[data-ref-decrement]'),
     increment: element.querySelectorAll('[data-ref-increment]')
   };
@@ -55,8 +55,8 @@ function NumberInput(element, options) {
     Self(element, events, options, module);
   });
 
-  refs.input.forEach((element) => {
-    var options = get_element_options(element, 'data-ref-input');
+  refs.number_input.forEach((element) => {
+    var options = get_element_options(element, 'data-ref-number-input');
 
     Input(element, events, options, module);
   });

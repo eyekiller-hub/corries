@@ -47,19 +47,18 @@
                     <article>
                       <a class="hover-text-underline hover-zoom" href="{{ block_collection.url }}">
                         <div class="margin-bottom--down-1 large--margin-bottom--up-1">
-                          <div class="box-center" style="max-width: 160px;">
-                            <div class="overflow-hidden border-radius-full">
-                              <div class="hover-zoom-item">
-                                {%
-                                  include 'image',
-                                  _object: block_collection.image,
-                                  _size: '300x300',
-                                  _crop: 'center',
-                                  _box_ratio: '100%',
-                                  _lazy: true,
-                                  _class: 'border-radius-full'
-                                %}
-                              </div>
+                          <div
+                            class="box-center overflow-hidden border-radius-full"
+                            style="max-width: 160px; will-change: transform;">
+                            <div class="hover-zoom-item">
+                              {%
+                                include 'image',
+                                _object: block_collection.image,
+                                _size: '300x300',
+                                _crop: 'center',
+                                _box_ratio: '100%',
+                                _lazy: true
+                              %}
                             </div>
                           </div>
                         </div>

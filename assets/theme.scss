@@ -160,13 +160,18 @@ $spacing-ratio: 1.333; // Perfect fourth
 
   // Page spacing
 
-  --page-spacing-top: var(--spacing--up-1);
+  --page-spacing-top: var(--spacing--up-2);
   --page-spacing-bottom: var(--spacing--up-3);
   --page-spacing-bottom--large: var(--spacing--up-6);
 
   // Homepage section
 
   --homepage-section-spacing: var(--spacing--up-2);
+
+  // About section
+
+  --about-section-spacing: var(--spacing--up-2);
+  --about-section-spacing--large: var(--spacing--up-4);
 
   // Input
 
@@ -249,8 +254,8 @@ $breakpoints: (
   'xsmall' '(max-width: #{$xsmall})',
   'small' '(max-width: #{$small})',
   'medium' '(min-width: #{$small + 1px})',
-  'medium-down' '(max-width: #{$medium})',
-  'large' '(min-width: #{$medium + 1px})',
+  'medium-down' '(max-width: #{$medium - 1px})',
+  'large' '(min-width: #{$medium})',
   'large-down' '(max-width: #{$large})',
   'xlarge' '(min-width: #{$large + 1px})'
 );
@@ -641,6 +646,10 @@ $buttons: (primary, secondary);
 
   .transition {
     transition: var(--transition-easing);
+  }
+
+  .no-transition {
+    transition: none;
   }
   /*! purgecss end ignore */
 }
@@ -1255,9 +1264,20 @@ $buttons: (primary, secondary);
     }
 
     h1 {
+      @include media-query(small) {
+        padding-top: var(--spacing--up-3);
+      }
+
       @include media-query(large) {
         font-size: var(--font-size--up-12);
         line-height: var(--font-size--up-14);
+      }
+    }
+
+    h2, h3, h4, h5, h6 {
+      @include media-query(small) {
+        font-size: var(--font-size--up-4);
+        line-height: var(--font-size--up-10);
       }
     }
 
@@ -1336,6 +1356,11 @@ $buttons: (primary, secondary);
       width: calc(100% + (var(--container-padding-x) * 2));
       margin-left: calc(-1 * var(--container-padding-x));
 
+      @include media-query(large) {
+        margin-top: var(--spacing--up-4);
+        margin-bottom: var(--spacing--up-4);
+      }
+
       @include media-query(xlarge) {
         width: calc(100% + (55px * 2));
         margin-left: -55px;
@@ -1369,6 +1394,12 @@ $buttons: (primary, secondary);
   }
 
   .rte--recipe {
+    h2, h3, h4, h5, h6 {
+      @include media-query(small) {
+        padding-top: 0;
+      }
+    }
+
     li {}
 
     ul {
@@ -1389,7 +1420,10 @@ $buttons: (primary, secondary);
         display: block;
         counter-increment: recipe-counter;
         display: flex;
-        align-items: center;
+
+        @include media-query(medium) {
+          align-items: center;
+        }
 
         & + li {
           margin-top: var(--spacing--up-2);
@@ -2276,6 +2310,10 @@ $buttons: (primary, secondary);
   .#{$breakpoint}position-fixed {
     position: fixed;
   }
+  .#{$breakpoint}position-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+  }
   .#{$breakpoint}position-static {
     position: static;
   }
@@ -2962,8 +3000,8 @@ $buttons: (primary, secondary);
   }
 }
 
-@mixin homepage-section() {
-  .homepage-section {
+@mixin homepage-section-helpers($breakpoint: "") {
+  .#{$breakpoint}homepage-section {
     .shopify-section:first-child > & {
       padding-top: 0;
 
@@ -2981,14 +3019,45 @@ $buttons: (primary, secondary);
     }
   }
 
-  .homepage-section--spacing-top {
+  .#{$breakpoint}homepage-section--spacing-top {
     padding-top: var(--homepage-section-spacing);
   }
 
-  .homepage-section--spacing-bottom {
+  .#{$breakpoint}homepage-section--spacing-bottom {
     padding-bottom: var(--homepage-section-spacing);
   }
 }
+
+@mixin homepage-section() {
+  @include homepage-section-helpers();
+
+  @each $breakpoint in $breakpoints {
+    $keyword: nth($breakpoint, 1);
+    $media-query: nth($breakpoint, 2);
+
+    @media only screen and #{$media-query} {
+      @include homepage-section-helpers("#{$keyword}--");
+    }
+  }
+};
+
+@mixin about-section() {
+  .about-section--spacing-top {
+    padding-top: var(--about-section-spacing);
+
+    @include media-query(large) {
+      padding-top: var(--about-section-spacing--large);
+    }
+  }
+
+  .about-section--spacing-bottom {
+    padding-bottom: var(--about-section-spacing);
+
+    @include media-query(large) {
+      padding-bottom: var(--about-section-spacing--large);
+    }
+  }
+};
 
 @mixin page-spacing() {
   .page-spacing {
@@ -3318,6 +3387,7 @@ $buttons: (primary, secondary);
 @include search-form-element();
 @include swiper();
 @include homepage-section();
+@include about-section();
 @include page-spacing();
 @include product-gallery-thumbs();
 @include product-option-radio();
