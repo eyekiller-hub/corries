@@ -51,6 +51,11 @@
                             font-size: 42px;
                             --large--font-size: 62px;
                           {% endif %}
+
+                          {% if block_icon == 'delivery-box' %}
+                            font-size: 42px;
+                            --large--font-size: 62px;
+                          {% endif %}
                         ">
                           {% assign snippet = 'svg-' | append: block_icon %}
                           {% include snippet %}
