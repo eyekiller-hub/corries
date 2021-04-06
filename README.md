@@ -1,4 +1,4 @@
-# Corries 1
+# Corries
 
 ## Requirements
 
