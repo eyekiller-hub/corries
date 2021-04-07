@@ -30,8 +30,16 @@ function Container(element, events, options, module) {
     autoHeight: true,
     watchSlidesVisibility: true,
     on: {
-      init: function() { ResponsiveImages.load_lazy_swiper(this) },
-      slideChange: function() { ResponsiveImages.load_lazy_swiper(this) }
+      init: function() {
+        setTimeout(() => events.trigger('container:init', [this.activeIndex]));
+        setTimeout(() => events.trigger(`container:init:${this.activeIndex}`, [this.activeIndex]));
+        ResponsiveImages.load_lazy_swiper(this);
+      },
+      slideChange: function() {
+        events.trigger('container:slide-change', [this.activeIndex]);
+        setTimeout(() => events.trigger(`container:slide-change:${this.activeIndex}`, [this.activeIndex]));
+        ResponsiveImages.load_lazy_swiper(this);
+      }
     },
     pagination: {
       el: module.refs.pagination,
@@ -49,9 +57,13 @@ function Container(element, events, options, module) {
 
   var swiper = new Swiper(element, swiper_options);
 
-  events.on('self:product-variant:active', (variant_slide_index) => {
-    swiper.slideTo(variant_slide_index);
-  });
+  events
+    .on('self:product-variant:active', (variant_slide_index) => {
+      swiper.slideTo(variant_slide_index);
+    })
+    .on(`slide-to:click`, (slide_to_index) => {
+      swiper.slideTo(slide_to_index);
+    });
 
   if (module.options.breakpoints) {
     if (!Breakpoint.current.some((value) => module.options.breakpoints.includes(value))) {
@@ -128,6 +140,28 @@ function Container(element, events, options, module) {
   };
 };
 
+function SlideTo(element, events, options, module) {
+  element.addEventListener('click', (event) => {
+    event.preventDefault();
+    events.trigger(`slide-to:click`, [options.index]);
+    events.trigger(`slide-to:click:${options.index}`, [options.index]);
+  });
+
+  events
+    .on('container:init', is_inactive)
+    .on('container:slide-change', is_inactive)
+    .on(`container:init:${options.index}`, is_active)
+    .on(`container:slide-change:${options.index}`, is_active);
+
+  function is_inactive(activeIndex) {
+    element.classList.remove('is-active');
+  };
+
+  function is_active(activeIndex) {
+    element.classList.add('is-active');
+  };
+};
+
 function Slider(element, options) {
   var defaults = {};
 
@@ -140,7 +174,8 @@ function Slider(element, options) {
     container: element.querySelectorAll('[data-ref-container]'),
     pagination: element.querySelectorAll('[data-ref-pagination]'),
     previous: element.querySelectorAll('[data-ref-previous]'),
-    next: element.querySelectorAll('[data-ref-next]')
+    next: element.querySelectorAll('[data-ref-next]'),
+    slide_to: element.querySelectorAll('[data-ref-slide-to]')
   };
 
   var module = {
@@ -159,6 +194,12 @@ function Slider(element, options) {
     var options = get_element_options(element, 'data-ref-container');
 
     Container(element, events, options, module);
+  });
+
+  refs.slide_to.forEach((element) => {
+    var options = get_element_options(element, 'data-ref-slide-to');
+
+    SlideTo(element, events, options, module);
   });
 };
 

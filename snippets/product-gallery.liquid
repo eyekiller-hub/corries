@@ -12,17 +12,6 @@
 <div class="slider" data-module-slider='{
   "swiper": {
     "initialSlide": {{ initial_slide | json }}
-
-    {% if product.images.size > 1 %}
-      ,
-      "thumbs": {
-        "swiper": {
-          "el": ".swiper-container-thumbs",
-          "slidesPerView": 6,
-          "spaceBetween": "var(--spacing--down-2)"
-        }
-      }
-    {% endif %}
   },
 
   "slide_product_variants": {{ product.images | map: 'variants' | json }}
@@ -75,32 +64,25 @@
       </div>
     {% endif %}
   </div>
-</div>
 
-{% if product.images.size > 1 %}
-  <div class="hide xlarge--show">
-    <div class="product-gallery-thumbs">
-      <div class="margin-top--up-1">
-        <div class="slider" data-module-slider='{
-          "swiper": {
-            "slidesPerView": 6,
-            "spaceBetween": "var(--spacing--down-2)"
-          }
-        }'>
-          <div class="swiper-container swiper-container-thumbs" data-ref-container>
-            <div class="swiper-wrapper">
+  {% if product.images.size > 1 %}
+    <div class="hide xlarge--show">
+      <div class="product-gallery-thumbs">
+        <div class="margin-top--up-1">
+          <div class="overflow-hidden">
+            <div class="grid--down-2 margin-bottom-negative--down-2">
               {% for image in product.images %}
-                <div class="swiper-slide">
-                  <div class="cursor-pointer">
-                    <div class="product-gallery-thumb">
-                      {%
-                        include 'image',
-                        _object: image,
-                        _size: '200x',
-                        _lazy: true
-                      %}
-                    </div>
-                  </div>
+                <div class="grid-item one-six padding-bottom--down-2">
+                  <button
+                    class="product-gallery-thumb input-reset block one"
+                    type="button"
+                    data-ref-slide-to='{ "index": {{ forloop.index0 | json }} }'>
+                    {%
+                      include 'image',
+                      _object: image,
+                      _size: '200x'
+                    %}
+                  </button>
                 </div>
               {% endfor %}
             </div>
@@ -108,5 +90,5 @@
         </div>
       </div>
     </div>
-  </div>
-{% endif %}
+  {% endif %}
+</div>

@@ -3076,7 +3076,7 @@ $buttons: (primary, secondary);
   .product-gallery-thumb {
     position: relative;
 
-    .swiper-slide-thumb-active & {
+    &.is-active {
       &:before {
         content: '';
         position: absolute;
