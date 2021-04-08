@@ -3375,6 +3375,88 @@ $buttons: (primary, secondary);
   }
 }
 
+@mixin klaviyo() {
+  .klaviyo-form[class][class] {
+    *:not([class*='ValidationMessage']) {
+      padding: 0;
+    }
+
+    [type="email"] {
+      height: auto  !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      padding: var(--input-padding-y) var(--input-padding-x)  !important;
+      font-size: var(--typography-input-font-size) !important;
+      line-height: var(--typography-input-line-height)  !important;
+      border: 1px solid var(--colors-light) !important;
+      font-family: var(--typography-base-font-family) !important;
+      box-shadow: none !important;
+
+      .footer & {
+        border: 1px solid var(--colors-text-input-border) !important;
+        padding: var(--input-padding-y) var(--input-padding-x)  !important;
+
+        @include media-query(medium) {
+          line-height: var(--typography-input-line-height)  !important;
+        }
+      }
+
+      @include media-query(medium) {
+        line-height: var(--font-size--up-10)  !important;
+      }
+
+      @include placeholder {
+        font-family: var(--typography-base-font-family) !important;
+      }
+    }
+
+    button {
+      padding: 0 !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: none !important;
+      padding: var(--input-padding-y) var(--input-padding-x)  !important;
+      padding-left: var(--spacing--0) !important;
+      padding-right: var(--spacing--0) !important;
+      font-family: var(--typography-base-font-family) !important;
+      font-size: var(--font-size--down-2) !important;
+      line-height: var(--typography-input-line-height)  !important;
+      letter-spacing: var(--typography-uppercase-letter-spacing) !important;
+      background-color: var(--colors-green) !important;
+      border: 1px solid var(--colors-green) !important;
+      box-shadow: none !important;
+
+      .footer & {
+        margin-left: -1px;
+
+        @include media-query(medium) {
+          padding: var(--input-padding-y) var(--input-padding-x)  !important;
+          line-height: var(--typography-input-line-height)  !important;
+        }
+      }
+
+      @include media-query(medium) {
+        padding-left: var(--spacing--up-2) !important;
+        padding-right: var(--spacing--up-2) !important;
+        line-height: var(--font-size--up-10) !important;
+      }
+    }
+
+    p {
+      font-family: var(--typography-base-font-family) !important;
+      font-size: var(--typography-base-font-size) !important;
+      line-height: var(--typography-base-line-height) !important;
+      text-align: center !important;
+      color: var(--colors-light) !important;
+
+      .footer & {
+        text-align: left !important;
+        color: var(--colors-base-text) !important;
+      }
+    }
+  }
+};
+
 /*! purgecss start ignore */
 @include responsive-images();
 @include shopify-challenge-page();
@@ -3396,4 +3478,5 @@ $buttons: (primary, secondary);
 @include customer();
 @include responsive-table();
 @include hover-zoom();
+@include klaviyo();
 /*! purgecss end ignore */

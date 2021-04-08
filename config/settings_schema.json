@@ -328,5 +328,25 @@
         "label": "Email"
       }
     ]
+  },
+  {
+    "name": "Klaviyo",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "klaviyo_enable",
+        "label": "Enable?"
+      },
+      {
+        "type": "text",
+        "id": "klaviyo_public_api_key",
+        "label": "Public API key"
+      },
+      {
+        "type": "textarea",
+        "id": "klaviyo_newsletter_form_embed_code",
+        "label": "Newsletter form embed code"
+      }
+    ]
   }
 ]

@@ -1,3 +1,9 @@
 {% include 'route-urls-script' %}
 {% include 'theme-settings-script' %}
 {% include 'theme-locales-script' %}
+
+{% if settings.klaviyo_enable and settings.klaviyo_public_api_key %}
+  <script
+    src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id={{ settings.klaviyo_public_api_key }}"
+    async></script>
+{% endif %}
