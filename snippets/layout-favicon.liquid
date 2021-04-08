@@ -1,3 +1,7 @@
 {% if settings.favicon %}
-  <link rel="shortcut icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}" />
+  <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}" />
+{% endif %}
+
+{% if settings.app_icon %}
+  <link rel="apple-touch-icon" href="{{ settings.app_icon | img_url: '180x180' }}" />
 {% endif %}

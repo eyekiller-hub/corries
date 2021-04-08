@@ -15,6 +15,12 @@
         "id": "favicon",
         "label": "Favicon",
         "info": "Suggested size: 100x100px."
+      },
+      {
+        "type": "image_picker",
+        "id": "app_icon",
+        "label": "App icon",
+        "info": "Suggested size: 180x180px."
       }
     ]
   },
