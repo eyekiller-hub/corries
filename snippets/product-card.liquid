@@ -52,7 +52,7 @@
   {% assign copy_class = ' ' %}
 {% endif %}
 
-{% assign product_json = product | json %}
+{% assign product_json = product | json | escape %}
 
 {% assign first_available_variant_id = variant.id %}
 

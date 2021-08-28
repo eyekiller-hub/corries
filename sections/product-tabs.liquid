@@ -34,6 +34,8 @@
       <div class="container-default">
         <nav class="hide large--show">
           <ul class="grid text-center margin--none">
+            {% assign forloop_index0 = -1 %}
+
             {% for title_ in array_title %}
               {% assign title = title_ | default: false %}
 
@@ -42,6 +44,14 @@
               {% unless title and body %}
                 {% continue %}
               {% endunless %}
+
+              {% assign forloop_index0 = forloop_index0 | plus: 1 %}
+
+              {% assign forloop_first = false %}
+
+              {% if forloop_index0 == 0 %}
+                {% assign forloop_first = true %}
+              {% endif %}
 
               <li class="grid-item">
                 <div style="margin-left: -1px; margin-right: -1px;">
@@ -61,7 +71,7 @@
                     type="button"
                     data-ref-button='{
                       "index": {{ forloop.index0 | json }},
-                      "active": {% if forloop.first %}["large"]{% else %}false{% endif %},
+                      "active": {% if forloop_first %}["large"]{% else %}false{% endif %},
                       "active_class": ["box-color-beige", "border-beige!", "no-pointer", "position-1"],
                       "inactive_class": ["box-color-light", "border-grey-lighter!"]
                     }'>

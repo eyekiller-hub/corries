@@ -28,6 +28,7 @@ import './module-country-province-selector';
 import './module-image-lazy-trigger';
 import './module-input-change-link';
 import './module-insta-feed';
+import './module-match-height';
 import './module-mini-cart';
 import './module-number-input';
 import './module-offcanvas-trigger';

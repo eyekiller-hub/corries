@@ -1,16 +1,17 @@
 <div data-module-product-price='{
   "money_format": {{ shop.money_format | json | escape }},
   "product_id": {{ product.id | json | escape }},
-  "retail_on_sale_class": "text-color-red"
+  "retail_on_sale_class": "text-color-red!"
 }'>
   <span
     class="
       font-size--up-8 line-height--up-10
       xlarge--font-size--up-10 xlarge--line-height--up-13
+      text-color-grey-dark
 
-      {% unless current_variant.price > current_variant.compare_at_price %}
-        text-color-red
-      {% endunless %}
+      {% if current_variant.compare_at_price > current_variant.price %}
+        text-color-red!
+      {% endif %}
     "
     data-ref-retail>
     {{- current_variant.price | money -}}

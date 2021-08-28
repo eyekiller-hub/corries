@@ -14,7 +14,7 @@
     "initialSlide": {{ initial_slide | json }}
   },
 
-  "slide_product_variants": {{ product.images | map: 'variants' | json }}
+  "slide_product_variants": {{ product.images | map: 'variants' | json | escape }}
 }'>
   <div class="swiper-container" data-ref-container>
     <div class="swiper-wrapper">

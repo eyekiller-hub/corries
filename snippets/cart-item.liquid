@@ -61,11 +61,9 @@
                 ">
                   {% include 'cart-item-quantity' %}
 
-                  {% unless mini_cart %}
-                    <div class="hide large--show">
-                      {% include 'cart-item-remove' %}
-                    </div>
-                  {% endunless %}
+                  <div class="hide large--show">
+                    {% include 'cart-item-remove' %}
+                  </div>
                 </div>
 
                 <div class="
@@ -79,7 +77,7 @@
           </div>
         </div>
 
-        <div class="flex-item-auto {% unless mini_cart %}large--hide{% endunless %}">
+        <div class="flex-item-auto large--hide">
           {% include 'cart-item-remove' %}
         </div>
       </div>

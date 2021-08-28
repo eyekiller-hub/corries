@@ -1,9 +1,9 @@
 <div class="text-color-grey-dark font-weight-500">
-  {% if line_item.final_price != line_item.original_price %}
+  {% if line_item.final_line_price != line_item.original_line_price %}
     <s>
-      {{ line_item.original_price | money }}
+      {{ line_item.original_line_price | money }}
     </s>
   {% endif %}
 
-  {{ line_item.final_price | money }}
+  {{ line_item.final_line_price | money }}
 </div>

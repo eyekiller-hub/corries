@@ -22,9 +22,9 @@
 <!-- Zapiet | Store Pickup + Delivery -->
 
 <!-- Zapiet | Store Pickup + Delivery -->
-    
+
     {{ 'custom.scss.css' | asset_url | stylesheet_tag }}
-    
+
 </head>
 
 <body>
@@ -48,10 +48,6 @@
 <!--   Back in Stock helper snippet -->
   {% render 'back-in-stock-helper' %}
   <!-- End Back in Stock helper snippet -->
-
-<!-- Back in Stock helper snippet
-{% render 'back-in-stock-helper' %}
-<!-- End Back in Stock helper snippet --> -->
 
 {% if content_for_header contains 'fastbundle.co' %}
     {% render 'fast_bundle_service' %}

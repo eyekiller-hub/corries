@@ -61,7 +61,7 @@ function render({
     copy_class: copy ? '' : 'hide',
     price_class: product.compare_at_price_min > product.price_min ? 'text-color-red' : '',
     compare_at_price_min_class: product.compare_at_price_min > product.price_min ? '' : 'hide',
-    product_json: JSON.stringify(product),
+    product_json: JSON.stringify(product).replaceAll("'", ''),
     first_available_variant_id: variant.id,
     product_id: product.id,
     submit_html: variant.available ? window.theme_locales.products.product.add_to_cart : window.theme_locales.products.product.sold_out,

@@ -104,7 +104,14 @@
         <div class="grid--up-3 position-relative">
           <div class="grid-item one large--one-five hide! large--show-inline-block!"></div>
 
-          <div class="grid-item one large--four-five">
+          <div
+            class="grid-item one large--four-five"
+            data-module-match-height='{
+              "id": "collection-filters",
+              "context": "target",
+              "min": true
+            }'
+          >
             {% include 'collection-header' %}
             {% include 'collection-toolbar' %}
 

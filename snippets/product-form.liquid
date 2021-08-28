@@ -7,15 +7,21 @@
     {% form 'product', product %}
       {% include 'product-form-id' %}
 
-      {% unless product.has_only_default_variant %}
-        <div class="margin-bottom--0">
-          {% if template.suffix == 'dropdown' %}
-            {% include 'product-form-options' %}
-          {% else %}
-            {% include 'product-form-options-radio' %}
+      <div
+        class="
+          margin-bottom--0
+
+          {% if product.has_only_default_variant %}
+            invisible
           {% endif %}
-        </div>
-      {% endunless %}
+        "
+      >
+        {% if template.suffix == 'dropdown' %}
+          {% include 'product-form-options' %}
+        {% else %}
+          {% include 'product-form-options-radio' %}
+        {% endif %}
+      </div>
 
       {% include 'product-form-quantity' %}
 
@@ -24,7 +30,6 @@
           <div class="padding-top--up-1 xlarge--padding-top--up-2">
             <div class="xlarge--flex--up-1">
               <div class="xlarge--flex-item margin-bottom--0 xlarge--margin-bottom--none">
-                {% include 'product-form-summary' %}
                 {% include 'product-price' %}
 
                 {% if delivery_info_enable %}

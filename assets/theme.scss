@@ -175,7 +175,8 @@ $spacing-ratio: 1.333; // Perfect fourth
 
   // Input
 
-  --input-padding-y: var(--spacing--down-2);
+  --input-padding-top: 11px;
+  --input-padding-bottom: 7px;
   --input-padding-x: var(--spacing--0);
   --input-border: 1px solid;
   --input-border-radius: var(--border-radius-default);
@@ -198,7 +199,7 @@ $spacing-ratio: 1.333; // Perfect fourth
   --select-background-image: #{svg-url('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 9" fill="#666"><path d="M0 1.414L1.414 0l6 6 6-6 1.414 1.414-7.414 7.414z"/></svg>')};
   --select-background-size: var(--font-size--down-6);
   --select-background-position: center right var(--input-padding-x);
-  --select-padding-right: calc(calc(var(--input-padding-y) * 2) + 40px);
+  --select-padding-right: calc(calc(var(--input-padding-x) * 2) + 40px);
 
   // Transition
 
@@ -414,7 +415,9 @@ $buttons: (primary, secondary);
   @include input-reset;
   display: inline-block;
   vertical-align: middle;
-  padding: var(--input-padding-y) var(--input-padding-x);
+  padding: var(--input-padding-x);
+  padding-top: var(--input-padding-top);
+  padding-bottom: var(--input-padding-bottom);
   border: var(--input-border);
   border-radius: var(--input-border-radius);
   color: var(--colors-text-input-text);
@@ -1529,6 +1532,19 @@ $buttons: (primary, secondary);
   }
 
   .rte--product-tabs {
+    ul {
+      padding: 0;
+      padding-top: 1px;
+    }
+
+    li {
+      border-top: 1px solid var(--colors-grey-lighter);
+      border-bottom: 1px solid var(--colors-grey-lighter);
+      margin-top: -1px;
+      padding-top: var(--spacing--down-1);
+      padding-bottom: var(--spacing--down-1);
+    }
+
     table {
       border-collapse: collapse;
       border-spacing: 0;
@@ -1580,6 +1596,7 @@ $buttons: (primary, secondary);
 
     td {
       padding: 0;
+      border: 0;
     }
   }
   /*! purgecss end ignore */
@@ -2593,6 +2610,12 @@ $buttons: (primary, secondary);
     .#{$breakpoint}child-a-hover-text-color-#{$color} a:hover, {
       color: var(--colors-#{$color});
     }
+    .#{$breakpoint}text-color-#{$color}\!,
+    .#{$breakpoint}hover-text-color-#{$color}\!:hover,
+    .#{$breakpoint}child-a-text-color-#{$color}\! a,
+    .#{$breakpoint}child-a-hover-text-color-#{$color}\! a:hover, {
+      color: var(--colors-#{$color}) !important;
+    }
     .#{$breakpoint}box-color-#{$color},
     .#{$breakpoint}hover-box-color-#{$color}:hover {
       background-color: var(--colors-#{$color});
@@ -3385,7 +3408,9 @@ $buttons: (primary, secondary);
       height: auto  !important;
       border: 0 !important;
       border-radius: 0 !important;
-      padding: var(--input-padding-y) var(--input-padding-x)  !important;
+      padding: var(--input-padding-x) !important;
+      padding-top: var(--input-padding-top) !important;
+      padding-bottom: var(--input-padding-bottom) !important;
       font-size: var(--typography-input-font-size) !important;
       line-height: var(--typography-input-line-height)  !important;
       border: 1px solid var(--colors-light) !important;
@@ -3394,7 +3419,9 @@ $buttons: (primary, secondary);
 
       .footer & {
         border: 1px solid var(--colors-text-input-border) !important;
-        padding: var(--input-padding-y) var(--input-padding-x)  !important;
+        padding: var(--input-padding-x) !important;
+        padding-top: var(--input-padding-top) !important;
+        padding-bottom: var(--input-padding-bottom) !important;
 
         @include media-query(medium) {
           line-height: var(--typography-input-line-height)  !important;
@@ -3415,7 +3442,9 @@ $buttons: (primary, secondary);
       border: 0 !important;
       border-radius: 0 !important;
       background: none !important;
-      padding: var(--input-padding-y) var(--input-padding-x)  !important;
+      padding: var(--input-padding-x) !important;
+      padding-top: var(--input-padding-top) !important;
+      padding-bottom: var(--input-padding-bottom) !important;
       padding-left: var(--spacing--0) !important;
       padding-right: var(--spacing--0) !important;
       font-family: var(--typography-base-font-family) !important;
@@ -3430,7 +3459,9 @@ $buttons: (primary, secondary);
         margin-left: -1px;
 
         @include media-query(medium) {
-          padding: var(--input-padding-y) var(--input-padding-x)  !important;
+          padding: var(--input-padding-x) !important;
+          padding-top: var(--input-padding-top) !important;
+          padding-bottom: var(--input-padding-bottom) !important;
           line-height: var(--typography-input-line-height)  !important;
         }
       }
