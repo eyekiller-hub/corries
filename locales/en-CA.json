@@ -9,7 +9,7 @@
     "product": {
       "quantity": "Quantity",
       "add_to_cart": "Add to cart",
-      "sold_out": "Get notified when back in stock",
+      "sold_out": "Email when available",
       "unavailable": "Unavailable",
       "added": "Added!",
       "from": "From"
@@ -222,6 +222,60 @@
       "tax": "Tax",
       "cancelled": "Order Cancelled on {{ date }}",
       "cancelled_reason": "Reason: {{ reason }}"
+    }
+  },
+  "shopify": {
+    "checkout": {
+      "shipping": {
+        "title": "Store Pickup",
+        "waiting_on_rate_notice": "Please wait while we fetch available pickup rates...",
+        "no_rates_for_cart_or_destination_notice": "Pickup is not available for your cart or destination.",
+        "no_rates_for_country_notice": "We do not offer pickups in {{ country }}.",
+        "please_enter_your_shipping_information_notice": "Please go back to the shopping cart page and choose a pickup location."
+      },
+      "contact": {
+        "phone_label": "Your phone number",
+        "optional_phone_label": "Your phone number (optional)",
+        "phone_placeholder": "Your phone number",
+        "optional_phone_placeholder": "Your phone number (optional)",
+        "first_name_label": "Your first name",
+        "optional_first_name_label": "Your first name (optional)",
+        "first_name_placeholder": "Your first name (optional)",
+        "last_name_label": "Your last name",
+        "optional_last_name_label": "Your last name (optional)",
+        "last_name_placeholder": "Your last name",
+        "optional_last_name_placeholder": "Your last name (optional)",
+        "shipping_address_title": "Pickup address"
+      },
+      "general": {
+        "continue_to_shipping_method": "Continue",
+        "back_to_shipping_method": "Back",
+        "edit_shipping_address": "Edit",
+        "edit_shipping_method": "Edit"
+      },
+      "order_summary": {
+        "free_shipping_discount_label": "Free pickup",
+        "shipping_label": "Store Pickup"
+      },
+      "shipping_title": "Store Pickup",
+      "review": {
+        "blocks": {
+          "shipping_address_title": "Pickup address"
+        }
+      },
+      "payment": {
+        "same_billing_address_label": "Please use the option below ⬇"
+      },
+      "thank_you": {
+        "marker": {
+          "shipping": "Pickup address",
+          "current": "Pickup address"
+        },
+        "shipping_address_title": "Pickup address",
+        "order_updates_subscribe_to_email_notifications": "Get pickup updates by email",
+        "order_updates_subscribe_to_phone_notifications": "Get pickup updates by email or SMS",
+        "order_updates_subscribe_to_email_or_phone_notifications": "Get pickup updates by SMS"
+      }
     }
   }
 }

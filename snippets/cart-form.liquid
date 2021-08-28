@@ -1,6 +1,6 @@
 {% assign mini_cart = _mini_cart %}
 
-<form class="{% if mini_cart %}height-full flex-vertical{% endif %}" action="/cart" method="post">
+<form class="cartForm {% if mini_cart %}height-full flex-vertical{% endif %}" action="/cart" method="post">
   {% unless mini_cart %}
     {% include 'cart-header' %}
   {% endunless %}

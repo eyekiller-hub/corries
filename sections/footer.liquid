@@ -50,10 +50,19 @@
             </div>
           {% endif %}
         </div>
+        
+        <div class="footerBtm">
+          	<div class="currency">
+              <h3 class="text-caps-letter-spacing text-color-grey-dark">Select Currency</h3>
+              <div class="doubly-wrapper"></div>
+          	</div>       	
 
-        {% if payment_icons_enable %}
-          {% include 'footer-payment-icons' %}
-        {% endif %}
+            {% if payment_icons_enable %}
+              {% include 'footer-payment-icons' %}
+            {% endif %}
+        </div>
+        
+        
 
         {% if small_copy_enable %}
           {% include 'footer-small-copy' %}

@@ -1,0 +1,273 @@
+/* Eyekiller: Custom Styles */
+
+/* === Delivery & Click Collect UI === */
+
+#order-slots {
+  margin-right:0!important;
+  margin-top:30px;
+  width:100%!important;
+  max-width:100%!important;
+  font-family:'DIN 2014', sans-serif!important;
+  padding: 0!important;
+  margin-bottom: 20px;
+  
+  & > div:nth-child(2) {
+    background: #ECE7E4;
+    padding: 5px 30px 10px;
+    margin-top: 20px;
+  }
+  
+  #ft-options-div {
+    display:block;
+    .ft-options-cell {
+      width:100%;
+      display:block!important;
+      max-width:100%!important;
+      max-height:100%!important;
+      &:first-child {
+        .ft-options {
+          border-bottom:none!important;
+        }
+      }
+      .ft-options {
+        margin-left:0!important;
+        margin-bottom:0!important;
+        border-radius: 0!important;
+    	border: 1px solid #E5E5E5!important;
+        padding:5px!important;
+        height:65px!important;
+        position:relative;
+        svg {
+          position:absolute;
+          top: 50%;
+          margin-top: -8px;
+          left: 30px;
+        }
+        div {
+          line-height:58px;
+          font-weight:500!important;
+          text-align:left;
+          padding-left:60px;
+        }
+      }
+      .ft-options-active {
+        background:#F4FBF1!important;
+      }
+    }
+  }
+  
+  .order-delivery-locations {
+    background:#ECE7E4;
+    width:100%;
+    padding:20px 30px 15px;
+    margin-top:-5px!important;
+    label {
+      padding-bottom:10px;
+      color:#666666;
+      font-weight:500!important;
+    }
+    #delivery-location-zip {
+      width:60%!important;
+      float: left;
+      margin-right: 10px;
+      height:50px;
+      border:none;
+      padding:15px;
+      &:focus {
+        outline:none;
+        border-radius:0;
+        border:1px solid #F4FBF1!important;
+      }
+    }
+    #delivery-location-search {
+      width:calc(40% - 10px)!important;
+      height:50px;
+      background:#21343B!important;
+      color:white;
+      text-align:center;
+      border:none;
+      font-weight:500!important;
+      letter-spacing:1px;
+    }
+    #delivery-location-info {
+      padding-bottom:0;
+      margin-bottom:0;
+      color:#7C8D75;
+      font-weight:600!important;
+    }
+  }
+  
+  #orders-slots-heading {
+    background:#ECE7E4;
+   	margin:0!important;
+    padding:0 30px 20px;
+    margin-top: -10px!important;
+    padding-top: 30px;
+  }
+  
+  #order-slot-pickers {
+    background:#ECE7E4;
+    .neo-input {
+      padding:15px;
+      width:85%!important;
+      margin:0 auto!important;
+      margin-bottom:30px!important;
+      border:none;
+      &:focus {
+        outline:none;
+        border-radius:0;
+        border:1px solid #F4FBF1!important;
+      }
+    }
+    .neo-popup {
+      bottom:auto!important;
+      right:auto!important;
+    }
+    .neo-cell-enabled:hover {
+      background:#7C8D75!important;
+      color:white!important;
+    }
+    .neo-cell-selected {
+      background:#7C8D75!important;
+      color:white!important;
+    }
+    .neo-cell-selected:hover {
+      background:#7C8D75!important;
+      color:white!important;
+    }
+      
+  }
+  
+  #additional-details {
+    background: #ECE7E4;
+    margin-top: 0!important;
+    padding: 0 30px 20px;
+    label {
+      text-align: left;
+      float: left;
+      font-weight: 600;
+      padding-bottom: 15px;
+    }
+    #additional-details-input {
+      width:100%!important;
+      padding:15px;
+      border:1px solid #E5E5E5!important;    
+    }
+  }
+  
+  #pickup-location-search {
+    width:100%!important;
+    padding:15px;
+    border:1px solid #E5E5E5!important; 
+    &:focus {
+      outline:none;
+      border-radius:0;
+      border:none!important;
+    }
+  } 
+  
+  #order-pickup-locations {
+    padding:30px;
+    padding-top:0;
+    background:#ECE7E4;
+    border:none!important;
+    margin-top:0!important;
+    .pickup-location {
+      background:white!important;
+      overflow:hidden;
+      padding:15px!important;
+      input[type="checkbox"], input[type="radio"] {
+        float:left;
+        width:5%;
+      }
+      label {
+        margin-left: 0;
+        width: 85%;
+        float: right;
+      }
+    }
+  }
+  
+}
+
+/* === Footer Currency Switcher === */
+
+.footerBtm {
+  display:inline-flex;
+  width:100%;
+  margin-top:40px;
+  align-items:center;
+  justify-content:space-between;
+  @media (max-width:810px) {
+    display:block;
+    clear:both;
+    overflow:hidden;
+   }
+  .currency {
+    width:30%;
+    float:left;
+    height:100%;
+    @media (max-width:810px) {
+      width:100%;
+    }
+  }
+  .currency {
+   display:flex;
+    height:100%;
+    align-items:center;
+    padding-top:20px;
+    h3 {
+      text-transform:uppercase;
+      font-size:16px;
+      letter-spacing:1px;
+      font-weight:500;
+      line-height:18px;
+      width:auto;
+      margin-right:10px;
+      font-family:"DIN 2014", sans-serif;
+      padding-top:5px;
+    }
+    .doubly-wrapper {
+      display: inline;
+      float: left;
+      margin-top: -15px;
+      select {
+        padding:10px;
+      }
+      .layered-currency-switcher {
+        border:1px solid #e1e1e1;
+        padding:0;
+      }
+        
+      .layered-currency-switcher li button.currency-switcher-btn {
+        border-radius:0;
+        border:none!important;
+        margin-left:0px;
+        width: 90px!important;
+    	padding: 10px!important;
+        font-family:"DIN 2014", sans-serif!important;
+        font-weight:500!important;
+      }
+      .layered-currency-switcher li button.currency-switcher-btn.selected {
+        border-color:#7C8D75!important;       
+      }
+      .currency-switcher-btn:hover {
+        border-color:#7C8D75!important;
+      }
+      .layered-currency-switcher li button.currency-switcher-btn span {
+        display:inline!important;
+      }
+        
+        
+    }
+  }
+  .footerPaymentIcons {
+    height:100%;
+    width:70%;
+    float:left;
+    @media (max-width:810px) {
+      width:100%;
+    }
+  }
+}
+    

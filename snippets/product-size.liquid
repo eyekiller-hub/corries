@@ -1,0 +1,14 @@
+{% assign copy = product.metafields.card.copy | default: false %}
+
+{% if copy %}
+  <div class="padding-bottom--up-1">
+    <div
+      class="
+        rte rte--product-short-description
+        font-size--down-3 line-height--up-5
+        xlarge--font-size--up-2 xlarge--line-height--up-10
+      ">
+      {{ copy }}
+    </div>
+  </div>
+{% endif %}

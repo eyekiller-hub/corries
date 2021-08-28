@@ -2,7 +2,7 @@
 
 {% assign empty_body = section.settings.empty_body | default: false %}
 
-{% paginate search.results by results_limit %}
+{% paginate search.results by results_limit:10 %}
   <div class="page-spacing">
     <div class="container-default">
       {% include 'breadcrumbs' %}

@@ -4,7 +4,7 @@
     "theme_name": "Corries",
     "theme_version": "1.0.0",
     "theme_author": "Eyekiller",
-    "theme_documentation_url": "https://github.com/eyekiller-hub/corries/wiki",
+    "theme_documentation_url": "https:\/\/github.com\/eyekiller-hub\/corries\/wiki",
     "theme_support_url": "https:\/\/eyekiller.com"
   },
   {
@@ -56,11 +56,26 @@
         "id": "value_propositions_icon_1",
         "label": "Icon",
         "options": [
-          { "value": "cow", "label": "Cow" },
-          { "value": "badge", "label": "Badge" },
-          { "value": "tractor", "label": "Tractor" },
-          { "value": "clock-24", "label": "Clock 24" },
-          { "value": "delivery-box", "label": "Delivery box" }
+          {
+            "value": "cow",
+            "label": "Cow"
+          },
+          {
+            "value": "badge",
+            "label": "Badge"
+          },
+          {
+            "value": "tractor",
+            "label": "Tractor"
+          },
+          {
+            "value": "clock-24",
+            "label": "Clock 24"
+          },
+          {
+            "value": "delivery-box",
+            "label": "Delivery box"
+          }
         ]
       },
       {
@@ -87,11 +102,26 @@
         "id": "value_propositions_icon_2",
         "label": "Icon",
         "options": [
-          { "value": "cow", "label": "Cow" },
-          { "value": "badge", "label": "Badge" },
-          { "value": "tractor", "label": "Tractor" },
-          { "value": "clock-24", "label": "Clock 24" },
-          { "value": "delivery-box", "label": "Delivery box" }
+          {
+            "value": "cow",
+            "label": "Cow"
+          },
+          {
+            "value": "badge",
+            "label": "Badge"
+          },
+          {
+            "value": "tractor",
+            "label": "Tractor"
+          },
+          {
+            "value": "clock-24",
+            "label": "Clock 24"
+          },
+          {
+            "value": "delivery-box",
+            "label": "Delivery box"
+          }
         ]
       },
       {
@@ -118,11 +148,26 @@
         "id": "value_propositions_icon_3",
         "label": "Icon",
         "options": [
-          { "value": "cow", "label": "Cow" },
-          { "value": "badge", "label": "Badge" },
-          { "value": "tractor", "label": "Tractor" },
-          { "value": "clock-24", "label": "Clock 24" },
-          { "value": "delivery-box", "label": "Delivery box" }
+          {
+            "value": "cow",
+            "label": "Cow"
+          },
+          {
+            "value": "badge",
+            "label": "Badge"
+          },
+          {
+            "value": "tractor",
+            "label": "Tractor"
+          },
+          {
+            "value": "clock-24",
+            "label": "Clock 24"
+          },
+          {
+            "value": "delivery-box",
+            "label": "Delivery box"
+          }
         ]
       },
       {
@@ -149,11 +194,26 @@
         "id": "value_propositions_icon_4",
         "label": "Icon",
         "options": [
-          { "value": "cow", "label": "Cow" },
-          { "value": "badge", "label": "Badge" },
-          { "value": "tractor", "label": "Tractor" },
-          { "value": "clock-24", "label": "Clock 24" },
-          { "value": "delivery-box", "label": "Delivery box" }
+          {
+            "value": "cow",
+            "label": "Cow"
+          },
+          {
+            "value": "badge",
+            "label": "Badge"
+          },
+          {
+            "value": "tractor",
+            "label": "Tractor"
+          },
+          {
+            "value": "clock-24",
+            "label": "Clock 24"
+          },
+          {
+            "value": "delivery-box",
+            "label": "Delivery box"
+          }
         ]
       },
       {

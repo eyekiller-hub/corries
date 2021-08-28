@@ -1,0 +1,51 @@
+<style>
+  
+</style>
+<script>
+(function() {
+  //Polyfill for endsWith - starts
+  if (!String.prototype.endsWith) {
+    String.prototype.endsWith = function(search, this_len) {
+      if (this_len === undefined || this_len > this.length) {
+        this_len = this.length;
+      }
+      return this.substring(this_len - search.length, this_len) === search;
+    };
+  }
+  //Polyfill for endsWith - ends
+  var cartForms = [];
+  var formsInPage = document.querySelectorAll('form');
+  if(formsInPage) {
+    for(var i = 0; i < formsInPage.length; i++) {
+      if(
+        (formsInPage[i].method === 'post') && 
+        (formsInPage[i].action.endsWith('/cart') || formsInPage[i].action.endsWith('/cart/') || formsInPage[i].action.indexOf('/cart?') > -1)
+      ) {
+        cartForms.push(formsInPage[i]);
+      }
+    }
+  }
+  if(cartForms.length) {
+    var checkoutButton1 = cartForms[0].querySelector("button[name='checkout'][type='submit']");
+    if(checkoutButton1) {
+      checkoutButton1.disabled = true;
+    } else {
+      checkoutButton1 = cartForms[0].querySelector("input[name='checkout'][type='submit']");
+      if(checkoutButton1){
+        checkoutButton1.disabled = true;
+      }
+    }
+    if(cartForms.length > 1) {
+      var checkoutButton2 = cartForms[1].querySelector("button[name='checkout'][type='submit']");
+      if(checkoutButton2) {
+        checkoutButton2.disabled = true;
+      } else {
+        checkoutButton2 = cartForms[1].querySelector("input[name='checkout'][type='submit']");
+        if(checkoutButton2){
+          checkoutButton2.disabled = true;
+        }
+      }
+    }
+  }
+})();
+</script>
