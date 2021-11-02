@@ -47,8 +47,7 @@
 {% assign copy_class = 'hide' %}
 
 {% if product.metafields.card.copy %}
-  {% assign copy = from | append: ' ' | append: product.metafields.card.copy %}
-
+  {% assign copy = product.metafields.card.copy | t %}
   {% assign copy_class = ' ' %}
 {% endif %}
 
@@ -86,6 +85,12 @@
   {% assign promo_badge_class = ' ' %}
 {% endif %}
 
+{% assign product_desc = ' ' %}
+
+{% if product.metafields.card.copy %}
+  {% assign product_desc = product.metafields.card.copy %}
+{% endif %}
+
 {% assign tag_badge_html = ' ' %}
 
 {% assign tag_badge_class = 'hide' %}
@@ -118,5 +123,6 @@
   _promo_badge_copy: promo_badge_copy,
   _promo_badge_class: promo_badge_class,
   _tag_badge_html: tag_badge_html,
-  _tag_badge_class: tag_badge_class
+  _tag_badge_class: tag_badge_class,
+	_product_desc: product_desc
 %}

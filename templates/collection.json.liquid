@@ -26,18 +26,12 @@
             "id": {{ product.id | json }},
             "variants": {{ product.variants | json }},
             "metafields": {
-              {% if product.metafields.card.copy %}
-                "card": {
-                  "copy": {{ product.metafields.card.copy | json }}
-                }
-              {% endif %}
-
-              {% if product.metafields.promo_badge.copy %}
-                ,
-                "promo_badge": {
-                  "copy": {{ product.metafields.promo_badge.copy | json }}
-                }
-              {% endif %}
+              "card": {
+                "copy": {{ product.metafields.card.copy | json }}
+              },
+              "promo_badge": {
+                "copy": {{ product.metafields.promo_badge.copy | json }}
+              }
             },
             "custom": {
               {% if product_tag_badge %}

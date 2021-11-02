@@ -30,7 +30,13 @@
           <div class="padding-top--up-1 xlarge--padding-top--up-2">
             <div class="xlarge--flex--up-1">
               <div class="xlarge--flex-item margin-bottom--0 xlarge--margin-bottom--none">
-                {% include 'product-price' %}
+                {% include 'product-price' %}             
+                
+                {% if current_variant.taxable %}
+                  <div class="rte font-size--down-4 line-height--up-2 xlarge--font-size--down-2 xlarge--line-height--up-4">
+                      <p>Including VAT</p>
+                  </div>
+               	{% endif %}
 
                 {% if delivery_info_enable %}
                   {% include 'product-delivery-info' %}

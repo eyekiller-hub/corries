@@ -223,5 +223,40 @@
       "cancelled": "Order Cancelled on {{ date }}",
       "cancelled_reason": "Reason: {{ reason }}"
     }
+  },
+  "shopify": {
+    "checkout": {
+      "contact": {
+        "state_label": "County",
+        "state_placeholder": "County",
+        "zip_code_label": "Postcode\/Eircode",
+        "zip_code_placeholder": "Postcode\/Eircode",
+        "postal_code_label": "Postcode\/Eircode",
+        "postal_code_placeholder": "Postcode\/Eircode",
+        "postcode_label": "Postcode\/Eircode",
+        "postcode_placeholder": "Postcode\/Eircode",
+        "shipping_address_title": "Delivery address"
+      },
+      "order_summary": {
+        "taxes_label": "VAT",
+        "estimated_taxes_label": "VAT (Estimated)",
+        "vat_label_html": "Including {{ amount }} in VAT",
+        "free_shipping_discount_label": "Free delivery",
+        "shipping_label": "Delivery",
+        "multiple_shipping_lines_label": "Delivery total"
+      },
+      "general": {
+        "continue_to_shipping_method": "Continue to delivery ",
+        "back_to_shipping_method": "Return to delivery",
+        "choose_shipping_method": "Choose a delivery method"
+      },
+      "delivery_options": {
+        "shipping_address": "Delivery address"
+      },
+      "shipping": {
+        "title": "Delivery",
+        "shipping_method_title": "Delivery method"
+      }
+    }
   }
 }

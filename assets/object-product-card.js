@@ -14,9 +14,11 @@ function render({
 
   var from = product.price_varies ? window.theme_locales.products.product.from : '';
 
-  var copy = `${(product.metafields && product.metafields.card && `${from} ${product.metafields.card.copy}`) || ''}`;
+  var copy_old = `${(product.metafields && product.metafields.card && `${from} ${product.metafields.card.copy}`) || ''}`;
 
   var promo_badge_copy = (product.metafields && product.metafields.promo_badge && product.metafields.promo_badge.copy) || '';
+
+var copy = (product.metafields && product.metafields.card && product.metafields.card.copy) || '';
 
   var tag_badge_html = product.custom.product_tag_badge ? `
     <img data-src="${product.custom.product_tag_badge.image_url}" alt="${product.custom.product_tag_badge.image_alt}" />
@@ -69,6 +71,7 @@ function render({
     submit_attributes: variant.available ? '' : `data-product-data="${bis_product_data}"`,
     promo_badge_class: promo_badge_copy ? '' : 'hide',
     promo_badge_copy: promo_badge_copy,
+    product_desc: product_desc,
     tag_badge_html: tag_badge_html,
     tag_badge_class: tag_badge_html ? '' : 'hide',
   });

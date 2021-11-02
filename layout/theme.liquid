@@ -8,7 +8,24 @@
 
 <!DOCTYPE html>
 <html class="template-{{ template | handle }}" lang="{{ shop.locale }}">
-  <head>
+  <head>  
+    
+    <!-- CookiePro Cookies Consent Notice start for corriesonthefarm.co.uk -->
+    <script type="text/javascript" src="https://cookie-cdn.cookiepro.com/consent/71bf8f5b-0b0f-4e67-ba43-5db39a233634/OtAutoBlock.js" ></script>
+    <script src="https://cookie-cdn.cookiepro.com/scripttemplates/otSDKStub.js"  type="text/javascript" charset="UTF-8" data-domain-script="71bf8f5b-0b0f-4e67-ba43-5db39a233634" ></script>
+    <script type="text/javascript">
+    function OptanonWrapper() { }
+    </script>
+    <!-- CookiePro Cookies Consent Notice end for corriesonthefarm.co.uk -->
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WLFHVPW');</script>
+    <!-- End Google Tag Manager -->
+    
     {% include 'layout-meta' %}
     {% include 'layout-social-meta' %}
     {% include 'layout-title' %}
@@ -28,6 +45,11 @@
 </head>
 
 <body>
+  
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WLFHVPW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   {% section 'utility-bar' %}
   {% section 'header' %}
 
@@ -52,5 +74,21 @@
 {% if content_for_header contains 'fastbundle.co' %}
     {% render 'fast_bundle_service' %}
 {% endif %}
+  
+  <script>
+  window.addEventListener("klaviyoForms", function(e) { 
+    var tracker = ga.getAll()[0]
+    if (e.detail.type == 'open' || e.detail.type == 'embedOpen') {
+      tracker.send('event', 'Klaviyo form', 'form_open', e.detail.formId);
+    }
+    if (e.detail.type == 'submit') {
+      tracker.send('event', 'Klaviyo form', 'form_submit', e.detail.formId);
+    }
+    if (e.detail.type == 'close') {
+      tracker.send('event', 'Klaviyo form', 'form_close', e.detail.formId);
+    }
+  });
+  </script>
+  
 </body>
 </html>

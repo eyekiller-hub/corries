@@ -148,12 +148,14 @@
                           <div class="margin-bottom--0">
                             <div class="overflow-hidden">
                               <div class="hover-zoom-item">
+                                {% if block_megamenu_url %}<a href="{{ block_megamenu_url }}">{% endif %}
                                 {%
                                   include 'image',
                                   _object: block_megamenu_image,
                                   _size: '600x',
                                   _lazy: true
                                 %}
+                                {% if block_megamenu_url %}</a>{% endif %}
                               </div>
                             </div>
                           </div>

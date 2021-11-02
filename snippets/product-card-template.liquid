@@ -18,6 +18,8 @@
 {% assign promo_badge_class = _promo_badge_class %}
 {% assign tag_badge_html = _tag_badge_html %}
 {% assign tag_badge_class = _tag_badge_class %}
+{% assign copy = _copy %}
+{% assign product_desc = _product_desc %}
 
 {% assign url = url | default: '{{ url }}' %}
 
@@ -65,6 +67,8 @@
 
 {% assign tag_badge_class = tag_badge_class | default: '{{ tag_badge_class }}' %}
 
+{% assign product_desc = product_desc | default: '{{ product_desc }}' %}
+
 <article class="height-full flex-vertical hover-zoom hover-text-underline-target">
   <div class="margin-bottom--up-1">
     <a href="{{ url }}">
@@ -72,7 +76,7 @@
         <div class="overflow-hidden">
           <div class="hover-zoom-item">
             <div class="image-container box-ratio-inline" style="padding-bottom: {{ image_box_ratio }};">
-              <img data-src="{{ image_url }}" alt="{{ image_alt }}" {{ image_attributes }} />
+              <img data-src="{{ image_url }}" src="{{ image_url }}" alt="{{ image_alt }}" />
             </div>
           </div>
         </div>
@@ -119,7 +123,7 @@
     </a>
   </h3>
 
-  <div class="{{ copy_class }}">
+  <div class="{{ copy_class }} productExcerpt">
     <div class="padding-bottom--down-4">
       <div class="font-size--down-2 line-height--up-4 text-color-grey-light">
         {{ copy }}
