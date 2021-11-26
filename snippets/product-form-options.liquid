@@ -19,9 +19,12 @@
             "position": {{ option.position | json | escape }}
           }'>
             {% for value in option.values %}
+            {% unless value contains "% off" %}
               <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>
                 {{ value }}
               </option>
+
+              {% endunless %}
             {% endfor %}
           </select>
         </div>

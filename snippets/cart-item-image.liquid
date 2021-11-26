@@ -1,4 +1,4 @@
-<a href="{{ line_item.url }}" title="{{ line_item.product.title | escape }}">
+<a href="{% if line_item.variant.metafields.secomapp.freegifts %}{{ line_item.product.url }}{% else %}{{ line_item.url }}{% endif %}" title="{{ line_item.product.title | escape }}">
   {%
     include 'image',
     _object: line_item.image,

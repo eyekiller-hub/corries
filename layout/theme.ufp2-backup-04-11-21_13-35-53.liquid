@@ -42,7 +42,6 @@
 
     {{ 'custom.scss.css' | asset_url | stylesheet_tag }}
 
-{% include 'sales-motivator-init' %}{% include 'sca.freegifts' %}
 </head>
 
 <body>
@@ -73,7 +72,7 @@
   <!-- End Back in Stock helper snippet -->
 
 {% if content_for_header contains 'fastbundle.co' %}
-     {% render 'fast_bundle_service' %}
+    {% render 'fast_bundle_service' %}
 {% endif %}
   
   <script>
@@ -90,6 +89,6 @@
     }
   });
   </script>
-
+  
 </body>
 </html>

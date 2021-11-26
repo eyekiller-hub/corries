@@ -1,4 +1,6 @@
 <div class="margin-bottom--0 xlarge--margin-bottom--up-1">
+  <div style="position:relative;">
+  
   <h1 class="
     font-size--up-8 line-height--up-10
     xlarge--font-size--up-12 xlarge--line-height--up-14
@@ -7,6 +9,7 @@
   ">
     {{ product.title }}
   </h1>
+  <div name="secomapp-fg-image-{{ product.id }}" style="display: none;">{{ "icon-freegift.png" | asset_url | img_tag: "FG icon", "sca-fg-img-collect" }}</div></div>
 
   {%
     include 'judgeme_widgets',

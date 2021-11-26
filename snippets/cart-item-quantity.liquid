@@ -48,6 +48,7 @@
         ">
           <div style="margin-left: -1px; margin-right: -1px;">
             <input
+              {% if line_item.variant.metafields.secomapp.freegifts %}readonly{% endif %} 
               class="
                 input block
                 padding--none
@@ -83,6 +84,7 @@
             }'
           {% endif %}>
           <div
+            {% if line_item.variant.metafields.secomapp.freegifts %}style="display: none !important;"{% endif %} 
             class="
               height-full flex-bar flex-center
               box-color-beige hover-box-color-beige-active

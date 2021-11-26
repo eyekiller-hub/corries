@@ -10,7 +10,13 @@ This snippet is auto generated and will be overwritten.
   _BISConfig.product = {{ product | json }};
 
   {% for variant in product.variants %}
+{% unless variant.metafields.secomapp.freegifts %}
+{% unless variant.title contains '% off)' %}
+
     _BISConfig.product.variants[{{forloop.index | minus: 1 }}]['inventory_quantity'] = {{ variant.inventory_quantity }};
+
+{% endunless %}
+{% endunless %}
   {% endfor %}
 {% endif %}
 

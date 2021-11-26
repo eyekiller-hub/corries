@@ -17,9 +17,12 @@
 </div>
 
 <script type="application/ld+json">
-    {      
-      "schemaplus_recipe_name ": article.title      
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "Recipe",
+  "author": "Corries",
+  "name": "{{ article.title }}"
+}
 </script>
 
 {% schema %}

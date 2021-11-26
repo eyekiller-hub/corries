@@ -1,5 +1,46 @@
 /* Eyekiller: Custom Styles */
 
+/* === Home: Hero === */
+
+.hero-subtext {
+  padding-top:20px;
+  max-width:75%;
+  margin:0 auto;
+}
+
+/* === Generic === */
+
+.rte ul {
+  li {
+    list-style:none;
+    &:before {
+      content: "\2022";
+      width: 20px;
+      height: 20px;
+      color: #666666;
+      display: inline-block;
+      margin-left: -1em;
+    }
+    
+  }
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+#shopify-section-utility-bar p {
+  margin:0;
+  padding:0;
+  font-size:inherit;
+  a {
+    text-decoration:none;
+    &:hover {
+      text-decoration:underline;
+    }
+  }
+}
+
 /* === Delivery & Click Collect UI === */
 
 #order-slots {
@@ -433,3 +474,18 @@
   }
 }
   
+
+/* === Promo Badge - Collection === */
+
+@media (max-width:480px) { 
+	.promo-badge {
+      top:auto;
+      bottom:0;
+      left:0;
+      width:100%;
+      text-align:center;
+      .font-size--down-2 {
+        font-size:12px;
+      }
+    }
+}

@@ -9,6 +9,19 @@
   ">
     {{ 'cart.title' | t }}
   </h1>
+  
+  <div id="sca-fg-owl-carousel">
+    <div id="freegift_cart_container" class="sca-fg-cart-container" style="display: none;">
+      <div id="freegift_message" class="owl-carousel"></div>
+    </div> 
+    <div id="sca-fg-slider-cart" style="display: none;">
+      <div class="sca-fg-cart-title">
+        <strong>Select your free gift (s)</strong>
+      </div>
+      <div id="sca_freegift_list" class="owl-carousel"></div>
+    </div>
+  </div>
+  <br/>
 
   {% if cart.items != empty %}
     {% include 'cart-form' %}

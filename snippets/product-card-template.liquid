@@ -4,6 +4,7 @@
 {% assign image_box_ratio = _image_box_ratio %}
 {% assign image_attributes = _image_attributes %}
 {% assign title = _title %}
+{% assign strikethrough = _strikethrough %}
 {% assign price_class = _price_class %}
 {% assign price_min = _price_min %}
 {% assign compare_at_price_min_class = _compare_at_price_min_class %}
@@ -77,13 +78,16 @@
           <div class="hover-zoom-item">
             <div class="image-container box-ratio-inline" style="padding-bottom: {{ image_box_ratio }};">
               <img data-src="{{ image_url }}" src="{{ image_url }}" alt="{{ image_alt }}" />
+
+              <span><img style="display:none;" id="secomapp-fg-image-{{ product.id }}" src="{{ "icon-freegift.png" | asset_url }}" alt="Free Gift Icon" class="sca-fg-img-collect"></span>
+              <span class="sca-fg-cat-list prod-show-list" style="display:none;" id="secomapp-fg-data-{{ product.id }}"></span>
             </div>
           </div>
         </div>
 
-        <div class="no-pointer">
+        <div class="no-pointer promo-badge-container">
           <div class="{{ promo_badge_class }}">
-            <div class="position-absolute position-top--down-1 position-left">
+            <div class="position-absolute position-top--down-1 position-left promo-badge">
               <div class="box-color-red">
                 <div class="padding-top-bottom--down-4 padding-left-right--down-2">
                   <div class="
@@ -97,7 +101,7 @@
             </div>
           </div>
 
-          <div class="{{ tag_badge_class }}">
+          <div class="{{ tag_badge_class }} tag-badge">
             <div class="position-absolute position-top--down-2 position-right--down-2 position-1">
               <div style=" --max-width: 70px; --medium--max-width: 80px; --large--max-width: 90px;">
                 <div class="image-container">
@@ -122,7 +126,7 @@
       {{ title }}
     </a>
   </h3>
-
+{% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: true, product: product %}
   <div class="{{ copy_class }} productExcerpt">
     <div class="padding-bottom--down-4">
       <div class="font-size--down-2 line-height--up-4 text-color-grey-light">
@@ -138,9 +142,9 @@
         {{ price_min }}
       </span>
 
-      <s class="text-color-grey-light {{ compare_at_price_min_class }}">
+      <span class="text-color-grey-light strikethrough {{ compare_at_price_min_class }}">
         {{ compare_at_price_min }}
-      </s>
+      </span>
     </div>
 
     <div class="margin-top--0">

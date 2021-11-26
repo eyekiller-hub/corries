@@ -14,6 +14,8 @@
 
 {% assign title = section.settings.title | newline_to_br | default: false %}
 
+{% assign subtext = section.settings.subtext| newline_to_br | default: false %}
+
 {% assign url_1 = section.settings.url_1 | default: false %}
 
 {% assign call_to_action_1 = section.settings.call_to_action_1 | default: false %}
@@ -49,6 +51,7 @@
       {% if title %}
         <div class="position-absolute position-center one">
           <div class="text-color-light text-center">
+            
             <h2
               class="
                 font-size--up-13 line-height--up-13
@@ -59,6 +62,12 @@
               ">
               {{ title }}
             </h2>
+            
+            {% if subtext %}
+            	<div class="rte large--font-size--up-2 large--line-height--up-8">
+            		<p class="text-color-inherit hero-subtext">{{ subtext }}</p>
+            	</div>
+            {% endif %}
 
             {% if url_1 or call_to_action_1 or url_2 or call_to_action_2 %}
               <div class="margin-top--up-2">
@@ -171,6 +180,11 @@
         "type": "textarea",
         "id": "title",
         "label": "Title"
+      },
+		{
+        "type": "textarea",
+        "id": "subtext",
+        "label": "Subtext (optional)"
       },
       {
         "type": "url",

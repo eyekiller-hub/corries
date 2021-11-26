@@ -1,12 +1,18 @@
 <div style="display: none;">
   <select name="id" data-ref-id>
     {% for variant in product.variants %}
+{% unless variant.metafields.secomapp.freegifts %}
+{% unless variant.title contains '% off)' %}
+
       <option
         {% if variant == current_variant %}selected{% endif %}
         {% unless variant.available %}disabled{% endunless %}
         value="{{ variant.id }}">
         {{ variant.title }}
       </option>
+
+{% endunless %}
+{% endunless %}
     {% endfor %}
   </select>
 </div>

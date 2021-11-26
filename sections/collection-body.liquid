@@ -120,9 +120,11 @@
                 <div class="overflow-hidden">
                   <div class="{{ product_card_grid_class_name_template }}" data-ref-products>
                     {% for product in collection.products %}
+                    {% if product.type != 'FREEGIFT_HIDDEN' %}
                       <div class="{{ product_card_grid_item_class_name_template }}">
                         {% include 'product-card', _image_lazy: image_lazy %}
                       </div>
+                    {%endif%}
                     {% endfor %}
                   </div>
                 </div>

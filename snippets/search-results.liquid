@@ -1,9 +1,11 @@
 <div class="overflow-hidden">
   <div class="flex--0 medium--flex--up-1 large--flex--up-2 flex-wrap margin-bottom-negative--up-2">
     {% for product in search.results %}
+    {% if product.type != 'FREEGIFT_HIDDEN' %}
       <div class="flex-item-auto padding-bottom--up-2 one-two medium--one-three xlarge--one-five">
         {% include 'product-card' %}
       </div>
+    {%endif%}
     {% endfor %}
   </div>
 </div>
