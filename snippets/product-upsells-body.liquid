@@ -25,7 +25,11 @@
           {% endfor %}
         {% else %}
           {% for handle in product_upsells_handles limit: limit %}
-            {% assign product = all_products[handle] %}
+            {% assign product = all_products[handle] | default: false %}
+
+            {% unless product %}
+              {% continue %}
+            {% endunless %}
 
             <div class="
               flex-item-auto padding-bottom--up-2 one-two medium--one-three xlarge--one-five

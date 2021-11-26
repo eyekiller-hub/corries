@@ -27,7 +27,11 @@
         <div class="overflow-hidden">
           <div class="flex--0 medium--flex--up-1 large--flex--up-2 flex-wrap flex-center margin-bottom-negative--up-2">
             {% for handle in cart_upsells_handles limit: limit %}
-              {% assign product = all_products[handle] %}
+              {% assign product = all_products[handle] | default: false %}
+
+              {% unless product %}
+                {% continue %}
+              {% endunless %}
 
               <div class="
                 flex-item-auto padding-bottom--up-2 one-two medium--one-three xlarge--one-five
